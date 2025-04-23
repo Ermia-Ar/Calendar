@@ -6,7 +6,7 @@ using Core.Domain.Shared;
 using Infrastructure.Base.CurrentUserServices;
 using Infrastructure.Entity;
 using Infrastructure.UnitOfWork;
-using Microsoft.AspNetCore.Routing.Tree;
+
 
 namespace Infrastructure.Services
 {
@@ -27,7 +27,7 @@ namespace Infrastructure.Services
         {
             // map to activity table
             var activity = _mapper.Map<Activity>(activityRequest);
-            activity.Duration = TimeSpan.FromMinutes(activityRequest.DurationInMinute);  
+            activity.Duration = TimeSpan.FromMinutes(activityRequest.DurationInMinute);
             activity.Id = Guid.NewGuid().ToString();
             activity.UserId = _currentUser.GetUserId();
 
@@ -48,12 +48,12 @@ namespace Infrastructure.Services
                 //remove from activities table
                 var userId = _currentUser.GetUserId();
                 await _unitOfWork.Activities.DeleteAsyncById(id);
-                
+
 
                 await transaction.CommitAsync();
                 return Result.Success();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 await transaction.RollbackAsync();
                 return Result.Failure(new Error("", ex.Message));
@@ -69,7 +69,7 @@ namespace Infrastructure.Services
 
                 return response;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Result.Failure<ActivityResponse>(new Error("", "not found"));
             }
@@ -78,7 +78,7 @@ namespace Infrastructure.Services
         public async Task<Result<List<ActivityResponse>>> GetCurrentActivityUser()
         {
             // get activities
-            var userId = _currentUser.GetUserId(); 
+            var userId = _currentUser.GetUserId();
             var activities = await _unitOfWork.Activities.GetCurrentUserActivities(userId);
             // map to response
             var response = _mapper.Map<List<ActivityResponse>>(activities);
@@ -87,7 +87,7 @@ namespace Infrastructure.Services
         }
 
         public async Task<Result<List<ActivityResponse>>> HistoryOfActivities()
-        {  
+        {
             // get activities
             var userId = _currentUser.GetUserId();
             var activities = await _unitOfWork.Activities.GetHistoryOfUserActivities(userId);

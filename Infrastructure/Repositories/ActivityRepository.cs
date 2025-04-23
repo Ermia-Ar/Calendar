@@ -28,7 +28,7 @@ namespace Infrastructure.Repositories
         public async Task<List<Activity>> GetHistoryOfUserActivities(string userId)
         {
             var activities = await GetTableAsTracking()
-                .Where(x => x.Date < DateTime.UtcNow && x.UserId == userId)
+                .Where(x => x.Date < DateTime.Now && x.UserId == userId)
                 .ToListAsync();
 
             return activities;

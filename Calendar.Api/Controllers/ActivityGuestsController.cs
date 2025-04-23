@@ -31,9 +31,9 @@ namespace Calendar.Api.Controllers
 
         [HttpDelete]
         [Route("RemoveGuestFromActivity")]
-        public async Task<IActionResult> RemoveGuestFromActivity(Guid activityId, Guid userId)
+        public async Task<IActionResult> RemoveGuestFromActivity(Guid activityId, string userName)
         {
-            var request = new RemoveGuestFromActivityCommand { ActivityId = activityId.ToString(), UserId = userId.ToString() };
+            var request = new RemoveGuestFromActivityCommand { ActivityId = activityId.ToString(), UserName = userName.ToString() };
             var result = await _mediator.Send(request);
 
             return NewResult(result);

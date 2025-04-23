@@ -76,6 +76,7 @@ namespace Infrastructure.Repositories
             {
                 return false;
             }
+            await DeleteAsync(request);
             return true;
         }
 

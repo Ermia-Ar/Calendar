@@ -17,3 +17,4 @@ C:\Users\DELL\source\repos\Calendar\Infrastructure\bin\Debug\net8.0\Core.Applica
 C:\Users\DELL\source\repos\Calendar\Infrastructure\bin\Debug\net8.0\Core.Domain.dll
 C:\Users\DELL\source\repos\Calendar\Infrastructure\bin\Debug\net8.0\Core.Application.pdb
 C:\Users\DELL\source\repos\Calendar\Infrastructure\bin\Debug\net8.0\Core.Domain.pdb
+C:\Users\DELL\source\repos\Calendar\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json

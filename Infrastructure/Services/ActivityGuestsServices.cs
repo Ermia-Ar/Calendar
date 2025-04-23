@@ -4,21 +4,25 @@ using Core.Application.DTOs.UserDTOs;
 using Core.Application.Interfaces;
 using Core.Domain.Shared;
 using Infrastructure.Base.CurrentUserServices;
+using Infrastructure.Entity;
 using Infrastructure.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Services
 {
     public class ActivityGuestsServices : IActivityGuestsServices
     {
+        private UserManager<User> _userManager;
         private IUnitOfWork _unitOfWork;
         private ICurrentUserServices _currentUserServices;
         private IMapper _mapper;
 
-        public ActivityGuestsServices(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+        public ActivityGuestsServices(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices, UserManager<User> userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _currentUserServices = currentUserServices;
+            _userManager = userManager;
         }
 
         public async Task<Result<List<UserResponse>>> GetActivityGuestByActivityId(string activityId)
@@ -48,14 +52,15 @@ namespace Infrastructure.Services
             return Result.Success();
         }
 
-        public async Task<Result> RemoveGuestFromActivity(string activityId, string userId)
+        public async Task<Result> RemoveGuestFromActivity(string activityId, string userName)
         {
-            var success = await _unitOfWork.ActivitiesGuests.RemoveGuestById(userId ,activityId);
+            var user = await _userManager.FindByNameAsync(userName);
+
+            var success = await _unitOfWork.ActivitiesGuests.RemoveGuestById(user.Id ,activityId);
             if (success)
             {
                 return Result.Success();
             }
-
             return Result.Failure(Error.None);
         }
     }

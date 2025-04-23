@@ -10,3 +10,4 @@ C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.dll
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\refint\Core.Domain.dll
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.pdb
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\ref\Core.Domain.dll
+C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.sourcelink.json

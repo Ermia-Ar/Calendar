@@ -1,12 +1,27 @@
 ﻿
+using Core.Domain.Enum;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Core.Domain.Entity
 {
     public class UserRequest
     {
-        public Activity Activity { get; set; }
+        public string Id { get; set; }
 
-        public TaskStatus Status { get; set; }
-        
+        public string ActivityId { get; set; }
+
+        public string Sender { get; set; }
+
+        public string Receiver { get; set; }
+
+        public RequestStatus Status { get; set; }
+
         public DateTime InvitedAt { get; set; }
+
+        public DateTime? AnsweredAt { get; set; }
+
+        public string? Message { get; set; }
+
+        public bool IsExpire { get; set; }
     }
 }

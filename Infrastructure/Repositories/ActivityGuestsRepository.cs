@@ -5,6 +5,7 @@ using Infrastructure.Data;
 using Infrastructure.Entities;
 using Infrastructure.Entity;
 using Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ namespace Infrastructure.Repositories
     {
         private DbSet<ActivityGuest> _activityGuests;
 
-        public ActivityGuestsRepository(ApplicationContext context) : base(context) 
+        public ActivityGuestsRepository(ApplicationContext context) : base(context)
         {
             _activityGuests = context.Set<ActivityGuest>();
         }
@@ -68,6 +69,5 @@ namespace Infrastructure.Repositories
             }
         }
 
-       
     }
 }

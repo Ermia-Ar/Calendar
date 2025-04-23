@@ -14,8 +14,10 @@ namespace Core.Domain.Entity
 
         public DateTime Date { get; set; }
 
-        public TimeSpan Duration { get; set; } 
+        public TimeSpan? Duration { get; set; }
 
         public ActivityCategory Category { get; set; }
+
+        public bool IsCompleted { get; set; }
     }
 }

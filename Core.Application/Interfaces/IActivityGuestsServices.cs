@@ -7,7 +7,7 @@ namespace Core.Application.Interfaces
     public interface IActivityGuestsServices
     {
         public Task<Result> ExitingFromActivityByActivityId(string activityId);
-        public Task<Result> RemoveGuestFromActivity(string activityId, string userId);
+        public Task<Result> RemoveGuestFromActivity(string activityId, string userName);
         public Task<Result<List<ActivityResponse>>> GetActivityGuestByUserId();
         public Task<Result<List<UserResponse>>> GetActivityGuestByActivityId(string activityId);
 

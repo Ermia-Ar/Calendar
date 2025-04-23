@@ -69,7 +69,7 @@ namespace Core.Application.Features.ActivityGuests.Handler
             {
                 return NotFound<string>(isFor.Error.Message);
             }
-            var result = await _services.RemoveGuestFromActivity(request.ActivityId, request.UserId);
+            var result = await _services.RemoveGuestFromActivity(request.ActivityId, request.UserName);
             if (result.IsFailure)
             {
                 return NotFound<string>(result.Error.Message);

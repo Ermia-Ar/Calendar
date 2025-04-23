@@ -6,6 +6,6 @@ namespace Core.Application.Features.ActivityGuests.Commands
     public class RemoveGuestFromActivityCommand : IRequest<Response<string>>
     {
         public string ActivityId { get; set; }
-        public string UserId { get; set; }
+        public string UserName { get; set; }
     }
 }
