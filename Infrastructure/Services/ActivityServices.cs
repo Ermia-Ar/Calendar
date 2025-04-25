@@ -23,6 +23,19 @@ namespace Infrastructure.Services
             _mapper = mapper;
         }
 
+        public async Task<Result> CompleteActivity(string activityId)
+        {
+            try
+            {
+                await _unitOfWork.Activities.CompleteActivity(activityId);
+                return Result.Success();
+            }
+            catch
+            {
+                return Result.Failure(new Error("", "Something Wrong"));
+            }
+        }
+
         public async Task<Result> CreateActivity(CreateActivityRequest activityRequest)
         {
             // map to activity table
@@ -118,10 +131,9 @@ namespace Infrastructure.Services
         public async Task<Result<ActivityResponse>> UpdateActivity(UpdateActivityRequest updateActivity)
         {
             // update activity
-            var userId = _currentUser.GetUserId();
             try
             {
-                var activity = await _unitOfWork.Activities.UpdateActivity(updateActivity, userId);
+                var activity = await _unitOfWork.Activities.UpdateActivity(updateActivity);
                 //map to activityResponse
                 var response = _mapper.Map<ActivityResponse>(activity);
                 return Result.Success(response);
@@ -130,7 +142,6 @@ namespace Infrastructure.Services
             {
                 return Result.Failure<ActivityResponse>(new Error("", ex.Message));
             }
-
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Core.Application.Interfaces
     public interface IActivityServices
     {
         public Task<Result<ActivityResponse>> UpdateActivity(UpdateActivityRequest updateActivity);
+        public Task<Result> CompleteActivity(string activityId);
         public Task<Result<ActivityResponse>> GetActivityById(string Id);
         public Task<Result> CreateActivity(CreateActivityRequest activityRequest);
         public Task<Result<List<ActivityResponse>>> GetCurrentActivityUser();

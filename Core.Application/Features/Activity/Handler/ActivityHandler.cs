@@ -10,6 +10,7 @@ namespace Core.Application.Features.Activity.Handler
     public class ActivityHandler : ResponseHandler
         , IRequestHandler<CreateActivityCommand, Response<string>>
         , IRequestHandler<DeleteActivityCommand, Response<string>>
+        , IRequestHandler<CompleteActivityCommand, Response<string>>
         , IRequestHandler<UpdateActivityCommand, Response<ActivityResponse>>
         , IRequestHandler<GetCurrentActivityQuery, Response<List<ActivityResponse>>>
         , IRequestHandler<GetHistoryOfActivitiesQuery, Response<List<ActivityResponse>>>
@@ -82,6 +83,22 @@ namespace Core.Application.Features.Activity.Handler
                 return BadRequest<List<ActivityResponse>>("Something wrong");
             }
             return Success(result.Value);
+        }
+
+        public async Task<Response<string>> Handle(CompleteActivityCommand request, CancellationToken cancellationToken)
+        {
+            var isFor = await _activityServices.IsActivityForUser(request.ActivityId);
+            if (isFor.IsFailure)
+            {
+                return NotFound<string>(isFor.Error.Message);
+            }
+
+            var result = await _activityServices.CompleteActivity(request.ActivityId);
+            if (result.IsFailure)
+            {
+                return NotFound<string>(result.Error.Message);
+            }
+            return Success("");
         }
     }
 }

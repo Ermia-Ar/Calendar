@@ -22,11 +22,11 @@ namespace Calendar.Api.Controllers
 
         [HttpPost]
         [Route("CreateActivity")]
-        public async Task<IActionResult> CreateActivity([FromBody]CreateActivityRequest activityRequest)
+        public async Task<IActionResult> CreateActivity([FromBody] CreateActivityRequest activityRequest)
         {
             var request = new CreateActivityCommand { createActivityRequest = activityRequest };
             var result = await _mediator.Send(request);
-            
+
             return NewResult(result);
         }
 
@@ -42,7 +42,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPut]
         [Route("UpdateActivity")]
-        public async Task<IActionResult> CreateActivity([FromBody] UpdateActivityRequest activityRequest)
+        public async Task<IActionResult> UpdateActivity([FromBody] UpdateActivityRequest activityRequest)
         {
             var request = new UpdateActivityCommand { UpdateActivityRequest = activityRequest };
             var result = await _mediator.Send(request);
@@ -52,13 +52,35 @@ namespace Calendar.Api.Controllers
 
         [HttpGet]
         [Route("GetActivities")]
-        public async Task<IActionResult> CreateActivity()
+        public async Task<IActionResult> GetActivities()
         {
             var request = new GetCurrentActivityQuery();
             var result = await _mediator.Send(request);
 
             return NewResult(result);
         }
+
+        [HttpGet]
+        [Route("GetActivitiesHistory")]
+        public async Task<IActionResult> GetActivitiesHistory()
+        {
+            var request = new GetHistoryOfActivitiesQuery();
+            var result = await _mediator.Send(request);
+
+            return NewResult(result);
+        }
+
+        [HttpPost]
+        [Route("CompleteActivity")]
+        public async Task<IActionResult> CompleteActivity(Guid activityId)
+        {
+            var request = new CompleteActivityCommand { ActivityId = activityId.ToString() };
+            var result = await _mediator.Send(request);
+
+            return NewResult(result);
+        }
+
+
 
     }
 }

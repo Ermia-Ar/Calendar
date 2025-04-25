@@ -111,6 +111,22 @@ namespace Infrastructure.Services
 
         }
 
+        public async Task<Result<List<UserRequestResponse>>> GetResponsesUserSent()
+        {
+            try
+            {
+                // get requests with user name 
+                var userName = _currentUserServices.GetUserName();
+                var requests = await _unitOfWork.Requests.GetResponsesUserSent(userName);
+
+                return Result.Success(requests);
+            }
+            catch
+            {
+                return Result.Failure<List<UserRequestResponse>>(new Error("", "Something wrong"));
+            }
+        }
+
         public async Task<Result> AnswerRequest(string requestId, bool isAccepted)
         {
             await using var transaction = await _unitOfWork.Requests.BeginTransactionAsync();
@@ -134,22 +150,6 @@ namespace Infrastructure.Services
             {
                 await transaction.RollbackAsync();
                 return Result.Failure(new Error("", ex.Message));
-            }
-        }
-
-        public async Task<Result<List<UserRequestResponse>>> GetResponsesUserSent()
-        {
-            try
-            {
-                // get requests with user name 
-                var userName = _currentUserServices.GetUserName();
-                var requests = await _unitOfWork.Requests.GetResponsesUserSent(userName);
-
-                return Result.Success(requests);
-            }
-            catch
-            {
-                return Result.Failure<List<UserRequestResponse>>(new Error("", "Something wrong"));
             }
         }
 

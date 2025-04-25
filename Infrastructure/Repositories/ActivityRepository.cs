@@ -19,7 +19,7 @@ namespace Infrastructure.Repositories
         public async Task<List<Activity>> GetCurrentUserActivities(string userId)
         {
             var activities = await GetTableAsTracking()
-                .Where(x => /*x.Date >= DateTime.UtcNow &&*/ x.UserId == userId)
+                .Where(x => x.Date >= DateTime.Now && x.UserId == userId)
                 .ToListAsync();
 
             return activities;
@@ -34,13 +34,9 @@ namespace Infrastructure.Repositories
             return activities;
         }
 
-        public async Task<Activity> UpdateActivity(UpdateActivityRequest UpdateActivity , string userId)
+        public async Task<Activity> UpdateActivity(UpdateActivityRequest UpdateActivity)
         {
             var activity = await GetByIdAsync(UpdateActivity.Id);
-            if(activity.UserId != userId)
-            {
-                throw new Exception("you can update this activity");
-            }
             activity.Duration = TimeSpan.FromMinutes(UpdateActivity.DurationInMinute);
             activity.Title = UpdateActivity.Title;
             activity.Description = UpdateActivity.Description;
@@ -52,7 +48,12 @@ namespace Infrastructure.Repositories
             return activity;
         }
 
-        
+        public async Task CompleteActivity(string activityId)
+        {
+            var activity = await GetByIdAsync(activityId);
+            activity.IsCompleted = !activity.IsCompleted;
+            await SaveChangesAsync();
+        }
 
         public async Task<bool> IsActivityForUser(string activityId, string userId)
         {
@@ -73,6 +74,5 @@ namespace Infrastructure.Repositories
             }
             return activity;
         }
-
     }
 }
