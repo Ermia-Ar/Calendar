@@ -1,4 +1,5 @@
-﻿using Infrastructure.Data;
+﻿using Core.Domain.Interfaces;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -9,14 +10,12 @@ namespace Infrastructure.Base
 
         protected readonly ApplicationContext _dbContext;
 
-
         public GenericRepositoryAsync(ApplicationContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-
-        public virtual async Task<T> GetByIdAsync(string id)
+        public virtual async Task<T> GetByIdAsync(string id, CancellationToken token)
         {
             var entity = await _dbContext.Set<T>().FindAsync(id);
             if (entity == null)
@@ -26,53 +25,43 @@ namespace Infrastructure.Base
             return entity;
         }
 
-
-        public IQueryable<T> GetTableNoTracking()
+        public IQueryable<T> GetTableNoTracking(CancellationToken token)
         {
             return _dbContext.Set<T>().AsNoTracking().AsQueryable();
         }
 
-
-        public virtual async Task AddRangeAsync(ICollection<T> entities)
+        public virtual async Task AddRangeAsync(ICollection<T> entities, CancellationToken token)
         {
             await _dbContext.Set<T>().AddRangeAsync(entities);
-            await _dbContext.SaveChangesAsync();
-
         }
-        public virtual async Task<T> AddAsync(T entity)
+
+        public virtual async Task<T> AddAsync(T entity, CancellationToken token)
         {
             await _dbContext.Set<T>().AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
 
             return entity;
         }
 
-        public virtual async Task UpdateAsync(T entity)
+        public virtual void Update(T entity)
         {
             _dbContext.Set<T>().Update(entity);
-            await _dbContext.SaveChangesAsync();
-
         }
-        public virtual async Task DeleteAsyncById(string id)
+
+        public virtual async Task DeleteAsyncById(string id, CancellationToken token)
         {
-            var entity = await GetByIdAsync(id);
+            var entity = await GetByIdAsync(id , token);
 
             _dbContext.Set<T>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
         }
 
-        public virtual async Task DeleteAsync(T entity)
+        public virtual void Delete(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
         }
-        public virtual async Task DeleteRangeAsync(ICollection<T> entities)
+
+        public virtual void DeleteRange(ICollection<T> entities)
         {
-            foreach (var entity in entities)
-            {
-                _dbContext.Entry(entity).State = EntityState.Deleted;
-            }
-            await _dbContext.SaveChangesAsync();
+            _dbContext.Set<T>().RemoveRange(entities);
         }
 
         public async Task SaveChangesAsync()
@@ -95,15 +84,14 @@ namespace Infrastructure.Base
             await _dbContext.Database.RollbackTransactionAsync();
         }
 
-        public IQueryable<T> GetTableAsTracking()
+        public IQueryable<T> GetTableAsTracking(CancellationToken token)
         {
             return _dbContext.Set<T>().AsQueryable();
         }
 
-        public virtual async Task UpdateRangeAsync(ICollection<T> entities)
+        public virtual void UpdateRange(ICollection<T> entities)
         {
             _dbContext.Set<T>().UpdateRange(entities);
-            await _dbContext.SaveChangesAsync();
         }
     }
 

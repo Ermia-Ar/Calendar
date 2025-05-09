@@ -1,32 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\DELL\\source\\repos\\Calendar\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell\\source\\repos\\calendar\\infrastructure\\services\\activityservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\activityservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7678683A-06BF-4231-BB8C-591A44A468A6}|Calendar.Api\\Calendar.Api.csproj|c:\\users\\dell\\source\\repos\\calendar\\calendar.api\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7678683A-06BF-4231-BB8C-591A44A468A6}|Calendar.Api\\Calendar.Api.csproj|solutionrelative:calendar.api\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\activity\\handler\\activityhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\activity\\handler\\activityhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell\\source\\repos\\calendar\\infrastructure\\interfaces\\iactivityguestsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\interfaces\\iactivityguestsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell\\source\\repos\\calendar\\infrastructure\\interfaces\\iactivityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\interfaces\\iactivityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell\\source\\repos\\calendar\\infrastructure\\repositories\\activityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\activityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -34,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,84 +26,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ActivityRepository.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Repositories\\ActivityRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\ActivityRepository.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Repositories\\ActivityRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\ActivityRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEsAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T14:09:33.068Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IActivityRepository.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Interfaces\\IActivityRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Interfaces\\IActivityRepository.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Interfaces\\IActivityRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Interfaces\\IActivityRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T14:09:17.663Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IActivityGuestsRepository.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Interfaces\\IActivityGuestsRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Interfaces\\IActivityGuestsRepository.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Interfaces\\IActivityGuestsRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Interfaces\\IActivityGuestsRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T14:09:09.88Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ActivityServices.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Services\\ActivityServices.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Services\\ActivityServices.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Services\\ActivityServices.cs",
-              "RelativeToolTip": "Infrastructure\\Services\\ActivityServices.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T14:08:31.989Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ActivityController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.Api\\Controllers\\ActivityController.cs",
-              "RelativeDocumentMoniker": "Calendar.Api\\Controllers\\ActivityController.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.Api\\Controllers\\ActivityController.cs",
-              "RelativeToolTip": "Calendar.Api\\Controllers\\ActivityController.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAYwD8AAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T13:59:20.222Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ActivityHandler.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Activity\\Handler\\ActivityHandler.cs",
-              "RelativeDocumentMoniker": "Core.Application\\Features\\Activity\\Handler\\ActivityHandler.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Activity\\Handler\\ActivityHandler.cs",
-              "RelativeToolTip": "Core.Application\\Features\\Activity\\Handler\\ActivityHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFcAAAB4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T13:58:28.843Z",
-              "EditorCaption": ""
             }
           ]
         },

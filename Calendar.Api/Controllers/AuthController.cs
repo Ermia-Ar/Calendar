@@ -3,9 +3,7 @@ using Core.Application.DTOs.AuthDTOs;
 using Core.Application.Features.Auth.Commands;
 using Core.Application.Features.Auth.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Writers;
 
 namespace Calendar.Api.Controllers
 {

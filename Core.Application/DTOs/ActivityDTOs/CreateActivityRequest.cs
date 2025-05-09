@@ -4,6 +4,8 @@ namespace Core.Application.DTOs.ActivityDTOs
 {
     public class CreateActivityRequest
     {
+        public string? ProjectId { get; set; }
+
         public string Title { get; set; }
 
         public string? Description { get; set; }

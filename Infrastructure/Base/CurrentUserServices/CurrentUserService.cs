@@ -1,5 +1,6 @@
-﻿using Core.Domain.Helper;
-using Infrastructure.Entity;
+﻿using Core.Domain;
+using Core.Domain.Entity;
+using Core.Domain.Helper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
@@ -21,7 +22,7 @@ namespace Infrastructure.Base.CurrentUserServices
         public string GetUserId()
         {
             var userId = _httpContextAccessor.HttpContext.User.Claims
-                .SingleOrDefault(claim => claim.Type == nameof(UserClaimsModel.Id)).Value;
+                .SingleOrDefault(claim => claim.Type == nameof(UserClaimsModel.Id))?.Value;
 
             if (userId == null)
             {
@@ -33,7 +34,7 @@ namespace Infrastructure.Base.CurrentUserServices
         public string GetUserName()
         {
             var userId = _httpContextAccessor.HttpContext.User.Claims
-                .SingleOrDefault(claim => claim.Type == nameof(UserClaimsModel.UserName)).Value;
+                .SingleOrDefault(claim => claim.Type == nameof(UserClaimsModel.UserName))?.Value;
 
             if (userId == null)
             {
@@ -45,7 +46,7 @@ namespace Infrastructure.Base.CurrentUserServices
         public string GetUserEmail()
         {
             var userId = _httpContextAccessor.HttpContext.User.Claims
-                .SingleOrDefault(claim => claim.Type == nameof(UserClaimsModel.Email)).Value;
+                .SingleOrDefault(claim => claim.Type == nameof(UserClaimsModel.Email))?.Value;
 
             if (userId == null)
             {

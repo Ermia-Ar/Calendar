@@ -1,7 +1,7 @@
 ﻿using Calendar.Api.Base;
 using Core.Application.DTOs.UserRequestDTOs;
-using Core.Application.Features.UserRequest.Commnads;
-using Core.Application.Features.UserRequest.Queries;
+using Core.Application.Features.UserRequests.Commnads;
+using Core.Application.Features.UserRequests.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +22,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPost]
         [Route("SendRequest")]
-        public async Task<IActionResult> SendRequest([FromBody] SendRequest sendRequest)
+        public async Task<IActionResult> SendRequest([FromBody] SendActivityRequest sendRequest)
         {
             var request = new CreateRequestCommand { Request = sendRequest };
             var result = await _mediator.Send(request);

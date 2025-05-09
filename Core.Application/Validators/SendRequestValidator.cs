@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Core.Application.Validators
 {
-    public class SendRequestValidator : AbstractValidator<SendRequest>
+    public class SendRequestValidator : AbstractValidator<SendActivityRequest>
     {
         public SendRequestValidator()
         {
@@ -11,7 +11,7 @@ namespace Core.Application.Validators
                 .NotEmpty()
                 .Must(x => Guid.TryParse(x, out var result));
 
-            RuleFor(x => x.Receiver)
+            RuleFor(x => x.Receivers)
                 .NotNull()
                 .NotEmpty();
                 

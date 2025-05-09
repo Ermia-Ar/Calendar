@@ -1,7 +1,7 @@
 ﻿using Core.Domain.Shared;
 using MediatR;
 
-namespace Core.Application.Features.UserRequest.Commnads
+namespace Core.Application.Features.UserRequests.Commnads
 {
     public class AnswerRequestCommand : IRequest<Response<string>>
     {

@@ -1,8 +1,10 @@
-﻿using Core.Application.Interfaces;
+﻿using Core.Domain;
 using Infrastructure.Base.CurrentUserServices;
 using Infrastructure.Services;
+using Core.Domain.Interfaces;
 using Infrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
+using Infrastructure.Repositories;
 
 namespace Infrastructure.Dependency
 {
@@ -10,14 +12,14 @@ namespace Infrastructure.Dependency
     {
         public static IServiceCollection AddServiceDescriptors(this IServiceCollection services)
         {
-            services.AddScoped<IAuthServices, AuthServices>();
+            //services.AddScoped<IAuthServices, AuthServices>();
+            services.AddScoped<IActivityRepository, ActivityRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRequestRepository, RequestRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ITokenServices, TokenServices>();
-            services.AddScoped<IRequestServices, RequestServices>();
-            services.AddScoped<IActivityServices, ActivityServices>();
-            services.AddScoped<ICurrentUserServices, CurrentUserService>();
-            services.AddScoped<IActivityGuestsServices, ActivityGuestsServices>();
             services.AddScoped<IUnitOfWork, UnitOfWorks>();
-
+            services.AddScoped<ICurrentUserServices, CurrentUserService>();
             return services;
         }
 

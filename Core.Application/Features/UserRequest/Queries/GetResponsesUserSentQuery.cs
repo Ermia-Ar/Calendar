@@ -2,9 +2,9 @@
 using Core.Domain.Shared;
 using MediatR;
 
-namespace Core.Application.Features.UserRequest.Queries
+namespace Core.Application.Features.UserRequests.Queries
 {
-    public class GetResponsesUserSentQuery : IRequest<Response<List<UserRequestResponse>>>
+    public class GetResponsesUserSentQuery : IRequest<Response<List<ActivityRequestResponse>>>
     {
     }
 }

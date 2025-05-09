@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using Core.Application.DTOs.AuthDTOs;
-using Core.Application.Interfaces;
+using Core.Domain;
+using Core.Domain.Entity;
 using Core.Domain.Helper;
 using Core.Domain.Identity;
-using Infrastructure.Base.CurrentUserServices;
+using Core.Domain.Interfaces;
 using Infrastructure.Base.Utility;
-using Infrastructure.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -28,19 +27,8 @@ namespace Infrastructure.Services
             _currentUserServices = currentUserServices;
         }
 
-        public async Task<JwtAuthResult> GetJWTToken(string userNameOrEmail)
+        public async Task<JwtAuthResult> GetJWTToken(User user)
         {
-            User user;
-
-            if(Utilities.IsEmail(userNameOrEmail))
-            {
-                user = await _userManager.FindByEmailAsync(userNameOrEmail);
-            }
-            else 
-            {
-                user = await _userManager.FindByNameAsync(userNameOrEmail);
-            }
-
             var (JwtToken, AccessToken) = await GenerateJwtToken(user);
             //var refreshToken = GetRefreshToken(user.UserName);
             //var userRefreshToken = new UserRefreshToken

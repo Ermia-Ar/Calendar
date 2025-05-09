@@ -18,4 +18,10 @@
         Task,
         Event,
     }
+
+    public enum RequestFor
+    {
+        Activity ,
+        Project
+    }
 }

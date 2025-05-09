@@ -2284,9 +2284,11 @@
         "dependencies": {
           "AutoMapper": "14.0.0",
           "FluentValidation.AspNetCore": "11.3.0",
+          "Microsoft.EntityFrameworkCore": "8.0.0",
           "Serilog": "4.2.0",
           "Serilog.AspNetCore": "9.0.0",
-          "Serilog.Sinks.File": "6.0.0"
+          "Serilog.Sinks.File": "6.0.0",
+          "System.IdentityModel.Tokens.Jwt": "8.8.0"
         },
         "compile": {
           "bin/placeholder/Core.Domain.dll": {}

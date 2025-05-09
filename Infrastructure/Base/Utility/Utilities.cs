@@ -1,5 +1,5 @@
 ﻿using Core.Application.DTOs.ActivityDTOs;
-using Infrastructure.Entity;
+using Core.Domain.Entity;
 using System.Text.RegularExpressions;
 
 namespace Infrastructure.Base.Utility

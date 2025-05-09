@@ -1,5 +1,6 @@
-﻿using Infrastructure.Data;
-using Infrastructure.Interfaces;
+﻿using Core.Domain;
+using Core.Domain.Interfaces;
+using Infrastructure.Data;
 using Infrastructure.Repositories;
 
 namespace Infrastructure.UnitOfWork
@@ -12,25 +13,32 @@ namespace Infrastructure.UnitOfWork
 
         public IRequestRepository Requests { get; private set; }
 
-        public IActivityGuestsRepository ActivitiesGuests { get; private set; }
+        public IProjectRepository Projects { get; private set; }
 
-        public UnitOfWorks(ApplicationContext context)
+        public IUserRepository Users { get; private set; }
+
+        public UnitOfWorks(ApplicationContext context,
+            IActivityRepository activities, IRequestRepository requests,
+            IProjectRepository projects, IUserRepository users)
         {
             _context = context;
-            Activities = new ActivityRepository(_context);
-            Requests = new RequestRepository(_context);
-            ActivitiesGuests = new ActivityGuestsRepository(_context);
+            Activities = activities;
+            Requests = requests;
+            Projects = projects;
+            Users = users;
         }
 
         // did not use cause there is async methods 
-        public int Complete()
-        {
-            return _context.SaveChanges();
-        }
+        
 
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        public async Task SaveChangeAsync(CancellationToken token = default)
+        {
+            await _context.SaveChangesAsync(token);
         }
     }
 }

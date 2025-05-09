@@ -1,7 +1,7 @@
 using Core.Application;
+using Core.Application.Mapper;
 using Core.Application.Middleware;
 using FluentValidation.AspNetCore;
-using Infrastructure.Base.Mapper;
 using Infrastructure.Data;
 using Infrastructure.Dependency;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -64,7 +64,7 @@ builder.Services.AddCoreDependencies()
     .AddIdentityDependency()
     .AddServiceDescriptors();
 
-builder.Services.AddAutoMapper(typeof(InfraProfile));
+builder.Services.AddAutoMapper(typeof(ApplicationProfile));
 
 var app = builder.Build();
 

@@ -1,6 +1,6 @@
-﻿using Core.Domain.Identity;
+﻿using Core.Domain.Entity;
+using Core.Domain.Identity;
 using Infrastructure.Data;
-using Infrastructure.Entity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
