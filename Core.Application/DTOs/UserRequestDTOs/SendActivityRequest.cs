@@ -1,4 +1,6 @@
-﻿namespace Core.Application.DTOs.UserRequestDTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Core.Application.DTOs.UserRequestDTOs
 {
     public class SendActivityRequest
     {
@@ -10,4 +12,5 @@
 
         public string? Message { get; set; }
     }
+}
 }
