@@ -4,6 +4,7 @@ using Core.Domain.Enum;
 using Core.Domain.Interfaces;
 using Infrastructure.Base;
 using Infrastructure.Data;
+using Infrastructure.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,8 +54,8 @@ namespace Infrastructure.Repositories
             var senderParam = new SqlParameter("@Sender", sender ?? (object)DBNull.Value);
             var receiverParam = new SqlParameter("@Receiver", Receiver ?? (object)DBNull.Value);
 
-            var requests = await _dbContext.Set<UserRequestDto>()
-                .FromSqlRaw("EXEC Sp_GetRequest @IsExpire, @Sender, @Receiver", isExpireParam, senderParam, receiverParam)
+            var requests = await _dbContext.Set<ActivityRequestDto>()
+                .FromSqlRaw("EXEC Sp_GetActivitiesRequest @IsExpire, @Sender, @Receiver", isExpireParam, senderParam, receiverParam)
                 .AsNoTracking()
                 .ToListAsync();
 
@@ -111,14 +112,46 @@ namespace Infrastructure.Repositories
 
         private async Task<List<UserRequest>> GetProjectRequests(bool IsExpire, string Receiver = null, string sender = null)
         {
-            var requests = await _userRequests.AsNoTracking()
-                .Where(x => x.RequestFor == RequestFor.Project
-                && x.IsExpire == IsExpire
-                && (x.Receiver == Receiver || Receiver == null)
-                && (x.Sender == sender || sender == null))
-                .Include(x => x.Project)
+            var isExpireParam = new SqlParameter("@IsExpire", IsExpire);
+            var senderParam = new SqlParameter("@Sender", sender ?? (object)DBNull.Value);
+            var receiverParam = new SqlParameter("@Receiver", Receiver ?? (object)DBNull.Value);
+
+            var requests = await _dbContext.Set<ProjectRequestsDTO>()
+                .FromSqlRaw("EXEC Sp_GetProjectsRequest @IsExpire, @Sender, @Receiver", isExpireParam, senderParam, receiverParam)
+                .AsNoTracking()
                 .ToListAsync();
-            return requests;    
+
+            var requestResponse = requests
+                .Select(x => new UserRequest
+                {
+                    Project = new Project
+                    {
+                        Title = x.Title,
+                        CreatedDate = x.CreatedDate,
+                        Description = x.Description,
+                        Id = x.Project_Id,
+                        OwnerId = x.OwnerId,
+                        UpdateDate = x.UpdateDate,
+                        EndDate = x.EndDate,
+                        StartDate = x.StartDate,
+                        User = new User
+                        {
+                            Email = x.Email,
+                            UserName = x.UserName
+                        }
+                    },
+                    Id = x.Id,
+                    AnsweredAt = x.AnsweredAt,
+                    InvitedAt = x.InvitedAt,
+                    IsExpire = x.IsExpire,
+                    Message = x.Message,
+                    Sender = x.Sender,
+                    Status = x.Status,
+                    Receiver = x.Receiver,
+                })
+                .ToList();
+
+            return requestResponse;
         }
 
 

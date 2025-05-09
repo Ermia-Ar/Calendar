@@ -24,4 +24,13 @@
         Activity ,
         Project
     }
+
+    public enum RecurrenceType
+    {
+        None, 
+        Daily, 
+        Weekly, 
+        Monthly, 
+        Custom 
+    }
 }

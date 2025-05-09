@@ -2,6 +2,7 @@
 using Core.Application.DTOs.UserDTOs;
 using Core.Application.DTOs.UserRequestDTOs;
 using Core.Domain.Entity;
+using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ namespace Infrastructure.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<UserRequestDto>(entity =>
+            builder.Entity<ActivityRequestDto>(entity =>
             {
                 entity.HasNoKey();
             });
@@ -34,6 +35,11 @@ namespace Infrastructure.Data
             });
 
             builder.Entity<ActivityResponse>(entity =>
+            {
+                entity.HasNoKey();
+            });
+
+            builder.Entity<ProjectRequestsDTO>(entity =>
             {
                 entity.HasNoKey();
             });

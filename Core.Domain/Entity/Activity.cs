@@ -31,6 +31,14 @@ namespace Core.Domain.Entity
 
         public bool IsCompleted { get; set; }
 
+        public RecurrenceType RecurrenceType { get; set; } 
+
+        public int? RecurrenceInterval { get; set; }
+
+        public DateTime? RecurrenceEndDate { get; set; } 
+
+        public string? RecurrenceDaysOfWeek { get; set; }
+
         public List<UserRequest> UserRequests = new List<UserRequest>();    
 
     }

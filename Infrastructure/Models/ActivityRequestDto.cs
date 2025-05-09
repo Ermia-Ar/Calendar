@@ -2,7 +2,7 @@
 
 namespace Core.Application.DTOs.UserRequestDTOs
 {
-    public class UserRequestDto
+    public class ActivityRequestDto
     {
         public string Id { get; set; }
 
