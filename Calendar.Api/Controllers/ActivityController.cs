@@ -81,10 +81,10 @@ namespace Calendar.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetActivities")]
+        [Route("GettingActivitiesOwnedByTheUser")]
         public async Task<IActionResult> GetActivities()
         {
-            var request = new GetCurrentActivityQuery();
+            var request = new GettingActivitiesOwnedByTheUser();
             var result = await _mediator.Send(request);
 
             return NewResult(result);

@@ -13,4 +13,4 @@ namespace Core.Application.DTOs.UserRequestDTOs
         public string? Message { get; set; }
     }
 }
-}
+

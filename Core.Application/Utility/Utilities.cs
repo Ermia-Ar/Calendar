@@ -20,7 +20,7 @@ namespace Core.Application.Utility
             return new ActivityResponse
             {
                 Category = activity.Category,
-                Date = activity.Date,
+                Date = activity.StartDate,
                 Description = activity.Description,
                 Id = activity.Id,
                 IsCompleted = activity.IsCompleted,

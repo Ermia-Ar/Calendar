@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Core.Application.Features.Activities.Queries
 {
-    public class GetCurrentActivityQuery : IRequest<Response<List<ActivityResponse>>>
+    public class GettingActivitiesOwnedByTheUser : IRequest<Response<List<ActivityResponse>>>
     {
     } 
 

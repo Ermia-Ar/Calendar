@@ -16,10 +16,10 @@ namespace Infrastructure.Repositories
             _activities = context.Set<Activity>();
         }
 
-        public async Task<List<Activity>> GetCurrentUserActivities(string userId , CancellationToken token)
+        public async Task<List<Activity>> GettingActivitiesOwnedByTheUser(string userId , CancellationToken token)
         {
             var activities = await GetTableAsTracking(token)
-                .Where(x => x.Date >= DateTime.Now && x.UserId == userId)
+                .Where(x => x.StartDate >= DateTime.Now && x.UserId == userId)
                 .ToListAsync();
 
             return activities;
@@ -28,7 +28,7 @@ namespace Infrastructure.Repositories
         public async Task<List<Activity>> GetHistoryOfUserActivities(string userId, CancellationToken token)
         {
             var activities = await GetTableAsTracking(token)
-                .Where(x => x.Date < DateTime.Now && x.UserId == userId)
+                .Where(x => x.StartDate < DateTime.Now && x.UserId == userId)
                 .ToListAsync();
 
             return activities;
@@ -40,7 +40,7 @@ namespace Infrastructure.Repositories
             activity.Duration = UpdateActivity.Duration;
             activity.Title = UpdateActivity.Title;
             activity.Description = UpdateActivity.Description;
-            activity.Date = UpdateActivity.Date;
+            activity.StartDate = UpdateActivity.StartDate;
             activity.Category = UpdateActivity.Category;
             activity.IsCompleted = UpdateActivity.IsCompleted;
 
@@ -73,19 +73,25 @@ namespace Infrastructure.Repositories
             return activity;
         }
 
-        public async Task<List<Activity>> GetProjectActivities(string projectId, CancellationToken token)
+        public async Task<List<Activity>> GetProjectActivities(string projectId  , CancellationToken token, DateTime? startDate = null)
         {
-            var activities = await GetTableNoTracking(token)
-                .Where(x => x.ProjectId == projectId)
-                .ToListAsync();
-            
-            return activities;
+            var activities = GetTableNoTracking(token);
+
+            if (startDate.HasValue)
+            {
+                activities = activities
+                .Where(x => x.ProjectId == projectId
+                        && x.StartDate >= startDate);
+            }
+
+            return await activities.ToListAsync(token);
         }
 
         public async Task<string[]> GetProjectActivityIds(string projectId, CancellationToken token)
         {
             var activities = await GetTableNoTracking(token)
-                         .Where(x => x.ProjectId == projectId)
+                         .Where(x => x.ProjectId == projectId
+                          && x.StartDate >= DateTime.Now)
                          .Select(x => x.Id)
                          .ToListAsync();
 

@@ -65,7 +65,7 @@ namespace Infrastructure.Repositories
                     Activity = new Activity
                     {
                         Category = x.Category,
-                        Date = x.Date,
+                        StartDate = x.Date,
                         Description = x.Description,
                         Id = x.Activity_Id,
                         IsCompleted = x.IsCompleted,

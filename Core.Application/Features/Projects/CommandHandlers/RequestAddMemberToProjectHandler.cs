@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Core.Application.DTOs.UserDTOs;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Shared;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Application.Features.Projects.CommandHandlers
 {
@@ -37,6 +39,22 @@ namespace Core.Application.Features.Projects.CommandHandlers
                 if (isExist)
                 {
                     return NotFound<string>($"user name {Receiver} does not exist !");
+                }
+                var userRequest = await _unitOfWork.Requests.GetTableNoTracking(cancellationToken)
+                    .FirstOrDefaultAsync(x => x.RequestFor == Domain.Enum.RequestFor.Project
+                    && x.ProjectId == request.ProjectRequest.ProjcetId
+                    && x.Receiver == Receiver);
+
+                if (userRequest != null)
+                {
+                    if (userRequest.Status == Domain.Enum.RequestStatus.Accepted)
+                    {
+                        return BadRequest<string>($"user {Receiver} is already member of this project");
+                    }
+                    else if (userRequest.Status == Domain.Enum.RequestStatus.Pending)
+                    {
+                        return BadRequest<string>($"you already send this request for this user");
+                    }
                 }
             }
             //sent request for each members

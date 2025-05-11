@@ -23,7 +23,7 @@ namespace Core.Domain.Entity
 
         public DateTime CreatedDate { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime StartDate { get; set; }
 
         public TimeSpan? Duration { get; set; }
 
@@ -31,13 +31,13 @@ namespace Core.Domain.Entity
 
         public bool IsCompleted { get; set; }
 
-        public RecurrenceType RecurrenceType { get; set; } 
+        //public RecurrenceType RecurrenceType { get; set; } 
 
-        public int? RecurrenceInterval { get; set; }
+        //public int? RecurrenceInterval { get; set; }
 
-        public DateTime? RecurrenceEndDate { get; set; } 
+        //public DateTime? RecurrenceEndDate { get; set; } 
 
-        public string? RecurrenceDaysOfWeek { get; set; }
+        //public string? RecurrenceDaysOfWeek { get; set; }
 
         public List<UserRequest> UserRequests = new List<UserRequest>();    
 

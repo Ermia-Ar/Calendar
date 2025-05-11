@@ -21,7 +21,7 @@ namespace Infrastructure.Base.Utility
             return new ActivityResponse
             {
                 Category = activity.Category,
-                Date = activity.Date,
+                Date = activity.StartDate,
                 Description = activity.Description,
                 Id = activity.Id,
                 IsCompleted = activity.IsCompleted,
@@ -32,87 +32,87 @@ namespace Infrastructure.Base.Utility
 
 }
 
-namespace Core.Services
-{
-    public class RecurrenceService
-    {
-        public IEnumerable<Activity> GenerateOccurrences(IEnumerable<Activity> activities, DateTime start, DateTime end)
-        {
-            var result = new List<Activity>();
+//namespace Core.Services
+//{
+//    public class RecurrenceService
+//    {
+//        public IEnumerable<Activity> GenerateOccurrences(IEnumerable<Activity> activities, DateTime start, DateTime end)
+//        {
+//            var result = new List<Activity>();
 
-            foreach (var activity in activities)
-            {
-                // اگر تکرار نداره، خود Activity رو اضافه کن
-                if (activity.RecurrenceType == RecurrenceType.None)
-                {
-                    if (activity.Date >= start && activity.Date <= end)
-                    {
-                        result.Add(activity);
-                    }
-                    continue;
-                }
+//            foreach (var activity in activities)
+//            {
+//                // اگر تکرار نداره، خود Activity رو اضافه کن
+//                if (activity.RecurrenceType == RecurrenceType.None)
+//                {
+//                    if (activity.Date >= start && activity.Date <= end)
+//                    {
+//                        result.Add(activity);
+//                    }
+//                    continue;
+//                }
 
-                // تولید نمونه‌های تکراری
-                var occurrences = GenerateOccurrencesForActivity(activity, start, end);
-                result.AddRange(occurrences);
-            }
+//                // تولید نمونه‌های تکراری
+//                var occurrences = GenerateOccurrencesForActivity(activity, start, end);
+//                result.AddRange(occurrences);
+//            }
 
-            return result.OrderBy(a => a.Date).ToList();
-        }
+//            return result.OrderBy(a => a.Date).ToList();
+//        }
 
-        private IEnumerable<Activity> GenerateOccurrencesForActivity(Activity activity, DateTime start, DateTime end)
-        {
-            var occurrences = new List<Activity>();
-            var currentDate = activity.Date.Date;
-            var recurrenceEnd = activity.RecurrenceEndDate ?? end;
+//        private IEnumerable<Activity> GenerateOccurrencesForActivity(Activity activity, DateTime start, DateTime end)
+//        {
+//            var occurrences = new List<Activity>();
+//            var currentDate = activity.Date.Date;
+//            var recurrenceEnd = activity.RecurrenceEndDate ?? end;
 
-            while (currentDate <= recurrenceEnd)
-            {
-                if (currentDate >= start && IsValidOccurrence(activity, currentDate))
-                {
-                    var occurrence = new Activity
-                    {
-                        Id = Guid.NewGuid().ToString(), 
-                        ProjectId = activity.ProjectId,
-                        UserId = activity.UserId,
-                        User = activity.User, 
-                        Project = activity.Project,
-                        Title = activity.Title,
-                        Description = activity.Description,
-                        Date = currentDate + activity.Date.TimeOfDay,
-                        Duration = activity.Duration,
-                        CreatedDate = activity.CreatedDate,
-                        RecurrenceType = RecurrenceType.None, 
-                        IsCompleted = activity.IsCompleted
-                    };
-                    occurrences.Add(occurrence);
-                }
+//            while (currentDate <= recurrenceEnd)
+//            {
+//                if (currentDate >= start && IsValidOccurrence(activity, currentDate))
+//                {
+//                    var occurrence = new Activity
+//                    {
+//                        Id = Guid.NewGuid().ToString(), 
+//                        ProjectId = activity.ProjectId,
+//                        UserId = activity.UserId,
+//                        User = activity.User, 
+//                        Project = activity.Project,
+//                        Title = activity.Title,
+//                        Description = activity.Description,
+//                        Date = currentDate + activity.Date.TimeOfDay,
+//                        Duration = activity.Duration,
+//                        CreatedDate = activity.CreatedDate,
+//                        RecurrenceType = RecurrenceType.None, 
+//                        IsCompleted = activity.IsCompleted
+//                    };
+//                    occurrences.Add(occurrence);
+//                }
 
-                switch (activity.RecurrenceType)
-                {
-                    case RecurrenceType.Daily:
-                        currentDate = currentDate.AddDays(activity.RecurrenceInterval ?? 1);
-                        break;
-                    case RecurrenceType.Weekly:
-                        currentDate = currentDate.AddDays(1);
-                        break;
-                    case RecurrenceType.Monthly:
-                        currentDate = currentDate.AddMonths(activity.RecurrenceInterval ?? 1);
-                        break;
-                }
-            }
+//                switch (activity.RecurrenceType)
+//                {
+//                    case RecurrenceType.Daily:
+//                        currentDate = currentDate.AddDays(activity.RecurrenceInterval ?? 1);
+//                        break;
+//                    case RecurrenceType.Weekly:
+//                        currentDate = currentDate.AddDays(1);
+//                        break;
+//                    case RecurrenceType.Monthly:
+//                        currentDate = currentDate.AddMonths(activity.RecurrenceInterval ?? 1);
+//                        break;
+//                }
+//            }
 
-            return occurrences;
-        }
+//            return occurrences;
+//        }
 
-        private bool IsValidOccurrence(Activity activity, DateTime date)
-        {
-            if (activity.RecurrenceType != RecurrenceType.Weekly)
-                return true;
+//        private bool IsValidOccurrence(Activity activity, DateTime date)
+//        {
+//            if (activity.RecurrenceType != RecurrenceType.Weekly)
+//                return true;
 
-            var daysOfWeek = activity.RecurrenceDaysOfWeek?.Split(',') ?? Array.Empty<string>();
-            var dayOfWeek = date.DayOfWeek.ToString().Substring(0, 3); 
-            return daysOfWeek.Length == 0 || daysOfWeek.Contains(dayOfWeek);
-        }
-    }
-}
+//            var daysOfWeek = activity.RecurrenceDaysOfWeek?.Split(',') ?? Array.Empty<string>();
+//            var dayOfWeek = date.DayOfWeek.ToString().Substring(0, 3); 
+//            return daysOfWeek.Length == 0 || daysOfWeek.Contains(dayOfWeek);
+//        }
+//    }
+//}

@@ -1,10 +1,10 @@
-﻿using Core.Application.Features.UserRequests.Commnads;
-using Core.Domain.Entity;
+﻿using Core.Domain.Entity;
 using Core.Domain.Shared;
 using MediatR;
 using Core.Domain;
+using Core.Application.Features.UserRequests.Commnads;
 
-namespace Core.Application.Features.UserRequests.Handler
+namespace Core.Application.Features.UserRequests.CommandHandlers
 {
     public class AnswerRequestHandler : ResponseHandler
         , IRequestHandler<AnswerRequestCommand, Response<string>>
@@ -35,15 +35,15 @@ namespace Core.Application.Features.UserRequests.Handler
             if (result.RequestFor == Domain.Enum.RequestFor.Project && request.IsAccepted == true)
             {
                 //sent request for each activity
-                var userRequests = new List<UserRequest>(); 
-                var activityIds = await _unitOfWork.Activities.GetProjectActivityIds(result.ProjectId , cancellationToken);
+                var userRequests = new List<UserRequest>();
+                var activityIds = await _unitOfWork.Activities.GetProjectActivityIds(result.ProjectId, cancellationToken);
                 foreach (var activityId in activityIds)
                 {
                     var sendRequest = new UserRequest
                     {
                         Id = Guid.NewGuid().ToString(),
                         InvitedAt = DateTime.Now,
-                        AnsweredAt = DateTime.Now,  
+                        AnsweredAt = DateTime.Now,
                         Status = Domain.Enum.RequestStatus.Accepted,
                         Sender = _currentUserServices.GetUserName(),
                         IsGuest = false,

@@ -21,7 +21,7 @@ namespace Calendar.Api.Controllers
         }
 
         [HttpPost]
-        [Route("SendRequest")]
+        [Route("SendActivityRequest")]
         public async Task<IActionResult> SendRequest([FromBody] SendActivityRequest sendRequest)
         {
             var request = new CreateRequestCommand { Request = sendRequest };
@@ -31,7 +31,7 @@ namespace Calendar.Api.Controllers
         }
 
         [HttpPost]
-        [Route("AnswerRequest")]
+        [Route("AnswerActivityRequest")]
         public async Task<IActionResult> AnswerRequest([FromForm] string requestId ,[FromForm] bool isAccepted)
         {
             var request = new AnswerRequestCommand {RequestId = requestId , IsAccepted = isAccepted};
@@ -51,7 +51,7 @@ namespace Calendar.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetRequestsReceived")]
+        [Route("GetActivityRequestsReceived")]
         public async Task<IActionResult> GetRequestsReceived()
         {
             var request = new GetRequestsReceivedQuery();
@@ -61,7 +61,7 @@ namespace Calendar.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetRequestsResponse")]
+        [Route("GetActivityRequestsResponse")]
         public async Task<IActionResult> GetRequestsResponse()
         {
             var request = new GetRequestsResponseQuery();
@@ -71,7 +71,7 @@ namespace Calendar.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetUnAnsweredRequest")]
+        [Route("GetUnAnsweredActivityRequest")]
         public async Task<IActionResult> GetUnAnsweredRequest()
         {
             var request = new GetUnAnsweredRequestQuery();
@@ -81,7 +81,7 @@ namespace Calendar.Api.Controllers
         }
         
         [HttpGet]
-        [Route("GetResponsesUserSent")]
+        [Route("GetActivityResponsesUserSent")]
         public async Task<IActionResult> GetResponsesUserSent()
         {
             var request = new GetResponsesUserSentQuery();

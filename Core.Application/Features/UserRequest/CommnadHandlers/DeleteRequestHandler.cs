@@ -5,7 +5,7 @@ using Core.Domain.Shared;
 using MediatR;
 
 
-namespace Core.Application.Features.UserRequests.Handler
+namespace Core.Application.Features.UserRequests.CommandHandlers
 {
     public class DeleteRequestHandler : ResponseHandler
         , IRequestHandler<DeleteRequestCommand, Response<string>>

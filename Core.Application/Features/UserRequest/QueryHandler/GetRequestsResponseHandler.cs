@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Core.Application.DTOs.UserRequestDTOs;
-using Core.Application.Features.UserRequests.Queries;
 using Core.Domain.Entity;
 using Core.Domain.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Core.Domain;
+using Core.Application.Features.UserRequests.Queries;
 
 
-namespace Core.Application.Features.UserRequests.Handler
+namespace Core.Application.Features.UserRequests.QueryHandler
 {
     public class GetRequestsResponseHandler : ResponseHandler
         , IRequestHandler<GetRequestsResponseQuery, Response<List<ActivityRequestResponse>>>

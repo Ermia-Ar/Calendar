@@ -4,9 +4,10 @@ using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Shared;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 
-namespace Core.Application.Features.UserRequests.Handler
+namespace Core.Application.Features.UserRequests.CommandHandlers
 {
     public class CreateRequestHandler : ResponseHandler
         , IRequestHandler<CreateRequestCommand, Response<string>>
@@ -24,7 +25,7 @@ namespace Core.Application.Features.UserRequests.Handler
 
         public async Task<Response<string>> Handle(CreateRequestCommand request, CancellationToken cancellationToken)
         {
-            var activity = await _unitOfWork.Activities.GetByIdAsync(request.Request.ActivityId , cancellationToken);
+            var activity = await _unitOfWork.Activities.GetByIdAsync(request.Request.ActivityId, cancellationToken);
             if (activity.UserId != _currentUserServices.GetUserId())
             {
                 return NotFound<string>("Not Found Activity");
@@ -36,6 +37,24 @@ namespace Core.Application.Features.UserRequests.Handler
                 if (!isExist)
                 {
                     return NotFound<string>($"user name {Receiver} does not exist !");
+                }
+
+                //check if the receiver is already member of this activity
+                var userRequest = await _unitOfWork.Requests.GetTableNoTracking(cancellationToken)
+                    .FirstOrDefaultAsync(x => x.RequestFor == Domain.Enum.RequestFor.Activity
+                        && x.ActivityId == request.Request.ActivityId
+                        && x.Receiver == Receiver);
+
+                if (userRequest != null)
+                {
+                    if (userRequest.Status == Domain.Enum.RequestStatus.Accepted)
+                    {
+                        return BadRequest<string>($"user {Receiver} is already member of this activity");
+                    }
+                    else if (userRequest.Status == Domain.Enum.RequestStatus.Pending)
+                    {
+                        return BadRequest<string>($"you already send this request for this user");
+                    }
                 }
             }
 

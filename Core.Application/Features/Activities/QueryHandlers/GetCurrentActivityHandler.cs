@@ -8,7 +8,7 @@ using MediatR;
 namespace Core.Application.Features.Activities.QueryHandlers
 {
     public class GetCurrentActivityHandler : ResponseHandler
-        , IRequestHandler<GetCurrentActivityQuery, Response<List<ActivityResponse>>>
+        , IRequestHandler<GettingActivitiesOwnedByTheUser, Response<List<ActivityResponse>>>
     {
         public IUnitOfWork _unitOfWork;
         public ICurrentUserServices _currentUser;
@@ -21,11 +21,11 @@ namespace Core.Application.Features.Activities.QueryHandlers
             _mapper = mapper;
         }
 
-        public async Task<Response<List<ActivityResponse>>> Handle(GetCurrentActivityQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<ActivityResponse>>> Handle(GettingActivitiesOwnedByTheUser request, CancellationToken cancellationToken)
         {
             // get activities
             var userId = _currentUser.GetUserId();
-            var activities = await _unitOfWork.Activities.GetCurrentUserActivities(userId, cancellationToken);
+            var activities = await _unitOfWork.Activities.GettingActivitiesOwnedByTheUser(userId, cancellationToken);
             // map to response
             var response = _mapper.Map<List<ActivityResponse>>(activities);
 

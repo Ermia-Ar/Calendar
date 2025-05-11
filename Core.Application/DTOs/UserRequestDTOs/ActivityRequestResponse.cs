@@ -24,4 +24,4 @@ namespace Core.Application.DTOs.UserRequestDTOs
         public bool IsExpire { get; set; }
     }
 }
-}
+

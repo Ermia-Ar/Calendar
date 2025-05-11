@@ -4,7 +4,6 @@ using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Shared;
 using MediatR;
-using Microsoft.AspNetCore.Server.HttpSys;
 
 namespace Core.Application.Features.Activities.CommandHandlers
 {

@@ -3,16 +3,64 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\source\\repos\\Calendar\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\userrequest\\handler\\getrequestsreceivedhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\userrequest\\handler\\getrequestsreceivedhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\projects\\commandhandlers\\requestaddmembertoprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\projects\\commandhandlers\\requestaddmembertoprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\dtos\\userrequestdtos\\sendactivityrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\dtos\\userrequestdtos\\sendactivityrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.domain\\interfaces\\iactivityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\interfaces\\iactivityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\dtos\\userrequestdtos\\projectrequestresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\dtos\\userrequestdtos\\projectrequestresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\projects\\queryhandlers\\getprojectactivitieshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\projects\\queryhandlers\\getprojectactivitieshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell\\source\\repos\\calendar\\infrastructure\\repositories\\activityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\activityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\projects\\commandhandlers\\createprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\projects\\commandhandlers\\createprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\activities\\commandhandlers\\createactivityhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\activities\\commandhandlers\\createactivityhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\userrequest\\commnadhandlers\\deleterequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\userrequest\\commnadhandlers\\deleterequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\userrequest\\commnadhandlers\\createrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\userrequest\\commnadhandlers\\createrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\userrequest\\commnadhandlers\\answerrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\userrequest\\commnadhandlers\\answerrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.domain\\entity\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\entity\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.domain\\entity\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\entity\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\activities\\queryhandlers\\getalluseractivitieshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\activities\\queryhandlers\\getalluseractivitieshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7678683A-06BF-4231-BB8C-591A44A468A6}|Calendar.Api\\Calendar.Api.csproj|c:\\users\\dell\\source\\repos\\calendar\\calendar.api\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7678683A-06BF-4231-BB8C-591A44A468A6}|Calendar.Api\\Calendar.Api.csproj|solutionrelative:calendar.api\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7678683A-06BF-4231-BB8C-591A44A468A6}|Calendar.Api\\Calendar.Api.csproj|c:\\users\\dell\\source\\repos\\calendar\\calendar.api\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7678683A-06BF-4231-BB8C-591A44A468A6}|Calendar.Api\\Calendar.Api.csproj|solutionrelative:calendar.api\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\activities\\queries\\getalluseractivitiesquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\activities\\queries\\getalluseractivitiesquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,19 +72,6 @@
           "DockedWidth": 200,
           "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SendActivityRequest.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\DTOs\\UserRequestDTOs\\SendActivityRequest.cs",
-              "RelativeDocumentMoniker": "Core.Application\\DTOs\\UserRequestDTOs\\SendActivityRequest.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\DTOs\\UserRequestDTOs\\SendActivityRequest.cs",
-              "RelativeToolTip": "Core.Application\\DTOs\\UserRequestDTOs\\SendActivityRequest.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAiwA4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T18:55:15.33Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
@@ -55,28 +90,184 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GetRequestsReceivedHandler.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequest\\Handler\\GetRequestsReceivedHandler.cs",
-              "RelativeDocumentMoniker": "Core.Application\\Features\\UserRequest\\Handler\\GetRequestsReceivedHandler.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequest\\Handler\\GetRequestsReceivedHandler.cs",
-              "RelativeToolTip": "Core.Application\\Features\\UserRequest\\Handler\\GetRequestsReceivedHandler.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAABGAAAA",
+              "DocumentIndex": 2,
+              "Title": "GetProjectActivitiesHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\QueryHandlers\\GetProjectActivitiesHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Projects\\QueryHandlers\\GetProjectActivitiesHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\QueryHandlers\\GetProjectActivitiesHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Projects\\QueryHandlers\\GetProjectActivitiesHandler.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAASwCEAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T18:50:09.51Z",
+              "WhenOpened": "2025-05-11T21:31:25.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RequestAddMemberToProjectHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\RequestAddMemberToProjectHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Projects\\CommandHandlers\\RequestAddMemberToProjectHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\RequestAddMemberToProjectHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Projects\\CommandHandlers\\RequestAddMemberToProjectHandler.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAASwDwAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T21:30:40.334Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProjectRequestResponse.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\DTOs\\UserRequestDTOs\\ProjectRequestResponse.cs",
-              "RelativeDocumentMoniker": "Core.Application\\DTOs\\UserRequestDTOs\\ProjectRequestResponse.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\DTOs\\UserRequestDTOs\\ProjectRequestResponse.cs",
-              "RelativeToolTip": "Core.Application\\DTOs\\UserRequestDTOs\\ProjectRequestResponse.cs",
+              "DocumentIndex": 5,
+              "Title": "CreateActivityHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Activities\\CommandHandlers\\CreateActivityHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Activities\\CommandHandlers\\CreateActivityHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Activities\\CommandHandlers\\CreateActivityHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Activities\\CommandHandlers\\CreateActivityHandler.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAkwC0AAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T21:30:34.37Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DeleteRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequest\\CommnadHandlers\\DeleteRequestHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\UserRequest\\CommnadHandlers\\DeleteRequestHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequest\\CommnadHandlers\\DeleteRequestHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\UserRequest\\CommnadHandlers\\DeleteRequestHandler.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T21:30:21.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CreateRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequest\\CommnadHandlers\\CreateRequestHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\UserRequest\\CommnadHandlers\\CreateRequestHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequest\\CommnadHandlers\\CreateRequestHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\UserRequest\\CommnadHandlers\\CreateRequestHandler.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAEYAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T21:29:41.118Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AnswerRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequest\\CommnadHandlers\\AnswerRequestHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\UserRequest\\CommnadHandlers\\AnswerRequestHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequest\\CommnadHandlers\\AnswerRequestHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\UserRequest\\CommnadHandlers\\AnswerRequestHandler.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAACUAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T21:29:32.151Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserRequest.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\UserRequest.cs",
+              "RelativeDocumentMoniker": "Core.Domain\\Entity\\UserRequest.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\UserRequest.cs",
+              "RelativeToolTip": "Core.Domain\\Entity\\UserRequest.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T18:45:41.05Z"
+              "WhenOpened": "2025-05-11T21:28:40.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateProjectHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAASwCwAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T21:27:40.987Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IActivityRepository.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Interfaces\\IActivityRepository.cs",
+              "RelativeDocumentMoniker": "Core.Domain\\Interfaces\\IActivityRepository.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Interfaces\\IActivityRepository.cs",
+              "RelativeToolTip": "Core.Domain\\Interfaces\\IActivityRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAACAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T21:26:50.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Activity.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\Activity.cs",
+              "RelativeDocumentMoniker": "Core.Domain\\Entity\\Activity.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\Activity.cs",
+              "RelativeToolTip": "Core.Domain\\Entity\\Activity.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T20:34:00.552Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ActivityRepository.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Repositories\\ActivityRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\ActivityRepository.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Repositories\\ActivityRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\ActivityRepository.cs",
+              "ViewState": "AQIAAEUAAAAAAAAAAAASwEsAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T20:33:01.889Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProjectController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.Api\\Controllers\\ProjectController.cs",
+              "RelativeDocumentMoniker": "Calendar.Api\\Controllers\\ProjectController.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.Api\\Controllers\\ProjectController.cs",
+              "RelativeToolTip": "Calendar.Api\\Controllers\\ProjectController.cs",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAAAEsAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T20:11:28.59Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GetAllUserActivitiesHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Activities\\QueryHandlers\\GetAllUserActivitiesHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Activities\\QueryHandlers\\GetAllUserActivitiesHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Activities\\QueryHandlers\\GetAllUserActivitiesHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Activities\\QueryHandlers\\GetAllUserActivitiesHandler.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB0AAABMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T20:04:26.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "GetAllUserActivitiesQuery.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Activities\\Queries\\GetAllUserActivitiesQuery.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Activities\\Queries\\GetAllUserActivitiesQuery.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Activities\\Queries\\GetAllUserActivitiesQuery.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Activities\\Queries\\GetAllUserActivitiesQuery.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T20:02:25.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ActivityController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.Api\\Controllers\\ActivityController.cs",
+              "RelativeDocumentMoniker": "Calendar.Api\\Controllers\\ActivityController.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.Api\\Controllers\\ActivityController.cs",
+              "RelativeToolTip": "Calendar.Api\\Controllers\\ActivityController.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAAFYAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T19:58:53.201Z"
             }
           ]
         },
