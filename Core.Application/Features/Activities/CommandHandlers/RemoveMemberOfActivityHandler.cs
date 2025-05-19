@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Application.Features.Activities.Commands;
+using Core.Application.Features.Exceptions;
 using Core.Domain;
 using Core.Domain.Shared;
 using MediatR;
@@ -10,9 +11,9 @@ namespace Core.Application.Features.Activities.CommandHandlers
     public class RemoveMemberOfActivityHandler : ResponseHandler
         , IRequestHandler<RemoveMemberOfActivityCommand, Response<string>>
     {
-        public IUnitOfWork _unitOfWork;
-        public ICurrentUserServices _currentUser;
-        public IMapper _mapper;
+        public readonly IUnitOfWork _unitOfWork;
+        public readonly ICurrentUserServices _currentUser;
+        public readonly IMapper _mapper;
 
         public RemoveMemberOfActivityHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
         {
@@ -25,16 +26,18 @@ namespace Core.Application.Features.Activities.CommandHandlers
         {
 
             var userId = _currentUser.GetUserId();
-            var isFor = await _unitOfWork.Activities.IsActivityForUser(request.ActivityId, userId, cancellationToken);
-            if (!isFor)
+            var activity = await _unitOfWork.Activities.GetByIdAsync(request.ActivityId, cancellationToken);
+            if (activity.UserId != _currentUser.GetUserId())
             {
-                return BadRequest<string>("you not access !!");
+                throw new BadRequestException("Only the owner of this activity has access to this section.");
             }
-            var userRequest = await _unitOfWork.Requests.GetTableNoTracking(cancellationToken)
+
+            var userRequest = await _unitOfWork.Requests.GetTableNoTracking()
                 .FirstOrDefaultAsync(x => x.ActivityId == request.ActivityId && x.Receiver == request.UserName);
-            if(userRequest == null)
+
+            if (userRequest == null)
             {
-                return BadRequest<string>("not exist");
+                throw new NotFoundException("No such member was found.");
             }
             _unitOfWork.Requests.Delete(userRequest);
             await _unitOfWork.SaveChangeAsync(cancellationToken);

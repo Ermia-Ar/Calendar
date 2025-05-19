@@ -75,8 +75,8 @@ namespace Core.Application.Middleware
                     default:
                         // unhandled error
                         responseModel.Message = error.Message;
-                        responseModel.StatusCode = HttpStatusCode.InternalServerError;
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        responseModel.StatusCode = HttpStatusCode.BadRequest;
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
                 }
                 var result = JsonSerializer.Serialize(responseModel);

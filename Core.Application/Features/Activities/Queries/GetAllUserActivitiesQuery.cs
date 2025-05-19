@@ -1,10 +1,18 @@
 ﻿using Core.Application.DTOs.ActivityDTOs;
+using Core.Domain.Enum;
 using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Activities.Queries
 {
-    public class GetAllUserActivitiesQuery : IRequest<Response<List<ActivityResponse>>>
-    {
-    }
+    public record class GetAllUserActivitiesQuery 
+    (
+        DateTime? StartDate,
+        bool UserIsOwner,
+        bool IsCompleted,
+        bool IsHistory,
+        ActivityCategory? Category
+    )
+        :IRequest<Response<List<ActivityResponse>>>;
+
 }

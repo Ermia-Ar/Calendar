@@ -2,6 +2,8 @@
 using Core.Application.DTOs.UserRequestDTOs;
 using Core.Application.Features.UserRequests.Commnads;
 using Core.Application.Features.UserRequests.Queries;
+using Core.Domain.Enum;
+using Core.Domain.Helper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,74 +23,73 @@ namespace Calendar.Api.Controllers
         }
 
         [HttpPost]
-        [Route("SendActivityRequest")]
+        [Route("SendRequest")]
+        [Authorize(CalendarClaims.SendRequest)]
         public async Task<IActionResult> SendRequest([FromBody] SendActivityRequest sendRequest)
         {
             var request = new CreateRequestCommand { Request = sendRequest };
             var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
 
         [HttpPost]
-        [Route("AnswerActivityRequest")]
-        public async Task<IActionResult> AnswerRequest([FromForm] string requestId ,[FromForm] bool isAccepted)
+        [Route("AnswerRequest")]
+        [Authorize(CalendarClaims.AnswerRequest)]
+        public async Task<IActionResult> AnswerRequest([FromForm] string requestId, [FromForm] bool isAccepted)
         {
-            var request = new AnswerRequestCommand {RequestId = requestId , IsAccepted = isAccepted};
+            var request = new AnswerRequestCommand { RequestId = requestId, IsAccepted = isAccepted };
             var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
 
         [HttpDelete]
         [Route("{id:guid}")]
+        [Authorize(CalendarClaims.RemoveRequest)]
         public async Task<IActionResult> RemoveRequest([FromRoute] Guid id)
         {
             var request = new DeleteRequestCommand { Id = id.ToString() };
             var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
 
         [HttpGet]
-        [Route("GetActivityRequestsReceived")]
-        public async Task<IActionResult> GetRequestsReceived()
+        [Route("GetRequestsReceived")]
+        [Authorize(CalendarClaims.GetRequestsReceived)]
+        public async Task<IActionResult> GetRequestsReceived(RequestFor requestFor)
         {
-            var request = new GetRequestsReceivedQuery();
+            var request = new GetRequestsReceivedQuery { RequestFor = requestFor };
             var result = await _mediator.Send(request);
-
-            return NewResult(result); 
-        }
-
-        [HttpGet]
-        [Route("GetActivityRequestsResponse")]
-        public async Task<IActionResult> GetRequestsResponse()
-        {
-            var request = new GetRequestsResponseQuery();
-            var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
 
         [HttpGet]
-        [Route("GetUnAnsweredActivityRequest")]
-        public async Task<IActionResult> GetUnAnsweredRequest()
+        [Route("GetRequestsResponse")]
+        [Authorize(CalendarClaims.GetRequestsResponse)]
+        public async Task<IActionResult> GetRequestsResponse(RequestFor requestFor)
         {
-            var request = new GetUnAnsweredRequestQuery();
+            var request = new GetRequestsResponseQuery { RequestFor = requestFor };
             var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
-        
+
         [HttpGet]
-        [Route("GetActivityResponsesUserSent")]
-        public async Task<IActionResult> GetResponsesUserSent()
+        [Route("GetUnAnsweredRequest")]
+        [Authorize(CalendarClaims.GetUnAnsweredRequest)]
+        public async Task<IActionResult> GetUnAnsweredRequest(RequestFor requestFor)
         {
-            var request = new GetResponsesUserSentQuery();
+            var request = new GetUnAnsweredRequestQuery { RequestFor = requestFor };
             var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
 
+        [HttpGet]
+        [Route("GetResponsesUserSent")]
+        [Authorize(CalendarClaims.GetResponsesUserSent)]
+        public async Task<IActionResult> GetResponsesUserSent(RequestFor requestFor)
+        {
+            var request = new GetResponsesUserSentQuery { RequestFor = requestFor };
+            var result = await _mediator.Send(request);
+            return NewResult(result);
+        }
     }
 }

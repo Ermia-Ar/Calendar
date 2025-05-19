@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Application.DTOs.UserDTOs;
+using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
 using Core.Domain.Entity;
@@ -12,9 +13,9 @@ namespace Core.Application.Features.Projects.CommandHandlers
     public class RequestAddMemberToProjectHandler : ResponseHandler,
         IRequestHandler<RequestAddMemberToProjectCommand, Response<string>>
     {
-        private IUnitOfWork _unitOfWork;
-        private ICurrentUserServices _currentUserServices;
-        private IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICurrentUserServices _currentUserServices;
+        private readonly IMapper _mapper;
 
         public RequestAddMemberToProjectHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         {
@@ -27,10 +28,10 @@ namespace Core.Application.Features.Projects.CommandHandlers
         {
             var userId = _currentUserServices.GetUserId();
             //check if project for user or not
-            var isFor = await _unitOfWork.Projects.IsProjectForUser(request.ProjectRequest.ProjcetId, userId, cancellationToken);
-            if (!isFor)
+            var project = await _unitOfWork.Projects.GetByIdAsync(request.ProjectRequest.ProjcetId, cancellationToken);
+            if (project.OwnerId != userId)
             {
-                return BadRequest<string>("Project is not found !!");
+                throw new BadRequestException("Only the owner of this project has access to this section.");
             }
             // check UserNames exist ?
             foreach (var Receiver in request.ProjectRequest.Receivers)
@@ -38,9 +39,9 @@ namespace Core.Application.Features.Projects.CommandHandlers
                 var isExist = await _unitOfWork.Users.IsUserNameExist(Receiver);
                 if (isExist)
                 {
-                    return NotFound<string>($"user name {Receiver} does not exist !");
+                    throw new NotFoundException($"user name {Receiver} does not exist !");
                 }
-                var userRequest = await _unitOfWork.Requests.GetTableNoTracking(cancellationToken)
+                var userRequest = await _unitOfWork.Requests.GetTableNoTracking()
                     .FirstOrDefaultAsync(x => x.RequestFor == Domain.Enum.RequestFor.Project
                     && x.ProjectId == request.ProjectRequest.ProjcetId
                     && x.Receiver == Receiver);
@@ -49,11 +50,11 @@ namespace Core.Application.Features.Projects.CommandHandlers
                 {
                     if (userRequest.Status == Domain.Enum.RequestStatus.Accepted)
                     {
-                        return BadRequest<string>($"user {Receiver} is already member of this project");
+                        throw new BadRequestException($"user {Receiver} is already member of this project");
                     }
                     else if (userRequest.Status == Domain.Enum.RequestStatus.Pending)
                     {
-                        return BadRequest<string>($"you already send this request for this user");
+                        throw new BadRequestException($"you already send this request for this user");
                     }
                 }
             }
@@ -75,7 +76,7 @@ namespace Core.Application.Features.Projects.CommandHandlers
             }
             await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return NoContent<string>();
+            return Created("Created");
         }
     }
 }

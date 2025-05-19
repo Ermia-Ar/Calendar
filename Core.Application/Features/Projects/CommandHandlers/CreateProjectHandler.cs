@@ -1,18 +1,20 @@
 ﻿using AutoMapper;
+using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Shared;
 using MediatR;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Core.Application.Features.Projects.CommandHandlers
 {
     public class CreateProjectHandler : ResponseHandler
         , IRequestHandler<CreateProjectCommand, Response<string>>
     {
-        private IUnitOfWork _unitOfWork;
-        private ICurrentUserServices _currentUserServices;
-        private IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICurrentUserServices _currentUserServices;
+        private readonly IMapper _mapper;
 
         public CreateProjectHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         {
@@ -23,21 +25,20 @@ namespace Core.Application.Features.Projects.CommandHandlers
 
         public async Task<Response<string>> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
+            var userId = _currentUserServices.GetUserId();
             // check UserNames exist ?
             foreach (var Receiver in request.CreateProject.Members)
             {
                 var isExist = await _unitOfWork.Users.IsUserNameExist(Receiver);
                 if (!isExist)
                 {
-                    return NotFound<string>($"user name {Receiver} does not exist !");
+                    throw new NotFoundException($"user name {Receiver} does not exist !");
                 }
             }
             //map to project entity
-            var project = _mapper.Map<Project>(request.CreateProject);
-            project.Id = Guid.NewGuid().ToString();
-            project.OwnerId = _currentUserServices.GetUserId();
-            project.CreatedDate = DateTime.Now;
-            project.UpdateDate = DateTime.Now;
+            var project = Project.Create(userId, request.CreateProject.Title
+                , request.CreateProject.Description, request.CreateProject.StartDate, request.CreateProject.EndDate);
+
             // add to project table
             await _unitOfWork.Projects.AddAsync(project, cancellationToken);
 
@@ -45,25 +46,16 @@ namespace Core.Application.Features.Projects.CommandHandlers
             var userRequests = new List<UserRequest>();
             foreach (var Receiver in request.CreateProject.Members)
             {
-                var sendRequest = new UserRequest
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    InvitedAt = DateTime.Now,
-                    Status = Domain.Enum.RequestStatus.Pending,
-                    Sender = _currentUserServices.GetUserName(),
-                    IsGuest = false,
-                    IsExpire = false,
-                    IsActive = true,
-                    Receiver = Receiver,
-                    Message = request.CreateProject.RequestMassage,
-                    RequestFor = Domain.Enum.RequestFor.Project,
-                    ProjectId = project.Id,
-                };
+                var sendRequest = UserRequest.CreateUserRequest(null , project.Id
+                    , _currentUserServices.GetUserName(),Receiver
+                    , request.CreateProject.RequestMassage
+                    , false , Domain.Enum.RequestStatus.Pending);
+                
                 userRequests.Add(sendRequest);
             }
             await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return NoContent<string>();
+            return Created("Created");
         }
     }
 }

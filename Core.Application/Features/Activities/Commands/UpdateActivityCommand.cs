@@ -4,9 +4,6 @@ using MediatR;
 
 namespace Core.Application.Features.Activities.Commands
 {
-    public class UpdateActivityCommand : IRequest<Response<ActivityResponse>>
-    {
-        public UpdateActivityRequest UpdateActivityRequest { get; set; }
-    }
-
+    public record class UpdateActivityCommand(UpdateActivityRequest UpdateActivityRequest) 
+        : IRequest<Response<ActivityResponse>>;
 }

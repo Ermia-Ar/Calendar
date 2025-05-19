@@ -9,9 +9,9 @@ namespace Core.Application.Features.Activities.QueryHandlers
     public class GetMemberOfActivityHandler : ResponseHandler
         , IRequestHandler<GetMemberOfActivityQuery, Response<List<string>>>
     {
-        public IUnitOfWork _unitOfWork;
-        public ICurrentUserServices _currentUser;
-        public IMapper _mapper;
+        public readonly IUnitOfWork _unitOfWork;
+        public readonly ICurrentUserServices _currentUser;
+        public readonly IMapper _mapper;
 
         public GetMemberOfActivityHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
         {
@@ -24,10 +24,10 @@ namespace Core.Application.Features.Activities.QueryHandlers
         {
             var userId = _currentUser.GetUserId();
             // check activity owner
-            var isFor = await _unitOfWork.Activities.IsActivityForUser(request.ActivityId, userId, cancellationToken);
-            if (!isFor)
+            var activity = await _unitOfWork.Activities.GetByIdAsync(request.ActivityId, cancellationToken);
+            if (activity.UserId != _currentUser.GetUserId())
             {
-                return BadRequest<List<string>>("your not access");
+                return NotFound<List<string>>("Only the owner of this activity has access to this section.");
             }
 
             var userNames = await _unitOfWork.Requests.GetMemberOfActivity(request.ActivityId, cancellationToken);

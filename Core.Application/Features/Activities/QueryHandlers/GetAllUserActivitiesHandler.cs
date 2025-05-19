@@ -26,12 +26,19 @@ namespace Core.Application.Features.Activities.QueryHandlers
             var userName = _currentUserServices.GetUserName();
             var userId = _currentUserServices.GetUserId();
 
-            var ownedActivities = await _unitOfWork.Activities.GettingActivitiesOwnedByTheUser(userId, cancellationToken);
-            var activities = await _unitOfWork.Requests.GetActivitiesThatTheUserIsMemberOf(userName, cancellationToken);
+            var ownedActivities = await _unitOfWork.Activities
+                .GettingActivitiesOwnedByTheUser(userId, cancellationToken, 
+                request.StartDate , request.Category, request.IsCompleted , request.IsHistory);
 
-            activities.AddRange(ownedActivities);
+            if (!request.UserIsOwner)
+            {
+                ownedActivities.AddRange(await _unitOfWork.Requests
+                    .GetActivitiesThatTheUserIsMemberOf(userName, cancellationToken
+                , request.StartDate, request.Category, request.IsCompleted , request.IsHistory));
+            }
 
-            var response = _mapper.Map<List<ActivityResponse>>(activities); ;
+
+            var response = _mapper.Map<List<ActivityResponse>>(ownedActivities); ;
             return Success(response);
         }
     }

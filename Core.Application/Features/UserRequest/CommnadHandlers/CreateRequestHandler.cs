@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.Features.Exceptions;
 using Core.Application.Features.UserRequests.Commnads;
 using Core.Domain;
 using Core.Domain.Entity;
@@ -12,9 +13,9 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
     public class CreateRequestHandler : ResponseHandler
         , IRequestHandler<CreateRequestCommand, Response<string>>
     {
-        private ICurrentUserServices _currentUserServices;
-        private IUnitOfWork _unitOfWork;
-        private IMapper _mapper;
+        private readonly ICurrentUserServices _currentUserServices;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public CreateRequestHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         {
@@ -28,7 +29,7 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
             var activity = await _unitOfWork.Activities.GetByIdAsync(request.Request.ActivityId, cancellationToken);
             if (activity.UserId != _currentUserServices.GetUserId())
             {
-                return NotFound<string>("Not Found Activity");
+                throw new BadRequestException("Only the owner of this activity has access to this section.");
             }
 
             foreach (var Receiver in request.Request.Receivers)
@@ -36,11 +37,11 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
                 var isExist = await _unitOfWork.Users.IsUserNameExist(Receiver);
                 if (!isExist)
                 {
-                    return NotFound<string>($"user name {Receiver} does not exist !");
+                    throw new NotFoundException($"user name {Receiver} does not exist !");
                 }
 
                 //check if the receiver is already member of this activity
-                var userRequest = await _unitOfWork.Requests.GetTableNoTracking(cancellationToken)
+                var userRequest = await _unitOfWork.Requests.GetTableNoTracking()
                     .FirstOrDefaultAsync(x => x.RequestFor == Domain.Enum.RequestFor.Activity
                         && x.ActivityId == request.Request.ActivityId
                         && x.Receiver == Receiver);
@@ -49,11 +50,11 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
                 {
                     if (userRequest.Status == Domain.Enum.RequestStatus.Accepted)
                     {
-                        return BadRequest<string>($"user {Receiver} is already member of this activity");
+                        throw new BadRequestException($"user {Receiver} is already member of this activity");
                     }
                     else if (userRequest.Status == Domain.Enum.RequestStatus.Pending)
                     {
-                        return BadRequest<string>($"you already send this request for this user");
+                        throw new BadRequestException($"you already send this request for this user");
                     }
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using Core.Application.DTOs.ActivityDTOs;
+using Core.Application.DTOs.ProjectDTOs;
 using Core.Domain.Enum;
 
 namespace Core.Application.DTOs.UserRequestDTOs
@@ -7,7 +8,9 @@ namespace Core.Application.DTOs.UserRequestDTOs
     {
         public string Id { get; set; }
 
-        public ActivityResponse Activity { get; set; }
+        public ProjectResponse Project { get; set; }    
+
+        public ActivityResponse? Activity { get; set; }
 
         public string Sender { get; set; }
 

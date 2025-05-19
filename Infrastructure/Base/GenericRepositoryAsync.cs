@@ -1,4 +1,5 @@
-﻿using Core.Domain.Interfaces;
+﻿using Core.Application.Features.Exceptions;
+using Core.Domain.Interfaces.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -20,12 +21,12 @@ namespace Infrastructure.Base
             var entity = await _dbContext.Set<T>().FindAsync(id);
             if (entity == null)
             {
-                throw new Exception("id is invalid");
+                throw new BadRequestException("id is invalid");
             }
             return entity;
         }
 
-        public IQueryable<T> GetTableNoTracking(CancellationToken token)
+        public IQueryable<T> GetTableNoTracking()
         {
             return _dbContext.Set<T>().AsNoTracking().AsQueryable();
         }
@@ -37,7 +38,7 @@ namespace Infrastructure.Base
 
         public virtual async Task<T> AddAsync(T entity, CancellationToken token)
         {
-            await _dbContext.Set<T>().AddAsync(entity);
+            await _dbContext.Set<T>().AddAsync(entity,token);
 
             return entity;
         }
@@ -84,7 +85,7 @@ namespace Infrastructure.Base
             await _dbContext.Database.RollbackTransactionAsync();
         }
 
-        public IQueryable<T> GetTableAsTracking(CancellationToken token)
+        public IQueryable<T> GetTableAsTracking()
         {
             return _dbContext.Set<T>().AsQueryable();
         }

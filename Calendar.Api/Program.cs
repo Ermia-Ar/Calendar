@@ -1,7 +1,7 @@
 using Core.Application;
 using Core.Application.Mapper;
 using Core.Application.Middleware;
-using FluentValidation.AspNetCore;
+using FluentValidation;
 using Infrastructure.Data;
 using Infrastructure.Dependency;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -57,11 +57,9 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<ApplicationContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
-builder.Services.AddFluentValidationAutoValidation();
-
 // add dependency 
 builder.Services.AddCoreDependencies()
-    .AddIdentityDependency()
+    .AddIdentityDependency(builder.Configuration)
     .AddServiceDescriptors();
 
 builder.Services.AddAutoMapper(typeof(ApplicationProfile));

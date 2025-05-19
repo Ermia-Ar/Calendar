@@ -3,9 +3,5 @@ using MediatR;
 
 namespace Core.Application.Features.Activities.Commands
 {
-    public class ExitingActivityCommand : IRequest<Response<string>>
-    {
-        public string ActivityId { get; set; }
-    }
-
+    public record class ExitingActivityCommand(string ActivityId) : IRequest<Response<string>>;
 }

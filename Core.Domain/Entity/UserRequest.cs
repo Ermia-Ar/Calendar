@@ -14,8 +14,8 @@ namespace Core.Domain.Entity
         public Activity Activity { get; set; }
 
         [ForeignKey(nameof(ProjectId))]
-        public string? ProjectId { get; set; }
-        public Project Project{ get; set; }
+        public string ProjectId { get; set; }
+        public Project Project { get; set; }
 
         public string Sender { get; set; }
 
@@ -32,14 +32,31 @@ namespace Core.Domain.Entity
 
         public string? Message { get; set; }
 
-        public bool IsSenderSeen { get; set; }
-
-        public bool IsReceiverSeen { get; set; }
-
         public bool IsExpire { get; set; }
 
         public bool IsActive { get; set; }
 
         public bool IsGuest { get; set; }
+
+        public static UserRequest CreateUserRequest(string? activityId, string projectId
+        , string sender, string receiver, string? massage, bool isGuest , RequestStatus status)
+        {
+            return new UserRequest
+            {
+                Id = Guid.NewGuid().ToString(),
+                ActivityId = activityId,
+                ProjectId = projectId,
+                Sender = sender,
+                Receiver = receiver,
+                InvitedAt = DateTime.Now,
+                AnsweredAt = status != RequestStatus.Pending ? DateTime.Now : null,
+                RequestFor = activityId == null ? RequestFor.Project : RequestFor.Activity,
+                Status = status,
+                Message = massage,
+                IsExpire = status == RequestStatus.Pending ? false : true,
+                IsActive = true,
+                IsGuest = isGuest
+            };
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Core.Domain.Interfaces;
+﻿using Core.Domain.Interfaces.Repositories;
 
 namespace Core.Domain
 {
@@ -6,8 +6,9 @@ namespace Core.Domain
     {
         IActivityRepository Activities { get; }
         IRequestRepository Requests { get; }
-        IUserRepository Users { get; }
+        ICommentRepository Comments { get; }
         IProjectRepository Projects { get; }
+        IUserRepository Users { get; }
 
         Task SaveChangeAsync(CancellationToken token = default);
     }

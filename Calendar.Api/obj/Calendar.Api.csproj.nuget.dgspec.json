@@ -57,9 +57,13 @@
               "target": "Package",
               "version": "[14.0.0, )"
             },
-            "FluentValidation.AspNetCore": {
+            "DotNetEnv": {
               "target": "Package",
-              "version": "[11.3.0, )"
+              "version": "[3.1.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.0.0, )"
             },
             "MediatR": {
               "target": "Package",
@@ -173,9 +177,13 @@
               "target": "Package",
               "version": "[14.0.0, )"
             },
-            "FluentValidation.AspNetCore": {
+            "FluentValidation": {
               "target": "Package",
-              "version": "[11.3.0, )"
+              "version": "[12.0.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[12.0.0, )"
             },
             "MediatR": {
               "target": "Package",
@@ -264,9 +272,9 @@
               "target": "Package",
               "version": "[14.0.0, )"
             },
-            "FluentValidation.AspNetCore": {
+            "FluentValidation": {
               "target": "Package",
-              "version": "[11.3.0, )"
+              "version": "[12.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -359,9 +367,9 @@
               "target": "Package",
               "version": "[14.0.0, )"
             },
-            "FluentValidation.AspNetCore": {
+            "FluentValidation": {
               "target": "Package",
-              "version": "[11.3.0, )"
+              "version": "[12.0.0, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",

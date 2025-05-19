@@ -1,6 +1,6 @@
-﻿using Core.Application.DTOs.ActivityDTOs;
-using Core.Domain.Entity;
-using Core.Domain.Interfaces;
+﻿using Core.Domain.Entity;
+using Core.Domain.Enum;
+using Core.Domain.Interfaces.Repositories;
 using Infrastructure.Base;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -16,20 +16,37 @@ namespace Infrastructure.Repositories
             _activities = context.Set<Activity>();
         }
 
-        public async Task<List<Activity>> GettingActivitiesOwnedByTheUser(string userId , CancellationToken token)
+        public async Task<List<Activity>> GettingActivitiesOwnedByTheUser(string userId, CancellationToken token
+            , DateTime? startDate, ActivityCategory? category, bool isCompleted = false, bool isHistory = false)
         {
-            var activities = await GetTableAsTracking(token)
-                .Where(x => x.StartDate >= DateTime.Now && x.UserId == userId)
-                .ToListAsync();
+            var activities = GetTableAsTracking()
+                .Where(x => x.UserId == userId);
 
-            return activities;
+            if (startDate.HasValue)
+            {
+                activities = activities.Where(x => x.StartDate >= startDate);
+            }
+            if (category.HasValue)
+            {
+                activities = activities.Where(x => x.Category == category);
+            }
+            if (isHistory)
+            {
+                activities = activities.Where(x => x.StartDate <= DateTime.Now);
+            }
+            else
+            {
+                activities = activities.Where(x => x.StartDate >= DateTime.Now);
+            }
+
+            return await activities.ToListAsync(token);
         }
 
         public async Task<List<Activity>> GetHistoryOfUserActivities(string userId, CancellationToken token)
         {
-            var activities = await GetTableAsTracking(token)
+            var activities = await GetTableAsTracking()
                 .Where(x => x.StartDate < DateTime.Now && x.UserId == userId)
-                .ToListAsync();
+                .ToListAsync(token);
 
             return activities;
         }
@@ -53,16 +70,6 @@ namespace Infrastructure.Repositories
             activity.IsCompleted = !activity.IsCompleted;
         }
 
-        public async Task<bool> IsActivityForUser(string activityId, string userId ,CancellationToken token)
-        {
-            var activity = await GetByIdAsync(activityId , token);
-            if(activity.UserId == userId)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public override async Task<Activity> GetByIdAsync(string id , CancellationToken token)
         {
             var activity = await _activities.FirstOrDefaultAsync(x => x.Id == id);
@@ -73,9 +80,10 @@ namespace Infrastructure.Repositories
             return activity;
         }
 
-        public async Task<List<Activity>> GetProjectActivities(string projectId  , CancellationToken token, DateTime? startDate = null)
+        public async Task<List<Activity>> GetProjectActivities(string projectId  , CancellationToken token
+            , DateTime? startDate = null)
         {
-            var activities = GetTableNoTracking(token);
+            var activities = GetTableNoTracking();
 
             if (startDate.HasValue)
             {
@@ -87,9 +95,9 @@ namespace Infrastructure.Repositories
             return await activities.ToListAsync(token);
         }
 
-        public async Task<string[]> GetProjectActivityIds(string projectId, CancellationToken token)
+        public async Task<string[]> GetProjectActiveActivityIds(string projectId, CancellationToken token)
         {
-            var activities = await GetTableNoTracking(token)
+            var activities = await GetTableNoTracking()
                          .Where(x => x.ProjectId == projectId
                           && x.StartDate >= DateTime.Now)
                          .Select(x => x.Id)
@@ -97,5 +105,6 @@ namespace Infrastructure.Repositories
 
             return activities.ToArray();
         }
+
     }
 }

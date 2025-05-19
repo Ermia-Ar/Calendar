@@ -3,14 +3,15 @@ using Core.Domain.Shared;
 using MediatR;
 using Core.Domain;
 using Core.Application.Features.UserRequests.Commnads;
+using Core.Application.Features.Exceptions;
 
 namespace Core.Application.Features.UserRequests.CommandHandlers
 {
     public class AnswerRequestHandler : ResponseHandler
         , IRequestHandler<AnswerRequestCommand, Response<string>>
     {
-        private ICurrentUserServices _currentUserServices;
-        private IUnitOfWork _unitOfWork;
+        private readonly ICurrentUserServices _currentUserServices;
+        private readonly IUnitOfWork _unitOfWork;
 
         public AnswerRequestHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
         {
@@ -25,36 +26,29 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
             var result = await _unitOfWork.Requests.GetByIdAsync(request.RequestId, cancellationToken);
             if (result.Receiver != userName)
             {
-                return BadRequest<string>("not found request !");
+                throw new NotFoundException("not found request !");
             }
             if (result.IsExpire == true)
             {
-                return BadRequest<string>("this request was Expire !");
+                throw new BadRequestException("this request was Expire !");
             }
             //check if the request for a Project 
             if (result.RequestFor == Domain.Enum.RequestFor.Project && request.IsAccepted == true)
             {
+                //check if the user is member of this project 
+                var isMember = (await _unitOfWork.Requests
+                    .GetMemberOfProject(result.ProjectId, cancellationToken))
+                    .Any(memberName => memberName == userName);
+
                 //sent request for each activity
                 var userRequests = new List<UserRequest>();
-                var activityIds = await _unitOfWork.Activities.GetProjectActivityIds(result.ProjectId, cancellationToken);
+                var activityIds = await _unitOfWork.Activities.GetProjectActiveActivityIds(result.ProjectId, cancellationToken);
                 foreach (var activityId in activityIds)
                 {
-                    var sendRequest = new UserRequest
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        InvitedAt = DateTime.Now,
-                        AnsweredAt = DateTime.Now,
-                        Status = Domain.Enum.RequestStatus.Accepted,
-                        Sender = _currentUserServices.GetUserName(),
-                        IsGuest = false,
-                        IsExpire = true,
-                        IsActive = true,
-                        Receiver = userName,
-                        Message = null,
-                        RequestFor = Domain.Enum.RequestFor.Activity,
-                        ActivityId = activityId,
-                        ProjectId = result.ProjectId,
-                    };
+                    var sendRequest = UserRequest.CreateUserRequest(activityId, result.ProjectId
+                        , userName, result.Sender, null, !isMember
+                        , Domain.Enum.RequestStatus.Accepted);
+
                     userRequests.Add(sendRequest);
                 }
                 await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);

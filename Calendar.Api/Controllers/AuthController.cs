@@ -2,7 +2,9 @@
 using Core.Application.DTOs.AuthDTOs;
 using Core.Application.Features.Auth.Commands;
 using Core.Application.Features.Auth.Queries;
+using Core.Domain.Helper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calendar.Api.Controllers
@@ -24,10 +26,8 @@ namespace Calendar.Api.Controllers
         {
             var request = new RegisterCommand { RegisterRequest = registerRequest };
             var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
-
 
         [HttpPost]
         [Route("Login")]
@@ -35,29 +35,27 @@ namespace Calendar.Api.Controllers
         {
             var request = new LoginCommand { LoginRequest = loginRequest };
             var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
 
         [HttpGet]
-        [Route("GetUerByUserName")]
-        public async Task<IActionResult> GetUerByUserName(string userName)
+        [Route("GetUserByUserName")]
+        [Authorize(CalendarClaims.GetUserByUserName)]
+        public async Task<IActionResult> GetUserByUserName(string userName)
         {
             var request = new GetUserByUserNameQuery { UserName = userName };
             var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
 
         [HttpGet]
         [Route("GetAllUsers")]
+        [Authorize(CalendarClaims.GetAllUsers)]
         public async Task<IActionResult> GetAllUsers()
         {
             var request = new GetAllUsers();
             var result = await _mediator.Send(request);
-
             return NewResult(result);
         }
-
     }
 }

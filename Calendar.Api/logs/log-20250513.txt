@@ -1,0 +1,661 @@
+2025-05-13 01:20:56.350 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-13 01:20:56.639 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-13 01:20:56.642 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-13 01:20:56.645 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-13 01:20:56.647 +04:30 [INF] Hosting environment: Development
+2025-05-13 01:20:56.648 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-13 01:20:57.985 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger - null null
+2025-05-13 01:20:58.155 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger - 301 0 null 177.3559ms
+2025-05-13 01:20:58.165 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-13 01:20:58.277 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 112.0059ms
+2025-05-13 01:20:58.286 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/swagger-ui-bundle.js - null null
+2025-05-13 01:20:58.286 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/swagger-ui.css - null null
+2025-05-13 01:20:58.286 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/swagger-ui-standalone-preset.js - null null
+2025-05-13 01:20:58.287 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-13 01:20:58.312 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 25.3711ms
+2025-05-13 01:20:58.328 +04:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-05-13 01:20:58.328 +04:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-05-13 01:20:58.335 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 48.2543ms
+2025-05-13 01:20:58.335 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/swagger-ui.css - 200 143943 text/css 48.82ms
+2025-05-13 01:20:58.339 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-13 01:20:58.346 +04:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-05-13 01:20:58.351 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 64.3383ms
+2025-05-13 01:20:58.438 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 98.6299ms
+2025-05-13 01:20:58.506 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-13 01:20:58.648 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 141.911ms
+2025-05-13 01:22:28.052 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-13 01:22:28.268 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-13 01:22:28.271 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-13 01:22:28.274 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-13 01:22:28.275 +04:30 [INF] Hosting environment: Development
+2025-05-13 01:22:28.276 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-13 01:22:28.519 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-13 01:22:28.769 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 257.0884ms
+2025-05-13 01:22:28.777 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-13 01:22:28.793 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 15.9225ms
+2025-05-13 01:22:28.794 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-13 01:22:28.833 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.6548ms
+2025-05-13 01:22:28.940 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-13 01:22:29.089 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 149.0128ms
+2025-05-13 01:24:00.787 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-13 01:24:01.008 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-13 01:24:01.010 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-13 01:24:01.013 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-13 01:24:01.014 +04:30 [INF] Hosting environment: Development
+2025-05-13 01:24:01.015 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-13 01:24:01.587 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-13 01:24:01.844 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 264.9486ms
+2025-05-13 01:24:01.996 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-13 01:24:01.996 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-13 01:24:02.009 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 12.7956ms
+2025-05-13 01:24:02.036 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 39.7689ms
+2025-05-13 01:24:02.072 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-13 01:24:02.207 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 135.4424ms
+2025-05-13 01:27:54.960 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-13 01:27:55.161 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-13 01:27:55.164 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-13 01:27:55.166 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-13 01:27:55.167 +04:30 [INF] Hosting environment: Development
+2025-05-13 01:27:55.168 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-13 01:27:55.785 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-13 01:27:56.010 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 231.374ms
+2025-05-13 01:27:56.058 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-13 01:27:56.058 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-13 01:27:56.068 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 9.2172ms
+2025-05-13 01:27:56.100 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 41.4276ms
+2025-05-13 01:27:56.138 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-13 01:27:56.388 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 253.9925ms
+2025-05-13 01:28:08.605 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects - null null
+2025-05-13 01:28:08.762 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:28:08.788 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:28:08.816 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T20:58:08.8154108Z" , "eb1f3baf-3adb-46c3-835f-30b84d480719"
+2025-05-13 01:28:09.269 +04:30 [WRN] The entity type 'IdentityUserToken' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:28:09.276 +04:30 [WRN] The entity type 'IdentityUserLogin' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:28:09.278 +04:30 [WRN] The entity type 'IdentityUserClaim' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:28:10.181 +04:30 [INF] Executed DbCommand (47ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:28:10.264 +04:30 [INF] Executed DbCommand (7ms) [Parameters=[@__userName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:28:10.280 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T20:58:10.2797281Z"
+2025-05-13 01:28:10.289 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:28:10.313 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 1520.0403ms
+2025-05-13 01:28:10.316 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:28:10.322 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects - 200 null application/json; charset=utf-8 1717.0078ms
+2025-05-13 01:28:23.602 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?isHistory=true - null null
+2025-05-13 01:28:23.611 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:28:23.612 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:28:23.646 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T20:58:23.6461089Z" , "833fdf18-62b8-4eb6-8a9d-8790b6a3c762"
+2025-05-13 01:28:23.693 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[EndDate] <= GETDATE()
+2025-05-13 01:28:23.703 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[EndDate] <= GETDATE()
+2025-05-13 01:28:23.706 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T20:58:23.7066432Z"
+2025-05-13 01:28:23.708 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:28:23.709 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 95.1225ms
+2025-05-13 01:28:23.710 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:28:23.711 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?isHistory=true - 200 null application/json; charset=utf-8 108.7005ms
+2025-05-13 01:28:28.974 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?isHistory=false - null null
+2025-05-13 01:28:28.980 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:28:28.981 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:28:28.985 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T20:58:28.9852632Z" , "0d726767-dc19-4961-8af4-2464e7906e7e"
+2025-05-13 01:28:29.008 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:28:29.011 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:28:29.013 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T20:58:29.0136101Z"
+2025-05-13 01:28:29.015 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:28:29.016 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 33.3125ms
+2025-05-13 01:28:29.017 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:28:29.018 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?isHistory=false - 200 null application/json; charset=utf-8 44.71ms
+2025-05-13 01:29:01.882 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-09-09T13%3A20%3A33.398&isHistory=false - null null
+2025-05-13 01:29:01.884 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:01.885 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:29:01.891 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T20:59:01.8914941Z" , "60690da7-ae90-46eb-ad92-b1ae8f217c19"
+2025-05-13 01:29:01.916 +04:30 [INF] Executed DbCommand (18ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:29:01.929 +04:30 [INF] Executed DbCommand (5ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:29:01.932 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T20:59:01.9321455Z"
+2025-05-13 01:29:01.933 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:29:01.934 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 46.3791ms
+2025-05-13 01:29:01.939 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:01.940 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-09-09T13%3A20%3A33.398&isHistory=false - 200 null application/json; charset=utf-8 58.488ms
+2025-05-13 01:29:09.008 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-08-09T13%3A20%3A33.398&isHistory=false - null null
+2025-05-13 01:29:09.011 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:09.012 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:29:09.014 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T20:59:09.0145055Z" , "a7f93580-92bc-4156-9801-511ae803b37d"
+2025-05-13 01:29:09.019 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:29:09.022 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:29:09.025 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T20:59:09.0252733Z"
+2025-05-13 01:29:09.026 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:29:09.027 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 13.3964ms
+2025-05-13 01:29:09.028 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:09.030 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-08-09T13%3A20%3A33.398&isHistory=false - 200 null application/json; charset=utf-8 22.2648ms
+2025-05-13 01:29:17.927 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-05-09T13%3A20%3A33.398&isHistory=false - null null
+2025-05-13 01:29:17.931 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:17.932 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:29:17.936 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T20:59:17.9362496Z" , "bc5adc20-c29f-4ec4-9d2e-0c0a6ed8ff08"
+2025-05-13 01:29:17.939 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:29:17.943 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:29:17.945 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T20:59:17.9457491Z"
+2025-05-13 01:29:17.946 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:29:17.947 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 13.4638ms
+2025-05-13 01:29:17.949 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:17.950 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-05-09T13%3A20%3A33.398&isHistory=false - 200 null application/json; charset=utf-8 22.1196ms
+2025-05-13 01:29:37.624 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-07-09T13%3A20%3A33.398&isHistory=false - null null
+2025-05-13 01:29:37.637 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:37.638 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:29:37.643 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T20:59:37.6436723Z" , "a013d80f-15b6-4a97-946a-557656e21165"
+2025-05-13 01:29:37.648 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:29:37.652 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:29:37.653 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T20:59:37.6539603Z"
+2025-05-13 01:29:37.654 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:29:37.655 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 12.6006ms
+2025-05-13 01:29:37.657 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:37.658 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-07-09T13%3A20%3A33.398&isHistory=false - 200 null application/json; charset=utf-8 33.2868ms
+2025-05-13 01:29:48.637 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-07-09T13%3A20%3A33.398&userIsOwner=false&isHistory=true - null null
+2025-05-13 01:29:48.640 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:48.641 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:29:48.644 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T20:59:48.6443125Z" , "d3edb58d-a981-4208-93c4-1cd4d773617d"
+2025-05-13 01:29:48.652 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] <= GETDATE()
+2025-05-13 01:29:48.661 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] <= GETDATE()
+2025-05-13 01:29:48.663 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T20:59:48.6632413Z"
+2025-05-13 01:29:48.664 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:29:48.665 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 21.7987ms
+2025-05-13 01:29:48.666 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:29:48.667 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-07-09T13%3A20%3A33.398&userIsOwner=false&isHistory=true - 200 null application/json; charset=utf-8 30.6916ms
+2025-05-13 01:31:22.765 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-13 01:31:22.970 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-13 01:31:22.973 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-13 01:31:22.976 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-13 01:31:22.978 +04:30 [INF] Hosting environment: Development
+2025-05-13 01:31:22.979 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-13 01:31:23.218 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-13 01:31:23.440 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 227.0679ms
+2025-05-13 01:31:23.452 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-13 01:31:23.461 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 8.4978ms
+2025-05-13 01:31:23.462 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-13 01:31:23.496 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 33.5952ms
+2025-05-13 01:31:23.543 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-13 01:31:23.675 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 131.9614ms
+2025-05-13 01:31:40.043 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects - null null
+2025-05-13 01:31:40.173 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:31:40.199 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:31:40.225 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:01:40.2254221Z" , "6fc49cbc-2cc1-4dd5-8086-a45cf093abce"
+2025-05-13 01:31:40.677 +04:30 [WRN] The entity type 'IdentityUserToken' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:31:40.685 +04:30 [WRN] The entity type 'IdentityUserLogin' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:31:40.687 +04:30 [WRN] The entity type 'IdentityUserClaim' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:31:41.678 +04:30 [INF] Executed DbCommand (45ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:31:41.773 +04:30 [INF] Executed DbCommand (5ms) [Parameters=[@__userName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:31:41.789 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:01:41.7895212Z"
+2025-05-13 01:31:41.799 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:31:41.826 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 1620.9047ms
+2025-05-13 01:31:41.829 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:31:41.835 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects - 200 null application/json; charset=utf-8 1792.881ms
+2025-05-13 01:31:56.467 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09T13%3A20%3A33.398 - null null
+2025-05-13 01:31:56.476 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:31:56.477 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:31:56.494 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:01:56.4948421Z" , "8ecd7970-b813-451a-9cd8-975d8952f48d"
+2025-05-13 01:31:56.546 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:31:56.557 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:31:56.561 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:01:56.5617654Z"
+2025-05-13 01:31:56.563 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:31:56.564 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 85.0592ms
+2025-05-13 01:31:56.566 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:31:56.567 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09T13%3A20%3A33.398 - 200 null application/json; charset=utf-8 100.0279ms
+2025-05-13 01:32:04.797 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09T13%3A20%3A33.399 - null null
+2025-05-13 01:32:04.803 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:04.804 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:32:04.808 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:02:04.8081108Z" , "b7d7900f-c48b-43cd-b437-029c08f9b88e"
+2025-05-13 01:32:04.833 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:04.841 +04:30 [INF] Executed DbCommand (5ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:04.844 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:02:04.8445320Z"
+2025-05-13 01:32:04.845 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:32:04.846 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 40.4951ms
+2025-05-13 01:32:04.848 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:04.849 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09T13%3A20%3A33.399 - 200 null application/json; charset=utf-8 51.5284ms
+2025-05-13 01:32:10.138 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09T13%3A20%3A33.397 - null null
+2025-05-13 01:32:10.142 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:10.143 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:32:10.146 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:02:10.1466711Z" , "53ff7685-b198-4064-a81d-46439d39a327"
+2025-05-13 01:32:10.152 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:10.158 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:10.161 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:02:10.1616471Z"
+2025-05-13 01:32:10.162 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:32:10.163 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 18.3325ms
+2025-05-13 01:32:10.165 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:10.167 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09T13%3A20%3A33.397 - 200 null application/json; charset=utf-8 29.3246ms
+2025-05-13 01:32:18.686 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09 - null null
+2025-05-13 01:32:18.694 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:18.700 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:32:18.705 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:02:18.7058587Z" , "e4544c19-9aad-473b-bac2-9e972cf6b522"
+2025-05-13 01:32:18.709 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:18.713 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:18.715 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:02:18.7153167Z"
+2025-05-13 01:32:18.716 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:32:18.717 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 11.9848ms
+2025-05-13 01:32:18.718 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:18.719 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09 - 200 null application/json; charset=utf-8 33.1477ms
+2025-05-13 01:32:31.740 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-10 - null null
+2025-05-13 01:32:31.755 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:31.759 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:32:31.761 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:02:31.7616191Z" , "35dc5ec5-e694-4592-a39e-3c25689f8088"
+2025-05-13 01:32:31.765 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:31.769 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:31.771 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:02:31.7719907Z"
+2025-05-13 01:32:31.772 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:32:31.774 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 12.7273ms
+2025-05-13 01:32:31.775 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:31.776 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-10 - 200 null application/json; charset=utf-8 36.3925ms
+2025-05-13 01:32:38.737 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09 - null null
+2025-05-13 01:32:38.741 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:38.742 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:32:38.744 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:02:38.7448627Z" , "8af9dcfe-070a-42f2-8de6-dc3410c0e3af"
+2025-05-13 01:32:38.749 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:38.753 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:32:38.755 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:02:38.7553329Z"
+2025-05-13 01:32:38.756 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:32:38.757 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 13.3366ms
+2025-05-13 01:32:38.759 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:38.760 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09 - 200 null application/json; charset=utf-8 22.8943ms
+2025-05-13 01:32:52.297 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09&isHistory=true - null null
+2025-05-13 01:32:52.300 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:52.301 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:32:52.304 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:02:52.3043112Z" , "e4fdbab0-df69-4011-9563-440b679550e3"
+2025-05-13 01:32:52.312 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] <= GETDATE()
+2025-05-13 01:32:52.321 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userName_0='?' (Size = 4000), @__startDate_1='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[StartDate] >= @__startDate_1 AND [p].[EndDate] <= GETDATE()
+2025-05-13 01:32:52.325 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:02:52.3253252Z"
+2025-05-13 01:32:52.326 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:32:52.327 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 24.4744ms
+2025-05-13 01:32:52.328 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:32:52.329 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?startDate=2025-06-09&isHistory=true - 200 null application/json; charset=utf-8 32.751ms
+2025-05-13 01:33:43.644 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-13 01:33:43.844 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-13 01:33:43.846 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-13 01:33:43.849 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-13 01:33:43.850 +04:30 [INF] Hosting environment: Development
+2025-05-13 01:33:43.851 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-13 01:33:44.276 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-13 01:33:44.492 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 222.1168ms
+2025-05-13 01:33:44.500 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-13 01:33:44.508 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 9.0379ms
+2025-05-13 01:33:44.514 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-13 01:33:44.554 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.0006ms
+2025-05-13 01:33:44.593 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-13 01:33:44.727 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 133.484ms
+2025-05-13 01:33:59.820 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects - null null
+2025-05-13 01:33:59.945 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:33:59.970 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:33:59.997 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:03:59.9970183Z" , "1175c453-28af-440c-84f6-7579937a3937"
+2025-05-13 01:34:00.475 +04:30 [WRN] The entity type 'IdentityUserToken' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:34:00.483 +04:30 [WRN] The entity type 'IdentityUserLogin' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:34:00.485 +04:30 [WRN] The entity type 'IdentityUserClaim' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:34:01.345 +04:30 [INF] Executed DbCommand (38ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:34:01.428 +04:30 [INF] Executed DbCommand (7ms) [Parameters=[@__userName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [UserRequests] AS [u]
+INNER JOIN [Projects] AS [p] ON [u].[ProjectId] = [p].[Id]
+WHERE [u].[RequestFor] = 1 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:34:01.448 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:04:01.4483131Z"
+2025-05-13 01:34:01.459 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:34:01.483 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 1507.4476ms
+2025-05-13 01:34:01.485 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:34:01.491 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects - 200 null application/json; charset=utf-8 1671.5012ms
+2025-05-13 01:34:08.919 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?userIsOwner=true - null null
+2025-05-13 01:34:08.929 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:34:08.931 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Project"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Boolean, Boolean) on controller Calendar.Api.Controllers.ProjectController (Calendar.Api).
+2025-05-13 01:34:08.951 +04:30 [INF]  --Starting request GetAllUserProjectQuery, "2025-05-12T21:04:08.9511587Z" , "6d6be34c-70a7-410b-80a5-d707e185695e"
+2025-05-13 01:34:08.996 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[EndDate], [p].[OwnerId], [p].[StartDate], [p].[Title], [p].[UpdateDate]
+FROM [Projects] AS [p]
+WHERE [p].[OwnerId] = @__userId_0 AND [p].[EndDate] >= GETDATE()
+2025-05-13 01:34:08.998 +04:30 [INF] --Completed request GetAllUserProjectQuery, "2025-05-12T21:04:08.9987725Z"
+2025-05-13 01:34:08.999 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ProjectDTOs.ProjectResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:34:09.001 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api) in 67.5097ms
+2025-05-13 01:34:09.003 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:34:09.004 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Project/GetAllUserProjects?userIsOwner=true - 200 null application/json; charset=utf-8 84.7506ms
+2025-05-13 01:38:41.851 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-13 01:38:42.046 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-13 01:38:42.047 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-13 01:38:42.050 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-13 01:38:42.051 +04:30 [INF] Hosting environment: Development
+2025-05-13 01:38:42.052 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-13 01:38:42.476 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-13 01:38:42.693 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 222.0174ms
+2025-05-13 01:38:42.707 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-13 01:38:42.713 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-13 01:38:42.714 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 7.5692ms
+2025-05-13 01:38:42.747 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 33.796ms
+2025-05-13 01:38:42.799 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-13 01:38:42.918 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 118.8438ms
+2025-05-13 01:38:55.744 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity - null null
+2025-05-13 01:38:55.864 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:38:55.889 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Core.Domain.Enum.ActivityCategory, Boolean, Boolean, Boolean) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:38:55.918 +04:30 [INF]  --Starting request GetAllUserActivitiesQuery, "2025-05-12T21:08:55.9176001Z" , "e21efe4f-4233-4dbe-adf1-29c0e2702db9"
+2025-05-13 01:38:56.365 +04:30 [WRN] The entity type 'IdentityUserToken' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:38:56.372 +04:30 [WRN] The entity type 'IdentityUserLogin' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:38:56.373 +04:30 [WRN] The entity type 'IdentityUserClaim' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:38:57.205 +04:30 [INF] Executed DbCommand (43ms) [Parameters=[@__userId_0='?' (Size = 450), @__category_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[UserId] = @__userId_0 AND [a].[Category] = @__category_1 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:38:57.290 +04:30 [INF] Executed DbCommand (6ms) [Parameters=[@__userName_0='?' (Size = 4000), @__isCompleted_1='?' (DbType = Boolean), @__category_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [UserRequests] AS [u]
+LEFT JOIN [Activities] AS [a] ON [u].[ActivityId] = [a].[Id]
+WHERE [u].[RequestFor] = 0 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [a].[IsCompleted] = @__isCompleted_1 AND [a].[Category] = @__category_2 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:38:57.312 +04:30 [INF] --Completed request GetAllUserActivitiesQuery, "2025-05-12T21:08:57.3122321Z"
+2025-05-13 01:38:57.324 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ActivityDTOs.ActivityResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:38:57.349 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api) in 1453.3205ms
+2025-05-13 01:38:57.352 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:38:57.360 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity - 200 null application/json; charset=utf-8 1615.9097ms
+2025-05-13 01:39:01.388 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity - null null
+2025-05-13 01:39:01.396 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:39:01.398 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Core.Domain.Enum.ActivityCategory, Boolean, Boolean, Boolean) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:39:01.401 +04:30 [INF]  --Starting request GetAllUserActivitiesQuery, "2025-05-12T21:09:01.4018834Z" , "ca89c1cc-4c97-4e29-8d52-fd06ca25e00d"
+2025-05-13 01:39:01.448 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__category_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[UserId] = @__userId_0 AND [a].[Category] = @__category_1 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:39:01.453 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__isCompleted_1='?' (DbType = Boolean), @__category_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [UserRequests] AS [u]
+LEFT JOIN [Activities] AS [a] ON [u].[ActivityId] = [a].[Id]
+WHERE [u].[RequestFor] = 0 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [a].[IsCompleted] = @__isCompleted_1 AND [a].[Category] = @__category_2 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:39:01.456 +04:30 [INF] --Completed request GetAllUserActivitiesQuery, "2025-05-12T21:09:01.4565208Z"
+2025-05-13 01:39:01.457 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ActivityDTOs.ActivityResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:39:01.459 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api) in 59.2131ms
+2025-05-13 01:39:01.460 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:39:01.461 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity - 200 null application/json; charset=utf-8 72.9083ms
+2025-05-13 01:40:55.364 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-13 01:40:55.572 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-13 01:40:55.574 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-13 01:40:55.577 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-13 01:40:55.630 +04:30 [INF] Hosting environment: Development
+2025-05-13 01:40:55.676 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-13 01:40:55.767 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-13 01:40:55.978 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 216.3413ms
+2025-05-13 01:40:55.984 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-13 01:40:55.991 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 6.9284ms
+2025-05-13 01:40:55.997 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-13 01:40:56.030 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 33.7823ms
+2025-05-13 01:40:56.076 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-13 01:40:56.304 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 229.7885ms
+2025-05-13 01:41:07.235 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity - null null
+2025-05-13 01:41:07.354 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:07.382 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Core.Domain.Enum.ActivityCategory, Boolean, Boolean, Boolean) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:41:07.411 +04:30 [INF]  --Starting request GetAllUserActivitiesQuery, "2025-05-12T21:11:07.4106556Z" , "d54a8632-16b4-42b8-96d4-f3e561368382"
+2025-05-13 01:41:07.865 +04:30 [WRN] The entity type 'IdentityUserToken' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:41:07.873 +04:30 [WRN] The entity type 'IdentityUserLogin' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:41:07.875 +04:30 [WRN] The entity type 'IdentityUserClaim' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2025-05-13 01:41:08.735 +04:30 [INF] Executed DbCommand (55ms) [Parameters=[@__userId_0='?' (Size = 450), @__category_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[UserId] = @__userId_0 AND [a].[Category] = @__category_1 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:08.820 +04:30 [INF] Executed DbCommand (6ms) [Parameters=[@__userName_0='?' (Size = 4000), @__isCompleted_1='?' (DbType = Boolean), @__category_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [UserRequests] AS [u]
+LEFT JOIN [Activities] AS [a] ON [u].[ActivityId] = [a].[Id]
+WHERE [u].[RequestFor] = 0 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [a].[IsCompleted] = @__isCompleted_1 AND [a].[Category] = @__category_2 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:08.841 +04:30 [INF] --Completed request GetAllUserActivitiesQuery, "2025-05-12T21:11:08.8413371Z"
+2025-05-13 01:41:08.852 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ActivityDTOs.ActivityResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:41:08.877 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api) in 1489.5918ms
+2025-05-13 01:41:08.880 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:08.887 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity - 200 null application/json; charset=utf-8 1651.8742ms
+2025-05-13 01:41:18.420 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?UserIsOwner=true - null null
+2025-05-13 01:41:18.428 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:18.430 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Core.Domain.Enum.ActivityCategory, Boolean, Boolean, Boolean) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:41:18.447 +04:30 [INF]  --Starting request GetAllUserActivitiesQuery, "2025-05-12T21:11:18.4470557Z" , "0ba28541-f508-42f9-bc38-c14cb4cc444e"
+2025-05-13 01:41:18.494 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__category_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[UserId] = @__userId_0 AND [a].[Category] = @__category_1 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:18.498 +04:30 [INF] --Completed request GetAllUserActivitiesQuery, "2025-05-12T21:11:18.4982542Z"
+2025-05-13 01:41:18.499 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ActivityDTOs.ActivityResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:41:18.501 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api) in 69.1724ms
+2025-05-13 01:41:18.505 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:18.506 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?UserIsOwner=true - 200 null application/json; charset=utf-8 86.1059ms
+2025-05-13 01:41:23.868 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?UserIsOwner=false - null null
+2025-05-13 01:41:23.874 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:23.875 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Core.Domain.Enum.ActivityCategory, Boolean, Boolean, Boolean) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:41:23.879 +04:30 [INF]  --Starting request GetAllUserActivitiesQuery, "2025-05-12T21:11:23.8796409Z" , "51deb133-16ba-4c4c-8735-a90b5e306ba5"
+2025-05-13 01:41:23.899 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__category_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[UserId] = @__userId_0 AND [a].[Category] = @__category_1 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:23.904 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__isCompleted_1='?' (DbType = Boolean), @__category_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [UserRequests] AS [u]
+LEFT JOIN [Activities] AS [a] ON [u].[ActivityId] = [a].[Id]
+WHERE [u].[RequestFor] = 0 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [a].[IsCompleted] = @__isCompleted_1 AND [a].[Category] = @__category_2 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:23.907 +04:30 [INF] --Completed request GetAllUserActivitiesQuery, "2025-05-12T21:11:23.9071276Z"
+2025-05-13 01:41:23.908 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ActivityDTOs.ActivityResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:41:23.909 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api) in 31.5127ms
+2025-05-13 01:41:23.911 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:23.912 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?UserIsOwner=false - 200 null application/json; charset=utf-8 43.6154ms
+2025-05-13 01:41:29.562 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?UserIsOwner=false&isCompleted=true - null null
+2025-05-13 01:41:29.566 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:29.566 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Core.Domain.Enum.ActivityCategory, Boolean, Boolean, Boolean) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:41:29.569 +04:30 [INF]  --Starting request GetAllUserActivitiesQuery, "2025-05-12T21:11:29.5698407Z" , "97896c53-d721-4fc9-acc5-7c294ea98d75"
+2025-05-13 01:41:29.573 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__category_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[UserId] = @__userId_0 AND [a].[Category] = @__category_1 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:29.578 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__isCompleted_1='?' (DbType = Boolean), @__category_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [UserRequests] AS [u]
+LEFT JOIN [Activities] AS [a] ON [u].[ActivityId] = [a].[Id]
+WHERE [u].[RequestFor] = 0 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [a].[IsCompleted] = @__isCompleted_1 AND [a].[Category] = @__category_2 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:29.580 +04:30 [INF] --Completed request GetAllUserActivitiesQuery, "2025-05-12T21:11:29.5802648Z"
+2025-05-13 01:41:29.581 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ActivityDTOs.ActivityResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:41:29.582 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api) in 14.1356ms
+2025-05-13 01:41:29.584 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:29.585 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?UserIsOwner=false&isCompleted=true - 200 null application/json; charset=utf-8 23.0019ms
+2025-05-13 01:41:40.827 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?activityCategory=1&UserIsOwner=false&isCompleted=false - null null
+2025-05-13 01:41:40.831 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:40.832 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Core.Domain.Enum.ActivityCategory, Boolean, Boolean, Boolean) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:41:40.835 +04:30 [INF]  --Starting request GetAllUserActivitiesQuery, "2025-05-12T21:11:40.8352465Z" , "f8c10003-49a1-449f-9780-61cf2ea3cb2b"
+2025-05-13 01:41:40.839 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450), @__category_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[UserId] = @__userId_0 AND [a].[Category] = @__category_1 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:40.842 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__isCompleted_1='?' (DbType = Boolean), @__category_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [UserRequests] AS [u]
+LEFT JOIN [Activities] AS [a] ON [u].[ActivityId] = [a].[Id]
+WHERE [u].[RequestFor] = 0 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [a].[IsCompleted] = @__isCompleted_1 AND [a].[Category] = @__category_2 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:40.844 +04:30 [INF] --Completed request GetAllUserActivitiesQuery, "2025-05-12T21:11:40.8447568Z"
+2025-05-13 01:41:40.845 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ActivityDTOs.ActivityResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:41:40.847 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api) in 13.4164ms
+2025-05-13 01:41:40.848 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:40.849 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?activityCategory=1&UserIsOwner=false&isCompleted=false - 200 null application/json; charset=utf-8 22.9167ms
+2025-05-13 01:41:45.133 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?activityCategory=0&UserIsOwner=false&isCompleted=false - null null
+2025-05-13 01:41:45.136 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:45.138 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Core.Domain.Enum.ActivityCategory, Boolean, Boolean, Boolean) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:41:45.141 +04:30 [INF]  --Starting request GetAllUserActivitiesQuery, "2025-05-12T21:11:45.1413417Z" , "bb58ef78-11bf-4d25-8c2b-30d2c7e16535"
+2025-05-13 01:41:45.147 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450), @__category_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[UserId] = @__userId_0 AND [a].[Category] = @__category_1 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:45.151 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?' (Size = 4000), @__isCompleted_1='?' (DbType = Boolean), @__category_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [UserRequests] AS [u]
+LEFT JOIN [Activities] AS [a] ON [u].[ActivityId] = [a].[Id]
+WHERE [u].[RequestFor] = 0 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [a].[IsCompleted] = @__isCompleted_1 AND [a].[Category] = @__category_2 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:41:45.153 +04:30 [INF] --Completed request GetAllUserActivitiesQuery, "2025-05-12T21:11:45.1536408Z"
+2025-05-13 01:41:45.154 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ActivityDTOs.ActivityResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:41:45.156 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api) in 15.1993ms
+2025-05-13 01:41:45.157 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:41:45.158 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?activityCategory=0&UserIsOwner=false&isCompleted=false - 200 null application/json; charset=utf-8 25.1944ms
+2025-05-13 01:42:05.909 +04:30 [INF] Request starting HTTP/2 PUT https://localhost:7107/api/Activity/CompleteActivity?activityId=3fe6bbf9-6c81-46ef-ada9-3851ebb9b252 - null 0
+2025-05-13 01:42:05.915 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.CompleteActivity (Calendar.Api)'
+2025-05-13 01:42:05.920 +04:30 [INF] Route matched with {action = "CompleteActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CompleteActivity(System.Guid) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:42:05.925 +04:30 [INF]  --Starting request CompleteActivityCommand, "2025-05-12T21:12:05.9253224Z" , "43675c3f-0e4b-4a6b-b597-31aac6999c1d"
+2025-05-13 01:42:05.939 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[Id] = @__id_0
+2025-05-13 01:42:05.994 +04:30 [ERR] --Request failure CompleteActivityCommand, Activity not found !!, "2025-05-12T21:12:05.9941750Z"
+2025-05-13 01:42:05.997 +04:30 [INF] --Completed request CompleteActivityCommand, "2025-05-12T21:12:05.9970800Z"
+2025-05-13 01:42:05.998 +04:30 [INF] Executing NotFoundObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:42:06.000 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.CompleteActivity (Calendar.Api) in 77.2723ms
+2025-05-13 01:42:06.002 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.CompleteActivity (Calendar.Api)'
+2025-05-13 01:42:06.002 +04:30 [INF] Request finished HTTP/2 PUT https://localhost:7107/api/Activity/CompleteActivity?activityId=3fe6bbf9-6c81-46ef-ada9-3851ebb9b252 - 404 null application/json; charset=utf-8 93.7296ms
+2025-05-13 01:42:30.205 +04:30 [INF] Request starting HTTP/2 DELETE https://localhost:7107/api/Activity/ExitingActivity3fe6bbf9-6c81-46ef-ada9-3851ebb9b252 - null null
+2025-05-13 01:42:30.208 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.ExitingActivity (Calendar.Api)'
+2025-05-13 01:42:30.212 +04:30 [INF] Route matched with {action = "ExitingActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ExitingActivity(System.Guid) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:42:30.216 +04:30 [INF]  --Starting request ExitingActivityCommand, "2025-05-12T21:12:30.2163764Z" , "507de539-008d-4b49-bb3f-b15ff440796e"
+2025-05-13 01:42:30.229 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__request_ActivityId_0='?' (Size = 450), @__userName_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[ActivityId], [u].[AnsweredAt], [u].[InvitedAt], [u].[IsActive], [u].[IsExpire], [u].[IsGuest], [u].[Message], [u].[ProjectId], [u].[Receiver], [u].[RequestFor], [u].[Sender], [u].[Status]
+FROM [UserRequests] AS [u]
+WHERE [u].[RequestFor] = 0 AND [u].[ActivityId] = @__request_ActivityId_0 AND [u].[Receiver] = @__userName_1
+2025-05-13 01:42:30.352 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [UserRequests]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-05-13 01:42:30.365 +04:30 [INF] --Completed request ExitingActivityCommand, "2025-05-12T21:12:30.3656701Z"
+2025-05-13 01:42:30.369 +04:30 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2025-05-13 01:42:30.370 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.ExitingActivity (Calendar.Api) in 155.988ms
+2025-05-13 01:42:30.371 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.ExitingActivity (Calendar.Api)'
+2025-05-13 01:42:30.372 +04:30 [INF] Request finished HTTP/2 DELETE https://localhost:7107/api/Activity/ExitingActivity3fe6bbf9-6c81-46ef-ada9-3851ebb9b252 - 204 null null 167.5707ms
+2025-05-13 01:42:34.942 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?activityCategory=0&UserIsOwner=false&isCompleted=false - null null
+2025-05-13 01:42:34.945 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:42:34.946 +04:30 [INF] Route matched with {action = "GetAllUserActivity", controller = "Activity"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllUserActivity(System.Nullable`1[System.DateTime], Core.Domain.Enum.ActivityCategory, Boolean, Boolean, Boolean) on controller Calendar.Api.Controllers.ActivityController (Calendar.Api).
+2025-05-13 01:42:34.950 +04:30 [INF]  --Starting request GetAllUserActivitiesQuery, "2025-05-12T21:12:34.9503938Z" , "21f94886-a47c-4cf6-9e2e-7e76106b85fe"
+2025-05-13 01:42:34.955 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450), @__category_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[UserId] = @__userId_0 AND [a].[Category] = @__category_1 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:42:34.962 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userName_0='?' (Size = 4000), @__isCompleted_1='?' (DbType = Boolean), @__category_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsCompleted], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UserId]
+FROM [UserRequests] AS [u]
+LEFT JOIN [Activities] AS [a] ON [u].[ActivityId] = [a].[Id]
+WHERE [u].[RequestFor] = 0 AND [u].[Receiver] = @__userName_0 AND [u].[Status] = 1 AND [u].[IsActive] = CAST(1 AS bit) AND [a].[IsCompleted] = @__isCompleted_1 AND [a].[Category] = @__category_2 AND [a].[StartDate] >= GETDATE()
+2025-05-13 01:42:34.965 +04:30 [INF] --Completed request GetAllUserActivitiesQuery, "2025-05-12T21:12:34.9659433Z"
+2025-05-13 01:42:34.967 +04:30 [INF] Executing OkObjectResult, writing value of type 'Core.Domain.Shared.Response`1[[System.Collections.Generic.List`1[[Core.Application.DTOs.ActivityDTOs.ActivityResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-05-13 01:42:34.968 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api) in 18.5756ms
+2025-05-13 01:42:34.970 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivityController.GetAllUserActivity (Calendar.Api)'
+2025-05-13 01:42:34.971 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activity/GetAllUserActivity?activityCategory=0&UserIsOwner=false&isCompleted=false - 200 null application/json; charset=utf-8 29.2946ms
+2025-05-13 01:42:58.633 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-13 01:42:58.839 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-13 01:42:58.841 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-13 01:42:58.844 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-13 01:42:58.845 +04:30 [INF] Hosting environment: Development
+2025-05-13 01:42:58.846 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-13 01:42:59.485 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-13 01:42:59.703 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 222.8644ms
+2025-05-13 01:42:59.711 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-13 01:42:59.719 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 7.3507ms
+2025-05-13 01:42:59.724 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-13 01:42:59.771 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 47.7468ms
+2025-05-13 01:42:59.822 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-13 01:42:59.955 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 132.8665ms

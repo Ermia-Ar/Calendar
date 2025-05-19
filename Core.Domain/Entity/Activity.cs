@@ -9,6 +9,10 @@ namespace Core.Domain.Entity
         [Key]
         public string Id { get; set; }
 
+        [ForeignKey(nameof(ParentId))]
+        public string? ParentId { get; set; }
+        public Activity Parent { get; set; }
+
         [ForeignKey(nameof(UserId))]
         public string UserId { get; set; }
         public User User { get; set; }
@@ -23,23 +27,25 @@ namespace Core.Domain.Entity
 
         public DateTime CreatedDate { get; set; }
 
+        public DateTime UpdateDate { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public TimeSpan? Duration { get; set; }
+
+        public TimeSpan? NotificationBefore { get; set; }
 
         public ActivityCategory Category { get; set; }
 
         public bool IsCompleted { get; set; }
 
-        //public RecurrenceType RecurrenceType { get; set; } 
+        public bool IsEdited { get; set; }
 
-        //public int? RecurrenceInterval { get; set; }
+        public List<UserRequest> UserRequests = [];    
 
-        //public DateTime? RecurrenceEndDate { get; set; } 
+        public List<Comment> Comments = [];
 
-        //public string? RecurrenceDaysOfWeek { get; set; }
-
-        public List<UserRequest> UserRequests = new List<UserRequest>();    
+        public List<Activity> SubActivities = []; 
 
     }
 }

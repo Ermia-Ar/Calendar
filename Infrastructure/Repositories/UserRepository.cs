@@ -1,5 +1,5 @@
 ﻿using Core.Domain.Entity;
-using Core.Domain.Interfaces;
+using Core.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

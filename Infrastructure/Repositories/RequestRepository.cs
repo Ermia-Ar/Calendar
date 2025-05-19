@@ -1,7 +1,7 @@
 ﻿using Core.Application.DTOs.UserRequestDTOs;
 using Core.Domain.Entity;
 using Core.Domain.Enum;
-using Core.Domain.Interfaces;
+using Core.Domain.Interfaces.Repositories;
 using Infrastructure.Base;
 using Infrastructure.Data;
 using Infrastructure.Models;
@@ -20,138 +20,80 @@ namespace Infrastructure.Repositories
         }
 
         //for activity requests
-        public async Task<List<UserRequest>> GetUnAnsweredRequest(string userName, CancellationToken token)
+        public async Task<List<UserRequest>> GetUnAnsweredRequest(string userName, RequestFor requestFor, CancellationToken token)
         {
-            var requests = await GetActivityRequests(false, sender: userName);
+            var requests = await GetActivityRequests(false, requestFor, sender: userName);
 
             return requests;
         }
 
-        public async Task<List<UserRequest>> GetRequestsReceived(string userName, CancellationToken token)
+        public async Task<List<UserRequest>> GetRequestsReceived(string userName, RequestFor requestFor, CancellationToken token)
         {
-            var requests = await GetActivityRequests(false, Receiver: userName);
+            var requests = await GetActivityRequests(false, requestFor, Receiver: userName);
 
             return requests;
         }
 
-        public async Task<List<UserRequest>> GetRequestsResponse(string userName, CancellationToken token)
+        public async Task<List<UserRequest>> GetRequestsResponse(string userName, RequestFor requestFor, CancellationToken token)
         {
-            var requests = await GetActivityRequests(true, sender: userName);
+            var requests = await GetActivityRequests(true, requestFor, sender: userName);
 
             return requests;
         }
 
-        public async Task<List<UserRequest>> GetResponsesUserSent(string userName, CancellationToken token)
+        public async Task<List<UserRequest>> GetResponsesUserSent(string userName, RequestFor requestFor, CancellationToken token)
         {
-            var requests = await GetActivityRequests(true, Receiver: userName);
+            var requests = await GetActivityRequests(true, requestFor, Receiver: userName);
 
             return requests;
         }
 
-        private async Task<List<UserRequest>> GetActivityRequests(bool IsExpire, string Receiver = null, string sender = null)
+        private async Task<List<UserRequest>> GetActivityRequests(bool isExpire, RequestFor requestFor, string Receiver = null, string sender = null)
         {
-            var isExpireParam = new SqlParameter("@IsExpire", IsExpire);
-            var senderParam = new SqlParameter("@Sender", sender ?? (object)DBNull.Value);
-            var receiverParam = new SqlParameter("@Receiver", Receiver ?? (object)DBNull.Value);
+            #region
+            //  //var isExpireParam = new SqlParameter("@IsExpire", IsExpire);
+            //var senderParam = new SqlParameter("@Sender", sender ?? (object)DBNull.Value);
+            //var receiverParam = new SqlParameter("@Receiver", Receiver ?? (object)DBNull.Value);
 
-            var requests = await _dbContext.Set<ActivityRequestDto>()
-                .FromSqlRaw("EXEC Sp_GetActivitiesRequest @IsExpire, @Sender, @Receiver", isExpireParam, senderParam, receiverParam)
-                .AsNoTracking()
+            //var requests = await _dbContext.Set<ActivityRequestDto>()
+            //    .FromSqlRaw("EXEC Sp_GetActivitiesRequest @IsExpire, @Sender, @Receiver", isExpireParam, senderParam, receiverParam)
+            //    .AsNoTracking()
+            //    .ToListAsync();
+
+            //var requestResponse = requests
+            //    .Select(x => new UserRequest
+            //    {
+            //        Activity = new Activity
+            //        {
+            //            Category = x.Category,
+            //            StartDate = x.Date,
+            //            Description = x.Description,
+            //            Id = x.Activity_Id,
+            //            IsCompleted = x.IsCompleted,
+            //            Title = x.Title,
+            //        },
+            //        Id = x.Id,
+            //        AnsweredAt = x.AnsweredAt,
+            //        InvitedAt = x.InvitedAt,
+            //        IsExpire = x.IsExpire,
+            //        Message = x.Message,
+            //        Sender = x.Sender,
+            //        Status = x.Status,
+            //        Receiver = x.Receiver,
+            //    })
+            //    .ToList();
+            #endregion
+
+            var userRequests = await GetTableNoTracking()
+                .Where(x => x.RequestFor == requestFor
+                    && x.IsExpire == isExpire
+                    && sender != null ? x.Sender == sender : true
+                    && Receiver != null ? x.Receiver == Receiver : true)
+                .Include(x => x.Project)
+                .Include(x => x.Activity)
                 .ToListAsync();
 
-            var requestResponse = requests
-                .Select(x => new UserRequest
-                {
-                    Activity = new Activity
-                    {
-                        Category = x.Category,
-                        StartDate = x.Date,
-                        Description = x.Description,
-                        Id = x.Activity_Id,
-                        IsCompleted = x.IsCompleted,
-                        Title = x.Title,
-                    },
-                    Id = x.Id,
-                    AnsweredAt = x.AnsweredAt,
-                    InvitedAt = x.InvitedAt,
-                    IsExpire = x.IsExpire,
-                    Message = x.Message,
-                    Sender = x.Sender,
-                    Status = x.Status,
-                    Receiver = x.Receiver,
-                })
-                .ToList();
-
-            return requestResponse;
-        }
-
-        //for project requests
-        public async Task<List<UserRequest>> GetUnAnsweredProjectRequest(string userName, CancellationToken token)
-        {
-            var requests = await GetProjectRequests(false, sender: userName);
-            return requests;
-        }
-
-        public async Task<List<UserRequest>> GetProjectRequestsReceived(string userName, CancellationToken token)
-        {
-            var requests = await GetProjectRequests(false, Receiver: userName);
-            return requests;
-        }
-
-        public async Task<List<UserRequest>> GetProjectRequestsResponse(string userName, CancellationToken token)
-        {
-            var requests = await GetProjectRequests(true, sender: userName);
-            return requests;
-        }
-
-        public async Task<List<UserRequest>> GetProjectResponsesUserSent(string userName, CancellationToken token)
-        {
-            var requests = await GetProjectRequests(true, Receiver: userName);
-            return requests; 
-        }
-
-        private async Task<List<UserRequest>> GetProjectRequests(bool IsExpire, string Receiver = null, string sender = null)
-        {
-            var isExpireParam = new SqlParameter("@IsExpire", IsExpire);
-            var senderParam = new SqlParameter("@Sender", sender ?? (object)DBNull.Value);
-            var receiverParam = new SqlParameter("@Receiver", Receiver ?? (object)DBNull.Value);
-
-            var requests = await _dbContext.Set<ProjectRequestsDTO>()
-                .FromSqlRaw("EXEC Sp_GetProjectsRequest @IsExpire, @Sender, @Receiver", isExpireParam, senderParam, receiverParam)
-                .AsNoTracking()
-                .ToListAsync();
-
-            var requestResponse = requests
-                .Select(x => new UserRequest
-                {
-                    Project = new Project
-                    {
-                        Title = x.Title,
-                        CreatedDate = x.CreatedDate,
-                        Description = x.Description,
-                        Id = x.Project_Id,
-                        OwnerId = x.OwnerId,
-                        UpdateDate = x.UpdateDate,
-                        EndDate = x.EndDate,
-                        StartDate = x.StartDate,
-                        User = new User
-                        {
-                            Email = x.Email,
-                            UserName = x.UserName
-                        }
-                    },
-                    Id = x.Id,
-                    AnsweredAt = x.AnsweredAt,
-                    InvitedAt = x.InvitedAt,
-                    IsExpire = x.IsExpire,
-                    Message = x.Message,
-                    Sender = x.Sender,
-                    Status = x.Status,
-                    Receiver = x.Receiver,
-                })
-                .ToList();
-
-            return requestResponse;
+            return userRequests;
         }
 
 
@@ -173,42 +115,35 @@ namespace Infrastructure.Repositories
             Delete(request);
         }
 
-        public async Task DeleteRangeByActivityId(string activityId, CancellationToken token)
+        public async Task<List<Project>> GetProjectsThatTheUserIsMemberOf(string userName, CancellationToken token
+            , DateTime? startDate, bool isHistory = false)
         {
-            var requests = await GetTableNoTracking(token)
-                .Where(x => x.ActivityId == activityId)
-                .ToListAsync();
-
-            DeleteRange(requests);
-        }
-
-        public async Task<bool> IsRequestForUser(string requestId, string userName, CancellationToken token)
-        {
-            var request = await GetByIdAsync(requestId, token);
-            if (request.Sender != userName)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public async Task<List<Project>> GetProjectsThatTheUserIsMemberOf(string userName, CancellationToken token)
-        {
-            var Projects = await GetTableNoTracking(token)
+            var projects = GetTableNoTracking()
                 .Where(x => x.RequestFor == RequestFor.Project
                     && x.Receiver == userName
                     && x.Status == RequestStatus.Accepted
                     && x.IsActive == true)
                 .Include(x => x.Project)
-                .Select(x => x.Project)
-                .ToListAsync();
+                .Select(x => x.Project);
 
-            return Projects;
+            if (startDate.HasValue)
+            {
+                projects = projects.Where(x => x.StartDate >= startDate);
+            }
+            if (isHistory)
+            {
+                projects = projects.Where(x => x.EndDate <= DateTime.Now);
+            }
+            else
+            {
+                projects = projects.Where(x => x.EndDate >= DateTime.Now);
+            }
+            return await projects.ToListAsync(token);
         }
 
         public async Task<List<string>> GetMemberOfProject(string projectId, CancellationToken token)
         {
-            var members = await GetTableNoTracking(token)
+            var members = await GetTableNoTracking()
                 .Where(x => x.RequestFor == RequestFor.Project
                     && x.ProjectId == projectId
                     && x.Status == RequestStatus.Accepted
@@ -218,30 +153,47 @@ namespace Infrastructure.Repositories
             return members;
         }
 
-        public async Task<List<Activity>> GetActivitiesThatTheUserIsMemberOf(string userName, CancellationToken token)
+        public async Task<List<Activity>> GetActivitiesThatTheUserIsMemberOf(string userName, CancellationToken token
+            , DateTime? startDate, ActivityCategory? category, bool isCompleted, bool isHistory = false)
         {
-            var activities = await GetTableNoTracking(token)
+            var activities = GetTableNoTracking()
                 .Where(x => x.RequestFor == RequestFor.Activity
                 && x.Receiver == userName
                 && x.Status == RequestStatus.Accepted
                 && x.IsActive == true)
                 .Include(x => x.Activity)
                 .Select(x => x.Activity)
-                .ToListAsync();
+                .Where(x => x.IsCompleted == isCompleted);
 
-            return activities;
+            if (startDate.HasValue)
+            {
+                activities = activities.Where(x => x.StartDate >= startDate);
+            }
+            if (category.HasValue)
+            {
+                activities = activities.Where(x => x.Category == category);
+            }
+            if (isHistory)
+            {
+                activities = activities.Where(x => x.StartDate <= DateTime.Now);
+            }
+            else
+            {
+                activities = activities.Where(x => x.StartDate >= DateTime.Now);
+            }
+            return await activities.ToListAsync(token);
         }
 
         public async Task<List<string>> GetMemberOfActivity(string activityId, CancellationToken token)
         {
-            var userNames = await GetTableNoTracking(token)
+            var userNames = await GetTableNoTracking()
                 .Where(x => x.RequestFor == RequestFor.Activity
                 && x.ActivityId == activityId
                 && x.Status == RequestStatus.Accepted
                 && x.IsActive == true)
                 .ToListAsync();
 
-            return userNames.Select(x => x.Receiver).ToList() ;
+            return userNames.Select(x => x.Receiver).ToList();
         }
 
     }

@@ -11,9 +11,9 @@ namespace Core.Application.Features.Activities.QueryHandlers
     public class GetHistoryOfActivitiesHandler : ResponseHandler
         , IRequestHandler<GetHistoryOfActivitiesQuery, Response<List<ActivityResponse>>>
     {
-        public IUnitOfWork _unitOfWork;
-        public ICurrentUserServices _currentUser;
-        public IMapper _mapper;
+        public readonly IUnitOfWork _unitOfWork;
+        public readonly ICurrentUserServices _currentUser;
+        public readonly IMapper _mapper;
 
         public GetHistoryOfActivitiesHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
         {

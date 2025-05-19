@@ -1,0 +1,14 @@
+2025-05-15 18:17:07.298 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-15 18:17:07.558 +04:30 [INF] Now listening on: https://localhost:7107
+2025-05-15 18:17:07.560 +04:30 [INF] Now listening on: http://localhost:5150
+2025-05-15 18:17:07.564 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-15 18:17:07.565 +04:30 [INF] Hosting environment: Development
+2025-05-15 18:17:07.566 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-05-15 18:17:09.948 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-05-15 18:17:10.301 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 361.8387ms
+2025-05-15 18:17:10.309 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-05-15 18:17:10.318 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 9.4766ms
+2025-05-15 18:17:10.323 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-05-15 18:17:10.391 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 68.025ms
+2025-05-15 18:17:10.420 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-05-15 18:17:10.558 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 138.1069ms

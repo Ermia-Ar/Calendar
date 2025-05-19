@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Query;
 using Core.Domain;
 using Core.Domain.Shared;
@@ -24,10 +25,10 @@ namespace Core.Application.Features.Projects.QueryHandlers
         {
             var userId = _currentUserServices.GetUserId();
             //check if user is the owner of project or not 
-            var IsFor = await _unitOfWork.Projects.IsProjectForUser(request.ProjectId, userId, cancellationToken);
-            if (!IsFor)
+            var project = await _unitOfWork.Projects.GetByIdAsync(request.ProjectId, cancellationToken);
+            if (project.OwnerId != userId)
             {
-                return BadRequest<List<string>>("your are not access to this part");
+                throw new BadRequestException("Only the owner of this project has access to this section.");
             }
 
             var membersName = await _unitOfWork.Requests

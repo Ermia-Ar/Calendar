@@ -10,7 +10,7 @@ namespace Core.Application.DTOs.ActivityDTOs
 
         public string? Description { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime StartDate { get; set; }
 
         //public double DurationInMinute { get; set; }
 

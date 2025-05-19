@@ -1,4 +1,5 @@
 ﻿using Core.Application.DTOs.ActivityDTOs;
+using Core.Application.DTOs.ProjectDTOs;
 using Core.Domain.Entity;
 using System.Text.RegularExpressions;
 
@@ -15,16 +16,31 @@ namespace Core.Application.Utility
             return Regex.IsMatch(email, pattern);
         }
 
-        public static ActivityResponse ConvertToActivityResponse(Activity activity) 
+        public static ActivityResponse ConvertToActivityResponse(Activity? activity) 
         {
             return new ActivityResponse
             {
                 Category = activity.Category,
-                Date = activity.StartDate,
+                StartDate = activity.StartDate,
                 Description = activity.Description,
                 Id = activity.Id,
                 IsCompleted = activity.IsCompleted,
                 Title = activity.Title,
+            };
+        }
+
+        public static ProjectResponse ConvertToProjectResponse(Project? activity)
+        {
+            return new ProjectResponse
+            {
+                CreatedDate = activity.CreatedDate,
+                Description = activity.Description,
+                Id = activity.Id,
+                EndDate = activity.EndDate,
+                OwnerId = activity.OwnerId,
+                StartDate = activity.StartDate,
+                Title = activity.Title,
+                UpdateDate = activity.UpdateDate    
             };
         }
     }

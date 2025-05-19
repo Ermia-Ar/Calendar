@@ -13,9 +13,9 @@ namespace Core.Application.Features.UserRequests.QueryHandler
     public class GetUnAnsweredRequestHandler : ResponseHandler
         , IRequestHandler<GetUnAnsweredRequestQuery, Response<List<ActivityRequestResponse>>>
     {
-        private ICurrentUserServices _currentUserServices;
-        private IUnitOfWork _unitOfWork;
-        private IMapper _mapper;
+        private readonly ICurrentUserServices _currentUserServices;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public GetUnAnsweredRequestHandler(IUnitOfWork unitOfWork, IMapper mapper
             , ICurrentUserServices currentUserServices)
@@ -26,18 +26,11 @@ namespace Core.Application.Features.UserRequests.QueryHandler
         }
         public async Task<Response<List<ActivityRequestResponse>>> Handle(GetUnAnsweredRequestQuery request, CancellationToken cancellationToken)
         {
-            try
-            {
-                // get requests with user name 
-                var userName = _currentUserServices.GetUserName();
-                var requests = await _unitOfWork.Requests.GetUnAnsweredRequest(userName, cancellationToken);
-                var response = _mapper.Map<List<ActivityRequestResponse>>(requests);
-                return Success(response);
-            }
-            catch
-            {
-                return BadRequest<List<ActivityRequestResponse>>("Something wrong");
-            }
+            // get requests with user name 
+            var userName = _currentUserServices.GetUserName();
+            var requests = await _unitOfWork.Requests.GetUnAnsweredRequest(userName , request.RequestFor, cancellationToken);
+            var response = _mapper.Map<List<ActivityRequestResponse>>(requests);
+            return Success(response);
         }
     }
 }

@@ -2,10 +2,9 @@
 using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Helper;
-using Core.Domain.Identity;
 using Core.Domain.Interfaces;
-using Infrastructure.Base.Utility;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -15,16 +14,18 @@ namespace Infrastructure.Services
 {
     public class TokenServices : ITokenServices
     {
-        private UserManager<User> _userManager { get; set; }
-        private ICurrentUserServices _currentUserServices { get; set; }
-        private IMapper _mapper { get; set; }
+        private readonly UserManager<User> _userManager;
+        private readonly ICurrentUserServices _currentUserServices;
+        private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
         public TokenServices(UserManager<User> userManager,
-            IMapper mapper, ICurrentUserServices currentUserServices)
+            IMapper mapper, ICurrentUserServices currentUserServices, IConfiguration configuration)
         {
             _userManager = userManager;
             _mapper = mapper;
             _currentUserServices = currentUserServices;
+            _configuration = configuration;
         }
 
         public async Task<JwtAuthResult> GetJWTToken(User user)
@@ -54,13 +55,13 @@ namespace Infrastructure.Services
 
         private async Task<(JwtSecurityToken, string)> GenerateJwtToken(User user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.Key));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = await GetClaims(user);
             var JwtToken = new JwtSecurityToken(
-               JwtSettings.Issuer,
-               JwtSettings.Audience,
+               _configuration["Jwt:Issuer"],
+               _configuration["Jwt:Audience"],
                claims,
                expires: DateTime.Now.AddDays(5),
                signingCredentials: credentials);
@@ -148,10 +149,10 @@ namespace Infrastructure.Services
             var parameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
-                ValidIssuer = JwtSettings.Issuer,
+                ValidIssuer = _configuration["Jwt:Issuer"],
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtSettings.Key)),
-                ValidAudience = JwtSettings.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])),
+                ValidAudience = _configuration["Jwt:Audience"],
                 ValidateAudience = true,
                 ValidateLifetime = true,
             };

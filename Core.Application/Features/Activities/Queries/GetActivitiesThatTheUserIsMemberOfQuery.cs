@@ -4,8 +4,6 @@ using MediatR;
 
 namespace Core.Application.Features.Activities.Queries
 {
-    public class GetActivitiesThatTheUserIsMemberOfQuery : IRequest<Response<List<ActivityResponse>>>
-    {
-
-    }
+    public record class GetActivitiesThatTheUserIsMemberOfQuery 
+                : IRequest<Response<List<ActivityResponse>>>;
 }

@@ -6,8 +6,6 @@
 
         public string[] Receivers { get; set; }
 
-        public bool IsGuest { get; set; }
-
         public string? Message { get; set; }
     }
 }

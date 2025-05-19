@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Application.Features.Exceptions;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Domain.Entity
@@ -14,7 +15,7 @@ namespace Core.Domain.Entity
 
         public string Title { get; set; }
 
-        public string Description { get; set; } 
+        public string Description { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
@@ -24,8 +25,31 @@ namespace Core.Domain.Entity
 
         public DateTime EndDate { get; set; }
 
-        public ICollection<Activity> Activities { get; set; } = new List<Activity>();
+        public bool IsEdited { get; set; }
 
-        public ICollection<UserRequest> UserRequests { get; set; } = new List<UserRequest>();
+        public ICollection<Activity> Activities { get; set; } = [];
+
+        public ICollection<UserRequest> UserRequests { get; set; } = [];
+
+        public ICollection<Comment> Comments { get; set; } = [];
+
+        public static Project Create(string ownerId, string title, string description, DateTime startDate, DateTime endDate)
+        {
+            if (startDate >= endDate)
+            {
+                throw new BadRequestException("the start date cannot be greater than the end date");
+            }
+            return new Project
+            {
+                Id = Guid.NewGuid().ToString(),
+                CreatedDate = DateTime.Now,
+                UpdateDate = endDate,
+                Description = description,
+                Title = title,
+                EndDate = endDate,
+                StartDate = startDate,
+                OwnerId = ownerId,
+            };
+        }
     }
 }

@@ -3,8 +3,5 @@ using MediatR;
 
 namespace Core.Application.Features.Activities.Commands
 {
-    public class DeleteActivityCommand : IRequest<Response<string>>
-    {
-        public string Id { get; set; }
-    }
+    public record class DeleteActivityCommand(string Id) : IRequest<Response<string>>;
 }

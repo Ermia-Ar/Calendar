@@ -15,7 +15,7 @@ namespace Core.Application.Validators
                 .NotEmpty()
                 .NotNull();
 
-            RuleFor(x => x.Date)
+            RuleFor(x => x.StartDate)
                 .NotNull()
                 .GreaterThanOrEqualTo(DateTime.Now);
 

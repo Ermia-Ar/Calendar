@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
 using Core.Domain.Entity;
@@ -15,9 +16,9 @@ namespace Core.Application.Features.Projects.CommandHandlers
         , IRequestHandler<RemoveMemberOfProjectCommand, Response<string>>
     {
 
-        private IUnitOfWork _unitOfWork;
-        private ICurrentUserServices _currentUserServices;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICurrentUserServices _currentUserServices;
 
         public RemoveMemberOfProjectHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         {
@@ -29,22 +30,26 @@ namespace Core.Application.Features.Projects.CommandHandlers
         public async Task<Response<string>> Handle(RemoveMemberOfProjectCommand request, CancellationToken cancellationToken)
         {
             var userId = _currentUserServices.GetUserId();
-            var isFor = await _unitOfWork.Projects.IsProjectForUser(request.ProjectId, userId, cancellationToken);
-            if (!isFor)
+            var project = await _unitOfWork.Projects.GetByIdAsync(request.ProjectId, cancellationToken);
+            if (project.OwnerId != userId)
             {
-                return BadRequest<string>("you not access !!");
+                throw new BadRequestException("Only the owner of this project has access to this section.");
+
             }
             //
-            var userRequest = await _unitOfWork.Requests.GetTableNoTracking(cancellationToken)
-                .FirstOrDefaultAsync(x => x.ProjectId == request.ProjectId && x.Receiver == request.UserName);
-            if (userRequest == null)
+            var userRequests = await _unitOfWork.Requests.GetTableNoTracking()
+                .Where(x => x.ProjectId == request.ProjectId 
+                && x.Receiver == request.UserName)
+                .ToListAsync(cancellationToken);
+
+            if (!userRequests.Any())
             {
-                return BadRequest<string>("not exist");
+                throw new NotFoundException("No such member was found.");
             }
 
-            _unitOfWork.Requests.Delete(userRequest);
+            _unitOfWork.Requests.DeleteRange(userRequests);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return NoContent<string>();
+            return Deleted("");
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Core.Application.Features.Activities.QueryHandlers
     public class GetCurrentActivityHandler : ResponseHandler
         , IRequestHandler<GettingActivitiesOwnedByTheUser, Response<List<ActivityResponse>>>
     {
-        public IUnitOfWork _unitOfWork;
-        public ICurrentUserServices _currentUser;
-        public IMapper _mapper;
+        public readonly IUnitOfWork _unitOfWork;
+        public readonly ICurrentUserServices _currentUser;
+        public readonly IMapper _mapper;
 
         public GetCurrentActivityHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
         {
@@ -25,7 +25,7 @@ namespace Core.Application.Features.Activities.QueryHandlers
         {
             // get activities
             var userId = _currentUser.GetUserId();
-            var activities = await _unitOfWork.Activities.GettingActivitiesOwnedByTheUser(userId, cancellationToken);
+            var activities = await _unitOfWork.Activities.GettingActivitiesOwnedByTheUser(userId, cancellationToken, null, null);
             // map to response
             var response = _mapper.Map<List<ActivityResponse>>(activities);
 

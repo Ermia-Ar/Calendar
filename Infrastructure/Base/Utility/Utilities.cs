@@ -21,7 +21,7 @@ namespace Infrastructure.Base.Utility
             return new ActivityResponse
             {
                 Category = activity.Category,
-                Date = activity.StartDate,
+                StartDate = activity.StartDate,
                 Description = activity.Description,
                 Id = activity.Id,
                 IsCompleted = activity.IsCompleted,

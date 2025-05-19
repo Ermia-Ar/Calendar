@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.Features.Exceptions;
 using Core.Application.Features.UserRequests.Commnads;
 using Core.Domain;
 using Core.Domain.Shared;
@@ -10,9 +11,9 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
     public class DeleteRequestHandler : ResponseHandler
         , IRequestHandler<DeleteRequestCommand, Response<string>>
     {
-        private ICurrentUserServices _currentUserServices;
-        private IUnitOfWork _unitOfWork;
-        private IMapper _mapper;
+        private readonly ICurrentUserServices _currentUserServices;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public DeleteRequestHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         {
@@ -22,22 +23,16 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
         }
         public async Task<Response<string>> Handle(DeleteRequestCommand request, CancellationToken cancellationToken)
         {
-            var isFor = await _unitOfWork.Activities.IsActivityForUser(request.Id, _currentUserServices.GetUserId(), cancellationToken);
-            if (!isFor)
+            var userName = _currentUserServices.GetUserName();
+            var userRequest = await _unitOfWork.Requests.GetByIdAsync(request.Id, cancellationToken);
+            if (userRequest.Receiver != userName || userRequest.Sender != userName)
             {
-                return NotFound<string>("Not Found Activity");
+                throw new BadRequestException("your not access!");
             }
-            try
-            {
-                var userName = _currentUserServices.GetUserName();
-                await _unitOfWork.Requests.DeleteRequest(request.Id, cancellationToken);
-                await _unitOfWork.SaveChangeAsync(cancellationToken);
-                return NoContent<string>();
-            }
-            catch
-            {
-                return BadRequest<string>("something wrong!");
-            }
+            _unitOfWork.Requests.Delete(userRequest);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+            return NoContent<string>();
+
         }
     }
 }

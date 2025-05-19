@@ -1,4 +1,5 @@
 ﻿using Core.Application.Features.Auth.Commands;
+using Core.Application.Features.Exceptions;
 using Core.Application.Utility;
 using Core.Domain;
 using Core.Domain.Entity;
@@ -6,15 +7,14 @@ using Core.Domain.Helper;
 using Core.Domain.Interfaces;
 using Core.Domain.Shared;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 
 namespace Core.Application.Features.Auth.Handler
 {
     public class LoginHandler : ResponseHandler
         , IRequestHandler<LoginCommand, Response<JwtAuthResult>>
     {
-        private IUnitOfWork _unitOfWork;
-        private ITokenServices _tokenServices;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ITokenServices _tokenServices;
 
         public LoginHandler(IUnitOfWork unitOfWork,
             ITokenServices tokenServices)
@@ -37,21 +37,17 @@ namespace Core.Application.Features.Auth.Handler
             }
             if (user == null)
             {
-                return BadRequest<JwtAuthResult>("UserName or Password is wrong");
+                throw new NotFoundException("UserName or Password is wrong");
             }
             // check password 
             bool checkPassword = await _unitOfWork.Users.CheckPasswordAsync(user, request.LoginRequest.Password);
             if (!checkPassword)
             {
-                return BadRequest<JwtAuthResult>("UserName or Password is wrong");
+                throw new NotFoundException("UserName or Password is wrong");
             }
             var token = await _tokenServices.GetJWTToken(user);
 
             return Success(token);
         }
-
-
     }
-
-    
 }

@@ -3,11 +3,6 @@ using MediatR;
 
 namespace Core.Application.Features.Activities.Commands
 {
-    public class RemoveMemberOfActivityCommand : IRequest<Response<string>>
-    {
-        public string ActivityId { get; set; }
-
-        public string UserName { get; set; }
-    }
-
+    public record class RemoveMemberOfActivityCommand(string ActivityId, string UserName)
+        : IRequest<Response<string>>;
 }

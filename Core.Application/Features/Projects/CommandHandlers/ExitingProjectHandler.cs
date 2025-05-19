@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
+using Core.Domain.Entity;
 using Core.Domain.Shared;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +13,9 @@ namespace Core.Application.Features.Projects.CommandHandlers
         , IRequestHandler<ExitingProjectCommand, Response<string>>
     {
 
-        private IUnitOfWork _unitOfWork;
-        private ICurrentUserServices _currentUserServices;
-        private IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICurrentUserServices _currentUserServices;
+        private readonly IMapper _mapper;
 
         public ExitingProjectHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         {
@@ -24,10 +26,15 @@ namespace Core.Application.Features.Projects.CommandHandlers
 
         public async Task<Response<string>> Handle(ExitingProjectCommand request, CancellationToken cancellationToken)
         {
-            var requests = await _unitOfWork.Requests.GetTableNoTracking(cancellationToken)
+            var requests = await _unitOfWork.Requests.GetTableNoTracking()
                .Where(x => x.ProjectId == request.ProjectId
-               && x.Receiver == _currentUserServices.GetUserName())
+                && x.Receiver == _currentUserServices.GetUserName())
                .ToListAsync();
+
+            if (!requests.Any())
+            {
+                throw new NotFoundException("You are not a member of this project.");
+            }
 
             _unitOfWork.Requests.DeleteRange(requests);
             await _unitOfWork.SaveChangeAsync(cancellationToken);

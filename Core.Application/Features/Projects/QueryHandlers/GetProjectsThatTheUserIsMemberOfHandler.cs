@@ -25,7 +25,7 @@ namespace Core.Application.Features.Projects.QueryHandlers
         {
             var userId = _currentUserServices.GetUserId();
             var projects = await _unitOfWork.Requests
-                .GetProjectsThatTheUserIsMemberOf(userId, cancellationToken);
+                .GetProjectsThatTheUserIsMemberOf(userId, cancellationToken, null);
 
             var response = _mapper.Map<List<ProjectResponse>>(projects);
             return Success(response);

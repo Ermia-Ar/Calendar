@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
 using Core.Domain.Shared;
@@ -10,9 +11,9 @@ namespace Core.Application.Features.Projects.CommandHandlers
     public class DeleteProjectHandler : ResponseHandler
         , IRequestHandler<DeleteProjectCommand, Response<string>>
     {
-        private IUnitOfWork _unitOfWork;
-        private ICurrentUserServices _currentUserServices;
-        private IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICurrentUserServices _currentUserServices;
+        private readonly IMapper _mapper;
 
         public DeleteProjectHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         {
@@ -32,19 +33,25 @@ namespace Core.Application.Features.Projects.CommandHandlers
             await using var transaction = await _unitOfWork.Activities.BeginTransactionAsync();
             try
             {
-                // delete from project table
+                // delete from projects table
                 _unitOfWork.Projects.Delete(project);
 
-                // delete all activity for this project 
-                var activities = await _unitOfWork.Activities.GetTableNoTracking(cancellationToken)
+                // delete from comments table
+                var comments = await _unitOfWork.Comments.GetTableAsTracking()
                     .Where(x => x.ProjectId == request.ProjcetId)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
+                _unitOfWork.Comments.DeleteRange(comments);
+
+                // delete all activity for this project 
+                var activities = await _unitOfWork.Activities.GetTableNoTracking()
+                    .Where(x => x.ProjectId == request.ProjcetId)
+                    .ToListAsync(cancellationToken);
                 _unitOfWork.Activities.DeleteRange(activities);
 
                 // delete all request for this project 
-                var requests = await _unitOfWork.Requests.GetTableNoTracking(cancellationToken)
+                var requests = await _unitOfWork.Requests.GetTableNoTracking()
                     .Where(x => x.ProjectId == request.ProjcetId)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
                 _unitOfWork.Requests.DeleteRange(requests);
 
                 await _unitOfWork.SaveChangeAsync(cancellationToken);
@@ -54,7 +61,7 @@ namespace Core.Application.Features.Projects.CommandHandlers
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                return BadRequest<string>(ex.Message);
+                throw new BadRequestException("something wrong!");
             }
         }
     }

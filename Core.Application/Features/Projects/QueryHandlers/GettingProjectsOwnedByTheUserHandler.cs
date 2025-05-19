@@ -2,7 +2,6 @@
 using Core.Application.DTOs.ProjectDTOs;
 using Core.Application.Features.Projects.Query;
 using Core.Domain;
-using Core.Domain.Entity;
 using Core.Domain.Shared;
 using MediatR;
 
@@ -27,7 +26,7 @@ namespace Core.Application.Features.Projects.QueryHandlers
         {
             var userId = _currentUserServices.GetUserId();
             var projects = await _unitOfWork.Projects
-                .GetProjectsOwnedByTheUser(userId, cancellationToken);
+                .GetProjectsOwnedByTheUser(userId, cancellationToken, null);
 
             var response = _mapper.Map<List<ProjectResponse>>(projects);
             return Success(response);

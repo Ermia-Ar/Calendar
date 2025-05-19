@@ -1,9 +1,10 @@
 ﻿using Core.Domain.Entity;
-using Core.Domain.Interfaces;
+using Core.Domain.Interfaces.Repositories;
 using Infrastructure.Base;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Infrastructure.Repositories
 {
@@ -16,25 +17,27 @@ namespace Infrastructure.Repositories
             _projects = context.Set<Project>(); 
         }
 
-        public async Task<List<Project>> GetProjectsOwnedByTheUser(string userId , CancellationToken token)
+        public async Task<List<Project>> GetProjectsOwnedByTheUser(string userId , CancellationToken token
+            , DateTime? startDate , bool isHistory = false)
         {
-            var projects = await GetTableNoTracking(token)
-                .Where(x => x.OwnerId == userId)
-                .ToListAsync();
-            
-            return projects;
-        }
+            var projects = GetTableNoTracking()  
+                .Where(x => x.OwnerId == userId);
 
-     
-
-        public async Task<bool> IsProjectForUser(string projectId, string userId , CancellationToken token)
-        {
-            var project = await GetByIdAsync(projectId , token);
-            if (project.OwnerId == userId)
+            if (startDate.HasValue)
             {
-                return true;
+                projects = projects.Where(x => x.StartDate >= startDate);
             }
-            return false;   
+            if (isHistory)
+            {
+                projects = projects.Where(x => x.EndDate <= DateTime.Now);
+            }
+            else
+            {
+                projects = projects.Where(x => x.EndDate >= DateTime.Now);
+            }
+            
+            return await projects.ToListAsync(token);
         }
+
     }
 }
