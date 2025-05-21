@@ -24,12 +24,12 @@ namespace Core.Application.Features.Projects.QueryHandlers
 
         public async Task<Response<List<ActivityResponse>>> Handle(GetActivitiesOfProjectQuery request, CancellationToken cancellationToken)
         {
-            var userId = _currentUserServices.GetUserId();
+            var userName = _currentUserServices.GetUserName();
             //check if user is the owner of project or not 
-            var project = await _unitOfWork.Projects.GetByIdAsync(request.ProjectId, cancellationToken);
-            if (project.OwnerId != userId)
+            var projectMembers = await _unitOfWork.Requests.GetMemberOfProject(request.ProjectId, cancellationToken);
+            if (!projectMembers.Any(x => x == userName))
             {
-                throw new BadRequestException("Only the owner of this project has access to this section.");
+                throw new BadRequestException("Only the Member of this project has access to this section.");
             }
             var activities = await _unitOfWork.Activities.GetProjectActivities(request.ProjectId, cancellationToken);
             var response = _mapper.Map<List<ActivityResponse>>(activities);

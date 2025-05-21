@@ -31,7 +31,7 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
             await _unitOfWork.Activities.CompleteActivity(request.ActivityId, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return NoContent<string>();
+            return Success("");
         }
     }
 }

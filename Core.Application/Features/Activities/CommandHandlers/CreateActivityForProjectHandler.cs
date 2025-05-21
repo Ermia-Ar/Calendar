@@ -32,13 +32,13 @@ namespace Core.Application.Features.Activities.CommandHandlers
             if (project.OwnerId != userId)
             {
                 throw new BadRequestException($"Only the owner of project id : {project.Id} can add activity to it.");
-
             }
 
             // map to activity table
             var activity = _mapper.Map<Activity>(request.CreateActivity);
-            //activity.DurationInMinute = request.createActivityRequest.DurationInMinute;
             activity.Id = Guid.NewGuid().ToString();
+            activity.CreatedDate = DateTime.Now;
+            activity.UpdateDate = DateTime.Now;
             activity.UserId = userId;
             activity.ProjectId = project.Id;
 
@@ -59,7 +59,9 @@ namespace Core.Application.Features.Activities.CommandHandlers
                 userRequests.Add(sendRequest);
             }
             await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
-            return Created("Created");
+
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+            return Created(activity.Id);
         }
     }
 }

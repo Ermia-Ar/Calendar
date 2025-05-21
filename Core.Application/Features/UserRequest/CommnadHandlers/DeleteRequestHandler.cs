@@ -29,9 +29,17 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
             {
                 throw new BadRequestException("your not access!");
             }
-            _unitOfWork.Requests.Delete(userRequest);
+            if (userRequest.Status == Domain.Enum.RequestStatus.Accepted)
+            {
+                userRequest.IsActive = false;
+                _unitOfWork.Requests.Update(userRequest);
+            }
+            else
+            {
+                _unitOfWork.Requests.Delete(userRequest);
+            }
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return NoContent<string>();
+            return Deleted("");
 
         }
     }

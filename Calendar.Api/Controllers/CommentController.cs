@@ -24,7 +24,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPost]
         [Route("CreateComment")]
-        [Authorize(CalendarClaims.CreateComment)]
+        //[Authorize(CalendarClaims.CreateComment)]
         public async Task<IActionResult> CreateComment(string projectId, string activityId, string content)
         {
             var request = new CreateCommentCommand(projectId, activityId, content);
@@ -34,7 +34,7 @@ namespace Calendar.Api.Controllers
 
         [HttpGet]
         [Route("GetComments")]
-        [Authorize(CalendarClaims.GetComments)]
+        //[Authorize(CalendarClaims.GetComments)]
         public async Task<IActionResult> GetComments(string? projectId, string? activityId, string? search, bool isUserOwner)
         {
             var request = new GetCommentsQuery(projectId, activityId, search, isUserOwner);
@@ -44,7 +44,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPut]
         [Route("EditComment")]
-        [Authorize(CalendarClaims.UpdateComment)]
+        //[Authorize(CalendarClaims.UpdateComment)]
         public async Task<IActionResult> UpdateComment(string id, string content)
         {
             var request = new UpdateCommentCommand(id, content);
@@ -54,7 +54,7 @@ namespace Calendar.Api.Controllers
 
         [HttpDelete]
         [Route("DeleteComment")]
-        [Authorize(CalendarClaims.DeleteComment)]
+        //[Authorize(CalendarClaims.DeleteComment)]
         public async Task<IActionResult> DeleteComment(string id)
         {
             var request = new DeleteCommentCommand(id);

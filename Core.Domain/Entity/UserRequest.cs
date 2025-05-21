@@ -35,7 +35,7 @@ namespace Core.Domain.Entity
         public bool IsExpire { get; set; }
 
         public bool IsActive { get; set; }
-
+        //TODO :
         public bool IsGuest { get; set; }
 
         public static UserRequest CreateUserRequest(string? activityId, string projectId

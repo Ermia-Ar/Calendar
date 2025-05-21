@@ -32,6 +32,7 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
             {
                 throw new BadRequestException("this request was Expire !");
             }
+
             //check if the request for a Project 
             if (result.RequestFor == Domain.Enum.RequestFor.Project && request.IsAccepted == true)
             {
@@ -46,7 +47,7 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
                 foreach (var activityId in activityIds)
                 {
                     var sendRequest = UserRequest.CreateUserRequest(activityId, result.ProjectId
-                        , userName, result.Sender, null, !isMember
+                        , result.Sender, userName, null, !isMember
                         , Domain.Enum.RequestStatus.Accepted);
 
                     userRequests.Add(sendRequest);
@@ -57,7 +58,7 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
             //
             await _unitOfWork.Requests.AnswerRequest(request.RequestId, request.IsAccepted, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return NoContent<string>();
+            return Success("");
 
         }
     }

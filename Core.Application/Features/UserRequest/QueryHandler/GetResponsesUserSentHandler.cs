@@ -12,7 +12,7 @@ namespace Core.Application.Features.UserRequests.QueryHandler
 {
 
     public class GetResponsesUserSentHandler : ResponseHandler
-        , IRequestHandler<GetResponsesUserSentQuery, Response<List<ActivityRequestResponse>>>
+        , IRequestHandler<GetResponsesUserSentQuery, Response<List<RequestResponse>>>
     {
         private readonly ICurrentUserServices _currentUserServices;
         private readonly IUnitOfWork _unitOfWork;
@@ -24,12 +24,12 @@ namespace Core.Application.Features.UserRequests.QueryHandler
             _mapper = mapper;
             _currentUserServices = currentUserServices;
         }
-        public async Task<Response<List<ActivityRequestResponse>>> Handle(GetResponsesUserSentQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<RequestResponse>>> Handle(GetResponsesUserSentQuery request, CancellationToken cancellationToken)
         {
             // get requests with user name 
             var userName = _currentUserServices.GetUserName();
             var requests = await _unitOfWork.Requests.GetResponsesUserSent(userName, request.RequestFor, cancellationToken);
-            var response = _mapper.Map<List<ActivityRequestResponse>>(requests);
+            var response = _mapper.Map<List<RequestResponse>>(requests);
             return Success(response);
         }
     }

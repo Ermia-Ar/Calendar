@@ -22,16 +22,15 @@ namespace Core.Application.Features.Activities.QueryHandlers
 
         public async Task<Response<List<string>>> Handle(GetMemberOfActivityQuery request, CancellationToken cancellationToken)
         {
-            var userId = _currentUser.GetUserId();
+            var userName = _currentUser.GetUserName();
             // check activity owner
-            var activity = await _unitOfWork.Activities.GetByIdAsync(request.ActivityId, cancellationToken);
-            if (activity.UserId != _currentUser.GetUserId())
+            var activityMembers = await _unitOfWork.Requests.GetMemberOfActivity(request.ActivityId, cancellationToken);
+            if (!activityMembers.Any(x => x == userName))
             {
-                return NotFound<List<string>>("Only the owner of this activity has access to this section.");
+                return NotFound<List<string>>("Only the members of this activity has access to this section.");
             }
 
-            var userNames = await _unitOfWork.Requests.GetMemberOfActivity(request.ActivityId, cancellationToken);
-            return Success(userNames);
+            return Success(activityMembers);
         }
     }
 }

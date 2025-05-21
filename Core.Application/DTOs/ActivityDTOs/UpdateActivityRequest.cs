@@ -12,10 +12,12 @@ namespace Core.Application.DTOs.ActivityDTOs
 
         public DateTime StartDate { get; set; }
 
-        public double DurationInMinute { get; set; }
+        public int? DurationInMinute { get; set; }
+
+        public int? NotificationBeforeInMinute { get; set; }
 
         public ActivityCategory Category { get; set; }
 
-        public bool IsCompleted { get; set; }   
+        public bool isCompleted { get; set; }
     }
 }

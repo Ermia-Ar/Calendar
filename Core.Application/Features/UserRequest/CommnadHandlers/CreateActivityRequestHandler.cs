@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Application.Features.UserRequests.CommandHandlers
 {
-    public class CreateRequestHandler : ResponseHandler
+    public class CreateActivityRequestHandler : ResponseHandler
         , IRequestHandler<CreateRequestCommand, Response<string>>
     {
         private readonly ICurrentUserServices _currentUserServices;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CreateRequestHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+        public CreateActivityRequestHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -78,7 +78,7 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
             }
             await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return NoContent<string>();
+            return Created("");
 
         }
     }

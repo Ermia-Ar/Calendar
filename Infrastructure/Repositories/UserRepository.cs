@@ -1,7 +1,9 @@
 ﻿using Core.Domain.Entity;
+using Core.Domain.Enum;
 using Core.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.RateLimiting;
 
 namespace Infrastructure.Repositories
 {
@@ -29,8 +31,19 @@ namespace Infrastructure.Repositories
         public async Task<User> FindByUserName(string userName) =>
             await _userManager.FindByNameAsync(userName);
 
-        public async Task<List<User>> GetAllUsers() =>
-            await _userManager.Users.ToListAsync();
+        public async Task<List<User>> GetAllUsers(string? search , UserCategory? category, CancellationToken token)
+        {
+            var users = _userManager.Users;
+            if(search != null)
+            {
+                users = users.Where(x => x.UserName.Contains(search));
+            }
+            if (category.HasValue)
+            {
+                users = users.Where(x => x.Category == category);
+            }
+            return await users.ToListAsync(token);
+        }
 
         public async Task<bool> IsUserNameExist(string userName) =>
             (await FindByUserName(userName)) != null ;

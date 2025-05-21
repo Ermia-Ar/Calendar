@@ -30,8 +30,8 @@ namespace Core.Application.Features.Activities.CommandHandlers
             {
                 throw new BadRequestException("Only the owner of this activity has access to this section.");
             }
-            // update activity
 
+            // update activity
             var updateActivity = _mapper.Map<Activity>(request.UpdateActivityRequest);
             activity = await _unitOfWork.Activities.UpdateActivity(updateActivity, cancellationToken);
 

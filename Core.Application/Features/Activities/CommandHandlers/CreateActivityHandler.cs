@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Execution;
 using Core.Application.Features.Activities.Commands;
 using Core.Application.Features.Exceptions;
 using Core.Domain;
@@ -24,13 +25,14 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
         public async Task<Response<string>> Handle(CreateActivityCommand request, CancellationToken cancellationToken)
         {
-            var userId = _currentUser.GetUserId();
-
+            var ownerId = _currentUser.GetUserId();
+            var ownerName = _currentUser.GetUserName();
             // map to activity table
             var activity = _mapper.Map<Activity>(request.CreateActivity);
-            //activity.Duration = TimeSpan.FromMinutes(activityRequest.DurationInMinute);
             activity.Id = Guid.NewGuid().ToString();
-            activity.UserId = userId;
+            activity.CreatedDate = DateTime.Now; 
+            activity.UpdateDate = DateTime.Now;
+            activity.UserId = ownerId;
             activity.ProjectId = "8c56ac14-ae28-4425-9a19-690d27d3a16d";
 
             //add to activity table
@@ -46,18 +48,26 @@ namespace Core.Application.Features.Activities.CommandHandlers
                     throw new NotFoundException($"user name {member} does not exist !");
                 }
 
-                var sendRequest = UserRequest.CreateUserRequest(activity.Id
-                    , activity.ProjectId, _currentUser.GetUserName()
+                var sendRequest1 = UserRequest.CreateUserRequest(activity.Id
+                    , activity.ProjectId, ownerName
                     , member, request.CreateActivity.Message
                     , false, Domain.Enum.RequestStatus.Pending);
 
-                userRequests.Add(sendRequest);
+                userRequests.Add(sendRequest1);
             }
+            //add owner to activity members
+            var sendRequest = UserRequest.CreateUserRequest(activity.Id
+                    , activity.ProjectId, ownerName,ownerName
+                    , request.CreateActivity.Message
+                    , false, Domain.Enum.RequestStatus.Accepted);
+
+            userRequests.Add(sendRequest);
+
             //send all requests
             await _unitOfWork.Requests.AddRangeAsync(userRequests , cancellationToken);
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Created("Created");
+            return Created(activity.Id);
         }
     }
 }

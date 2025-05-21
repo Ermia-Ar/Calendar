@@ -24,7 +24,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPost]
         [Route("CreateProject")]
-        [Authorize(CalendarClaims.CreateProject)]
+        //[Authorize(CalendarClaims.CreateProject)]
         public async Task<IActionResult> CreateProject([FromBody] CreateProjectRequest createProject)
         {
             var request = new CreateProjectCommand { CreateProject = createProject };
@@ -34,7 +34,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPost]
         [Route("RequestAddMemberToProject")]
-        [Authorize(CalendarClaims.RequestAddMemberToProject)]
+        //[Authorize(CalendarClaims.RequestAddMemberToProject)]
         public async Task<IActionResult> RequestAddMemberToProject([FromBody] SendProjectRequest projectRequest)
         {
             var request = new RequestAddMemberToProjectCommand { ProjectRequest = projectRequest };
@@ -44,7 +44,7 @@ namespace Calendar.Api.Controllers
 
         [HttpGet]
         [Route("GetProjectMembers{projectId:guid}")]
-        [Authorize(CalendarClaims.GetMemberOfProject)]
+        //[Authorize(CalendarClaims.GetMemberOfProject)]
         public async Task<IActionResult> GetMemberOfProject([FromRoute] Guid projectId)
         {
             var request = new GetMemberOfProjectQuery { ProjectId = projectId.ToString() };
@@ -54,7 +54,7 @@ namespace Calendar.Api.Controllers
 
         [HttpGet]
         [Route("GetActivitiesOfProject{projectId:guid}")]
-        [Authorize(CalendarClaims.GetActivitiesOfProject)]
+        //[Authorize(CalendarClaims.GetActivitiesOfProject)]
         public async Task<IActionResult> GetActivitiesOfProject([FromRoute] Guid projectId)
         {
             var request = new GetActivitiesOfProjectQuery { ProjectId = projectId.ToString() };
@@ -64,10 +64,10 @@ namespace Calendar.Api.Controllers
 
         [HttpGet]
         [Route("GetAllUserProjects")]
-        [Authorize(CalendarClaims.GetAllUserProjects)]
+        //[Authorize(CalendarClaims.GetAllUserProjects)]
         public async Task<IActionResult> GetAllUserProjects(DateTime? startDate, bool userIsOwner, bool isHistory)
         {
-            var request = new GetAllUserProjectQuery
+            var request = new GetUserProjectsQuery
             {
                 IsHistory = isHistory,
                 StartDate = startDate,
@@ -79,7 +79,7 @@ namespace Calendar.Api.Controllers
 
         [HttpDelete]
         [Route("ExitingProject{projectId:guid}")]
-        [Authorize(CalendarClaims.ExitingProject)]
+        //[Authorize(CalendarClaims.ExitingProject)]
         public async Task<IActionResult> ExitingProject(Guid projectId)
         {
             var request = new ExitingProjectCommand { ProjectId = projectId.ToString() };
@@ -89,7 +89,7 @@ namespace Calendar.Api.Controllers
 
         [HttpDelete]
         [Route("RemoveMemberOfProject")]
-        [Authorize(CalendarClaims.RemoveMemberOfProject)]
+        //[Authorize(CalendarClaims.RemoveMemberOfProject)]
         public async Task<IActionResult> RemoveMemberOfProject(Guid projectId, string userName)
         {
             var request = new RemoveMemberOfProjectCommand { ProjectId = projectId.ToString(), UserName = userName };
@@ -99,7 +99,7 @@ namespace Calendar.Api.Controllers
 
         [HttpDelete]
         [Route("DeleteProject{projectId:guid}")]
-        [Authorize(CalendarClaims.DeleteProject)]
+        //[Authorize(CalendarClaims.DeleteProject)]
         public async Task<IActionResult> DeleteProject(Guid projectId)
         {
             var request = new DeleteProjectCommand { ProjcetId = projectId.ToString() };

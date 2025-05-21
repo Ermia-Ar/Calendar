@@ -29,22 +29,32 @@ namespace Core.Application.Mapper
             //activity mapper 
             CreateMap<Activity, CreateActivityRequest>()
                 .ReverseMap();
+           
+            CreateMap<Activity, CreateActivityForProjectRequest>()
+                .ReverseMap();
+            
+            CreateMap<Activity, CreateSubActivityRequest>()
+                .ReverseMap();
 
             CreateMap<Activity, ActivityResponse>()
-                //.ForMember(x => x.DurationInMinute , dex => dex.MapFrom(x => Convert.ToDouble(,)))
                 .ReverseMap();
+
+            CreateMap<Activity, UpdateActivityRequest>()
+                .ReverseMap();
+
+
             //user requests Mapper
             CreateMap<SendActivityRequest, UserRequest>()
                 .ReverseMap();
-            CreateMap<UserRequest, ActivityRequestResponse>()
-                .ForMember(x => x.Activity, dex => dex.MapFrom(x => Utilities.ConvertToActivityResponse(x.Activity)))
-                .ForMember(x => x.Project, dex => dex.MapFrom(x => Utilities.ConvertToProjectResponse(x.Project)))
+
+            CreateMap<UserRequest, RequestResponse>()
+                //.ForMember(x => x.Activity, dex => dex.MapFrom(x => Utilities.ConvertToActivityResponse(x.Activity)))
+                //.ForMember(x => x.Project, dex => dex.MapFrom(x => Utilities.ConvertToProjectResponse(x.Project)))
                 .ReverseMap();
 
             CreateMap<SendProjectRequest, UserRequest>()
                 .ReverseMap();
-            CreateMap<UserRequest, ProjectRequestResponse>()
-                .ReverseMap();
+
             //user mapper
             CreateMap<User, UserResponse>()
                 .ReverseMap();

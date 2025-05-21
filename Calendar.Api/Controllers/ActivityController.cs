@@ -3,7 +3,6 @@ using Core.Application.DTOs.ActivityDTOs;
 using Core.Application.Features.Activities.Commands;
 using Core.Application.Features.Activities.Queries;
 using Core.Domain.Enum;
-using Core.Domain.Helper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +23,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPost]
         [Route("CreateActivity")]
-        [Authorize(CalendarClaims.CreateActivity)]
+        //[Authorize(CalendarClaims.CreateActivity)]
         public async Task<IActionResult> CreateActivity([FromBody] CreateActivityRequest activityRequest)
         {
             var request = new CreateActivityCommand (activityRequest);
@@ -35,7 +34,7 @@ namespace Calendar.Api.Controllers
         
         [HttpPost]
         [Route("CreateActivityForProject")]
-        [Authorize(CalendarClaims.CreateActivityForProject)]
+        //[Authorize(CalendarClaims.CreateActivityForProject)]
         public async Task<IActionResult> CreateActivityForProject([FromBody] CreateActivityForProjectRequest activityRequest)
         {
             var request = new CreateActivityForProjectCommand {CreateActivity = activityRequest };
@@ -46,7 +45,7 @@ namespace Calendar.Api.Controllers
         
         [HttpPost]
         [Route("CreateSubActivity")]
-        [Authorize(CalendarClaims.CreateSubActivity)]
+        //[Authorize(CalendarClaims.CreateSubActivity)]
         public async Task<IActionResult> CreateSubActivity([FromBody] CreateSubActivityRequest activityRequest)
         {
             var request = new CreateSubActivityCommand { CreateActivity = activityRequest};
@@ -56,8 +55,8 @@ namespace Calendar.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:guid}")]
-        [Authorize(CalendarClaims.DeleteActivity)]
+        [Route("DeleteActivity{id:guid}")]
+        //[Authorize(CalendarClaims.DeleteActivity)]
         public async Task<IActionResult> DeleteActivity([FromRoute] Guid id)
         {
             var request = new DeleteActivityCommand (id.ToString());
@@ -68,7 +67,7 @@ namespace Calendar.Api.Controllers
 
         [HttpDelete]
         [Route("ExitingActivity{id:guid}")]
-        [Authorize(CalendarClaims.ExitingActivity)]
+        //[Authorize(CalendarClaims.ExitingActivity)]
         public async Task<IActionResult> ExitingActivity([FromRoute] Guid id)
         {
             var request = new ExitingActivityCommand (id.ToString());
@@ -79,7 +78,7 @@ namespace Calendar.Api.Controllers
 
         [HttpDelete]
         [Route("RemoveMemberOfActivity")]
-        [Authorize(CalendarClaims.RemoveMemberOfActivity)]
+        //[Authorize(CalendarClaims.RemoveMemberOfActivity)]
         public async Task<IActionResult> RemoveMemberOfActivity(Guid activityId, string userName)
         {
             var request = new RemoveMemberOfActivityCommand(activityId.ToString(), userName);
@@ -90,7 +89,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPut]
         [Route("UpdateActivity")]
-        [Authorize(CalendarClaims.UpdateActivity)]
+        //[Authorize(CalendarClaims.UpdateActivity)]
         public async Task<IActionResult> UpdateActivity([FromBody] UpdateActivityRequest activityRequest)
         {
             var request = new UpdateActivityCommand(activityRequest);
@@ -101,7 +100,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPut]
         [Route("CompleteActivity")]
-        [Authorize(CalendarClaims.CompleteActivity)]
+        //[Authorize(CalendarClaims.CompleteActivity)]
         public async Task<IActionResult> CompleteActivity(Guid activityId)
         {
             var request = new CompleteActivityCommand(activityId.ToString());
@@ -111,12 +110,12 @@ namespace Calendar.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllUserActivity")]
-        [Authorize(CalendarClaims.GetAllUserActivity)]
-        public async Task<IActionResult> GetAllUserActivity(DateTime? startDate, ActivityCategory activityCategory
+        [Route("GetUserActivity")]
+        //[Authorize(CalendarClaims.GetAllUserActivity)]
+        public async Task<IActionResult> GetAllUserActivity(DateTime? startDate, ActivityCategory? activityCategory
             , bool UserIsOwner, bool isCompleted, bool isHistory)
         {
-            var request = new GetAllUserActivitiesQuery
+            var request = new GetUserActivitiesQuery
                 (startDate, UserIsOwner, isCompleted, isHistory, activityCategory);
             var result = await _mediator.Send(request);
 
@@ -125,7 +124,7 @@ namespace Calendar.Api.Controllers
 
         [HttpGet]
         [Route("GetMemberOfActivity{activityId:guid}")]
-        [Authorize(CalendarClaims.GetMemberOfActivity)]
+        //[Authorize(CalendarClaims.GetMemberOfActivity)]
         public async Task<IActionResult> GetMemberOfActivity(Guid activityId)
         {
             var request = new GetMemberOfActivityQuery(activityId.ToString());

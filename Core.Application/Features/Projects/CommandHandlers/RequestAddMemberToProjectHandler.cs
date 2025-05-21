@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Core.Application.DTOs.UserDTOs;
 using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
@@ -37,7 +36,7 @@ namespace Core.Application.Features.Projects.CommandHandlers
             foreach (var Receiver in request.ProjectRequest.Receivers)
             {
                 var isExist = await _unitOfWork.Users.IsUserNameExist(Receiver);
-                if (isExist)
+                if (!isExist)
                 {
                     throw new NotFoundException($"user name {Receiver} does not exist !");
                 }

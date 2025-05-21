@@ -5,8 +5,8 @@ using MediatR;
 
 namespace Core.Application.Features.UserRequests.Queries
 {
-    public class GetResponsesUserSentQuery : IRequest<Response<List<ActivityRequestResponse>>>
+    public class GetResponsesUserSentQuery : IRequest<Response<List<RequestResponse>>>
     {
-        public RequestFor RequestFor { get; set; }
+        public RequestFor? RequestFor { get; set; }
     }
 }

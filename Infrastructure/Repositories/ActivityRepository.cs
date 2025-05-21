@@ -1,19 +1,24 @@
 ﻿using Core.Domain.Entity;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces.Repositories;
+using Dapper;
 using Infrastructure.Base;
 using Infrastructure.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Repositories
 {
     public class ActivityRepository : GenericRepositoryAsync<Activity>, IActivityRepository
     {
-        private DbSet<Activity> _activities;
+        private readonly DbSet<Activity> _activities;
+        private readonly IConfiguration _configuration;
 
-        public ActivityRepository(ApplicationContext context) : base(context) 
+        public ActivityRepository(ApplicationContext context, IConfiguration configuration) : base(context)
         {
             _activities = context.Set<Activity>();
+            _configuration = configuration;
         }
 
         public async Task<List<Activity>> GettingActivitiesOwnedByTheUser(string userId, CancellationToken token
@@ -57,7 +62,10 @@ namespace Infrastructure.Repositories
             activity.Duration = UpdateActivity.Duration;
             activity.Title = UpdateActivity.Title;
             activity.Description = UpdateActivity.Description;
+            activity.IsEdited = true;
+            activity.UpdateDate = DateTime.Now;
             activity.StartDate = UpdateActivity.StartDate;
+            activity.NotificationBefore = UpdateActivity.NotificationBefore;
             activity.Category = UpdateActivity.Category;
             activity.IsCompleted = UpdateActivity.IsCompleted;
 
@@ -68,9 +76,11 @@ namespace Infrastructure.Repositories
         {
             var activity = await GetByIdAsync(activityId, token);
             activity.IsCompleted = !activity.IsCompleted;
+            activity.IsEdited = true;
+            activity.UpdateDate = DateTime.Now;
         }
 
-        public override async Task<Activity> GetByIdAsync(string id , CancellationToken token)
+        public override async Task<Activity> GetByIdAsync(string id, CancellationToken token)
         {
             var activity = await _activities.FirstOrDefaultAsync(x => x.Id == id);
             if (activity == null)
@@ -80,19 +90,21 @@ namespace Infrastructure.Repositories
             return activity;
         }
 
-        public async Task<List<Activity>> GetProjectActivities(string projectId  , CancellationToken token
+        public async Task<List<Activity>> GetProjectActivities(string projectId, CancellationToken token
             , DateTime? startDate = null)
         {
-            var activities = GetTableNoTracking();
+            using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
+            connection.Open();
 
-            if (startDate.HasValue)
-            {
-                activities = activities
-                .Where(x => x.ProjectId == projectId
-                        && x.StartDate >= startDate);
-            }
+            var parameters = new DynamicParameters();
+            parameters.Add("projectId", projectId);
+            parameters.Add("startDate", startDate);
 
-            return await activities.ToListAsync(token);
+
+            var activities = await connection.QueryAsync<Activity>
+                ("Sp_GetProjectActivities", parameters, commandType: System.Data.CommandType.StoredProcedure);
+
+            return activities.ToList();
         }
 
         public async Task<string[]> GetProjectActiveActivityIds(string projectId, CancellationToken token)

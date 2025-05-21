@@ -2,9 +2,8 @@
 using Core.Application.DTOs.AuthDTOs;
 using Core.Application.Features.Auth.Commands;
 using Core.Application.Features.Auth.Queries;
-using Core.Domain.Helper;
+using Core.Domain.Enum;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calendar.Api.Controllers
@@ -40,7 +39,7 @@ namespace Calendar.Api.Controllers
 
         [HttpGet]
         [Route("GetUserByUserName")]
-        [Authorize(CalendarClaims.GetUserByUserName)]
+        //[Authorize(CalendarClaims.GetUserByUserName)]
         public async Task<IActionResult> GetUserByUserName(string userName)
         {
             var request = new GetUserByUserNameQuery { UserName = userName };
@@ -50,10 +49,10 @@ namespace Calendar.Api.Controllers
 
         [HttpGet]
         [Route("GetAllUsers")]
-        [Authorize(CalendarClaims.GetAllUsers)]
-        public async Task<IActionResult> GetAllUsers()
+        //[Authorize(CalendarClaims.GetAllUsers)]
+        public async Task<IActionResult> GetAllUsers(string? search , UserCategory? category)
         {
-            var request = new GetAllUsers();
+            var request = new GetAllUsersQuery() { Category = category , Search = search};
             var result = await _mediator.Send(request);
             return NewResult(result);
         }

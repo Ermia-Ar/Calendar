@@ -29,17 +29,19 @@ namespace Core.Application.Features.Activities.CommandHandlers
             var activity = await _unitOfWork.Activities
                 .GetByIdAsync(request.CreateActivity.ActivityId, cancellationToken);
 
-            if (activity == null || activity.UserId != userId)
+            if (activity.UserId != userId)
             {
                 throw new BadRequestException("Only the owner of this activity has access to this section.");
             }
 
             var subActivity = _mapper.Map<Activity>(request.CreateActivity);
-            //activity.Duration = TimeSpan.FromMinutes(activityRequest.DurationInMinute);
             subActivity.Id = Guid.NewGuid().ToString();
+            subActivity.CreatedDate = DateTime.Now;
+            subActivity.UpdateDate = DateTime.Now;
             subActivity.UserId = userId;
             subActivity.ProjectId = activity.ProjectId;
             subActivity.ParentId = activity.Id;
+
             //add to table
             await _unitOfWork.Activities.AddAsync(subActivity, cancellationToken);
 
@@ -64,10 +66,12 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
                 userRequests.Add(sendRequest);
             }
+
             //send all requests
             await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
 
-            return Created("Created");
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+            return Created(activity.Id);
         }
     }
 }

@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Core.Application.Features.Activities.Queries
 {
-    public record class GetAllUserActivitiesQuery 
+    public record class GetUserActivitiesQuery 
     (
         DateTime? StartDate,
         bool UserIsOwner,

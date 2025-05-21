@@ -5,12 +5,13 @@ using Core.Application.Features.Exceptions;
 using Core.Domain;
 using Core.Domain.Shared;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Application.Features.Auth.Handler
 {
 
     public class GetAllUsersHandler : ResponseHandler
-        , IRequestHandler<GetAllUsers, Response<List<UserResponse>>>
+        , IRequestHandler<GetAllUsersQuery, Response<List<UserResponse>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -21,15 +22,12 @@ namespace Core.Application.Features.Auth.Handler
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response<List<UserResponse>>> Handle(GetAllUsers request, CancellationToken cancellationToken)
+        public async Task<Response<List<UserResponse>>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            var users = await _unitOfWork.Users.GetAllUsers();
+            var users = await _unitOfWork.Users.GetAllUsers(request.Search, request.Category , cancellationToken);
             var userResponse = _mapper.Map<List<UserResponse>>(users);
 
             return Success(userResponse);
         }
-
     }
-
-
 }

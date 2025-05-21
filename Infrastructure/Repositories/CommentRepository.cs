@@ -26,7 +26,7 @@ namespace Infrastructure.Repositories
             }
             if (search != null)
             {
-                comments = comments.Where(x => x.Content.Contains(search, StringComparison.OrdinalIgnoreCase));
+                comments = comments.Where(x => x.Content.Contains(search));
             }
             if (projectId != null)
             {

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Core.Application.Features.Projects.Query
 {
-    public class GetAllUserProjectQuery : IRequest<Response<List<ProjectResponse>>>
+    public class GetUserProjectsQuery : IRequest<Response<List<ProjectResponse>>>
     {
         public DateTime? StartDate { get; set; }
         public bool UserIsOwner { get; set; }

@@ -25,8 +25,19 @@ namespace Core.Application.Features.Projects.CommandHandlers
 
         public async Task<Response<string>> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
-            var userId = _currentUserServices.GetUserId();
+            var ownerId = _currentUserServices.GetUserId();
+            var ownerName = _currentUserServices.GetUserName();
+
+            //map to project entity
+            var project = Project.Create(ownerId, request.CreateProject.Title
+                , request.CreateProject.Description, request.CreateProject.StartDate, request.CreateProject.EndDate);
+
+            // add to project table
+            await _unitOfWork.Projects.AddAsync(project, cancellationToken);
+            var userRequests = new List<UserRequest>();
+
             // check UserNames exist ?
+            // sent request for each members
             foreach (var Receiver in request.CreateProject.Members)
             {
                 var isExist = await _unitOfWork.Users.IsUserNameExist(Receiver);
@@ -34,28 +45,27 @@ namespace Core.Application.Features.Projects.CommandHandlers
                 {
                     throw new NotFoundException($"user name {Receiver} does not exist !");
                 }
-            }
-            //map to project entity
-            var project = Project.Create(userId, request.CreateProject.Title
-                , request.CreateProject.Description, request.CreateProject.StartDate, request.CreateProject.EndDate);
 
-            // add to project table
-            await _unitOfWork.Projects.AddAsync(project, cancellationToken);
+                var sendRequest1 = UserRequest.CreateUserRequest(null, project.Id
+                   , ownerName, Receiver
+                   , request.CreateProject.RequestMassage
+                   , false, Domain.Enum.RequestStatus.Pending);
 
-            //sent request for each members
-            var userRequests = new List<UserRequest>();
-            foreach (var Receiver in request.CreateProject.Members)
-            {
-                var sendRequest = UserRequest.CreateUserRequest(null , project.Id
-                    , _currentUserServices.GetUserName(),Receiver
-                    , request.CreateProject.RequestMassage
-                    , false , Domain.Enum.RequestStatus.Pending);
-                
-                userRequests.Add(sendRequest);
+                userRequests.Add(sendRequest1);
             }
+
+            //add the owner of project to the members 
+            var sendRequest = UserRequest.CreateUserRequest(null, project.Id
+                   , ownerName, ownerName
+                   , request.CreateProject.RequestMassage
+                   , false, Domain.Enum.RequestStatus.Accepted);
+
+            userRequests.Add(sendRequest);
+
             await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
+
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Created("Created");
+            return Created(project.Id);
         }
     }
 }
