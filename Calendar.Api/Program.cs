@@ -59,8 +59,10 @@ builder.Services.AddDbContext<ApplicationContext>(option =>
 
 // add dependency 
 builder.Services.AddCoreDependencies()
-    .AddIdentityDependency(builder.Configuration)
     .AddServiceDescriptors();
+builder.Services
+    .AddIdentityDependency(builder.Configuration);
+
 
 builder.Services.AddAutoMapper(typeof(ApplicationProfile));
 

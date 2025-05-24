@@ -8,19 +8,15 @@ namespace Core.Application.Validators
         public CreateActivityRequestValidator()
         {
             RuleFor(x => x.Title)
-                .NotEmpty()
+                .MaximumLength(3)
                 .NotNull();
 
             RuleFor(x => x.StartDate)
                 .NotNull()
-                .GreaterThanOrEqualTo(DateTime.UtcNow - TimeSpan.FromSeconds(30));
-
-            RuleFor(x => x.DurationInMinute)
-                .NotEmpty()
-                .NotNull();
+                .GreaterThanOrEqualTo(DateTime.UtcNow - TimeSpan.FromMinutes(3));
 
             RuleFor(x => x.Category)
-                .IsInEnum();
+                .Must(x => (int)x <= 1);
         }
     }
 }

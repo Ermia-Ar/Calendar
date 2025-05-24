@@ -1,6 +1,7 @@
 ﻿using Core.Domain.Enum;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 
 namespace Core.Domain.Entity
 {
@@ -45,7 +46,30 @@ namespace Core.Domain.Entity
 
         public List<Comment> Comments = [];
 
-        public List<Activity> SubActivities = []; 
+        public List<Activity> SubActivities = [];
+
+        public static Activity Create(string? parentId, string userId,
+            string projectId, string title , string? Description , DateTime startDate
+            , int? duration , int? notificationBefore , ActivityCategory category)
+        {
+            return new Activity
+            {
+                Id = Guid.NewGuid().ToString(),
+                ParentId = parentId,
+                UserId = userId,
+                ProjectId = projectId,
+                Title = title,
+                Description = Description,
+                Category = category,
+                Duration = duration != 0 ? TimeSpan.FromMinutes((double)duration) : null,
+                NotificationBefore = notificationBefore != 0 ? TimeSpan.FromMinutes((double)notificationBefore) : null,
+                CreatedDate = DateTime.Now,
+                UpdateDate = DateTime.Now,
+                StartDate = startDate,
+                IsCompleted = false,
+                IsEdited = false,
+            };
+        }
 
     }
 }

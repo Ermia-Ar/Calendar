@@ -3678,6 +3678,7 @@
         "dependencies": {
           "AutoMapper": "14.0.0",
           "FluentValidation": "12.0.0",
+          "FluentValidation.DependencyInjectionExtensions": "12.0.0",
           "Microsoft.EntityFrameworkCore": "8.0.0",
           "Serilog": "4.2.0",
           "Serilog.AspNetCore": "9.0.0",
@@ -3699,6 +3700,7 @@
           "Core.Application": "1.0.0",
           "Dapper": "2.1.66",
           "FluentValidation": "12.0.0",
+          "FluentValidation.DependencyInjectionExtensions": "12.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
           "Microsoft.AspNetCore.Identity": "2.3.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0",
@@ -10552,6 +10554,7 @@
       "Core.Application >= 1.0.0",
       "DotNetEnv >= 3.1.1",
       "FluentValidation >= 12.0.0",
+      "FluentValidation.DependencyInjectionExtensions >= 12.0.0",
       "Infrastructure >= 1.0.0",
       "MediatR >= 12.5.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
@@ -10625,6 +10628,10 @@
             "version": "[3.1.1, )"
           },
           "FluentValidation": {
+            "target": "Package",
+            "version": "[12.0.0, )"
+          },
+          "FluentValidation.DependencyInjectionExtensions": {
             "target": "Package",
             "version": "[12.0.0, )"
           },

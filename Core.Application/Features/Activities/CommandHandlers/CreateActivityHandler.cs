@@ -25,21 +25,10 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
         public async Task<Response<string>> Handle(CreateActivityCommand request, CancellationToken cancellationToken)
         {
+            string projectId = "8c56ac14-ae28-4425-9a19-690d27d3a16d";
             var ownerId = _currentUser.GetUserId();
             var ownerName = _currentUser.GetUserName();
-            // map to activity table
-            var activity = _mapper.Map<Activity>(request.CreateActivity);
-            activity.Id = Guid.NewGuid().ToString();
-            activity.CreatedDate = DateTime.Now; 
-            activity.UpdateDate = DateTime.Now;
-            activity.UserId = ownerId;
-            activity.ProjectId = "8c56ac14-ae28-4425-9a19-690d27d3a16d";
 
-            //add to activity table
-            await _unitOfWork.Activities.AddAsync(activity, cancellationToken);
-
-            //create request for all members
-            var userRequests = new List<UserRequest>();
             foreach (var member in request.CreateActivity.Members)
             {
                 var isExist = await _unitOfWork.Users.IsUserNameExist(member);
@@ -47,7 +36,19 @@ namespace Core.Application.Features.Activities.CommandHandlers
                 {
                     throw new NotFoundException($"user name {member} does not exist !");
                 }
+            }
+            // map to activity table
+            var activity = Activity.Create(null, ownerId, projectId,
+                request.CreateActivity.Title, request.CreateActivity.Description,
+                request.CreateActivity.StartDate, request.CreateActivity.DurationInMinute,
+                request.CreateActivity.NotificationBeforeInMinute,
+                request.CreateActivity.Category);
 
+
+            //create request for all members
+            var userRequests = new List<UserRequest>();
+            foreach (var member in request.CreateActivity.Members)
+            {
                 var sendRequest1 = UserRequest.CreateUserRequest(activity.Id
                     , activity.ProjectId, ownerName
                     , member, request.CreateActivity.Message
@@ -55,6 +56,7 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
                 userRequests.Add(sendRequest1);
             }
+
             //add owner to activity members
             var sendRequest = UserRequest.CreateUserRequest(activity.Id
                     , activity.ProjectId, ownerName,ownerName
@@ -63,8 +65,11 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
             userRequests.Add(sendRequest);
 
+
             //send all requests
             await _unitOfWork.Requests.AddRangeAsync(userRequests , cancellationToken);
+            //add to activity table
+            await _unitOfWork.Activities.AddAsync(activity, cancellationToken);
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
             return Created(activity.Id);

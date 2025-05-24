@@ -5,7 +5,7 @@ namespace Core.Application.Features.Comments.Queries.GetComments
 {
     public record class GetCommentsResponse
        (string Id,
-        ActivityResponse Activity,
+        string ActivityId,
         string Content,
         DateTime CreatedDate,
         DateTime UpdatedDate,

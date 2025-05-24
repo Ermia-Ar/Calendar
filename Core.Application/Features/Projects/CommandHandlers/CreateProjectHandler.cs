@@ -5,7 +5,6 @@ using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Shared;
 using MediatR;
-using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Core.Application.Features.Projects.CommandHandlers
 {
@@ -28,24 +27,27 @@ namespace Core.Application.Features.Projects.CommandHandlers
             var ownerId = _currentUserServices.GetUserId();
             var ownerName = _currentUserServices.GetUserName();
 
+            // check UserNames exist ?
+            foreach (var receiver in request.CreateProject.Members)
+            {
+                var isExist = await _unitOfWork.Users.IsUserNameExist(receiver);
+                if (!isExist)
+                {
+                    throw new NotFoundException($"user name {receiver} does not exist !");
+                }
+            }
+
             //map to project entity
             var project = Project.Create(ownerId, request.CreateProject.Title
-                , request.CreateProject.Description, request.CreateProject.StartDate, request.CreateProject.EndDate);
+                , request.CreateProject.Description
+                , request.CreateProject.StartDate
+                , request.CreateProject.EndDate);
 
-            // add to project table
-            await _unitOfWork.Projects.AddAsync(project, cancellationToken);
             var userRequests = new List<UserRequest>();
 
-            // check UserNames exist ?
             // sent request for each members
             foreach (var Receiver in request.CreateProject.Members)
             {
-                var isExist = await _unitOfWork.Users.IsUserNameExist(Receiver);
-                if (!isExist)
-                {
-                    throw new NotFoundException($"user name {Receiver} does not exist !");
-                }
-
                 var sendRequest1 = UserRequest.CreateUserRequest(null, project.Id
                    , ownerName, Receiver
                    , request.CreateProject.RequestMassage
@@ -61,6 +63,10 @@ namespace Core.Application.Features.Projects.CommandHandlers
                    , false, Domain.Enum.RequestStatus.Accepted);
 
             userRequests.Add(sendRequest);
+           
+
+            // add to project table
+            await _unitOfWork.Projects.AddAsync(project, cancellationToken);
 
             await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
 

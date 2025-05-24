@@ -1,43 +1,41 @@
 ﻿using Core.Domain.Entity;
 using Core.Domain.Interfaces.Repositories;
+using Dapper;
 using Infrastructure.Base;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
 
 namespace Infrastructure.Repositories
 {
     public class CommentRepository : GenericRepositoryAsync<Comment>, ICommentRepository
     {
-        private DbSet<Comment> _comments;
+        private readonly DbSet<Comment> _comments;
+        private readonly IConfiguration _configuration;
 
-        public CommentRepository(ApplicationContext context) : base(context)
+        public CommentRepository(ApplicationContext context, IConfiguration configuration) : base(context)
         {
             _comments = context.Set<Comment>();
+            _configuration = configuration;
         }
 
-        public Task<List<Comment>> GetComments(string? projectId,string? activityId, string? search, string? userId, CancellationToken token)
+        public async Task<List<Comment>> GetComments(string? projectId, string? activityId, string? search, string? userId, CancellationToken token)
         {
-            var comments = GetTableNoTracking();
 
+            using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
+            await connection.OpenAsync(token);
 
-            if (userId != null)
-            {
-                comments = comments.Where(x => x.UserId == userId);
-            }
-            if (search != null)
-            {
-                comments = comments.Where(x => x.Content.Contains(search));
-            }
-            if (projectId != null)
-            {
-                comments = comments.Where(x => x.ProjectId == projectId);
-            }
-            if (activityId != null)
-            {
-                comments = comments.Where(x => x.ActivityId == activityId);
-            }
+            var parameters = new DynamicParameters();
+            parameters.Add("projectId", projectId);
+            parameters.Add("activityId", activityId);
+            parameters.Add("search", search);
+            parameters.Add("userId", userId);
 
-            return comments.Include(x => x.Activity).ToListAsync(token);
+            var comments = await connection.QueryAsync<Comment>
+                ("SP_GetComment", parameters, commandType: System.Data.CommandType.StoredProcedure);
+
+            return comments.ToList();
         }
     }
 }

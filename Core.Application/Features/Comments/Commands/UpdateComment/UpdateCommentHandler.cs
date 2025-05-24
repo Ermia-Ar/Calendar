@@ -30,7 +30,7 @@ namespace Core.Application.Features.Comments.Commands.UpdateComment
             comment.IsEdited = true;
             _unitOfWork.Comments.Update(comment);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return NoContent<string>();
+            return Success("");
         }
     }
 }

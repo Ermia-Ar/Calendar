@@ -25,11 +25,10 @@ namespace Core.Application.Features.Comments.Commands.CreateComment
             string userId = _currentUserServices.GetUserId();
             string userName = _currentUserServices.GetUserName();
 
-            var activity = await _unitOfWork.Activities.GetByIdAsync(request.ActivityId, cancellationToken);
             var isMember = (await _unitOfWork.Requests.GetMemberOfActivity
                 (request.ActivityId, cancellationToken)).Any(memberName => memberName == userName);
 
-            if (!isMember && activity.UserId != userId)
+            if (!isMember)
             {
                 throw new BadRequestException("Only members of this activity can comment on it.");
             }

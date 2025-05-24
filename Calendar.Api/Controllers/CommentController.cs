@@ -25,9 +25,9 @@ namespace Calendar.Api.Controllers
         [HttpPost]
         [Route("CreateComment")]
         //[Authorize(CalendarClaims.CreateComment)]
-        public async Task<IActionResult> CreateComment(string projectId, string activityId, string content)
+        public async Task<IActionResult> CreateComment(Guid projectId, string activityId, string content)
         {
-            var request = new CreateCommentCommand(projectId, activityId, content);
+            var request = new CreateCommentCommand(projectId.ToString(), activityId, content);
             var result = await _mediator.Send(request);
             return NewResult(result);
         }
@@ -35,9 +35,9 @@ namespace Calendar.Api.Controllers
         [HttpGet]
         [Route("GetComments")]
         //[Authorize(CalendarClaims.GetComments)]
-        public async Task<IActionResult> GetComments(string? projectId, string? activityId, string? search, bool isUserOwner)
+        public async Task<IActionResult> GetComments(Guid? projectId, Guid? activityId, string? search, bool isUserOwner)
         {
-            var request = new GetCommentsQuery(projectId, activityId, search, isUserOwner);
+            var request = new GetCommentsQuery(projectId.ToString(), activityId.ToString(), search, isUserOwner);
             var result = await _mediator.Send(request);
             return NewResult(result);
         }
@@ -45,9 +45,9 @@ namespace Calendar.Api.Controllers
         [HttpPut]
         [Route("EditComment")]
         //[Authorize(CalendarClaims.UpdateComment)]
-        public async Task<IActionResult> UpdateComment(string id, string content)
+        public async Task<IActionResult> UpdateComment(Guid id, string content)
         {
-            var request = new UpdateCommentCommand(id, content);
+            var request = new UpdateCommentCommand(id.ToString(), content);
             var result = await _mediator.Send(request);
             return NewResult(result);
         }
@@ -55,9 +55,9 @@ namespace Calendar.Api.Controllers
         [HttpDelete]
         [Route("DeleteComment")]
         //[Authorize(CalendarClaims.DeleteComment)]
-        public async Task<IActionResult> DeleteComment(string id)
+        public async Task<IActionResult> DeleteComment(Guid id)
         {
-            var request = new DeleteCommentCommand(id);
+            var request = new DeleteCommentCommand(id.ToString());
             var result = await _mediator.Send(request);
             return NewResult(result);
         }

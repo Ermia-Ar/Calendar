@@ -107,6 +107,10 @@ namespace Infrastructure.Repositories
             var projects = await connection.QueryAsync<Project>
                 ("SP_GetProjects", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
+
+            var result = projects.SelectMany(x => x.Activities).ToList();
+
+
             return projects.ToList();
         }
 
@@ -159,10 +163,10 @@ namespace Infrastructure.Repositories
             await connection.OpenAsync(token);
 
             var parameters = new DynamicParameters();
-            parameters.Add("isExpire", true, System.Data.DbType.Boolean);
-            parameters.Add("requestFor", (int)RequestFor.Project, System.Data.DbType.Int32);
+            parameters.Add("isExpire", true);
+            parameters.Add("requestFor", RequestFor.Activity);
             parameters.Add("projectId", null);
-            parameters.Add("activityId", activityId, System.Data.DbType.String);
+            parameters.Add("activityId", activityId);
             parameters.Add("status", (int)RequestStatus.Accepted);
 
             var members = await connection.QueryAsync<string>

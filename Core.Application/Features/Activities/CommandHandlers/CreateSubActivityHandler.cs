@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Execution;
 using Core.Application.Features.Activities.Commands;
 using Core.Application.Features.Exceptions;
 using Core.Domain;
@@ -24,32 +25,12 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
         public async Task<Response<string>> Handle(CreateSubActivityCommand request, CancellationToken cancellationToken)
         {
-            var userId = _currentUser.GetUserId();
+            var ownerId = _currentUser.GetUserId();
 
-            var activity = await _unitOfWork.Activities
-                .GetByIdAsync(request.CreateActivity.ActivityId, cancellationToken);
-
-            if (activity.UserId != userId)
-            {
-                throw new BadRequestException("Only the owner of this activity has access to this section.");
-            }
-
-            var subActivity = _mapper.Map<Activity>(request.CreateActivity);
-            subActivity.Id = Guid.NewGuid().ToString();
-            subActivity.CreatedDate = DateTime.Now;
-            subActivity.UpdateDate = DateTime.Now;
-            subActivity.UserId = userId;
-            subActivity.ProjectId = activity.ProjectId;
-            subActivity.ParentId = activity.Id;
-
-            //add to table
-            await _unitOfWork.Activities.AddAsync(subActivity, cancellationToken);
-
-            //create request for all members of main activity
+            //check user name exist ? 
             var members = await _unitOfWork.Requests
                 .GetMemberOfActivity(request.CreateActivity.ActivityId, cancellationToken);
 
-            var userRequests = new List<UserRequest>();
             foreach (var member in members)
             {
                 var isExist = await _unitOfWork.Users.IsUserNameExist(member);
@@ -57,6 +38,27 @@ namespace Core.Application.Features.Activities.CommandHandlers
                 {
                     throw new NotFoundException($"user name {member} does not exist !");
                 }
+            }
+
+            var activity = await _unitOfWork.Activities
+                .GetByIdAsync(request.CreateActivity.ActivityId, cancellationToken);
+
+            if (activity.UserId != ownerId)
+            {
+                throw new BadRequestException("Only the owner of this activity has access to this section.");
+            }
+            // map to activity
+            var subActivity = Activity.Create(activity.Id, ownerId, activity.ProjectId,
+                request.CreateActivity.Title, request.CreateActivity.Description,
+                 request.CreateActivity.StartDate, request.CreateActivity.DurationInMinute, 
+                 request.CreateActivity.NotificationBeforeInMinute,
+                 request.CreateActivity.Category);
+
+            //create request for all members of main activity
+
+            var userRequests = new List<UserRequest>();
+            foreach (var member in members)
+            {
 
                 var sendRequest = UserRequest.CreateUserRequest(subActivity.Id
                     , subActivity.ProjectId
@@ -66,6 +68,9 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
                 userRequests.Add(sendRequest);
             }
+
+            //add to table activity
+            await _unitOfWork.Activities.AddAsync(subActivity, cancellationToken);
 
             //send all requests
             await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);

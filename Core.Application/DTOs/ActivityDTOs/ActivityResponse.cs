@@ -22,7 +22,7 @@ namespace Core.Application.DTOs.ActivityDTOs
 
         public DateTime UpdateDate { get; set; }
 
-        public TimeSpan? DurationInMinute { get; set; }
+        public TimeSpan? Duration { get; set; }
 
         public TimeSpan? NotificationBefore { get; set; }
 

@@ -16,7 +16,6 @@ namespace Core.Application.Mapper
         {
             //comment mappers
             CreateMap<Comment , GetCommentsResponse>()
-                .ForMember(x => x.Activity , dex => dex.MapFrom(x => Utilities.ConvertToActivityResponse(x.Activity)))
                 .ReverseMap();
             
             //project mappers
