@@ -1,6 +1,4 @@
-﻿using Core.Application.DTOs.ActivityDTOs;
-using Core.Application.DTOs.ProjectDTOs;
-using Core.Domain.Enum;
+﻿using Core.Domain.Enum;
 
 namespace Core.Application.DTOs.UserRequestDTOs
 {
@@ -12,9 +10,9 @@ namespace Core.Application.DTOs.UserRequestDTOs
 
         public string? ActivityId { get; set; }
 
-        public string Sender { get; set; }
+        public string SenderId { get; set; }
 
-        public string Receiver { get; set; }
+        public string ReceiverId { get; set; }
 
         public RequestFor RequestFor { get; set; }
 

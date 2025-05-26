@@ -2,13 +2,11 @@
 using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
-using Core.Domain.Entity;
+using Core.Domain.Enum;
 using Core.Domain.Shared;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
-using System.Threading;
 
 namespace Core.Application.Features.Projects.CommandHandlers
 {
@@ -34,18 +32,21 @@ namespace Core.Application.Features.Projects.CommandHandlers
             if (project.OwnerId != userId)
             {
                 throw new BadRequestException("Only the owner of this project has access to this section.");
-
             }
             //
+            var receiver = await _unitOfWork.Users.FindByUserName(request.UserName);
+
             var userRequests = await _unitOfWork.Requests.GetTableNoTracking()
-                .Where(x => x.ProjectId == request.ProjectId 
-                && x.Receiver == request.UserName)
+                .Where(x => x.ProjectId == request.ProjectId
+                && x.ReceiverId == receiver.Id
+                && x.Status == RequestStatus.Accepted)
                 .ToListAsync(cancellationToken);
 
             if (!userRequests.Any())
             {
                 throw new NotFoundException("No such member was found.");
             }
+            
 
             _unitOfWork.Requests.DeleteRange(userRequests);
             await _unitOfWork.SaveChangeAsync(cancellationToken);

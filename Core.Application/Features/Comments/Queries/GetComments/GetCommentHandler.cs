@@ -23,7 +23,6 @@ namespace Core.Application.Features.Comments.Queries.GetComments
         public async Task<Response<List<GetCommentsResponse>>> Handle(GetCommentsQuery request, CancellationToken cancellationToken)
         {
             string userId = _currentUserServices.GetUserId();
-            string userName = _currentUserServices.GetUserName();
 
             if (request.projectId == null && request.ActivityId == null && !request.UserOwner)
             {

@@ -6,6 +6,7 @@ using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace Infrastructure.Data
 {
@@ -45,6 +46,21 @@ namespace Infrastructure.Data
             //{
             //    entity.HasNoKey();
             //});
+
+            builder.Entity<User>()
+                .HasMany(u => u.SendRequests)
+                .WithOne(ur => ur.Sender)
+                .HasForeignKey(ur => ur.SenderId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<User>()
+                .HasMany(u => u.ReceiveRequests)
+                .WithOne(ur => ur.Receiver)
+                .HasForeignKey(ur => ur.ReceiverId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+
             builder.Entity<Activity>()
                 .HasOne(x => x.Parent)
                 .WithMany(x => x.SubActivities)
@@ -84,13 +100,13 @@ namespace Infrastructure.Data
                 .HasOne(p => p.User)
                 .WithMany()
                 .HasForeignKey(p => p.OwnerId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<Activity>()
             .HasOne(a => a.User)
             .WithMany(u => u.Activities)
             .HasForeignKey(a => a.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.NoAction);
 
             var project = new Project
             {

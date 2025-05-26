@@ -1,4 +1,5 @@
-﻿using Core.Domain.Shared;
+﻿using Core.Application.Features.Exceptions;
+using Core.Domain.Shared;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Serilog;
@@ -55,8 +56,19 @@ namespace Core.Application.Middleware
                         responseModel.StatusCode = HttpStatusCode.NotFound;
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
+                    case NotFoundException:
+                        responseModel.Message = error.Message; ;
+                        responseModel.StatusCode = HttpStatusCode.NotFound;
+                        response.StatusCode = (int)HttpStatusCode.NotFound;
+                        break;
+                    case BadRequestException:
+                        responseModel.Message = error.Message;
+                        responseModel.StatusCode = HttpStatusCode.BadRequest;
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        break;
 
-                    
+
+
                     case Exception e:
                         if (e.GetType().ToString() == "ApiException")
                         {

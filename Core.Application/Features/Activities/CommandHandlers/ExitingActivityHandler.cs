@@ -2,6 +2,7 @@
 using Core.Application.Features.Activities.Commands;
 using Core.Application.Features.Exceptions;
 using Core.Domain;
+using Core.Domain.Enum;
 using Core.Domain.Shared;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -24,13 +25,13 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
         public async Task<Response<string>> Handle(ExitingActivityCommand request, CancellationToken cancellationToken)
         {
-            var userName = _currentUser.GetUserName();
+            var userId = _currentUser.GetUserId();      
 
             var userRequest = await _unitOfWork.Requests.GetTableNoTracking()
-                .FirstOrDefaultAsync(x => x.RequestFor ==Domain.Enum.RequestFor.Activity 
+                .FirstOrDefaultAsync(x => x.RequestFor == RequestFor.Activity 
                 && x.ActivityId == request.ActivityId 
-                && x.Status == Domain.Enum.RequestStatus.Accepted
-                && x.Receiver == userName);
+                && x.Status == RequestStatus.Accepted
+                && x.ReceiverId == userId);
 
             if (userRequest == null)
             {

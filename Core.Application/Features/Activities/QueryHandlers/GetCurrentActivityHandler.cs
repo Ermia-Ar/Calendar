@@ -25,7 +25,8 @@ namespace Core.Application.Features.Activities.QueryHandlers
         {
             // get activities
             var userId = _currentUser.GetUserId();
-            var activities = await _unitOfWork.Activities.GettingActivitiesOwnedByTheUser(userId, cancellationToken, null, null);
+            var activities = await _unitOfWork.Activities
+                .GettingActivitiesOwnedByTheUser(userId, cancellationToken, null, null);
             // map to response
             var response = _mapper.Map<List<ActivityResponse>>(activities);
 

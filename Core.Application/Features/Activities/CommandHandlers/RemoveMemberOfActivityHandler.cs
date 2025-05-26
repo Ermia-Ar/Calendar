@@ -24,7 +24,6 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
         public async Task<Response<string>> Handle(RemoveMemberOfActivityCommand request, CancellationToken cancellationToken)
         {
-
             var userId = _currentUser.GetUserId();
             var activity = await _unitOfWork.Activities.GetByIdAsync(request.ActivityId, cancellationToken);
             if (activity.UserId != _currentUser.GetUserId())
@@ -32,8 +31,10 @@ namespace Core.Application.Features.Activities.CommandHandlers
                 throw new BadRequestException("Only the owner of this activity has access to this section.");
             }
 
+            var receiver = await _unitOfWork.Users.FindByUserName(request.UserName); 
             var userRequest = await _unitOfWork.Requests.GetTableNoTracking()
-                .FirstOrDefaultAsync(x => x.ActivityId == request.ActivityId && x.Receiver == request.UserName);
+                .FirstOrDefaultAsync(x => x.ActivityId == request.ActivityId
+                && x.ReceiverId == receiver.Id);
 
             if (userRequest == null)
             {

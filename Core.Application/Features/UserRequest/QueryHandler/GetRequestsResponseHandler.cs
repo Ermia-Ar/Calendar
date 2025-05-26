@@ -25,9 +25,10 @@ namespace Core.Application.Features.UserRequests.QueryHandler
         }
         public async Task<Response<List<RequestResponse>>> Handle(GetRequestsResponseQuery request, CancellationToken cancellationToken)
         {
-            // get requests with user name 
-            var userName = _currentUserServices.GetUserName();
-            var requests = await _unitOfWork.Requests.GetRequestsResponse(userName, request.RequestFor, cancellationToken);
+            // get requests with user id
+            var userId = _currentUserServices.GetUserId();
+            var requests = await _unitOfWork.Requests
+                .GetRequestsResponse(userId, request.RequestFor, cancellationToken);
             var response = _mapper.Map<List<RequestResponse>>(requests);
             return Success(response);
         }

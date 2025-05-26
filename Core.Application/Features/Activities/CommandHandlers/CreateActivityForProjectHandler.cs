@@ -3,6 +3,7 @@ using Core.Application.Features.Activities.Commands;
 using Core.Application.Features.Exceptions;
 using Core.Domain;
 using Core.Domain.Entity;
+using Core.Domain.Enum;
 using Core.Domain.Shared;
 using MediatR;
 
@@ -28,21 +29,12 @@ namespace Core.Application.Features.Activities.CommandHandlers
             var ownerId = _currentUser.GetUserId();
 
             //check if user is the owner of project or not 
-            var project = await _unitOfWork.Projects.GetByIdAsync(request.CreateActivity.ProjectId, cancellationToken);
+            var project = await _unitOfWork.Projects
+                .GetByIdAsync(request.CreateActivity.ProjectId, cancellationToken);
+
             if (project.OwnerId != ownerId)
             {
                 throw new BadRequestException($"Only the owner of project id : {project.Id} can add activity to it.");
-            }
-
-            var members = await _unitOfWork.Requests
-                         .GetMemberOfProject(project.Id, cancellationToken);
-            foreach (var member in members)
-            {
-                var isExist = await _unitOfWork.Users.IsUserNameExist(member);
-                if (!isExist)
-                {
-                    throw new NotFoundException($"user name {member} does not exist !");
-                }
             }
 
             // map to activity table
@@ -54,14 +46,16 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
 
             //sent request for all member of project
+            var members = await _unitOfWork.Requests
+                         .GetMemberOfProject(project.Id, cancellationToken);
+
             var userRequests = new List<UserRequest>();
             foreach (var member in members)
             {
                 var sendRequest = UserRequest.CreateUserRequest(activity.Id
-                    , project.Id
-                    , _currentUser.GetUserName()
-                    , member, null, false
-                    , Domain.Enum.RequestStatus.Accepted);
+                    , project.Id, ownerId
+                    , member.Id, null, false
+                    , RequestStatus.Accepted);
 
                 userRequests.Add(sendRequest);
             }

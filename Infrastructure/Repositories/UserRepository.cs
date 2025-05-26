@@ -31,6 +31,9 @@ namespace Infrastructure.Repositories
         public async Task<User> FindByUserName(string userName) =>
             await _userManager.FindByNameAsync(userName);
 
+        public async Task<User> FindById(string userId) =>
+            await _userManager.FindByIdAsync(userId);
+
         public async Task<List<User>> GetAllUsers(string? search , UserCategory? category, CancellationToken token)
         {
             var users = _userManager.Users;
@@ -45,7 +48,13 @@ namespace Infrastructure.Repositories
             return await users.ToListAsync(token);
         }
 
+        public async Task<bool> IsUserIdExist(string userId) =>
+            (await FindById(userId)) != null;
+
         public async Task<bool> IsUserNameExist(string userName) =>
             (await FindByUserName(userName)) != null ;
+
+        public async Task<bool> IsEmailExist(string email) =>
+            (await FindByEmail(email)) != null;
     }
 }

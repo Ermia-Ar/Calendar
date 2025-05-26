@@ -27,14 +27,12 @@ namespace Core.Application.Features.Projects.CommandHandlers
             var project = await _unitOfWork.Projects.GetByIdAsync(request.ProjcetId, cancellationToken);
             if (project.OwnerId != _currentUserServices.GetUserId())
             {
-                return BadRequest<string>("you can not delete this project !!");
+                throw new BadRequestException("you can not delete this project !!");
             }
 
             await using var transaction = await _unitOfWork.Activities.BeginTransactionAsync();
             try
             {
-                // delete from projects table
-                _unitOfWork.Projects.Delete(project);
 
                 // delete from comments table
                 var comments = await _unitOfWork.Comments.GetTableAsTracking()
@@ -53,6 +51,9 @@ namespace Core.Application.Features.Projects.CommandHandlers
                     .Where(x => x.ProjectId == request.ProjcetId)
                     .ToListAsync(cancellationToken);
                 _unitOfWork.Requests.DeleteRange(requests);
+
+                // delete from projects table
+                _unitOfWork.Projects.Delete(project);
 
                 await _unitOfWork.SaveChangeAsync(cancellationToken);
                 await transaction.CommitAsync();

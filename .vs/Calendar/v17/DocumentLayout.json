@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\source\\repos\\Calendar\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.domain\\entity\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\entity\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\projects\\commandhandlers\\createprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\projects\\commandhandlers\\createprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.domain\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\middleware\\errorhandlermiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\middleware\\errorhandlermiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\projects\\commandhandlers\\deleteprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\projects\\commandhandlers\\deleteprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,28 +42,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserRequest.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\UserRequest.cs",
-              "RelativeDocumentMoniker": "Core.Domain\\Entity\\UserRequest.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\UserRequest.cs",
-              "RelativeToolTip": "Core.Domain\\Entity\\UserRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAvAAAA",
+              "DocumentIndex": 1,
+              "Title": "ErrorHandlerMiddleWare.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Middleware\\ErrorHandlerMiddleWare.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Middleware\\ErrorHandlerMiddleWare.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Middleware\\ErrorHandlerMiddleWare.cs",
+              "RelativeToolTip": "Core.Application\\Middleware\\ErrorHandlerMiddleWare.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAD8AAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T17:06:41.92Z",
+              "WhenOpened": "2025-05-26T10:40:36.892Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\User.cs",
-              "RelativeDocumentMoniker": "Core.Domain\\Entity\\User.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\User.cs",
-              "RelativeToolTip": "Core.Domain\\Entity\\User.cs",
+              "DocumentIndex": 0,
+              "Title": "CreateProjectHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAAB4AAABNAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T10:39:42.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DeleteProjectHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\DeleteProjectHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Projects\\CommandHandlers\\DeleteProjectHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\DeleteProjectHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Projects\\CommandHandlers\\DeleteProjectHandler.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T17:06:35.368Z"
+              "WhenOpened": "2025-05-26T10:39:41.741Z",
+              "EditorCaption": ""
             }
           ]
         },

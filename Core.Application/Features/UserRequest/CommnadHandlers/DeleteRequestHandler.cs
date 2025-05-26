@@ -2,6 +2,7 @@
 using Core.Application.Features.Exceptions;
 using Core.Application.Features.UserRequests.Commnads;
 using Core.Domain;
+using Core.Domain.Enum;
 using Core.Domain.Shared;
 using MediatR;
 
@@ -23,20 +24,24 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
         }
         public async Task<Response<string>> Handle(DeleteRequestCommand request, CancellationToken cancellationToken)
         {
-            var userName = _currentUserServices.GetUserName();
+            var userId = _currentUserServices.GetUserId();
+
             var userRequest = await _unitOfWork.Requests.GetByIdAsync(request.Id, cancellationToken);
-            if (userRequest.Receiver != userName || userRequest.Sender != userName)
+            if (userRequest.ReceiverId != userId || userRequest.SenderId != userId)
             {
-                throw new BadRequestException("your not access!");
-            }
-            if (userRequest.Status == Domain.Enum.RequestStatus.Accepted)
-            {
-                userRequest.IsActive = false;
-                _unitOfWork.Requests.Update(userRequest);
+                if (userRequest.Status == RequestStatus.Accepted)
+                {
+                    userRequest.IsActive = false;
+                    _unitOfWork.Requests.Update(userRequest);
+                }
+                else
+                {
+                    _unitOfWork.Requests.Delete(userRequest);
+                }
             }
             else
             {
-                _unitOfWork.Requests.Delete(userRequest);
+                throw new BadRequestException("your not access!");
             }
             await _unitOfWork.SaveChangeAsync(cancellationToken);
             return Deleted("");

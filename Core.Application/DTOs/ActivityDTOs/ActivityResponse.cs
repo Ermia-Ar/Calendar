@@ -10,7 +10,7 @@ namespace Core.Application.DTOs.ActivityDTOs
 
         public string ProjectId { get; set; }
 
-        public string OwnerName { get; set; }
+        public string UserId { get; set; }
 
         public string Title { get; set; }
 

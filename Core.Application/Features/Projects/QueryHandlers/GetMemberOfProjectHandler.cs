@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.DTOs.UserDTOs;
 using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Query;
 using Core.Domain;
@@ -8,7 +9,7 @@ using MediatR;
 namespace Core.Application.Features.Projects.QueryHandlers
 {
     public class GetMemberOfProjectHandler : ResponseHandler
-        , IRequestHandler<GetMemberOfProjectQuery, Response<List<string>>>
+        , IRequestHandler<GetMemberOfProjectQuery, Response<List<UserResponse>>>
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
@@ -21,17 +22,19 @@ namespace Core.Application.Features.Projects.QueryHandlers
             _currentUserServices = currentUserServices;
         }
 
-        public async Task<Response<List<string>>> Handle(GetMemberOfProjectQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<UserResponse>>> Handle(GetMemberOfProjectQuery request, CancellationToken cancellationToken)
         {
-            var userName = _currentUserServices.GetUserName();
+            var userId = _currentUserServices.GetUserId();
             //check if user is the owner of project or not 
-            var projectMembers = await _unitOfWork.Requests.GetMemberOfProject(request.ProjectId, cancellationToken);
-            if (!projectMembers.Any(x => x == userName))
+            var projectMembers = await _unitOfWork.Requests
+                .GetMemberOfProject(request.ProjectId, cancellationToken);
+
+            if (!projectMembers.Any(x => x.Id == userId))
             {
                 throw new BadRequestException("Only the members of this project has access to this section.");
             }
-
-            return Success(projectMembers);
+            var response = _mapper.Map<List<UserResponse>>(projectMembers);
+            return Success(response);
 
         }
     }
