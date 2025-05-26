@@ -1,4 +1,5 @@
-﻿using Core.Domain.Entity;
+﻿using Core.Application.Features.Exceptions;
+using Core.Domain.Entity;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
@@ -85,7 +86,7 @@ namespace Infrastructure.Repositories
             var activity = await _activities.FirstOrDefaultAsync(x => x.Id == id);
             if (activity == null)
             {
-                throw new Exception("id is invalid");
+                throw new NotFoundException("id is invalid");
             }
             return activity;
         }
@@ -109,13 +110,10 @@ namespace Infrastructure.Repositories
 
         public async Task<string[]> GetProjectActiveActivityIds(string projectId, CancellationToken token)
         {
-            var activities = await GetTableNoTracking()
-                         .Where(x => x.ProjectId == projectId
-                          && x.StartDate >= DateTime.Now)
-                         .Select(x => x.Id)
-                         .ToListAsync();
-
-            return activities.ToArray();
+            var activities = (await GetProjectActivities(projectId, token))
+                .Select(x => x.Id).ToArray();
+            
+            return activities;
         }
 
     }

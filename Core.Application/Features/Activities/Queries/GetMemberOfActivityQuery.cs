@@ -4,5 +4,5 @@ using MediatR;
 
 namespace Core.Application.Features.Activities.Queries
 {
-    public record class GetMemberOfActivityQuery(string ActivityId) : IRequest<Response<List<string>>>;
+    public record class GetMemberOfActivityQuery(string ActivityId) : IRequest<Response<List<UserResponse>>>;
 }

@@ -4,6 +4,9 @@ using MediatR;
 using Core.Domain;
 using Core.Application.Features.UserRequests.Commnads;
 using Core.Application.Features.Exceptions;
+using Core.Application.Features.Auth.Handler;
+using Microsoft.AspNetCore.Identity;
+using Core.Domain.Enum;
 
 namespace Core.Application.Features.UserRequests.CommandHandlers
 {
@@ -21,34 +24,32 @@ namespace Core.Application.Features.UserRequests.CommandHandlers
 
         public async Task<Response<string>> Handle(AnswerRequestCommand request, CancellationToken cancellationToken)
         {
-            //check request validation
-            var userName = _currentUserServices.GetUserName();
-            var result = await _unitOfWork.Requests.GetByIdAsync(request.RequestId, cancellationToken);
-            if (result.Receiver != userName)
+            var userId = _currentUserServices.GetUserId();
+            //get request
+            var userRequest = await _unitOfWork.Requests.GetByIdAsync(request.RequestId, cancellationToken);
+            if (userRequest.ReceiverId != userId)
             {
                 throw new NotFoundException("not found request !");
             }
-            if (result.IsExpire == true)
+            if (userRequest.IsExpire == true)
             {
                 throw new BadRequestException("this request was Expire !");
             }
 
             //check if the request for a Project 
-            if (result.RequestFor == Domain.Enum.RequestFor.Project && request.IsAccepted == true)
+            if (userRequest.RequestFor == Domain.Enum.RequestFor.Project && request.IsAccepted == true)
             {
-                //check if the user is member of this project 
-                var isMember = (await _unitOfWork.Requests
-                    .GetMemberOfProject(result.ProjectId, cancellationToken))
-                    .Any(memberName => memberName == userName);
-
-                //sent request for each activity
+                //sent request for each activity in project
                 var userRequests = new List<UserRequest>();
-                var activityIds = await _unitOfWork.Activities.GetProjectActiveActivityIds(result.ProjectId, cancellationToken);
+                var activityIds = await _unitOfWork.Activities
+                    .GetProjectActiveActivityIds(userRequest.ProjectId, cancellationToken);
+
                 foreach (var activityId in activityIds)
                 {
-                    var sendRequest = UserRequest.CreateUserRequest(activityId, result.ProjectId
-                        , result.Sender, userName, null, !isMember
-                        , Domain.Enum.RequestStatus.Accepted);
+                    var sendRequest = UserRequest.CreateUserRequest(activityId
+                        , userRequest.ProjectId, userRequest.SenderId
+                        , userRequest.ReceiverId, null
+                        , false, RequestStatus.Accepted);
 
                     userRequests.Add(sendRequest);
                 }

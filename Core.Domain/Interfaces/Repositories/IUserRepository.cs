@@ -13,5 +13,7 @@ namespace Core.Domain.Interfaces.Repositories
         public Task<IdentityResult> AddRoleToUser(User user, string roleName);
         public Task<bool> CheckPasswordAsync(User user, string password);
         public Task<bool> IsUserNameExist(string userName);
+        public Task<bool> IsUserIdExist(string userId);
+        public Task<bool> IsEmailExist(string email);
     }
 }

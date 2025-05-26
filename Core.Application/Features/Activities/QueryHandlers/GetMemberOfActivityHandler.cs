@@ -3,11 +3,13 @@ using Core.Application.Features.Activities.Queries;
 using Core.Domain.Shared;
 using Core.Domain;
 using MediatR;
+using Core.Application.DTOs.UserDTOs;
+using Core.Application.Features.Exceptions;
 
 namespace Core.Application.Features.Activities.QueryHandlers
 {
     public class GetMemberOfActivityHandler : ResponseHandler
-        , IRequestHandler<GetMemberOfActivityQuery, Response<List<string>>>
+        , IRequestHandler<GetMemberOfActivityQuery, Response<List<UserResponse>>>
     {
         public readonly IUnitOfWork _unitOfWork;
         public readonly ICurrentUserServices _currentUser;
@@ -20,17 +22,20 @@ namespace Core.Application.Features.Activities.QueryHandlers
             _mapper = mapper;
         }
 
-        public async Task<Response<List<string>>> Handle(GetMemberOfActivityQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<UserResponse>>> Handle(GetMemberOfActivityQuery request, CancellationToken cancellationToken)
         {
-            var userName = _currentUser.GetUserName();
+            var userId = _currentUser.GetUserId();
             // check activity owner
-            var activityMembers = await _unitOfWork.Requests.GetMemberOfActivity(request.ActivityId, cancellationToken);
-            if (!activityMembers.Any(x => x == userName))
-            {
-                return NotFound<List<string>>("Only the members of this activity has access to this section.");
-            }
+            var activityMembers = await _unitOfWork.Requests
+                .GetMemberOfActivity(request.ActivityId, cancellationToken);
 
-            return Success(activityMembers);
+            if (!activityMembers.Any(x => x.Id == userId))
+            {
+                throw new NotFoundException("Only the members of this activity has access to this section.");
+            }
+            var response = _mapper.Map<List<UserResponse>>(activityMembers); 
+
+            return Success(response);
         }
     }
 }

@@ -4,6 +4,7 @@ using Core.Application.Features.Activities.Commands;
 using Core.Application.Features.Exceptions;
 using Core.Domain;
 using Core.Domain.Entity;
+using Core.Domain.Enum;
 using Core.Domain.Shared;
 using MediatR;
 
@@ -26,20 +27,10 @@ namespace Core.Application.Features.Activities.CommandHandlers
         public async Task<Response<string>> Handle(CreateSubActivityCommand request, CancellationToken cancellationToken)
         {
             var ownerId = _currentUser.GetUserId();
-
-            //check user name exist ? 
+            //get member of activity
             var members = await _unitOfWork.Requests
                 .GetMemberOfActivity(request.CreateActivity.ActivityId, cancellationToken);
-
-            foreach (var member in members)
-            {
-                var isExist = await _unitOfWork.Users.IsUserNameExist(member);
-                if (!isExist)
-                {
-                    throw new NotFoundException($"user name {member} does not exist !");
-                }
-            }
-
+            //get main activity
             var activity = await _unitOfWork.Activities
                 .GetByIdAsync(request.CreateActivity.ActivityId, cancellationToken);
 
@@ -55,16 +46,13 @@ namespace Core.Application.Features.Activities.CommandHandlers
                  request.CreateActivity.Category);
 
             //create request for all members of main activity
-
             var userRequests = new List<UserRequest>();
             foreach (var member in members)
             {
-
                 var sendRequest = UserRequest.CreateUserRequest(subActivity.Id
                     , subActivity.ProjectId
-                    , _currentUser.GetUserName()
-                    , member, null, false
-                    , Domain.Enum.RequestStatus.Accepted);
+                    , ownerId, member.Id, null, false
+                    , RequestStatus.Accepted);
 
                 userRequests.Add(sendRequest);
             }

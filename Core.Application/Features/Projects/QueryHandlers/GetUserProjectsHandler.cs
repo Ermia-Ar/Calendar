@@ -24,11 +24,9 @@ namespace Core.Application.Features.Projects.QueryHandlers
         public async Task<Response<List<ProjectResponse>>> Handle(GetUserProjectsQuery request, CancellationToken cancellationToken)
         {
             var ownerId = _currentUserServices.GetUserId();
-            var userName = _currentUserServices.GetUserName();
             
             var projects = await _unitOfWork.Requests.GetProjects
-                (userName, request.UserIsOwner == true? ownerId : null
-                , cancellationToken, request.StartDate, request.IsHistory);
+                (ownerId, request.UserIsOwner, cancellationToken, request.StartDate, request.IsHistory);
 
             var response = _mapper.Map<List<ProjectResponse>>(projects);
             return Success(response);

@@ -3,6 +3,7 @@ using Core.Application.Features.Exceptions;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
 using Core.Domain.Entity;
+using Core.Domain.Enum;
 using Core.Domain.Shared;
 using MediatR;
 
@@ -25,17 +26,6 @@ namespace Core.Application.Features.Projects.CommandHandlers
         public async Task<Response<string>> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
             var ownerId = _currentUserServices.GetUserId();
-            var ownerName = _currentUserServices.GetUserName();
-
-            // check UserNames exist ?
-            foreach (var receiver in request.CreateProject.Members)
-            {
-                var isExist = await _unitOfWork.Users.IsUserNameExist(receiver);
-                if (!isExist)
-                {
-                    throw new NotFoundException($"user name {receiver} does not exist !");
-                }
-            }
 
             //map to project entity
             var project = Project.Create(ownerId, request.CreateProject.Title
@@ -46,21 +36,26 @@ namespace Core.Application.Features.Projects.CommandHandlers
             var userRequests = new List<UserRequest>();
 
             // sent request for each members
-            foreach (var Receiver in request.CreateProject.Members)
+            foreach (var memberName in request.CreateProject.Members)
             {
-                var sendRequest1 = UserRequest.CreateUserRequest(null, project.Id
-                   , ownerName, Receiver
+                var receiver = await _unitOfWork.Users.FindByUserName(memberName);
+                if (receiver == null)
+                {
+                    throw new NotFoundException($"user name {memberName} does not exist !");
+                }
+                var sendRequest1 = UserRequest.CreateUserRequest(null
+                   , project.Id, ownerId, receiver.Id
                    , request.CreateProject.RequestMassage
-                   , false, Domain.Enum.RequestStatus.Pending);
+                   , false, RequestStatus.Pending);
 
                 userRequests.Add(sendRequest1);
             }
 
             //add the owner of project to the members 
-            var sendRequest = UserRequest.CreateUserRequest(null, project.Id
-                   , ownerName, ownerName
-                   , request.CreateProject.RequestMassage
-                   , false, Domain.Enum.RequestStatus.Accepted);
+            var sendRequest = UserRequest.CreateUserRequest(null
+                , project.Id, ownerId, ownerId
+                , request.CreateProject.RequestMassage
+                , false, RequestStatus.Accepted);
 
             userRequests.Add(sendRequest);
            

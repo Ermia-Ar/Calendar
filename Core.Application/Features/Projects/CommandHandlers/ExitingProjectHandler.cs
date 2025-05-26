@@ -28,7 +28,8 @@ namespace Core.Application.Features.Projects.CommandHandlers
         {
             var requests = await _unitOfWork.Requests.GetTableNoTracking()
                .Where(x => x.ProjectId == request.ProjectId
-                && x.Receiver == _currentUserServices.GetUserName())
+                && x.Receiver.Id == _currentUserServices.GetUserId()
+                && x.Status == Domain.Enum.RequestStatus.Accepted)
                .ToListAsync();
 
             if (!requests.Any())

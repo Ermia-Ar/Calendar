@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
-using AutoMapper.Execution;
 using Core.Application.Features.Activities.Commands;
 using Core.Application.Features.Exceptions;
 using Core.Domain;
 using Core.Domain.Entity;
+using Core.Domain.Enum;
 using Core.Domain.Shared;
 using MediatR;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Collections.Immutable;
 
 namespace Core.Application.Features.Activities.CommandHandlers
 {
@@ -29,14 +31,14 @@ namespace Core.Application.Features.Activities.CommandHandlers
             var ownerId = _currentUser.GetUserId();
             var ownerName = _currentUser.GetUserName();
 
-            foreach (var member in request.CreateActivity.Members)
-            {
-                var isExist = await _unitOfWork.Users.IsUserNameExist(member);
-                if (!isExist)
-                {
-                    throw new NotFoundException($"user name {member} does not exist !");
-                }
-            }
+            //foreach (var member in request.CreateActivity.Members)
+            //{
+            //    var isExist = await _unitOfWork.Users.IsUserNameExist(member);
+            //    if (!isExist)
+            //    {
+            //        throw new NotFoundException($"user name {member} does not exist !");
+            //    }
+            //}
             // map to activity table
             var activity = Activity.Create(null, ownerId, projectId,
                 request.CreateActivity.Title, request.CreateActivity.Description,
@@ -47,29 +49,34 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
             //create request for all members
             var userRequests = new List<UserRequest>();
-            foreach (var member in request.CreateActivity.Members)
+            foreach (var memberName in request.CreateActivity.Members)
             {
+                var member = await _unitOfWork.Users.FindByUserName(memberName);
+                if (member == null)
+                {
+                    throw new NotFoundException($"user name {memberName} does not exist !");
+                }
                 var sendRequest1 = UserRequest.CreateUserRequest(activity.Id
-                    , activity.ProjectId, ownerName
-                    , member, request.CreateActivity.Message
-                    , false, Domain.Enum.RequestStatus.Pending);
+                    , projectId, ownerId, member.Id
+                    , request.CreateActivity.Message
+                    , false, RequestStatus.Pending);
 
                 userRequests.Add(sendRequest1);
             }
-
+            //todo IsActive == false
             //add owner to activity members
             var sendRequest = UserRequest.CreateUserRequest(activity.Id
-                    , activity.ProjectId, ownerName,ownerName
+                    , activity.ProjectId, ownerId, ownerId
                     , request.CreateActivity.Message
-                    , false, Domain.Enum.RequestStatus.Accepted);
+                    , false, RequestStatus.Accepted);
 
             userRequests.Add(sendRequest);
 
 
-            //send all requests
-            await _unitOfWork.Requests.AddRangeAsync(userRequests , cancellationToken);
             //add to activity table
             await _unitOfWork.Activities.AddAsync(activity, cancellationToken);
+            //send all requests
+            await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
             return Created(activity.Id);

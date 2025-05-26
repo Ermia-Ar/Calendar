@@ -17,9 +17,13 @@ namespace Core.Domain.Entity
         public string ProjectId { get; set; }
         public Project Project { get; set; }
 
-        public string Sender { get; set; }
+        [ForeignKey(nameof(SenderId))]
+        public string SenderId { get; set; }
+        public User Sender { get; set; }
 
-        public string Receiver { get; set; }
+        [ForeignKey(nameof(ReceiverId))]
+        public string ReceiverId { get; set; }
+        public User Receiver {  get; set; }
 
         //For Activity Or Project
         public RequestFor RequestFor { get; set; }
@@ -39,15 +43,15 @@ namespace Core.Domain.Entity
         public bool IsGuest { get; set; }
 
         public static UserRequest CreateUserRequest(string? activityId, string projectId
-        , string sender, string receiver, string? massage, bool isGuest , RequestStatus status)
+        , string senderId, string receiverId, string? massage, bool isGuest , RequestStatus status)
         {
             return new UserRequest
             {
                 Id = Guid.NewGuid().ToString(),
                 ActivityId = activityId,
                 ProjectId = projectId,
-                Sender = sender,
-                Receiver = receiver,
+                SenderId = senderId,
+                ReceiverId = receiverId,
                 InvitedAt = DateTime.Now,
                 AnsweredAt = status != RequestStatus.Pending ? DateTime.Now : null,
                 RequestFor = activityId == null ? RequestFor.Project : RequestFor.Activity,

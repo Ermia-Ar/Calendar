@@ -24,43 +24,43 @@ namespace Infrastructure.Repositories
         }
 
         //for activity requests
-        public async Task<List<UserRequest>> GetUnAnsweredRequest(string userName, RequestFor? requestFor, CancellationToken token)
+        public async Task<List<UserRequest>> GetUnAnsweredRequest(string userId, RequestFor? requestFor, CancellationToken token)
         {
-            var requests = await GetActivityRequests(false, requestFor, null, userName, token);
+            var requests = await GetRequests(false, requestFor, null, userId, token);
 
             return requests.ToList();
         }
 
-        public async Task<List<UserRequest>> GetRequestsReceived(string userName, RequestFor? requestFor, CancellationToken token)
+        public async Task<List<UserRequest>> GetRequestsReceived(string userId, RequestFor? requestFor, CancellationToken token)
         {
-            var requests = await GetActivityRequests(false, requestFor, userName, null, token);
+            var requests = await GetRequests(false, requestFor, userId, null, token);
 
             return requests.ToList();
         }
 
-        public async Task<List<UserRequest>> GetRequestsResponse(string userName, RequestFor? requestFor, CancellationToken token)
+        public async Task<List<UserRequest>> GetRequestsResponse(string userId, RequestFor? requestFor, CancellationToken token)
         {
-            var requests = await GetActivityRequests(true, requestFor, null, userName, token);
+            var requests = await GetRequests(true, requestFor, null, userId, token);
 
             return requests.ToList();
         }
 
-        public async Task<List<UserRequest>> GetResponsesUserSent(string userName, RequestFor? requestFor, CancellationToken token)
+        public async Task<List<UserRequest>> GetResponsesUserSent(string userId, RequestFor? requestFor, CancellationToken token)
         {
-            var requests = await GetActivityRequests(true, requestFor, userName, null, token);
+            var requests = await GetRequests(true, requestFor, userId, null, token);
 
             return requests.ToList();
         }
 
-        private async Task<IEnumerable<UserRequest>> GetActivityRequests(bool isExpire, RequestFor? requestFor, string? Receiver, string? sender, CancellationToken token)
+        private async Task<IEnumerable<UserRequest>> GetRequests(bool isExpire, RequestFor? requestFor, string? receiverId, string? senderId, CancellationToken token)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
             await connection.OpenAsync();
 
             var parameters = new DynamicParameters();
             parameters.Add("IsExpire", isExpire);
-            parameters.Add("Sender", sender);
-            parameters.Add("Receiver", Receiver);
+            parameters.Add("SenderId", senderId);
+            parameters.Add("ReceiverId", receiverId);
             parameters.Add("RequestFor", requestFor);
             parameters.Add("IsActive", true);
 
@@ -89,7 +89,7 @@ namespace Infrastructure.Repositories
             Delete(request);
         }
 
-        public async Task<List<Project>> GetProjects(string userName, string? ownerId, CancellationToken token
+        public async Task<List<Project>> GetProjects(string userId, bool userIsOwner, CancellationToken token
             , DateTime? startDate, bool isHistory = false)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -98,10 +98,10 @@ namespace Infrastructure.Repositories
             var parameters = new DynamicParameters();
             parameters.Add("isExpire", true);
             parameters.Add("requestFor", (int)RequestFor.Project);
-            parameters.Add("receiver", userName);
+            parameters.Add("receiverId", userId);//ToDo
             parameters.Add("status", RequestStatus.Accepted);
             parameters.Add("startDate", startDate);
-            parameters.Add("ownerId", ownerId);
+            parameters.Add("ownerId", userIsOwner? userId:null);
             parameters.Add("History", isHistory == true ? DateTime.Now : null);
 
             var projects = await connection.QueryAsync<Project>
@@ -114,7 +114,7 @@ namespace Infrastructure.Repositories
             return projects.ToList();
         }
 
-        public async Task<List<string>> GetMemberOfProject(string projectId, CancellationToken token)
+        public async Task<List<User>> GetMemberOfProject(string projectId, CancellationToken token)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
             await connection.OpenAsync(token);
@@ -126,14 +126,14 @@ namespace Infrastructure.Repositories
             parameters.Add("activityId", null);
             parameters.Add("status", RequestStatus.Accepted);
 
-            var members = await connection.QueryAsync<string>
+            var members = await connection.QueryAsync<User>
                 ("SP_GetMemberOf", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
 
             return members.ToList();
         }
 
-        public async Task<List<Activity>> GetActivities(string userName, string? ownerId, CancellationToken token
+        public async Task<List<Activity>> GetActivities(string userId, bool userIsOwner, CancellationToken token
             , DateTime? startDate, ActivityCategory? category, bool isCompleted, bool isHistory)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -142,11 +142,11 @@ namespace Infrastructure.Repositories
             var parameters = new DynamicParameters();
             parameters.Add("isExpire", true);
             parameters.Add("requestFor", (int)RequestFor.Activity);
-            parameters.Add("receiver", userName);
+            parameters.Add("receiverId", userId);//ToDo
             parameters.Add("status", RequestStatus.Accepted);
             parameters.Add("startDate", startDate);
             parameters.Add("History", isHistory == true ? DateTime.Now : null);
-            parameters.Add("ownerId", ownerId);
+            parameters.Add("ownerId", userIsOwner? userId:null);
             parameters.Add("category", category ?? null);
             parameters.Add("isCompleted", isCompleted == true ? true : null);
 
@@ -157,7 +157,7 @@ namespace Infrastructure.Repositories
             return activities.ToList();
         }
 
-        public async Task<List<string>> GetMemberOfActivity(string activityId, CancellationToken token)
+        public async Task<List<User>> GetMemberOfActivity(string activityId, CancellationToken token)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
             await connection.OpenAsync(token);
@@ -169,7 +169,7 @@ namespace Infrastructure.Repositories
             parameters.Add("activityId", activityId);
             parameters.Add("status", (int)RequestStatus.Accepted);
 
-            var members = await connection.QueryAsync<string>
+            var members = await connection.QueryAsync<User>
                 ("SP_GetMemberOf", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
 
