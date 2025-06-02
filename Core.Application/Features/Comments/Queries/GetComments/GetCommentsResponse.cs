@@ -1,7 +1,4 @@
-﻿using Core.Application.DTOs.ActivityDTOs;
-using System.Diagnostics;
-
-namespace Core.Application.Features.Comments.Queries.GetComments
+﻿namespace Core.Application.Features.Comments.Queries.GetComments
 {
     public record class GetCommentsResponse
        (string Id,

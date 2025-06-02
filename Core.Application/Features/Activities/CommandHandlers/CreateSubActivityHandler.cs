@@ -1,17 +1,15 @@
 ﻿using AutoMapper;
-using AutoMapper.Execution;
+using Core.Application.Exceptions.Activity;
 using Core.Application.Features.Activities.Commands;
-using Core.Application.Features.Exceptions;
 using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Enum;
-using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Activities.CommandHandlers
 {
-    public class CreateSubActivityHandler : ResponseHandler
-        , IRequestHandler<CreateSubActivityCommand, Response<string>>
+    public sealed class CreateSubActivityHandler 
+        : IRequestHandler<CreateSubActivityCommand, string>
     {
         public readonly IUnitOfWork _unitOfWork;
         public readonly ICurrentUserServices _currentUser;
@@ -24,24 +22,24 @@ namespace Core.Application.Features.Activities.CommandHandlers
             _mapper = mapper;
         }
 
-        public async Task<Response<string>> Handle(CreateSubActivityCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateSubActivityCommand request, CancellationToken cancellationToken)
         {
             var ownerId = _currentUser.GetUserId();
             //get member of activity
             var members = await _unitOfWork.Requests
                 .GetMemberOfActivity(request.CreateActivity.ActivityId, cancellationToken);
             //get main activity
-            var activity = await _unitOfWork.Activities
-                .GetByIdAsync(request.CreateActivity.ActivityId, cancellationToken);
+            var baseActivity = await _unitOfWork.Activities
+                .GetActivityById(request.CreateActivity.ActivityId, cancellationToken);
 
-            if (activity.UserId != ownerId)
+            if (baseActivity.UserId != ownerId)
             {
-                throw new BadRequestException("Only the owner of this activity has access to this section.");
+                throw new OnlyActivityCreatorAllowedException();
             }
             // map to activity
-            var subActivity = Activity.Create(activity.Id, ownerId, activity.ProjectId,
+            var subActivity = Activity.Create(baseActivity.Id, ownerId, baseActivity.ProjectId,
                 request.CreateActivity.Title, request.CreateActivity.Description,
-                 request.CreateActivity.StartDate, request.CreateActivity.DurationInMinute, 
+                 request.CreateActivity.StartDate, request.CreateActivity.DurationInMinute,
                  request.CreateActivity.NotificationBeforeInMinute,
                  request.CreateActivity.Category);
 
@@ -58,13 +56,13 @@ namespace Core.Application.Features.Activities.CommandHandlers
             }
 
             //add to table activity
-            await _unitOfWork.Activities.AddAsync(subActivity, cancellationToken);
+            await _unitOfWork.Activities.AddActivity(subActivity, cancellationToken);
 
             //send all requests
-            await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
+            await _unitOfWork.Requests.AddRangeRequest(userRequests, cancellationToken);
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Created(activity.Id);
+            return "Created";
         }
     }
 }

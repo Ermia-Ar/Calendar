@@ -1,27 +1,20 @@
 ﻿using Core.Domain.Enum;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Domain.Entity
 {
     public class UserRequest
     {
-        [Key]
         public string Id { get; set; }
 
-        [ForeignKey(nameof(ActivityId))]
         public string? ActivityId { get; set; }
         public Activity Activity { get; set; }
 
-        [ForeignKey(nameof(ProjectId))]
         public string ProjectId { get; set; }
         public Project Project { get; set; }
 
-        [ForeignKey(nameof(SenderId))]
         public string SenderId { get; set; }
         public User Sender { get; set; }
 
-        [ForeignKey(nameof(ReceiverId))]
         public string ReceiverId { get; set; }
         public User Receiver {  get; set; }
 

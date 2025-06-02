@@ -6,8 +6,8 @@ C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.Gen
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.AssemblyInfoInputs.cache
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.AssemblyInfo.cs
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.sourcelink.json
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.dll
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\refint\Core.Domain.dll
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.pdb
 C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\ref\Core.Domain.dll
-C:\Users\DELL\source\repos\Calendar\Core.Domain\obj\Debug\net8.0\Core.Domain.sourcelink.json

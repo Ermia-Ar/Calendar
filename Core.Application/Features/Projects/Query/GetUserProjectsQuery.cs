@@ -1,13 +1,8 @@
 ﻿using Core.Application.DTOs.ProjectDTOs;
-using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Projects.Query
 {
-    public class GetUserProjectsQuery : IRequest<Response<List<ProjectResponse>>>
-    {
-        public DateTime? StartDate { get; set; }
-        public bool UserIsOwner { get; set; }
-        public bool IsHistory {  get; set; }
-    }
+    public record class GetUserProjectsQuery(DateTime? StartDate, bool UserIsOwner, bool IsHistory)
+        : IRequest<List<ProjectResponse>>;
 }

@@ -1,7 +1,6 @@
-﻿using Core.Domain.Shared;
-using MediatR;
+﻿using MediatR;
 
 namespace Core.Application.Features.Comments.Commands.DeleteComment
 {
-    public record class DeleteCommentCommand(string Id) : IRequest<Response<string>>;
+    public record class DeleteCommentCommand(string Id) : IRequest<string>;
 }

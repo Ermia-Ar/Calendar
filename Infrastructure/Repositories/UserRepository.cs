@@ -1,40 +1,45 @@
-﻿using Core.Domain.Entity;
+﻿using AutoMapper;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces.Repositories;
+using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.RateLimiting;
+using DomainUser = Core.Domain.Entity.User;
+
 
 namespace Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
         private readonly UserManager<User> _userManager;
+        private readonly IMapper _mapper;
 
-        public UserRepository(UserManager<User> userManager)
+
+        public UserRepository(UserManager<User> userManager, IMapper mapper)
         {
             _userManager = userManager;
+            _mapper = mapper;
         }
 
-        public async Task<IdentityResult> AddRoleToUser(User user, string roleName) =>
-            await _userManager.AddToRoleAsync(user, roleName);
+        public async Task<string?> AddRoleToUser(DomainUser user, string roleName) =>
+            (await _userManager.AddToRoleAsync(_mapper.Map<User>(user), roleName)).Errors.First().Description;
 
-        public async Task<IdentityResult> AddUser(User user, string password) =>
-            await _userManager.CreateAsync(user, password);
+        public async Task<string?> AddUser(DomainUser user, string password) =>
+            (await _userManager.CreateAsync(_mapper.Map<User>(user), password)).Errors.First().Description;
 
-        public async Task<bool> CheckPasswordAsync(User user, string password) =>
-            await _userManager.CheckPasswordAsync(user, password);
+        public async Task<bool> CheckPasswordAsync(DomainUser user, string password) =>
+            await _userManager.CheckPasswordAsync(_mapper.Map<User>(user), password);
 
-        public async Task<User> FindByEmail(string email) =>
-            await _userManager.FindByEmailAsync(email);
+        public async Task<DomainUser?> FindByEmail(string email) =>
+            _mapper.Map<DomainUser?>(await _userManager.FindByEmailAsync(email));
 
-        public async Task<User> FindByUserName(string userName) =>
-            await _userManager.FindByNameAsync(userName);
+        public async Task<DomainUser?> FindByUserName(string userName) =>
+            _mapper.Map<DomainUser?>(await _userManager.FindByNameAsync(userName));
 
-        public async Task<User> FindById(string userId) =>
-            await _userManager.FindByIdAsync(userId);
+        public async Task<DomainUser?> FindById(string userId) =>
+            _mapper.Map<DomainUser?>(await _userManager.FindByIdAsync(userId));
 
-        public async Task<List<User>> GetAllUsers(string? search , UserCategory? category, CancellationToken token)
+        public async Task<List<DomainUser>> GetAllUsers(string? search , UserCategory? category, CancellationToken token)
         {
             var users = _userManager.Users;
             if(search != null)
@@ -45,16 +50,7 @@ namespace Infrastructure.Repositories
             {
                 users = users.Where(x => x.Category == category);
             }
-            return await users.ToListAsync(token);
+            return _mapper.Map<List<DomainUser>>(await users.ToListAsync(token));
         }
-
-        public async Task<bool> IsUserIdExist(string userId) =>
-            (await FindById(userId)) != null;
-
-        public async Task<bool> IsUserNameExist(string userName) =>
-            (await FindByUserName(userName)) != null ;
-
-        public async Task<bool> IsEmailExist(string email) =>
-            (await FindByEmail(email)) != null;
     }
 }

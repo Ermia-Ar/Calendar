@@ -1,5 +1,6 @@
 ﻿using Application.Behaviors;
 using Core.Application.Behaviors;
+using Core.Application.Mapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,13 +12,21 @@ namespace Core.Application
     {
         public static IServiceCollection AddCoreDependencies(this IServiceCollection services)
         {
-            //Configuration Of Mediator
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+
             // Get Validators
-            services.AddValidatorsFromAssembly(Assembly.GetAssembly(typeof(Validators.CreateActivityRequestValidator)));
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
             //
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
+            services.AddAutoMapper(typeof(ApplicationProfile));
+
+
+            services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
+            });
+
             return services;
         }
     }

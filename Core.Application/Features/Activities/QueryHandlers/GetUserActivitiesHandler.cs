@@ -2,13 +2,12 @@
 using Core.Application.DTOs.ActivityDTOs;
 using Core.Application.Features.Activities.Queries;
 using Core.Domain;
-using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Activities.QueryHandlers
 {
-    public class GetUserActivitiesHandler : ResponseHandler
-        , IRequestHandler<GetUserActivitiesQuery, Response<List<ActivityResponse>>>
+    public class GetUserActivitiesHandler 
+        : IRequestHandler<GetUserActivitiesQuery, List<ActivityResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICurrentUserServices _currentUserServices;
@@ -21,7 +20,7 @@ namespace Core.Application.Features.Activities.QueryHandlers
             _mapper = mapper;
         }
 
-        public async Task<Response<List<ActivityResponse>>> Handle(GetUserActivitiesQuery request, CancellationToken cancellationToken)
+        public async Task<List<ActivityResponse>> Handle(GetUserActivitiesQuery request, CancellationToken cancellationToken)
         {
             var userId = _currentUserServices.GetUserId();
 
@@ -30,7 +29,7 @@ namespace Core.Application.Features.Activities.QueryHandlers
                 , request.StartDate, request.Category, request.IsCompleted, request.IsHistory);
 
             var response = _mapper.Map<List<ActivityResponse>>(activities); ;
-            return Success(response);
+            return response;
         }
     }
 }

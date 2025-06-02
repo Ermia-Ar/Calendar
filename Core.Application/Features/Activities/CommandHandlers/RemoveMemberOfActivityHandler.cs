@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
+using Core.Application.Exceptions.Activity;
+using Core.Application.Exceptions.UseRequest;
 using Core.Application.Features.Activities.Commands;
-using Core.Application.Features.Exceptions;
 using Core.Domain;
-using Core.Domain.Shared;
+using Core.Domain.Enum;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Core.Application.Features.Activities.CommandHandlers
 {
-    public class RemoveMemberOfActivityHandler : ResponseHandler
-        , IRequestHandler<RemoveMemberOfActivityCommand, Response<string>>
+    public class RemoveMemberOfActivityHandler 
+        : IRequestHandler<RemoveMemberOfActivityCommand, string>
     {
         public readonly IUnitOfWork _unitOfWork;
         public readonly ICurrentUserServices _currentUser;
@@ -22,27 +22,33 @@ namespace Core.Application.Features.Activities.CommandHandlers
             _mapper = mapper;
         }
 
-        public async Task<Response<string>> Handle(RemoveMemberOfActivityCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(RemoveMemberOfActivityCommand request, CancellationToken cancellationToken)
         {
             var userId = _currentUser.GetUserId();
-            var activity = await _unitOfWork.Activities.GetByIdAsync(request.ActivityId, cancellationToken);
+            var activity = await _unitOfWork.Activities
+                .GetActivityById(request.ActivityId, cancellationToken);
+
             if (activity.UserId != _currentUser.GetUserId())
             {
-                throw new BadRequestException("Only the owner of this activity has access to this section.");
+                throw new OnlyActivityCreatorAllowedException();
             }
+            // get user by username
+            var receiver = await _unitOfWork.Users.FindByUserName(request.UserName);
 
-            var receiver = await _unitOfWork.Users.FindByUserName(request.UserName); 
-            var userRequest = await _unitOfWork.Requests.GetTableNoTracking()
-                .FirstOrDefaultAsync(x => x.ActivityId == request.ActivityId
-                && x.ReceiverId == receiver.Id);
+            //find request
+            var userRequest = (await _unitOfWork.Requests.GetRequests(null, null, cancellationToken))
+                .FirstOrDefault(x => x.RequestFor == RequestFor.Activity
+                && x.ActivityId == request.ActivityId
+                && x.ReceiverId == receiver.Id
+                && x.Status == RequestStatus.Accepted);
 
             if (userRequest == null)
             {
-                throw new NotFoundException("No such member was found.");
+                throw new NotFoundMemberException("No such member was found.");
             }
-            _unitOfWork.Requests.Delete(userRequest);
+            _unitOfWork.Requests.DeleteRequest(userRequest);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return NoContent<string>();
+            return "Deleted";
         }
     }
 }

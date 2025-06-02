@@ -14,7 +14,7 @@ namespace Core.Application.Validators
             RuleFor(x => x.Receivers)
                 .NotNull()
                 .NotEmpty();
-                
+
         }
     }
 }

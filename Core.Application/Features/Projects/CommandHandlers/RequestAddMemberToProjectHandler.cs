@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
-using Core.Application.Features.Exceptions;
+using Core.Application.Exceptions.Project;
+using Core.Application.Exceptions.User;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
 using Core.Domain.Entity;
-using Core.Domain.Shared;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Core.Application.Features.Projects.CommandHandlers
 {
-    public class RequestAddMemberToProjectHandler : ResponseHandler,
-        IRequestHandler<RequestAddMemberToProjectCommand, Response<string>>
+    public sealed class RequestAddMemberToProjectHandler
+        : IRequestHandler<RequestAddMemberToProjectCommand, string>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICurrentUserServices _currentUserServices;
@@ -23,14 +22,14 @@ namespace Core.Application.Features.Projects.CommandHandlers
             _currentUserServices = currentUserServices;
         }
 
-        public async Task<Response<string>> Handle(RequestAddMemberToProjectCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(RequestAddMemberToProjectCommand request, CancellationToken cancellationToken)
         {
             var userId = _currentUserServices.GetUserId();
             //check if project for user or not
-            var project = await _unitOfWork.Projects.GetByIdAsync(request.ProjectRequest.ProjcetId, cancellationToken);
+            var project = await _unitOfWork.Projects.GetProjectById(request.ProjectRequest.ProjectId, cancellationToken);
             if (project.OwnerId != userId)
             {
-                throw new BadRequestException("Only the owner of this project has access to this section.");
+                throw new OnlyProjectCreatorAllowedException();
             }
             // check UserNames exist ?
             //foreach (var Receiver in request.ProjectRequest.Receivers)
@@ -44,7 +43,6 @@ namespace Core.Application.Features.Projects.CommandHandlers
             //    //    .FirstOrDefaultAsync(x => x.RequestFor == Domain.Enum.RequestFor.Project
             //    //    && x.ProjectId == request.ProjectRequest.ProjcetId
             //    //    && x.ReceiverId == Receiver);
-
             //    //if (userRequest != null)
             //    //{
             //    //    if (userRequest.Status == Domain.Enum.RequestStatus.Accepted)
@@ -57,6 +55,7 @@ namespace Core.Application.Features.Projects.CommandHandlers
             //    //    }
             //    //}
             //}
+
             //sent request for each members
             var addRequest = _mapper.Map<UserRequest>(request.ProjectRequest);
             addRequest.Id = Guid.NewGuid().ToString();
@@ -64,7 +63,7 @@ namespace Core.Application.Features.Projects.CommandHandlers
             addRequest.Status = Domain.Enum.RequestStatus.Pending;
             addRequest.RequestFor = Domain.Enum.RequestFor.Project;
             addRequest.InvitedAt = DateTime.Now;
-            addRequest.ProjectId = request.ProjectRequest.ProjcetId;
+            addRequest.ProjectId = request.ProjectRequest.ProjectId;
             addRequest.IsExpire = false;
 
             //send for each Receivers
@@ -74,15 +73,15 @@ namespace Core.Application.Features.Projects.CommandHandlers
                 var receiver = await _unitOfWork.Users.FindByUserName(memberName);
                 if (receiver != null)
                 {
-                    throw new NotFoundException($"user name {memberName} does not exist !");
+                    throw new NotFoundUserNameException(memberName);
                 }
                 addRequest.Id = Guid.NewGuid().ToString();
                 addRequest.ReceiverId = receiver.Id;
                 userRequests.Add(addRequest);
             }
-            await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
+            await _unitOfWork.Requests.AddRangeRequest(userRequests, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Created("Created");
+            return "Created";
         }
     }
 }

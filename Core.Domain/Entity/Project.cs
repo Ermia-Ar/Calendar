@@ -1,15 +1,9 @@
-﻿using Core.Application.Features.Exceptions;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Core.Domain.Entity
+﻿namespace Core.Domain.Entity
 {
     public class Project
     {
-        [Key]
         public string Id { get; set; }
 
-        [ForeignKey(nameof(OwnerId))]
         public string OwnerId { get; set; }
         public User User { get; set; }
 
@@ -35,10 +29,6 @@ namespace Core.Domain.Entity
 
         public static Project Create(string ownerId, string title, string description, DateTime startDate, DateTime endDate)
         {
-            if (startDate >= endDate)
-            {
-                throw new BadRequestException("the start date cannot be greater than the end date");
-            }
             return new Project
             {
                 Id = Guid.NewGuid().ToString(),

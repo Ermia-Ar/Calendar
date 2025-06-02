@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
+using Core.Application.Exceptions.Project;
 using Core.Application.Features.Activities.Commands;
-using Core.Application.Features.Exceptions;
 using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Enum;
-using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Activities.CommandHandlers
 {
-    public class CreateActivityForProjectHandler : ResponseHandler
-        , IRequestHandler<CreateActivityForProjectCommand, Response<string>>
+    public sealed class CreateActivityForProjectHandler 
+        : IRequestHandler<CreateActivityForProjectCommand, string>
     {
 
         public readonly IUnitOfWork _unitOfWork;
@@ -24,23 +23,23 @@ namespace Core.Application.Features.Activities.CommandHandlers
             _mapper = mapper;
         }
 
-        public async Task<Response<string>> Handle(CreateActivityForProjectCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateActivityForProjectCommand request, CancellationToken cancellationToken)
         {
             var ownerId = _currentUser.GetUserId();
 
             //check if user is the owner of project or not 
             var project = await _unitOfWork.Projects
-                .GetByIdAsync(request.CreateActivity.ProjectId, cancellationToken);
+                .GetProjectById(request.CreateActivity.ProjectId, cancellationToken);
 
             if (project.OwnerId != ownerId)
             {
-                throw new BadRequestException($"Only the owner of project id : {project.Id} can add activity to it.");
+                throw new OnlyProjectCreatorAllowedException();
             }
 
             // map to activity table
             var activity = Activity.Create(null, ownerId, request.CreateActivity.ProjectId,
                   request.CreateActivity.Title, request.CreateActivity.Description,
-                  request.CreateActivity.StartDate, request.CreateActivity.DurationInMinute, 
+                  request.CreateActivity.StartDate, request.CreateActivity.DurationInMinute,
                   request.CreateActivity.NotificationBeforeInMinute,
                   request.CreateActivity.Category);
 
@@ -61,12 +60,12 @@ namespace Core.Application.Features.Activities.CommandHandlers
             }
 
             // add to activity table
-            await _unitOfWork.Activities.AddAsync(activity, cancellationToken);
+            await _unitOfWork.Activities.AddActivity(activity, cancellationToken);
 
-            await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
+            await _unitOfWork.Requests.AddRangeRequest(userRequests, cancellationToken);
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Created(activity.Id);
+            return "Created";
         }
     }
 }

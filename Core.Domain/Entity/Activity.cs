@@ -1,24 +1,17 @@
 ﻿using Core.Domain.Enum;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics;
 
 namespace Core.Domain.Entity
 {
     public class Activity
     {
-        [Key]
         public string Id { get; set; }
 
-        [ForeignKey(nameof(ParentId))]
         public string? ParentId { get; set; }
         public Activity Parent { get; set; }
 
-        [ForeignKey(nameof(UserId))]
         public string UserId { get; set; }
         public User User { get; set; }
 
-        [ForeignKey(nameof(ProjectId))]
         public string ProjectId { get; set; }
         public Project Project { get; set; }
 

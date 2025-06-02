@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using Core.Application.DTOs.UserDTOs;
-using Core.Application.Features.Exceptions;
+using Core.Application.Exceptions.Project;
 using Core.Application.Features.Projects.Query;
 using Core.Domain;
-using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Projects.QueryHandlers
 {
-    public class GetMemberOfProjectHandler : ResponseHandler
-        , IRequestHandler<GetMemberOfProjectQuery, Response<List<UserResponse>>>
+    public class GetMemberOfProjectHandler 
+        : IRequestHandler<GetMemberOfProjectQuery, List<UserResponse>>
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
@@ -22,7 +21,7 @@ namespace Core.Application.Features.Projects.QueryHandlers
             _currentUserServices = currentUserServices;
         }
 
-        public async Task<Response<List<UserResponse>>> Handle(GetMemberOfProjectQuery request, CancellationToken cancellationToken)
+        public async Task<List<UserResponse>> Handle(GetMemberOfProjectQuery request, CancellationToken cancellationToken)
         {
             var userId = _currentUserServices.GetUserId();
             //check if user is the owner of project or not 
@@ -31,10 +30,10 @@ namespace Core.Application.Features.Projects.QueryHandlers
 
             if (!projectMembers.Any(x => x.Id == userId))
             {
-                throw new BadRequestException("Only the members of this project has access to this section.");
+                throw new OnlyProjectMembersAllowedException();
             }
             var response = _mapper.Map<List<UserResponse>>(projectMembers);
-            return Success(response);
+            return response;
 
         }
     }

@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
+using Core.Application.Exceptions.Activity;
 using Core.Application.Features.Activities.Commands;
-using Core.Application.Features.Exceptions;
 using Core.Domain;
-using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Activities.CommandHandlers
 {
-    public class CompleteActivityHandler : ResponseHandler
-        , IRequestHandler<CompleteActivityCommand, Response<string>>
+    public sealed class CompleteActivityHandler 
+        : IRequestHandler<CompleteActivityCommand, string>
     {
         public readonly IUnitOfWork _unitOfWork;
         public readonly ICurrentUserServices _currentUser;
@@ -21,17 +20,18 @@ namespace Core.Application.Features.Activities.CommandHandlers
             _mapper = mapper;
         }
 
-        public async Task<Response<string>> Handle(CompleteActivityCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CompleteActivityCommand request, CancellationToken cancellationToken)
         {
-            var activity = await _unitOfWork.Activities.GetByIdAsync(request.ActivityId, cancellationToken);
+            var activity = await _unitOfWork.Activities.GetActivityById(request.ActivityId, cancellationToken);
             if (activity.UserId != _currentUser.GetUserId())
             {
-                throw new BadRequestException("only creator of activity can do this");
+                throw new OnlyActivityCreatorAllowedException();
             }
 
-            await _unitOfWork.Activities.CompleteActivity(request.ActivityId, cancellationToken);
+            activity.IsCompleted = true;
+            _unitOfWork.Activities.UpdateActivity(activity);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Success("");
+            return "Success";
         }
     }
 }

@@ -1,16 +1,12 @@
-﻿using Core.Application.DTOs.ActivityDTOs;
-using Core.Application.DTOs.UserDTOs;
-using Core.Application.DTOs.UserRequestDTOs;
-using Core.Domain.Entity;
-using Infrastructure.Models;
+﻿using Core.Domain.Entity;
+using UserModel = Infrastructure.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 
 namespace Infrastructure.Data
 {
-    public class ApplicationContext : IdentityDbContext<User>
+    public class ApplicationContext : IdentityDbContext<UserModel>
     {
         public DbSet<Activity> Activities { get; set; }
         public DbSet<UserRequest> UserRequests { get; set; }
@@ -134,7 +130,7 @@ namespace Infrastructure.Data
             builder.Entity<Project>().ToTable("Projects").HasData(project);
             builder.Entity<Comment>().ToTable("Comments");
             builder.Entity<IdentityRole>().ToTable("Roles").HasData(roles);
-            builder.Entity<User>().ToTable("Users");
+            builder.Entity<UserModel>().ToTable("Users");
             builder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
         }
     }

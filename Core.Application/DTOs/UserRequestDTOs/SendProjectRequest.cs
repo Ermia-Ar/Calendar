@@ -2,7 +2,7 @@
 {
     public class SendProjectRequest
     {
-        public string ProjcetId { get; set; }
+        public string ProjectId { get; set; }
 
         public string[] Receivers { get; set; }
 

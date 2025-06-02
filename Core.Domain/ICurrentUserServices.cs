@@ -1,4 +1,5 @@
-﻿using Core.Domain.Entity;
+﻿
+using Core.Domain.Entity;
 
 namespace Core.Domain
 {

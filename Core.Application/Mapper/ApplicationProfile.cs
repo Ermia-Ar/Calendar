@@ -5,7 +5,6 @@ using Core.Application.DTOs.ProjectDTOs;
 using Core.Application.DTOs.UserDTOs;
 using Core.Application.DTOs.UserRequestDTOs;
 using Core.Application.Features.Comments.Queries.GetComments;
-using Core.Application.Utility;
 using Core.Domain.Entity;
 
 namespace Core.Application.Mapper
@@ -15,23 +14,23 @@ namespace Core.Application.Mapper
         public ApplicationProfile()
         {
             //comment mappers
-            CreateMap<Comment , GetCommentsResponse>()
-                .ReverseMap();
-            
-            //project mappers
-            CreateMap<Project , CreateProjectRequest>()
+            CreateMap<Comment, GetCommentsResponse>()
                 .ReverseMap();
 
-            CreateMap<Project , ProjectResponse>()
+            //project mappers
+            CreateMap<Project, CreateProjectRequest>()
+                .ReverseMap();
+
+            CreateMap<Project, ProjectResponse>()
                 .ReverseMap();
 
             //activity mapper 
             CreateMap<Activity, CreateActivityRequest>()
                 .ReverseMap();
-           
+
             CreateMap<Activity, CreateActivityForProjectRequest>()
                 .ReverseMap();
-            
+
             CreateMap<Activity, CreateSubActivityRequest>()
                 .ReverseMap();
 
@@ -47,8 +46,6 @@ namespace Core.Application.Mapper
                 .ReverseMap();
 
             CreateMap<UserRequest, RequestResponse>()
-                //.ForMember(x => x.Activity, dex => dex.MapFrom(x => Utilities.ConvertToActivityResponse(x.Activity)))
-                //.ForMember(x => x.Project, dex => dex.MapFrom(x => Utilities.ConvertToProjectResponse(x.Project)))
                 .ReverseMap();
 
             CreateMap<SendProjectRequest, UserRequest>()

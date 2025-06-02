@@ -1,12 +1,7 @@
-﻿using Core.Domain.Shared;
-using MediatR;
+﻿using MediatR;
 
 namespace Core.Application.Features.Projects.Command
 {
-    public class RemoveMemberOfProjectCommand : IRequest<Response<string>>
-    {
-        public string ProjectId { get; set; }
-
-        public string UserName { get; set; }
-    }
+    public record class RemoveMemberOfProjectCommand(string ProjectId, string UserName)
+        : IRequest<string>;
 }

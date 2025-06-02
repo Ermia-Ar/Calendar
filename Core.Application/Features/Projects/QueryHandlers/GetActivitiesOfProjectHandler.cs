@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using Core.Application.DTOs.ActivityDTOs;
-using Core.Application.Features.Exceptions;
+using Core.Application.Exceptions.Project;
 using Core.Application.Features.Projects.Query;
 using Core.Domain;
-using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Projects.QueryHandlers
 {
-    public class GetActivitiesOfProjectHandler : ResponseHandler
-        , IRequestHandler<GetActivitiesOfProjectQuery, Response<List<ActivityResponse>>>
+    public class GetActivitiesOfProjectHandler 
+        : IRequestHandler<GetActivitiesOfProjectQuery, List<ActivityResponse>>
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
@@ -22,7 +21,7 @@ namespace Core.Application.Features.Projects.QueryHandlers
             _currentUserServices = currentUserServices;
         }
 
-        public async Task<Response<List<ActivityResponse>>> Handle(GetActivitiesOfProjectQuery request, CancellationToken cancellationToken)
+        public async Task<List<ActivityResponse>> Handle(GetActivitiesOfProjectQuery request, CancellationToken cancellationToken)
         {
             var userId = _currentUserServices.GetUserId();
             //check if user is the owner of project or not 
@@ -31,12 +30,12 @@ namespace Core.Application.Features.Projects.QueryHandlers
 
             if (!projectMembers.Any(x => x.Id == userId))
             {
-                throw new BadRequestException("Only the Member of this project has access to this section.");
+                throw new OnlyProjectMembersAllowedException();
             }
             var activities = await _unitOfWork.Activities.GetProjectActivities(request.ProjectId, cancellationToken);
             var response = _mapper.Map<List<ActivityResponse>>(activities);
 
-            return Success(response);
+            return response;
         }
     }
 }

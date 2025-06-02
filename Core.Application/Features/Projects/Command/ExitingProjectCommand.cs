@@ -1,10 +1,7 @@
-﻿using Core.Domain.Shared;
-using MediatR;
+﻿using MediatR;
 
 namespace Core.Application.Features.Projects.Command
 {
-    public class ExitingProjectCommand : IRequest<Response<string>>
-    {
-        public string ProjectId { get; set; }
-    }
+    public record class ExitingProjectCommand(string ProjectId)
+        : IRequest<string>;
 }

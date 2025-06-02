@@ -1,18 +1,15 @@
 ﻿using AutoMapper;
+using Core.Application.Exceptions.User;
 using Core.Application.Features.Activities.Commands;
-using Core.Application.Features.Exceptions;
 using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Enum;
-using Core.Domain.Shared;
 using MediatR;
-using Microsoft.EntityFrameworkCore.Metadata;
-using System.Collections.Immutable;
 
 namespace Core.Application.Features.Activities.CommandHandlers
 {
-    public class CreateActivityHandler : ResponseHandler
-        , IRequestHandler<CreateActivityCommand, Response<string>>
+    public sealed class CreateActivityHandler
+        : IRequestHandler<CreateActivityCommand, string>
     {
         public readonly IUnitOfWork _unitOfWork;
         public readonly ICurrentUserServices _currentUser;
@@ -25,7 +22,7 @@ namespace Core.Application.Features.Activities.CommandHandlers
             _mapper = mapper;
         }
 
-        public async Task<Response<string>> Handle(CreateActivityCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateActivityCommand request, CancellationToken cancellationToken)
         {
             string projectId = "8c56ac14-ae28-4425-9a19-690d27d3a16d";
             var ownerId = _currentUser.GetUserId();
@@ -54,7 +51,7 @@ namespace Core.Application.Features.Activities.CommandHandlers
                 var member = await _unitOfWork.Users.FindByUserName(memberName);
                 if (member == null)
                 {
-                    throw new NotFoundException($"user name {memberName} does not exist !");
+                    throw new NotFoundUserNameException(memberName);
                 }
                 var sendRequest1 = UserRequest.CreateUserRequest(activity.Id
                     , projectId, ownerId, member.Id
@@ -63,23 +60,23 @@ namespace Core.Application.Features.Activities.CommandHandlers
 
                 userRequests.Add(sendRequest1);
             }
-            //todo IsActive == false
+
             //add owner to activity members
             var sendRequest = UserRequest.CreateUserRequest(activity.Id
                     , activity.ProjectId, ownerId, ownerId
                     , request.CreateActivity.Message
                     , false, RequestStatus.Accepted);
-
+            sendRequest.IsActive = false;
             userRequests.Add(sendRequest);
 
 
             //add to activity table
-            await _unitOfWork.Activities.AddAsync(activity, cancellationToken);
+            await _unitOfWork.Activities.AddActivity(activity, cancellationToken);
             //send all requests
-            await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
+            await _unitOfWork.Requests.AddRangeRequest(userRequests, cancellationToken);
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Created(activity.Id);
+            return "Created";
         }
     }
 }

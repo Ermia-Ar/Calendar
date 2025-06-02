@@ -1,46 +1,41 @@
 ﻿using AutoMapper;
-using Core.Application.Features.Exceptions;
+using Core.Application.Exceptions.UseRequest;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
-using Core.Domain.Entity;
-using Core.Domain.Shared;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
-namespace Core.Application.Features.Projects.CommandHandlers
+namespace Core.Application.Features.Projects.CommandHandlers;
+
+public class ExitingProjectHandler 
+    : IRequestHandler<ExitingProjectCommand, string>
 {
-    public class ExitingProjectHandler : ResponseHandler
-        , IRequestHandler<ExitingProjectCommand, Response<string>>
+
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICurrentUserServices _currentUserServices;
+    private readonly IMapper _mapper;
+
+    public ExitingProjectHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
     {
+        _unitOfWork = unitOfWork;
+        _mapper = mapper;
+        _currentUserServices = currentUserServices;
+    }
 
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly ICurrentUserServices _currentUserServices;
-        private readonly IMapper _mapper;
+    public async Task<string> Handle(ExitingProjectCommand request, CancellationToken cancellationToken)
+    {
+        var requests = (await _unitOfWork.Requests.GetRequests(request.ProjectId, null, cancellationToken))
+           .Where(x => x.Receiver.Id == _currentUserServices.GetUserId()
+           && x.Status == Domain.Enum.RequestStatus.Accepted)
+           .ToList();
 
-        public ExitingProjectHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+        if (!requests.Any())
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
-            _currentUserServices = currentUserServices;
+            throw new NotFoundMemberException("You are not a member of this project.");
         }
 
-        public async Task<Response<string>> Handle(ExitingProjectCommand request, CancellationToken cancellationToken)
-        {
-            var requests = await _unitOfWork.Requests.GetTableNoTracking()
-               .Where(x => x.ProjectId == request.ProjectId
-                && x.Receiver.Id == _currentUserServices.GetUserId()
-                && x.Status == Domain.Enum.RequestStatus.Accepted)
-               .ToListAsync();
+        _unitOfWork.Requests.DeleteRangeRequests(requests);
+        await _unitOfWork.SaveChangeAsync(cancellationToken);
+        return "Deleted";
 
-            if (!requests.Any())
-            {
-                throw new NotFoundException("You are not a member of this project.");
-            }
-
-            _unitOfWork.Requests.DeleteRange(requests);
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Deleted("");
-
-        }
     }
 }

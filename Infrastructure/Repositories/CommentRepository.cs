@@ -1,7 +1,6 @@
 ﻿using Core.Domain.Entity;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
-using Infrastructure.Base;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,15 +8,35 @@ using System.Data.SqlClient;
 
 namespace Infrastructure.Repositories
 {
-    public class CommentRepository : GenericRepositoryAsync<Comment>, ICommentRepository
+    public class CommentRepository : ICommentRepository
     {
-        private readonly DbSet<Comment> _comments;
+        private readonly ApplicationContext _context;
         private readonly IConfiguration _configuration;
 
-        public CommentRepository(ApplicationContext context, IConfiguration configuration) : base(context)
+        public CommentRepository(ApplicationContext context, IConfiguration configuration)
         {
-            _comments = context.Set<Comment>();
+            _context = context;
             _configuration = configuration;
+        }
+
+        public async Task AddComment(Comment comment,CancellationToken token)
+        {
+            await _context.Comments.AddAsync(comment,token);
+        }
+
+        public void DeleteComment(Comment comment)
+        {
+            _context.Comments.Remove(comment);
+        }
+
+        public void DeleteRangeComment(ICollection<Comment> comments)
+        {
+            _context.Comments.RemoveRange(comments);
+        }
+
+        public async Task<Comment?> GetCommentById(string id, CancellationToken token)
+        {
+            return await _context.Comments.FindAsync(id, token);
         }
 
         public async Task<List<Comment>> GetComments(string? projectId, string? activityId, string? search, string? userId, CancellationToken token)
@@ -36,6 +55,11 @@ namespace Infrastructure.Repositories
                 ("SP_GetComment", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
             return comments.ToList();
+        }
+
+        public void UpdateComment(Comment comment)
+        {
+            _context.Comments.Update(comment);
         }
     }
 }

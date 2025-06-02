@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Core.Domain
 {
@@ -11,5 +12,7 @@ namespace Core.Domain
         IUserRepository Users { get; }
 
         Task SaveChangeAsync(CancellationToken token = default);
+        Task<IDbContextTransaction> BeginTransactionAsync();
+
     }
 }

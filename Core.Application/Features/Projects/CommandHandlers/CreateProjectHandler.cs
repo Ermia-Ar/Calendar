@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
-using Core.Application.Features.Exceptions;
+using Core.Application.Exceptions.User;
 using Core.Application.Features.Projects.Command;
 using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Enum;
-using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Projects.CommandHandlers
 {
-    public class CreateProjectHandler : ResponseHandler
-        , IRequestHandler<CreateProjectCommand, Response<string>>
+    public class CreateProjectHandler 
+        : IRequestHandler<CreateProjectCommand, string>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICurrentUserServices _currentUserServices;
@@ -23,7 +22,7 @@ namespace Core.Application.Features.Projects.CommandHandlers
             _currentUserServices = currentUserServices;
         }
 
-        public async Task<Response<string>> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
             var ownerId = _currentUserServices.GetUserId();
 
@@ -41,7 +40,7 @@ namespace Core.Application.Features.Projects.CommandHandlers
                 var receiver = await _unitOfWork.Users.FindByUserName(memberName);
                 if (receiver == null)
                 {
-                    throw new NotFoundException($"user name {memberName} does not exist !");
+                    throw new NotFoundUserNameException(memberName);
                 }
                 var sendRequest1 = UserRequest.CreateUserRequest(null
                    , project.Id, ownerId, receiver.Id
@@ -56,17 +55,17 @@ namespace Core.Application.Features.Projects.CommandHandlers
                 , project.Id, ownerId, ownerId
                 , request.CreateProject.RequestMassage
                 , false, RequestStatus.Accepted);
-
+            sendRequest.IsActive = false;
             userRequests.Add(sendRequest);
-           
+
 
             // add to project table
-            await _unitOfWork.Projects.AddAsync(project, cancellationToken);
+            await _unitOfWork.Projects.AddProject(project, cancellationToken);
 
-            await _unitOfWork.Requests.AddRangeAsync(userRequests, cancellationToken);
+            await _unitOfWork.Requests.AddRangeRequest(userRequests, cancellationToken);
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Created(project.Id);
+            return "Created";
         }
     }
 }

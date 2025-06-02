@@ -1,5 +1,4 @@
-﻿using Core.Domain.Shared;
-using MediatR;
+﻿using MediatR;
 using Serilog;
 
 namespace Application.Behaviors;
@@ -8,7 +7,6 @@ namespace Application.Behaviors;
 public class LoggingPipelineBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
-    where TResponse : Response
 {
     private readonly ILogger _logger;
 
@@ -33,14 +31,14 @@ public class LoggingPipelineBehavior<TRequest, TResponse>
 
         var result = await next();
 
-        if (!result.Succeeded)
-        {
-            _logger.Error(
-                "--Request failure {@RequestName}, {@Error}, {@DateTimeUtc}",
-                typeof(TRequest).Name,
-                result.Message,
-                DateTime.UtcNow);
-        }
+        //if (!result.Succeeded)
+        //{
+        //    _logger.Error(
+        //        "--Request failure {@RequestName}, {@Error}, {@DateTimeUtc}",
+        //        typeof(TRequest).Name,
+        //        result.Message,
+        //        DateTime.UtcNow);
+        //}
 
         _logger.Information(
             "--Completed request {@RequestName}, {@DateTimeUtc}",

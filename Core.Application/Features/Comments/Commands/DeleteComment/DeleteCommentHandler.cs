@@ -1,13 +1,11 @@
-﻿using AutoMapper;
-using Core.Application.Features.Exceptions;
+﻿using Core.Application.Exceptions.Comment;
 using Core.Domain;
-using Core.Domain.Shared;
 using MediatR;
 
 namespace Core.Application.Features.Comments.Commands.DeleteComment
 {
-    public class DeleteCommentHandler : ResponseHandler
-        , IRequestHandler<DeleteCommentCommand, Response<string>>
+    public class DeleteCommentHandler 
+        : IRequestHandler<DeleteCommentCommand, string>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICurrentUserServices _currentUserServices;
@@ -18,17 +16,18 @@ namespace Core.Application.Features.Comments.Commands.DeleteComment
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response<string>> Handle(DeleteCommentCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(DeleteCommentCommand request, CancellationToken cancellationToken)
         {
             var userId = _currentUserServices.GetUserId();
-            var comment = await _unitOfWork.Comments.GetByIdAsync(request.Id, cancellationToken);
+            var comment = await _unitOfWork.Comments.GetCommentById(request.Id, cancellationToken);
             if (comment.UserId != userId)
             {
-                throw new BadRequestException("Only its creator can delete it.");
+                throw new OnlyCommentCreatorAllowedException();
             }
-            _unitOfWork.Comments.Delete(comment);
+
+            _unitOfWork.Comments.DeleteComment(comment);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            return Deleted("");
+            return "Deleted";
         }
     }
 }

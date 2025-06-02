@@ -1,17 +1,15 @@
-﻿using Core.Application.Features.Auth.Commands;
-using Core.Application.Features.Exceptions;
-using Core.Application.Utility;
+﻿using Core.Application.Exceptions.User;
+using Core.Application.Features.Auth.Commands;
+using Core.Application.Services;
 using Core.Domain;
 using Core.Domain.Entity;
-using Core.Domain.Helper;
-using Core.Domain.Interfaces;
-using Core.Domain.Shared;
 using MediatR;
+using Share.Utility;
 
 namespace Core.Application.Features.Auth.Handler
 {
-    public class LoginHandler : ResponseHandler
-        , IRequestHandler<LoginCommand, Response<JwtAuthResult>>
+    public class LoginHandler
+        : IRequestHandler<LoginCommand, string>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ITokenServices _tokenServices;
@@ -23,31 +21,28 @@ namespace Core.Application.Features.Auth.Handler
             _tokenServices = tokenServices;
         }
 
-        public async Task<Response<JwtAuthResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            User user;
+            User? user;
             //check email or user name
             if (Utilities.IsEmail(request.LoginRequest.UserNameOrEmail))
-            {
                 user = await _unitOfWork.Users.FindByEmail(request.LoginRequest.UserNameOrEmail);
-            }
             else
-            {
                 user = await _unitOfWork.Users.FindByUserName(request.LoginRequest.UserNameOrEmail);
-            }
+
             if (user == null)
             {
-                throw new NotFoundException("UserName or Password is wrong");
+                throw new UserNotExistByUserNameAndPasswordException();
             }
             // check password 
             bool checkPassword = await _unitOfWork.Users.CheckPasswordAsync(user, request.LoginRequest.Password);
             if (!checkPassword)
             {
-                throw new NotFoundException("UserName or Password is wrong");
+                throw new UserNotExistByUserNameAndPasswordException();
             }
             var token = await _tokenServices.GetJWTToken(user);
 
-            return Success(token);
+            return token;
         }
     }
 }

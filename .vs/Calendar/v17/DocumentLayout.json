@@ -3,16 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\source\\repos\\Calendar\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\projects\\commandhandlers\\createprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\projects\\commandhandlers\\createprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\userrequests\\commnadhandlers\\answerrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\userrequests\\commnadhandlers\\answerrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\middleware\\errorhandlermiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\middleware\\errorhandlermiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\userrequests\\commnadhandlers\\deleterequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\userrequests\\commnadhandlers\\deleterequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\projects\\commandhandlers\\deleteprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\projects\\commandhandlers\\deleteprojecthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\exceptions\\userequest\\expirerequestexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\exceptions\\userequest\\expirerequestexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\exceptions\\userequest\\notfoundrequestexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\exceptions\\userequest\\notfoundrequestexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\comments\\commands\\deletecomment\\deletecommenthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\comments\\commands\\deletecomment\\deletecommenthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\features\\comments\\commands\\createcomment\\createcommenthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\features\\comments\\commands\\createcomment\\createcommenthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7678683A-06BF-4231-BB8C-591A44A468A6}|Calendar.Api\\Calendar.Api.csproj|c:\\users\\dell\\source\\repos\\calendar\\calendar.api\\controllers\\userrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7678683A-06BF-4231-BB8C-591A44A468A6}|Calendar.Api\\Calendar.Api.csproj|solutionrelative:calendar.api\\controllers\\userrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,42 +58,92 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ErrorHandlerMiddleWare.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Middleware\\ErrorHandlerMiddleWare.cs",
-              "RelativeDocumentMoniker": "Core.Application\\Middleware\\ErrorHandlerMiddleWare.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Middleware\\ErrorHandlerMiddleWare.cs",
-              "RelativeToolTip": "Core.Application\\Middleware\\ErrorHandlerMiddleWare.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAAD8AAAAtAAAA",
+              "DocumentIndex": 4,
+              "Title": "DeleteCommentHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Comments\\Commands\\DeleteComment\\DeleteCommentHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Comments\\Commands\\DeleteComment\\DeleteCommentHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Comments\\Commands\\DeleteComment\\DeleteCommentHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Comments\\Commands\\DeleteComment\\DeleteCommentHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAABQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T10:40:36.892Z",
+              "WhenOpened": "2025-05-30T15:05:58.303Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateProjectHandler.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
-              "RelativeDocumentMoniker": "Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
-              "RelativeToolTip": "Core.Application\\Features\\Projects\\CommandHandlers\\CreateProjectHandler.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAAB4AAABNAAAA",
+              "DocumentIndex": 1,
+              "Title": "DeleteRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequests\\CommnadHandlers\\DeleteRequestHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\UserRequests\\CommnadHandlers\\DeleteRequestHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequests\\CommnadHandlers\\DeleteRequestHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\UserRequests\\CommnadHandlers\\DeleteRequestHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T10:39:42.879Z",
+              "WhenOpened": "2025-05-30T14:39:07.387Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DeleteProjectHandler.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\DeleteProjectHandler.cs",
-              "RelativeDocumentMoniker": "Core.Application\\Features\\Projects\\CommandHandlers\\DeleteProjectHandler.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Projects\\CommandHandlers\\DeleteProjectHandler.cs",
-              "RelativeToolTip": "Core.Application\\Features\\Projects\\CommandHandlers\\DeleteProjectHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "ExpireRequestException.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Exceptions\\UseRequest\\ExpireRequestException.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Exceptions\\UseRequest\\ExpireRequestException.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Exceptions\\UseRequest\\ExpireRequestException.cs",
+              "RelativeToolTip": "Core.Application\\Exceptions\\UseRequest\\ExpireRequestException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T10:39:41.741Z",
+              "WhenOpened": "2025-05-30T14:35:06.237Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NotFoundRequestException.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Exceptions\\UseRequest\\NotFoundRequestException.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Exceptions\\UseRequest\\NotFoundRequestException.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Exceptions\\UseRequest\\NotFoundRequestException.cs",
+              "RelativeToolTip": "Core.Application\\Exceptions\\UseRequest\\NotFoundRequestException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T14:29:27.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AnswerRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequests\\CommnadHandlers\\AnswerRequestHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\UserRequests\\CommnadHandlers\\AnswerRequestHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\UserRequests\\CommnadHandlers\\AnswerRequestHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\UserRequests\\CommnadHandlers\\AnswerRequestHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEsAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T14:29:16.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CreateCommentHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Comments\\Commands\\CreateComment\\CreateCommentHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\Features\\Comments\\Commands\\CreateComment\\CreateCommentHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\Features\\Comments\\Commands\\CreateComment\\CreateCommentHandler.cs",
+              "RelativeToolTip": "Core.Application\\Features\\Comments\\Commands\\CreateComment\\CreateCommentHandler.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAB0AAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T14:51:29.843Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserRequestController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.Api\\Controllers\\UserRequestController.cs",
+              "RelativeDocumentMoniker": "Calendar.Api\\Controllers\\UserRequestController.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.Api\\Controllers\\UserRequestController.cs",
+              "RelativeToolTip": "Calendar.Api\\Controllers\\UserRequestController.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAAC0AAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T14:21:34.068Z"
             }
           ]
         },

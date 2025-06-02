@@ -6,7 +6,7 @@ namespace Core.Application.DTOs.UserRequestDTOs
     {
         public string Id { get; set; }
 
-        public string ProjectId { get; set; }    
+        public string ProjectId { get; set; }
 
         public string? ActivityId { get; set; }
 

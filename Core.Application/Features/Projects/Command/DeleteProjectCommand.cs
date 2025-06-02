@@ -1,10 +1,7 @@
-﻿using Core.Domain.Shared;
-using MediatR;
+﻿using MediatR;
 
 namespace Core.Application.Features.Projects.Command
 {
-    public class DeleteProjectCommand : IRequest<Response<string>>
-    {
-        public string ProjcetId { get; set; }  
-    }
+    public record class DeleteProjectCommand(string ProjcetId)
+        : IRequest<string>;
 }

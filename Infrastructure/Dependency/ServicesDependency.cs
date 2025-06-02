@@ -1,11 +1,12 @@
-﻿using Core.Domain;
+﻿using Core.Application.Services;
+using Core.Domain;
+using Core.Domain.Interfaces.Repositories;
 using Infrastructure.Base.CurrentUserServices;
+using Infrastructure.Mapper;
+using Infrastructure.Repositories;
 using Infrastructure.Services;
-using Core.Domain.Interfaces;
 using Infrastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
-using Infrastructure.Repositories;
-using Core.Domain.Interfaces.Repositories;
 
 namespace Infrastructure.Dependency
 {
@@ -22,6 +23,8 @@ namespace Infrastructure.Dependency
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITokenServices, TokenServices>();
             services.AddScoped<IUnitOfWork, UnitOfWorks>();
+            services.AddAutoMapper(typeof(InfraProfile));
+
             return services;
         }
 

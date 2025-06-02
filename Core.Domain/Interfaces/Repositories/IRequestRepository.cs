@@ -3,13 +3,20 @@ using Core.Domain.Enum;
 
 namespace Core.Domain.Interfaces.Repositories
 {
-    public interface IRequestRepository : IGenericRepositoryAsync<UserRequest>
+    public interface IRequestRepository 
     {
-        //for activity requests
-        public Task<List<UserRequest>> GetUnAnsweredRequest(string userId, RequestFor? requestFor, CancellationToken token);
-        public Task<List<UserRequest>> GetRequestsReceived(string userId, RequestFor? requestFor, CancellationToken token);
-        public Task<List<UserRequest>> GetRequestsResponse(string userId, RequestFor? requestFor, CancellationToken token);
-        public Task<List<UserRequest>> GetResponsesUserSent(string userId, RequestFor? requestFor, CancellationToken token);
+        void DeleteRequest(UserRequest request);
+        Task<UserRequest?> GetRequestById(string id, CancellationToken token);
+        void DeleteRangeRequests(ICollection<UserRequest> requests);
+        Task AddRequest(UserRequest request, CancellationToken token);
+        Task AddRangeRequest(ICollection<UserRequest> requests, CancellationToken token);
+        void UpdateRequest(UserRequest request);
+        Task<List<UserRequest>> GetRequests(string? projectId, string? activityId, CancellationToken token);
+
+        Task<List<UserRequest>> GetUnAnsweredRequest(string userId, RequestFor? requestFor, CancellationToken token);
+        Task<List<UserRequest>> GetRequestsReceived(string userId, RequestFor? requestFor, CancellationToken token);
+        Task<List<UserRequest>> GetRequestsResponse(string userId, RequestFor? requestFor, CancellationToken token);
+        Task<List<UserRequest>> GetResponsesUserSent(string userId, RequestFor? requestFor, CancellationToken token);
 
         public Task<List<Project>> GetProjects(string userId, bool userIsOwner, CancellationToken token
             , DateTime? startDate, bool isHistory = false);
@@ -20,7 +27,6 @@ namespace Core.Domain.Interfaces.Repositories
         public Task<List<User>> GetMemberOfProject(string projectId, CancellationToken token);
         public Task<List<User>> GetMemberOfActivity(string activityId, CancellationToken token);
 
-        public Task AnswerRequest(string requestId, bool isAccepted, CancellationToken token);
-        public Task DeleteRequest(string requestId, CancellationToken token);
+        public void AnswerRequest(UserRequest request, bool isAccepted, CancellationToken token);
     }
 }

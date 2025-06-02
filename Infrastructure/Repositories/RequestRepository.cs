@@ -2,24 +2,22 @@
 using Core.Domain.Enum;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
-using Infrastructure.Base;
 using Infrastructure.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Immutable;
 
 
 namespace Infrastructure.Repositories
 {
-    public class RequestRepository : GenericRepositoryAsync<UserRequest>, IRequestRepository
+    public class RequestRepository : IRequestRepository
     {
-        private readonly DbSet<UserRequest> _userRequests;
+        private readonly ApplicationContext _context;
         private readonly IConfiguration _configuration;
                 
-        public RequestRepository(ApplicationContext context, IConfiguration configuration) : base(context)
+        public RequestRepository(ApplicationContext context, IConfiguration configuration)
         {
-            _userRequests = context.Set<UserRequest>();
+            _context = context;
             _configuration = configuration;
         }
 
@@ -70,23 +68,11 @@ namespace Infrastructure.Repositories
             return userRequests;
         }
 
-
-        public async Task AnswerRequest(string requestId, bool isAccepted, CancellationToken token)
+        public void AnswerRequest(UserRequest request, bool isAccepted, CancellationToken token)
         {
-            var request = await GetByIdAsync(requestId, token);
-
             request.IsExpire = true;
             request.AnsweredAt = DateTime.Now;
             request.Status = isAccepted ? RequestStatus.Accepted : RequestStatus.Rejected;
-
-            await SaveChangesAsync();
-        }
-
-        public async Task DeleteRequest(string requestId, CancellationToken token)
-        {
-            var request = await GetByIdAsync(requestId, token);
-
-            Delete(request);
         }
 
         public async Task<List<Project>> GetProjects(string userId, bool userIsOwner, CancellationToken token
@@ -98,7 +84,7 @@ namespace Infrastructure.Repositories
             var parameters = new DynamicParameters();
             parameters.Add("isExpire", true);
             parameters.Add("requestFor", (int)RequestFor.Project);
-            parameters.Add("receiverId", userId);//ToDo
+            parameters.Add("receiverId", userId);
             parameters.Add("status", RequestStatus.Accepted);
             parameters.Add("startDate", startDate);
             parameters.Add("ownerId", userIsOwner? userId:null);
@@ -176,5 +162,42 @@ namespace Infrastructure.Repositories
             return members.ToList();
         }
 
+        public void DeleteRequest(UserRequest request)
+        {
+            _context.UserRequests.Remove(request);
+        }
+
+        public void DeleteRangeRequests(ICollection<UserRequest> requests)
+        {
+            _context.UserRequests.RemoveRange(requests);
+        }
+
+        public async Task AddRequest(UserRequest request, CancellationToken token)
+        {
+            await _context.UserRequests.AddAsync(request, token);
+        }
+
+        public async Task AddRangeRequest(ICollection<UserRequest> requests, CancellationToken token)
+        {
+            await _context.UserRequests.AddRangeAsync(requests);
+        }
+
+        public void UpdateRequest(UserRequest request)
+        {
+            _context.UserRequests.Update(request);
+        }
+
+        public async Task<UserRequest?> GetRequestById(string id, CancellationToken token)
+        {
+            return await _context.UserRequests.FindAsync(id, token);
+        }
+
+        public Task<List<UserRequest>> GetRequests(string? projectId, string? activityId, CancellationToken token)
+        {
+            return _context.UserRequests.AsNoTracking()
+                .Where(x => x.ProjectId == projectId 
+                && x.ActivityId == activityId)
+                .ToListAsync();
+        }
     }
 }

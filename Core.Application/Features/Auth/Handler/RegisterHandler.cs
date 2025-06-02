@@ -1,49 +1,47 @@
 ﻿using AutoMapper;
+using Core.Application.Exceptions.User;
 using Core.Application.Features.Auth.Commands;
-using Core.Application.Features.Exceptions;
+using Core.Application.Services;
 using Core.Domain;
 using Core.Domain.Entity;
-using Core.Domain.Helper;
-using Core.Domain.Interfaces;
-using Core.Domain.Shared;
 using MediatR;
 
-namespace Core.Application.Features.Auth.Handler
+namespace Core.Application.Features.Auth.Handler;
+
+public class RegisterHandler
+    : IRequestHandler<RegisterCommand, string>
 {
-    public class RegisterHandler : ResponseHandler
-        , IRequestHandler<RegisterCommand, Response<JwtAuthResult>>
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly ITokenServices _tokenServices;
+    private readonly IMapper _mapper;
+
+    public RegisterHandler(IMapper mapper, IUnitOfWork unitOfWork, ITokenServices tokenServices)
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly ITokenServices _tokenServices;
-        private readonly IMapper _mapper;
+        _mapper = mapper;
+        _unitOfWork = unitOfWork;
+        _tokenServices = tokenServices;
+    }
+    public async Task<string> Handle(RegisterCommand request, CancellationToken cancellationToken)
+    {
+        //map to User
+        var user = _mapper.Map<User>(request.RegisterRequest);
+        user.Id = Guid.NewGuid().ToString();
 
-        public RegisterHandler(IMapper mapper, IUnitOfWork unitOfWork, ITokenServices tokenServices)
+        //Add to user table
+        var result = await _unitOfWork.Users.AddUser(user, request.RegisterRequest.Password);
+        if (result != null)
         {
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
-            _tokenServices = tokenServices;
+            throw new BadRegisterRequestException(result);
         }
-        public async Task<Response<JwtAuthResult>> Handle(RegisterCommand request, CancellationToken cancellationToken)
+        result = await _unitOfWork.Users.AddRoleToUser(user, "User");
+        if (result != null)
         {
-            //map to User
-            var user = _mapper.Map<User>(request.RegisterRequest);
-
-            //Add to user table
-            var result = await _unitOfWork.Users.AddUser(user, request.RegisterRequest.Password);
-            if (!result.Succeeded)
-            {
-                throw new BadRequestException(result.Errors.First().Description);
-            }
-            result = await _unitOfWork.Users.AddRoleToUser(user, "User");
-            if (!result.Succeeded)
-            {
-                throw new BadRequestException(result.Errors.First().Description);
-            }
-            var token = await _tokenServices.GetJWTToken(user);
-            return Created(token);
+            throw new BadRegisterRequestException(result);
         }
-
+        var token = await _tokenServices.GetJWTToken(user);
+        return token;
     }
 
-    
 }
+
+

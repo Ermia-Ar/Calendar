@@ -1,7 +1,6 @@
-﻿using Core.Domain.Shared;
-using MediatR;
+﻿using MediatR;
 
 namespace Core.Application.Features.Comments.Commands.UpdateComment
 {
-    public record class UpdateCommentCommand(string Id , string Content) : IRequest<Response<string>>;
+    public record class UpdateCommentCommand(string Id, string Content) : IRequest<string>;
 }
