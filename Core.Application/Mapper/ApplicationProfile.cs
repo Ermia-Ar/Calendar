@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Application.ApplicationServices.Activities.Queries.GetById;
 using Core.Application.DTOs.ActivityDTOs;
 using Core.Application.DTOs.AuthDTOs;
 using Core.Application.DTOs.ProjectDTOs;
@@ -34,7 +35,7 @@ namespace Core.Application.Mapper
             CreateMap<Activity, CreateSubActivityRequest>()
                 .ReverseMap();
 
-            CreateMap<Activity, ActivityResponse>()
+            CreateMap<Activity, GetByIdActivityQueryResponse>()
                 .ReverseMap();
 
             CreateMap<Activity, UpdateActivityRequest>()

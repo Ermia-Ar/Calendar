@@ -1,4 +1,5 @@
-﻿namespace Share.Abstract
+﻿
+namespace Share.Abstract
 {
     public abstract class BadRequestException : Exception
     {

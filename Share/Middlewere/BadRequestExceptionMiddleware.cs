@@ -17,7 +17,7 @@ public sealed class BadRequestExceptionMiddleware : IMiddleware
         {
             context.Response.StatusCode = 400;
             context.Response.Headers.Append("content-type", "application/json");
-            var json = JsonSerializer.Serialize(Result.Fail("20001" , ex.Message));
+            var json = JsonSerializer.Serialize(Result.Fail("" , ex.Message));
             await context.Response.WriteAsync(json);
         }
     }

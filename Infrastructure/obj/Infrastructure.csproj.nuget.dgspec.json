@@ -69,9 +69,17 @@
               "target": "Package",
               "version": "[1.3.5, )"
             },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.4.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.5.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Serilog": {
               "target": "Package",
@@ -152,6 +160,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "MamRp.SharedKernel": {
+              "target": "Package",
+              "version": "[1.3.5, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.4.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -238,6 +254,14 @@
             "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
               "version": "[12.0.0, )"
+            },
+            "MamRp.SharedKernel": {
+              "target": "Package",
+              "version": "[1.3.5, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.4.0, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -353,6 +377,10 @@
             "MamRp.SharedKernel": {
               "target": "Package",
               "version": "[1.3.5, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.4.0, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",

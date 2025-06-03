@@ -23,7 +23,7 @@ namespace Calendar.Api.Controllers
         }
         [HttpPost]
         [Route("SendProjectRequest")]
-        //[Authorize(CalendarClaims.RequestAddMemberToProject)]
+        //[Authorize(CalendarClaims.SendProjectRequest)]
         public async Task<SuccessResponse> RequestAddMemberToProject([FromBody] SendProjectRequest projectRequest)
         {
             var request = new RequestAddMemberToProjectCommand(projectRequest);
@@ -33,7 +33,7 @@ namespace Calendar.Api.Controllers
 
         [HttpPost]
         [Route("SendActivityRequest")]
-        //[Authorize(CalendarClaims.SendRequest)]
+        //[Authorize(CalendarClaims.SendActivityRequest)]
         public async Task<SuccessResponse> SendActivityRequest([FromBody] SendActivityRequest activityRequest)
         {
             var request = new CreateActivityRequestCommand(activityRequest);

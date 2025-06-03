@@ -14,6 +14,7 @@ namespace Core.Application.Features.Projects.CommandHandlers
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICurrentUserServices _currentUserServices;
         private readonly IMapper _mapper;
+        
 
         public RequestAddMemberToProjectHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         {

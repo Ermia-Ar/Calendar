@@ -1,4 +1,4 @@
-﻿using Core.Application.DTOs.ActivityDTOs;
+﻿using Core.Application.ApplicationServices.Activities.Queries.GetById;
 using Core.Application.DTOs.ProjectDTOs;
 using Core.Application.DTOs.UserDTOs;
 using Core.Application.Features.Projects.Command;
@@ -46,7 +46,7 @@ namespace Calendar.Api.Controllers
         [HttpGet]
         [Route("GetActivitiesOfProject{projectId:guid}")]
         //[Authorize(CalendarClaims.GetActivitiesOfProject)]
-        public async Task<SuccessResponse<List<ActivityResponse>>> GetActivitiesOfProject([FromRoute] Guid projectId)
+        public async Task<SuccessResponse<List<GetByIdActivityQueryResponse>>> GetActivitiesOfProject([FromRoute] Guid projectId)
         {
             var request = new GetActivitiesOfProjectQuery(projectId.ToString());
             var result = await _mediator.Send(request);

@@ -3,46 +3,46 @@
     public static class CalendarClaimsServiceDeclaration
     {
         // Activity Controller
-        public const string CreateActivity = "20254311";
-        public const string CreateActivityForProject = "20254312";
-        public const string CreateSubActivity = "20254313";
-        public const string DeleteActivity = "20254314";
-        public const string ExitingActivity = "20254315";
-        public const string RemoveMemberOfActivity = "20254316";
-        public const string UpdateActivity = "20254317";
-        public const string CompleteActivity = "20254318";
-        public const string GetAllUserActivity = "20254319";
-        public const string GetMemberOfActivity = "20254320";
+        public const string CreateActivity = "200002";
+        public const string CreateActivityForProject = "200003";
+        public const string CreateSubActivity = "200004";
+        public const string DeleteActivity = "200005";
+        public const string ExitingActivity = "200006";
+        public const string RemoveMemberOfActivity = "200007";
+        public const string UpdateActivity = "200008";
+        public const string CompleteActivity = "200009";
+        public const string GetAllUserActivity = "200010";
+        public const string GetMemberOfActivity = "200012";
 
         // UserRequest Controller
-        public const string SendRequest = "20254321";
-        public const string AnswerRequest = "20254322";
-        public const string RemoveRequest = "20254323";
-        public const string GetRequestsReceived = "20254324";
-        public const string GetRequestsResponse = "20254325";
-        public const string GetUnAnsweredRequest = "20254326";
-        public const string GetResponsesUserSent = "20254327";
+        public const string SendActivityRequest = "200013";
+        public const string SendProjectRequest = "200021";
+        public const string AnswerRequest = "200014";
+        public const string RemoveRequest = "200015";
+        public const string GetRequestsReceived = "200016";
+        public const string GetRequestsResponse = "200017";
+        public const string GetUnAnsweredRequest = "200018";
+        public const string GetResponsesUserSent = "200019";
 
         // Project Controller
-        public const string CreateProject = "20254328";
-        public const string RequestAddMemberToProject = "20254329";
-        public const string GetMemberOfProject = "20254330";
-        public const string GetActivitiesOfProject = "20254331";
-        public const string GetAllUserProjects = "20254332";
-        public const string ExitingProject = "20254333";
-        public const string RemoveMemberOfProject = "20254334";
-        public const string DeleteProject = "20254335";
+        public const string CreateProject = "200020";
+        public const string GetMemberOfProject = "200022";
+        public const string GetActivitiesOfProject = "200023";
+        public const string GetAllUserProjects = "200024";
+        public const string ExitingProject = "200025";
+        public const string RemoveMemberOfProject = "200026";
+        public const string DeleteProject = "200027";
 
         // Comment Controller
-        public const string CreateComment = "20254336";
-        public const string GetComments = "20254337";
-        public const string UpdateComment = "20254338";
-        public const string DeleteComment = "20254339";
+        public const string CreateComment = "200028";
+        public const string GetComments = "200029";
+        public const string UpdateComment = "200030";
+        public const string DeleteComment = "200031";
 
         // Auth Controller
-        public const string Register = "20254340";
-        public const string Login = "20254341";
-        public const string GetUserByUserName = "20254342";
-        public const string GetAllUsers = "20254343";
+        public const string Register = "200032";
+        public const string Login = "200034";
+        public const string GetUserByUserName = "200035";
+        public const string GetAllUsers = "200036";
     }
 }

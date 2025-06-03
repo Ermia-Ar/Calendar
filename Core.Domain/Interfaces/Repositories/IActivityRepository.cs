@@ -1,11 +1,12 @@
 ﻿using Core.Domain.Entity;
+using SharedKernel.Helper;
 
 namespace Core.Domain.Interfaces.Repositories
 {
     public interface IActivityRepository
     {
         public Task AddActivity(Activity activity, CancellationToken token);
-        public Task<Activity?> GetActivityById(string id, CancellationToken token);
+        public Task<IResponse?> GetActivityById(string id, CancellationToken token);
         public void DeleteRangeActivities(ICollection<Activity> activities);
         public void UpdateActivity(Activity activity);
         public void DeleteActivity(Activity activity);
