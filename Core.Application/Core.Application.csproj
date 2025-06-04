@@ -25,14 +25,4 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.8.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ApplicationServices\Comments\Commands\" />
-    <Folder Include="ApplicationServices\Comments\Exceptions\" />
-    <Folder Include="ApplicationServices\Comments\Queries\" />
-    <Folder Include="ApplicationServices\Projects\Commands\" />
-    <Folder Include="ApplicationServices\Projects\Exceptions\" />
-    <Folder Include="ApplicationServices\Projects\Queries\" />
-    <Folder Include="Exceptions\Activity\" />
-  </ItemGroup>
-
 </Project>

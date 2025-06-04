@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Domain;
+using Core.Domain.Entity;
+using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.DeleteActivity
@@ -21,7 +23,10 @@ namespace Core.Application.ApplicationServices.Activities.Commands.DeleteActivit
 
         public async Task Handle(DeleteActivityCommandRequest request, CancellationToken cancellationToken)
         {
-            var activity = await _unitOfWork.Activities.GetActivityById(request.Id, cancellationToken);
+            var activity = (await _unitOfWork.Activities
+                .GetActivityById(request.Id, cancellationToken))
+                .Adapt<Activity>();
+
             if (activity.UserId != _currentUser.GetUserId())
             {
                 throw new OnlyActivityCreatorAllowedException();
@@ -39,24 +44,27 @@ namespace Core.Application.ApplicationServices.Activities.Commands.DeleteActivit
 
         private async Task DeleteRangeCommentByActivityId(string activityId, CancellationToken token)
         {
-            var comments = await _unitOfWork.Comments
-                .GetComments(null, activityId, null, null, token);
+            var comments = (await _unitOfWork.Comments
+                .GetComments(null, activityId, null, null, token))
+                .Adapt<List<Comment>>();
 
             _unitOfWork.Comments.DeleteRangeComment(comments);
         }
 
         private async Task DeleteRangeRequestByActivityId(string activityId, CancellationToken token)
         {
-            var request = await _unitOfWork.Requests
-                .GetRequests(null, activityId, token);
+            var request = (await _unitOfWork.Requests
+                .GetRequests(null, activityId,null, null,null, token))
+                .Adapt<List<UserRequest>>();
 
             _unitOfWork.Requests.DeleteRangeRequests(request);
         }
 
         public async Task DeleteActivityById(string activityId, CancellationToken token)
         {
-            var activity = await _unitOfWork.Activities
-                .GetActivityById(activityId, token);
+            var activity = (await _unitOfWork.Activities
+                .GetActivityById(activityId, token))
+                .Adapt<Activity>();
 
             _unitOfWork.Activities.DeleteActivity(activity);
         }

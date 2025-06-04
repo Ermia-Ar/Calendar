@@ -1,10 +1,9 @@
-﻿using Core.Application.DTOs.ActivityDTOs;
-using Core.Domain.Enum;
+﻿using Core.Domain.Enum;
 using MediatR;
 
 namespace Core.Application.Features.Activities.Commands
 {
-    public record class AddActivityForProjectCommandRequest(
+    public sealed record class AddActivityForProjectCommandRequest(
          string ProjectId ,
          string Title ,
          string? Description ,

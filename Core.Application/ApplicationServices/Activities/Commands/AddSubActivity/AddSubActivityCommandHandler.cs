@@ -3,6 +3,7 @@ using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Enum;
+using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.AddSubActivity
@@ -25,11 +26,14 @@ namespace Core.Application.ApplicationServices.Activities.Commands.AddSubActivit
         {
             var ownerId = _currentUser.GetUserId();
             //get member of activity
-            var members = await _unitOfWork.Requests
-                .GetMemberOfActivity(request.ActivityId, cancellationToken);
+            var members = (await _unitOfWork.Requests
+                .GetMemberOfActivity(request.ActivityId, cancellationToken))
+                .Adapt<List<User>>();
+
             //get main activity
-            var baseActivity = await _unitOfWork.Activities
-                .GetActivityById(request.ActivityId, cancellationToken);
+            var baseActivity = (await _unitOfWork.Activities
+                .GetActivityById(request.ActivityId, cancellationToken))
+                .Adapt<Activity>();
 
             if (baseActivity.UserId != ownerId)
             {
@@ -56,7 +60,6 @@ namespace Core.Application.ApplicationServices.Activities.Commands.AddSubActivit
 
             //add to table activity
             await _unitOfWork.Activities.AddActivity(subActivity, cancellationToken);
-
             //send all requests
             await _unitOfWork.Requests.AddRangeRequest(userRequests, cancellationToken);
 

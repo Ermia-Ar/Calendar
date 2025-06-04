@@ -1,5 +1,6 @@
 ﻿using MediatR;
-using Serilog;
+using SharedKernel.Loggers.Abstraction;
+using SharedKernel.ResponseResult;
 
 namespace Application.Behaviors;
 
@@ -7,14 +8,15 @@ namespace Application.Behaviors;
 public class LoggingPipelineBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
+    where TResponse : ResultResponse
+
 {
-    private readonly ILogger _logger;
+    private readonly ILoggerService _logger;
 
-    public LoggingPipelineBehavior(ILogger logger)
+    public LoggingPipelineBehavior(ILoggerService logger)
     {
-        _logger = logger.ForContext<LoggingPipelineBehavior<TRequest, TResponse>>();
+        _logger = logger;
     }
-
 
     public async Task<TResponse> Handle(
         TRequest request,
@@ -22,7 +24,7 @@ public class LoggingPipelineBehavior<TRequest, TResponse>
         CancellationToken cancellationToken)
     {
 
-        _logger.Information(
+        _logger.LogInformation(
             " --Starting request {@RequestName}, {@DateTimeUtc} , {@Id}",
             typeof(TRequest).Name,
             DateTime.UtcNow,
@@ -31,16 +33,16 @@ public class LoggingPipelineBehavior<TRequest, TResponse>
 
         var result = await next();
 
-        //if (!result.Succeeded)
-        //{
-        //    _logger.Error(
-        //        "--Request failure {@RequestName}, {@Error}, {@DateTimeUtc}",
-        //        typeof(TRequest).Name,
-        //        result.Message,
-        //        DateTime.UtcNow);
-        //}
+        if (result.IsFailed)
+        {
+            _logger.LogError(
+                "--Request failure {@RequestName}, {@Error}, {@DateTimeUtc}",
+                typeof(TRequest).Name,
+                result.Message,
+                DateTime.UtcNow);
+        }
 
-        _logger.Information(
+        _logger.LogInformation(
             "--Completed request {@RequestName}, {@DateTimeUtc}",
             typeof(TRequest).Name,
             DateTime.UtcNow);

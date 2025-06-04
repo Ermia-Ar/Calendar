@@ -1,21 +1,24 @@
-﻿using Core.Domain.Entity;
+﻿using Core.Application.ApplicationServices.Comments.Queries.GetCommentById;
+using Core.Application.ApplicationServices.Projects.Queries.GetProjectById;
+using Core.Domain.Entity;
 using Core.Domain.Interfaces.Repositories;
+using Dapper;
 using Infrastructure.Data;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using SharedKernel.Helper;
 
 namespace Infrastructure.Repositories
 {
-    public class ProjectRepository : IProjectRepository
+    public class ProjectRepository(ApplicationContext context, IConfiguration configuration) : IProjectRepository
     {
-        private readonly ApplicationContext _context;
+        private readonly ApplicationContext _context = context;
+        private readonly IConfiguration _configuration = configuration;
 
-        public ProjectRepository(ApplicationContext context)
-        {
-            _context = context; 
-        }
-
+        //Commands
         public async Task AddProject(Project project, CancellationToken token)
         {
-             await _context.Projects.AddAsync(project, token); 
+            await _context.Projects.AddAsync(project, token);
         }
 
         public void DeleteProject(Project project)
@@ -28,36 +31,24 @@ namespace Infrastructure.Repositories
             _context.Projects.RemoveRange(projects);
         }
 
-        public async Task<Project?> GetProjectById(string id, CancellationToken token)
-        {
-           return await _context.Projects.FindAsync(id, token);
-        }
-
         public void UpdateProject(Project project)
         {
             _context.Projects.Update(project);
         }
 
-        //public async Task<List<Project>> GetProjectsOwnedByTheUser(string userId , CancellationToken token
-        //    , DateTime? startDate , bool isHistory = false)
-        //{
-        //    var projects = GetTableNoTracking()  
-        //        .Where(x => x.OwnerId == userId);
+        //Queries
+        public async Task<IResponse?> GetProjectById(string id, CancellationToken token)
+        {
+            using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
+            await connection.OpenAsync(token);
 
-        //    if (startDate.HasValue)
-        //    {
-        //        projects = projects.Where(x => x.StartDate >= startDate);
-        //    }
-        //    if (isHistory)
-        //    {
-        //        projects = projects.Where(x => x.EndDate <= DateTime.Now);
-        //    }
-        //    else
-        //    {
-        //        projects = projects.Where(x => x.EndDate >= DateTime.Now);
-        //    }
+            var parameters = new DynamicParameters();
+            parameters.Add("projectId", id);
 
-        //    return await projects.ToListAsync(token);
-        //}
+            var comment = await connection.QueryAsync<GetProjectByIdQueryResponse>
+                ("SP_GetProjectById", parameters, commandType: System.Data.CommandType.StoredProcedure);
+
+            return comment.FirstOrDefault();
+        }
     }
 }

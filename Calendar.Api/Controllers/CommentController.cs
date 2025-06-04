@@ -1,8 +1,8 @@
-﻿using Core.Application.Features.Comments.Commands.CreateComment;
+﻿using Core.Application.ApplicationServices.Comments.Queries.GetComments;
+using Core.Application.Features.Comments.Commands.CreateComment;
 using Core.Application.Features.Comments.Commands.DeleteComment;
 using Core.Application.Features.Comments.Commands.UpdateComment;
 using Core.Application.Features.Comments.Queries.GetCommentById;
-using Core.Application.Features.Comments.Queries.GetComments;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -37,10 +37,10 @@ namespace Calendar.Api.Controllers
         [HttpGet]
         [Route("GetComments")]
         //[Authorize(CalendarClaims.GetComments)]
-        public async Task<SuccessResponse<List<GetCommentsResponse>>> 
+        public async Task<SuccessResponse<List<GetCommentsQueryResponse>>> 
             GetComments(Guid? projectId, Guid? activityId, string? search, bool isUserOwner)
         {
-            var request = new GetCommentsQuery(projectId.ToString(), activityId.ToString(), search, isUserOwner);
+            var request = new GetCommentsQueryRequest(projectId.ToString(), activityId.ToString(), search, isUserOwner);
             var result = await _mediator.Send(request);
 
             return Result.Ok(result);
@@ -48,7 +48,7 @@ namespace Calendar.Api.Controllers
 
         [HttpGet]
         [Route("GetCommentById{id:guid}")]
-        public async Task<SuccessResponse<GetCommentsResponse>> GetCommentById(Guid id)
+        public async Task<SuccessResponse<GetCommentsQueryResponse>> GetCommentById(Guid id)
         {
             var request = new GetCommentByIdQuery(id.ToString());
             var result = await _mediator.Send(request);

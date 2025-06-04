@@ -1,12 +1,11 @@
-﻿using Share.Abstract;
+﻿using SharedKernel.Exceptions;
 
-namespace Core.Application.Exceptions
+namespace Core.Application.Exceptions;
+
+public class BadRequestExceptions : MamrpBaseBadRequestException
 {
-    public class BadRequestExceptions : BadRequestException
+    public BadRequestExceptions(string message) : base("2001", message)
     {
-        public BadRequestExceptions(string message) : base(message)
-        {
 
-        }
     }
 }

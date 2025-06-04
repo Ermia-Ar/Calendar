@@ -1,8 +1,4 @@
 ﻿using Core.Application.ApplicationServices.Activities.Queries.GetById;
-using Core.Application.DTOs.ActivityDTOs;
-using Core.Application.DTOs.UserDTOs;
-using Core.Application.Features.Activities.Commands;
-using Core.Application.Features.Activities.Queries;
 using Core.Domain.Enum;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -114,7 +110,7 @@ public class ActivityController : ControllerBase
     [HttpGet]
     [Route("GetUserActivity")]
     //[Authorize(CalendarClaims.GetAllUserActivity)]
-    public async Task<SuccessResponse<List<GetByIdActivityQueryResponse>>> GetAllUserActivity(DateTime? startDate, ActivityCategory? activityCategory
+    public async Task<SuccessResponse<List<GetActivityByIdQueryResponse>>> GetAllUserActivity(DateTime? startDate, ActivityCategory? activityCategory
         , bool UserIsOwner, bool isCompleted, bool isHistory)
     {
         var request = new GetUserActivitiesQuery
@@ -137,7 +133,7 @@ public class ActivityController : ControllerBase
 
     [HttpGet]
     [Route("GetActivityById{id:guid}")]
-    public async Task<SuccessResponse<GetByIdActivityQueryResponse>> GetActivityById(Guid id)
+    public async Task<SuccessResponse<GetActivityByIdQueryResponse>> GetActivityById(Guid id)
     {
         var request = new GetActivityByIdQuery(id.ToString());
         var result = await _mediator.Send(request);

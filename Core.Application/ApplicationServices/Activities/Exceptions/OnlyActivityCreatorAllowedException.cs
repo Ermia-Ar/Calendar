@@ -1,13 +1,11 @@
-﻿using Share.Abstract;
+﻿using SharedKernel.Exceptions;
 
-namespace Core.Application.ApplicationServices.Activities.Exceptions
+namespace Core.Application.ApplicationServices.Activities.Exceptions;
+
+public class OnlyActivityCreatorAllowedException : MamrpBaseBadRequestException
 {
-    public class OnlyActivityCreatorAllowedException : BadRequestException
+    public OnlyActivityCreatorAllowedException()
+        : base("","Only the creator of the activity is allowed.")
     {
-        public OnlyActivityCreatorAllowedException()
-            : base("Only the creator of the activity is allowed.")
-        {
-        }
     }
-
 }

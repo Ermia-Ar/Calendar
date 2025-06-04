@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
-using Core.Application.Exceptions.Project;
+using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.Features.Activities.Commands;
 using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Enum;
+using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.AddForProject
@@ -28,8 +29,9 @@ namespace Core.Application.ApplicationServices.Activities.Commands.AddForProject
             var ownerId = _currentUser.GetUserId();
 
             //check if user is the owner of project or not 
-            var project = await _unitOfWork.Projects
-                .GetProjectById(request.ProjectId, cancellationToken);
+            var project = (await _unitOfWork.Projects
+                .GetProjectById(request.ProjectId, cancellationToken))
+                .Adapt<Project>();
 
             if (project.OwnerId != ownerId)
             {
@@ -45,8 +47,9 @@ namespace Core.Application.ApplicationServices.Activities.Commands.AddForProject
 
 
             //sent request for all member of project
-            var members = await _unitOfWork.Requests
-                         .GetMemberOfProject(project.Id, cancellationToken);
+            var members = (await _unitOfWork.Requests
+                            .GetMemberOfProject(project.Id, cancellationToken))
+                            .Adapt<List<User>>();
 
             var userRequests = new List<UserRequest>();
             foreach (var member in members)

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Domain;
+using Core.Domain.Entity;
+using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.CompleteActivity
@@ -21,7 +23,10 @@ namespace Core.Application.ApplicationServices.Activities.Commands.CompleteActiv
 
         public async Task Handle(CompleteActivityCommandRequest request, CancellationToken cancellationToken)
         {
-            var activity = await _unitOfWork.Activities.GetActivityById(request.ActivityId, cancellationToken);
+            var activity = (await _unitOfWork.Activities
+                .GetActivityById(request.ActivityId, cancellationToken))
+                .Adapt<Activity>();
+
             if (activity.UserId != _currentUser.GetUserId())
             {
                 throw new OnlyActivityCreatorAllowedException();

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Activities.Exceptions;
-using Core.Application.DTOs.ActivityDTOs;
 using Core.Domain;
 using Core.Domain.Entity;
+using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.UpdateActivity
@@ -10,16 +10,17 @@ namespace Core.Application.ApplicationServices.Activities.Commands.UpdateActivit
     public class UpdateActivityHandler(IUnitOfWork unitOfWork
         ,ICurrentUserServices currentUser
         ,IMapper mapper)
-        : IRequestHandler<UpdateActivityCommand>
+        : IRequestHandler<UpdateActivityCommandRequest>
     {
         public readonly IUnitOfWork _unitOfWork = unitOfWork;
         public readonly IMapper _mapper = mapper;
         public readonly ICurrentUserServices _currentUser = currentUser;
 
-        public async Task Handle(UpdateActivityCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateActivityCommandRequest request, CancellationToken cancellationToken)
         {
-            var activity = await _unitOfWork.Activities
-                .GetActivityById(request.Id, cancellationToken);
+            var activity = (await _unitOfWork.Activities
+                .GetActivityById(request.Id, cancellationToken))
+                .Adapt<Activity>();
 
             if (activity.UserId != _currentUser.GetUserId())
             {

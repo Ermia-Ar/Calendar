@@ -46,7 +46,7 @@ namespace Calendar.Api.Controllers
         [HttpGet]
         [Route("GetActivitiesOfProject{projectId:guid}")]
         //[Authorize(CalendarClaims.GetActivitiesOfProject)]
-        public async Task<SuccessResponse<List<GetByIdActivityQueryResponse>>> GetActivitiesOfProject([FromRoute] Guid projectId)
+        public async Task<SuccessResponse<List<GetActivityByIdQueryResponse>>> GetActivitiesOfProject([FromRoute] Guid projectId)
         {
             var request = new GetActivitiesOfProjectQuery(projectId.ToString());
             var result = await _mediator.Send(request);

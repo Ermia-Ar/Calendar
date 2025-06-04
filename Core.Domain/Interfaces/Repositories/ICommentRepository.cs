@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Entity;
+using SharedKernel.Helper;
 
 namespace Core.Domain.Interfaces.Repositories
 {
@@ -6,11 +7,11 @@ namespace Core.Domain.Interfaces.Repositories
     {
         void DeleteComment(Comment comment);   
         void UpdateComment(Comment comment);
-        Task<Comment?> GetCommentById(string id, CancellationToken token);
+        Task<IResponse?> GetCommentById(string id, CancellationToken token);
         void DeleteRangeComment(ICollection<Comment> comments);
         Task AddComment(Comment comment , CancellationToken token);   
 
-        Task<List<Comment>> GetComments(
+        Task<IReadOnlyCollection<IResponse>> GetComments(
             string? projectId, string? activityId, string? search, string? userId, CancellationToken token);
     }
 }

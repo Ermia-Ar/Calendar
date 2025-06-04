@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Entity;
+using SharedKernel.Helper;
 
 namespace Core.Domain.Interfaces.Repositories
 {
@@ -6,7 +7,7 @@ namespace Core.Domain.Interfaces.Repositories
     {
         void DeleteProject(Project project);
         void UpdateProject(Project project);
-        Task<Project?> GetProjectById(string id, CancellationToken token);
+        Task<IResponse?> GetProjectById(string id, CancellationToken token);
         void DeleteRangeProject(ICollection<Project> projects);
         Task AddProject(Project project, CancellationToken token);
 

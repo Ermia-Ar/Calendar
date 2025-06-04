@@ -11,7 +11,7 @@ namespace Core.Domain.Interfaces.Repositories
         public void UpdateActivity(Activity activity);
         public void DeleteActivity(Activity activity);
 
-        public Task<List<Activity>> GetProjectActivities(string projectId, CancellationToken token
+        public Task<IReadOnlyCollection<IResponse>> GetProjectActivities(string projectId, CancellationToken token
             , DateTime? startDate = null);
 
         public Task<string[]> GetProjectActiveActivityIds(string projectId, CancellationToken token);

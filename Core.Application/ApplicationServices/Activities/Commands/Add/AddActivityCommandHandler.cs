@@ -1,6 +1,6 @@
-﻿using Core.Application.Exceptions.User;
-using Core.Domain.Entity;
+﻿using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Domain;
+using Core.Domain.Entity;
 using Core.Domain.Enum;
 using MediatR;
 

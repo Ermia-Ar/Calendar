@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Activities.Exceptions;
-using Core.Application.Exceptions.UseRequest;
+using Core.Application.ApplicationServices.UserRequests.Exceptions;
 using Core.Domain;
+using Core.Domain.Entity;
 using Core.Domain.Enum;
+using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.RemoveMemberOfActivity
@@ -24,8 +26,9 @@ namespace Core.Application.ApplicationServices.Activities.Commands.RemoveMemberO
         public async Task Handle(RemoveMemberOfActivityCommandRequest request, CancellationToken cancellationToken)
         {
             var userId = _currentUser.GetUserId();
-            var activity = await _unitOfWork.Activities
-                .GetActivityById(request.ActivityId, cancellationToken);
+            var activity = (await _unitOfWork.Activities
+                .GetActivityById(request.ActivityId, cancellationToken))
+                .Adapt<Activity>();
 
             if (activity.UserId != _currentUser.GetUserId())
             {
@@ -35,17 +38,15 @@ namespace Core.Application.ApplicationServices.Activities.Commands.RemoveMemberO
             var receiver = await _unitOfWork.Users.FindByUserName(request.UserName);
 
             //find request
-            var userRequest = (await _unitOfWork.Requests.GetRequests(null, null, cancellationToken))
-                .FirstOrDefault(x => x.RequestFor == RequestFor.Activity
-                && x.ActivityId == request.ActivityId
-                && x.ReceiverId == receiver.Id
-                && x.Status == RequestStatus.Accepted);
+            var userRequest = (await _unitOfWork.Requests.GetRequests(null, request.ActivityId
+            , userId, RequestStatus.Accepted, RequestFor.Activity, cancellationToken))
+            .Adapt<List<UserRequest>>();
 
             if (userRequest == null)
             {
                 throw new NotFoundMemberException("No such member was found.");
             }
-            _unitOfWork.Requests.DeleteRequest(userRequest);
+            _unitOfWork.Requests.DeleteRangeRequests(userRequest);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
     }
