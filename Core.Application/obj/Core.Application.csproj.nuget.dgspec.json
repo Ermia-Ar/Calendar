@@ -142,7 +142,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\DELL\\source\\repos\\Calendar\\Share\\Share.csproj": {
+                "projectPath": "C:\\Users\\DELL\\source\\repos\\Calendar\\Share\\Share.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

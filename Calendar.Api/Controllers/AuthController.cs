@@ -1,12 +1,6 @@
-﻿using Core.Application.DTOs.AuthDTOs;
-using Core.Application.DTOs.UserDTOs;
-using Core.Application.Features.Auth.Commands;
-using Core.Application.Features.Auth.Queries;
-using Core.Domain.Enum;
-using Infrastructure.Repositories;
+﻿using Core.Domain.Enum;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using OfficeOpenXml.FormulaParsing.FormulaExpressions;
 using SharedKernel.ResponseResult;
 
 namespace Calendar.Api.Controllers

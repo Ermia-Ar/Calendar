@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aCidXVyjKhQ=",
+  "dgSpecHash": "vuaKIW2XyoM=",
   "success": true,
   "projectFilePath": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.Api\\Calendar.Api.csproj",
   "expectedPackageFiles": [
@@ -221,12 +221,6 @@
     "C:\\Users\\DELL\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    },
     {
       "code": "NU1701",
       "level": "Warning",
