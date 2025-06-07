@@ -1,5 +1,5 @@
 ﻿using Core.Application.Services;
-using Core.Domain;
+using Core.Domain.Interfaces;
 using Core.Domain.Interfaces.Repositories;
 using Infrastructure.Base.CurrentUserServices;
 using Infrastructure.Mapper;

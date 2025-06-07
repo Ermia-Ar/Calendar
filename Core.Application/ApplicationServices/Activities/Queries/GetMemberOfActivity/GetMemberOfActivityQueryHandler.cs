@@ -1,5 +1,5 @@
 ﻿using Core.Application.ApplicationServices.Activities.Exceptions;
-using Core.Domain;
+using Core.Domain.Interfaces;
 using Mapster;
 using MediatR;
 

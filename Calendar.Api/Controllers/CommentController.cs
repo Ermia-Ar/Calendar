@@ -1,12 +1,7 @@
 ﻿using Core.Application.ApplicationServices.Comments.Queries.GetComments;
-using Core.Application.Features.Comments.Commands.CreateComment;
-using Core.Application.Features.Comments.Commands.DeleteComment;
-using Core.Application.Features.Comments.Commands.UpdateComment;
-using Core.Application.Features.Comments.Queries.GetCommentById;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 using SharedKernel.ResponseResult;
 
 namespace Calendar.Api.Controllers

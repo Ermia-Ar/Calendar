@@ -1,10 +1,10 @@
-﻿using Core.Domain;
-using Core.Domain.Helper;
+﻿using Core.Domain.Helper;
 using DomainUser = Core.Domain.Entity.User;
 using Infrastructure.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using AutoMapper;
+using Core.Domain.Interfaces;
 
 
 namespace Infrastructure.Base.CurrentUserServices

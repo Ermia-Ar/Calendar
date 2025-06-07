@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.Services;
-using Core.Domain;
 using Core.Domain.Entity;
+using Core.Domain.Interfaces;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Auth.Commands.Register;

@@ -1,4 +1,4 @@
-﻿using Core.Domain;
+﻿using Core.Domain.Interfaces;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.UserRequests.Queries.GetRequestById

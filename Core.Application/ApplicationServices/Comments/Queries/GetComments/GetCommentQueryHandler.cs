@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Core.Application.Exceptions;
-using Core.Domain;
+using Core.Domain.Interfaces;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Comments.Queries.GetComments;

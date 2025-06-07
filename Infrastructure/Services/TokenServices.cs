@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Core.Application.Services;
-using Core.Domain;
 using Core.Domain.Helper;
 using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Core.Domain.Interfaces;
 
 namespace Infrastructure.Services;
 

@@ -1,7 +1,7 @@
 ﻿using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.Services;
-using Core.Domain;
 using Core.Domain.Entity;
+using Core.Domain.Interfaces;
 using MediatR;
 using Share.Utility;
 

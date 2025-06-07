@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Auth.Exceptions;
-using Core.Domain;
 using Core.Domain.Entity;
 using Core.Domain.Enum;
+using Core.Domain.Interfaces;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.AddProject;
