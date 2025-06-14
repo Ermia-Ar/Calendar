@@ -1,9 +1,9 @@
-﻿using Core.Application.ApplicationServices.Activities.Queries.GetMemberOfActivity;
-using Core.Application.ApplicationServices.Activities.Queries.GetUserActivities;
-using Core.Application.ApplicationServices.Projects.Queries.GetMemberOfProject;
-using Core.Application.ApplicationServices.Projects.Queries.GetUserProjects;
-using Core.Application.ApplicationServices.UserRequests.Queries.GetRequestById;
-using Core.Application.ApplicationServices.UserRequests.Queries.GetUserRequests;
+﻿using Core.Application.ApplicationServices.Activities.Queries.GetMembers;
+using Core.Application.ApplicationServices.Activities.Queries.GetAll;
+using Core.Application.ApplicationServices.Projects.Queries.GetMembers;
+using Core.Application.ApplicationServices.Projects.Queries.GetAll;
+using Core.Application.ApplicationServices.UserRequests.Queries.GetById;
+using Core.Application.ApplicationServices.UserRequests.Queries.GetAll;
 using Core.Domain.Entity;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces.Repositories;
@@ -18,7 +18,7 @@ using System.Collections.Immutable;
 
 namespace Infrastructure.Repositories;
 
-public class RequestRepository : IRequestRepository
+public class RequestRepository : IRequestsRepository
 {
     private readonly ApplicationContext _context;
     private readonly IConfiguration _configuration;
@@ -30,7 +30,7 @@ public class RequestRepository : IRequestRepository
     }
 
     //Queries
-    public Task<IReadOnlyCollection<IResponse>> GetRequests(string? projectId, string? activityId
+    public Task<IReadOnlyCollection<IResponse>> GetAll(string? projectId, string? activityId
         , string? receiverId, RequestStatus? status, RequestFor? requestFor, CancellationToken token)
     {
         throw new NotImplementedException();
@@ -54,7 +54,7 @@ public class RequestRepository : IRequestRepository
 
         return userRequests.ToImmutableList();
     }
-    public async Task<IResponse?> GetRequestById(string id, CancellationToken token)
+    public async Task<IResponse?> GetById(string id, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
         await connection.OpenAsync();
@@ -150,24 +150,24 @@ public class RequestRepository : IRequestRepository
     }
 
     //Commands
-    public void DeleteRequest(UserRequest request)
+    public void Remove(UserRequest request)
     {
         _context.UserRequests.Remove(request);
     }
 
-    public void DeleteRangeRequests(ICollection<UserRequest> requests)
+    public void RemoveRange(ICollection<UserRequest> requests)
     {
         _context.UserRequests.RemoveRange(requests);
     }
 
-    public async Task AddRequest(UserRequest request, CancellationToken token)
+    public void Add(UserRequest request)
     {
-        await _context.UserRequests.AddAsync(request, token);
+        _context.UserRequests.Add(request);
     }
 
-    public async Task AddRangeRequest(ICollection<UserRequest> requests, CancellationToken token)
+    public void AddRange(ICollection<UserRequest> requests)
     {
-        await _context.UserRequests.AddRangeAsync(requests);
+        _context.UserRequests.AddRange(requests);
     }
 
     public void UpdateRequest(UserRequest request)

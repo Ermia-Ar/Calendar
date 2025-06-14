@@ -1,108 +1,110 @@
-﻿using Core.Application.ApplicationServices.Activities.Queries.GetById;
-using Core.Application.DTOs.ProjectDTOs;
-using Core.Application.DTOs.UserDTOs;
-using Core.Application.Features.Projects.Command;
-using Core.Application.Features.Projects.Query;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SharedKernel.ResponseResult;
+﻿
+namespace Calendar.Api.Controllers;
 
-namespace Calendar.Api.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class ProjectController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [Authorize]
-    [ApiController]
-    public class ProjectController : ControllerBase
+    private ISender _sender;
+
+    public ProjectController(ISender sender)
     {
-        private IMediator _mediator;
+        _sender = sender;
+    }
 
-        public ProjectController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    [HttpPost]
+    //[Authorize(CalendarClaims.CreateProject)]
+    public async Task<SuccessResponse> Add([FromBody] AddProjectCommandRequest request
+        , CancellationToken token = default)
+    {
+        await _sender.Send(request, token);
 
-        [HttpPost]
-        [Route("CreateProject")]
-        //[Authorize(CalendarClaims.CreateProject)]
-        public async Task<SuccessResponse> CreateProject([FromBody] CreateProjectRequest createProject)
-        {
-            var request = new CreateProjectCommand(createProject);
-            var result = await _mediator.Send(request);
+        return Result.Ok();
+    }
 
-            return Result.Ok();
-        }
+    [HttpPost("SubmitRequest")]
+    //[Authorize(CalendarClaims.SendProjectRequest)]
+    public async Task<SuccessResponse> SendProjectRequest([FromBody] SubmitProjectRequestCommandRequest request
+        , CancellationToken token = default)
+    {
+        await _sender.Send(request, token);
 
-        [HttpGet]
-        [Route("GetProjectMembers{projectId:guid}")]
-        //[Authorize(CalendarClaims.GetMemberOfProject)]
-        public async Task<SuccessResponse<List<UserResponse>>> GetMemberOfProject([FromRoute] Guid projectId)
-        {
-            var request = new GetMemberOfProjectQuery(projectId.ToString());
-            var result = await _mediator.Send(request);
-            return Result.Ok(result);
-        }
+        return Result.Ok();
+    }
 
-        [HttpGet]
-        [Route("GetActivitiesOfProject{projectId:guid}")]
-        //[Authorize(CalendarClaims.GetActivitiesOfProject)]
-        public async Task<SuccessResponse<List<GetActivityByIdQueryResponse>>> GetActivitiesOfProject([FromRoute] Guid projectId)
-        {
-            var request = new GetActivitiesOfProjectQuery(projectId.ToString());
-            var result = await _mediator.Send(request);
+    [HttpGet("GetMembers/{id:guid}")]
+    //[Authorize(CalendarClaims.GetMemberOfProject)]
+    public async Task<SuccessResponse<List<GetMemberOfProjectQueryResponse>>> GetMembers([FromRoute] Guid id
+        , CancellationToken token = default)
+    {
+        var request = new GetMemberOfProjectQueryRequest(id.ToString());
+        var result = await _sender.Send(request, token);
 
-            return Result.Ok(result);
-        }
+        return Result.Ok(result);
+    }
 
-        [HttpGet]
-        [Route("GetAllUserProjects")]
-        //[Authorize(CalendarClaims.GetAllUserProjects)]
-        public async Task<SuccessResponse<List<ProjectResponse>>> GetAllUserProjects(DateTime? startDate, bool userIsOwner, bool isHistory)
-        {
-            var request = new GetUserProjectsQuery(startDate, userIsOwner, isHistory);
-            var result = await _mediator.Send(request);
+    [HttpGet("GetActivities/{id:guid}")]
+    //[Authorize(CalendarClaims.GetActivitiesOfProject)]
+    public async Task<SuccessResponse<List<GetActivityOfProjectQueryResponse>>> GetActivities([FromRoute] Guid id
+        , CancellationToken token = default)
+    {
+        var request = new GetActivitiesOfProjectQueryRequest(id.ToString());
+        var result = await _sender.Send(request, token);
 
-            return Result.Ok(result);
-        }
+        return Result.Ok(result);
+    }
 
-        [HttpGet]
-        [Route("GetProjectById")]
-        public async Task<SuccessResponse<ProjectResponse>> GetProjectById(Guid id)
-        {
-            var request = new GetProjectByIdQuery(id.ToString());
-            var result = await _mediator.Send(request);
+    [HttpGet("GetAll")]
+    //[Authorize(CalendarClaims.GetAllUserProjects)]
+    public async Task<SuccessResponse<List<GetUserProjectQueryResponse>>> GetAll(DateTime? startDate, bool userIsOwner, bool isHistory
+        , CancellationToken token = default)
+    {
+        var request = new GetUserProjectsQueryRequest(startDate, userIsOwner, isHistory);
+        var result = await _sender.Send(request, token);
 
-            return Result.Ok(result);
-        }
+        return Result.Ok(result);
+    }
 
-        [HttpDelete]
-        [Route("ExitingProject{projectId:guid}")]
-        //[Authorize(CalendarClaims.ExitingProject)]
-        public async Task<SuccessResponse> ExitingProject(Guid projectId)
-        {
-            var request = new ExitingProjectCommand(projectId.ToString());
-            var result = await _mediator.Send(request);
-            return Result.Ok();
-        }
+    [HttpGet("{id:guid:required}")]
+    public async Task<SuccessResponse<GetProjectByIdQueryResponse>> GetById(Guid id
+        , CancellationToken token = default)
+    {
+        var request = new GetProjectByIdQueryRequest(id.ToString());
+        var result = await _sender.Send(request, token);
 
-        [HttpDelete]
-        [Route("RemoveMemberOfProject")]
-        //[Authorize(CalendarClaims.RemoveMemberOfProject)]
-        public async Task<SuccessResponse> RemoveMemberOfProject(Guid projectId, string userName)
-        {
-            var request = new RemoveMemberOfProjectCommand(projectId.ToString(), userName);
-            var result = await _mediator.Send(request);
-            return Result.Ok();
-        }
+        return Result.Ok(result);
+    }
+    //Check
+    [HttpDelete("Exiting/{id:guid:required}")]
+    //[Authorize(CalendarClaims.ExitingProject)]
+    public async Task<SuccessResponse> Exiting(Guid id
+        , CancellationToken token = default)
+    {
+        var request = new ExitingProjectCommandRequest(id.ToString());
+        await _sender.Send(request, token);
 
-        [HttpDelete]
-        [Route("DeleteProject{projectId:guid}")]
-        //[Authorize(CalendarClaims.DeleteProject)]
-        public async Task<SuccessResponse> DeleteProject(Guid projectId)
-        {
-            var request = new DeleteProjectCommand(projectId.ToString());
-            var result = await _mediator.Send(request);
-            return Result.Ok();
-        }
+        return Result.Ok();
+    }
+
+    [HttpDelete("RemoveOf/{id:guid:required}/Member/{memberId:guid:required}")]
+    //[Authorize(CalendarClaims.RemoveMemberOfProject)]
+    public async Task<SuccessResponse> RemoveMember(Guid id, Guid memberId,
+        CancellationToken token = default)
+    {
+        var request = new RemoveMemberOfProjectCommandRequest(id.ToString(), memberId.ToString());
+        await _sender.Send(request, token);
+
+        return Result.Ok();
+    }
+
+    [HttpDelete("{id:guid:required}")]
+    //[Authorize(CalendarClaims.DeleteProject)]
+    public async Task<SuccessResponse> Remove(Guid id
+        , CancellationToken token = default)
+    {
+        var request = new DeleteProjectCommandRequest(id.ToString());
+        await _sender.Send(request, token);
+
+        return Result.Ok();
     }
 }

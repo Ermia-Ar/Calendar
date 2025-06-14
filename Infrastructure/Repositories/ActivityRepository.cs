@@ -1,5 +1,5 @@
 ﻿using Core.Application.ApplicationServices.Activities.Queries.GetById;
-using Core.Application.ApplicationServices.Projects.Queries.GetActivitiesOfProject;
+using Core.Application.ApplicationServices.Projects.Queries.GetActivities;
 using Core.Domain.Entity;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
@@ -13,33 +13,33 @@ using System.Collections.Immutable;
 namespace Infrastructure.Repositories;
 
 public class ActivityRepository(ApplicationContext context,
-                                IConfiguration configuration) : IActivityRepository
+                                IConfiguration configuration) : IActivitiesRepository
 {
     private readonly ApplicationContext _context = context;
     private readonly IConfiguration _configuration = configuration;
 
 
     //Commands
-    public void UpdateActivity(Activity UpdateActivity)
+    public void Update(Activity UpdateActivity)
     {
         _context.Activities.Update(UpdateActivity);
     }
-    public async Task AddActivity(Activity activity, CancellationToken token)
+    public async Task Add(Activity activity, CancellationToken token)
     {
-        await _context.Activities.AddAsync(activity, token);
+        _context.Activities.Add(activity);
     }
 
-    public void DeleteActivity(Activity activity)
+    public void Delete(Activity activity)
     {
         _context.Activities.Remove(activity);
     }
 
-    public void DeleteRangeActivities(ICollection<Activity> activities)
+    public void RemoveRange(ICollection<Activity> activities)
     {
         _context.Activities.RemoveRange(activities);
     }
     //Queries
-    public async Task<IReadOnlyCollection<IResponse>> GetProjectActivities(string projectId, CancellationToken token
+    public async Task<IReadOnlyCollection<IResponse>> GetActivities(string projectId, CancellationToken token
         , DateTime? startDate = null)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -59,7 +59,7 @@ public class ActivityRepository(ApplicationContext context,
         return activities.ToImmutableList();
     }
 
-    public async Task<string[]> GetProjectActiveActivityIds(string projectId, CancellationToken token)
+    public async Task<string[]> GetActiveActivitiesId(string projectId, CancellationToken token)
     {
 
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -80,7 +80,7 @@ public class ActivityRepository(ApplicationContext context,
     }
 
 
-    public async Task<IResponse?> GetActivityById(string id, CancellationToken token)
+    public async Task<IResponse?> GetById(string id, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
         await connection.OpenAsync();

@@ -4,11 +4,11 @@ namespace Core.Domain.Interfaces;
 
 public interface IUnitOfWork : IDisposable
 {
-    IActivityRepository Activities { get; }
-    IRequestRepository Requests { get; }
-    ICommentRepository Comments { get; }
-    IProjectRepository Projects { get; }
-    IUserRepository Users { get; }
+    IActivitiesRepository Activities { get; }
+    IRequestsRepository Requests { get; }
+    ICommentsRepository Comments { get; }
+    IProjectsRepository Projects { get; }
+    IUsersRepository Users { get; }
 
     Task SaveChangeAsync(CancellationToken token = default);
 }

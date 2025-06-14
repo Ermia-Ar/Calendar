@@ -1,5 +1,5 @@
-﻿using Core.Application.ApplicationServices.Comments.Queries.GetCommentById;
-using Core.Application.ApplicationServices.Comments.Queries.GetComments;
+﻿using Core.Application.ApplicationServices.Comments.Queries.GetById;
+using Core.Application.ApplicationServices.Comments.Queries.GetAll;
 using Core.Domain.Entity;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
@@ -12,34 +12,34 @@ using System.Collections.Immutable;
 
 namespace Infrastructure.Repositories;
 
-public class CommentRepository(ApplicationContext context, IConfiguration configuration) : ICommentRepository
+public class CommentRepository(ApplicationContext context, IConfiguration configuration) : ICommentsRepository
 {
     private readonly ApplicationContext _context = context;
     private readonly IConfiguration _configuration = configuration;
 
     //Commands
-    public async Task AddComment(Comment comment,CancellationToken token)
+    public async Task Add(Comment comment,CancellationToken token)
     {
         await _context.Comments.AddAsync(comment,token);
     }
 
-    public void DeleteComment(Comment comment)
+    public void Remove(Comment comment)
     {
         _context.Comments.Remove(comment);
     }
 
-    public void DeleteRangeComment(ICollection<Comment> comments)
+    public void RemoveRange(ICollection<Comment> comments)
     {
         _context.Comments.RemoveRange(comments);
     }
 
-    public void UpdateComment(Comment comment)
+    public void Update(Comment comment)
     {
         _context.Comments.Update(comment);
     }
 
     //Queries
-    public async Task<IResponse?> GetCommentById(string id, CancellationToken token)
+    public async Task<IResponse?> GetById(string id, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
         await connection.OpenAsync(token);
@@ -53,7 +53,7 @@ public class CommentRepository(ApplicationContext context, IConfiguration config
         return comment.FirstOrDefault();
     }
 
-    public async Task<IReadOnlyCollection<IResponse>> GetComments(string? projectId, string? activityId, string? search, string? userId, CancellationToken token)
+    public async Task<IReadOnlyCollection<IResponse>> GetAll(string? projectId, string? activityId, string? search, string? userId, CancellationToken token)
     {
 
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));

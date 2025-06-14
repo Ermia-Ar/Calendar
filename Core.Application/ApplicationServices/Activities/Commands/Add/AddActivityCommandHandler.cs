@@ -3,23 +3,24 @@ using Core.Domain.Entity;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.Add;
 
 public sealed class AddActivityCommandHandler(
     IUnitOfWork unitOfWork,
-    ICurrentUserServices currentUser
+    ICurrentUserServices currentUser,
+    IConfiguration configuration
 ) : IRequestHandler<AddActivityCommandRequest>
 {
-    public readonly IUnitOfWork _unitOfWork = unitOfWork;
-    public readonly ICurrentUserServices _currentUser = currentUser;
-
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly ICurrentUserServices _currentUser = currentUser;
+    private readonly IConfiguration _configuration = configuration;
 
     public async Task Handle(AddActivityCommandRequest request, CancellationToken cancellationToken)
     {
         string projectId = "8c56ac14-ae28-4425-9a19-690d27d3a16d";
         var ownerId = _currentUser.GetUserId();
-        var ownerName = _currentUser.GetUserName();
 
         // map to activity table
         var activity = Activity.Create(null, ownerId, projectId,
@@ -33,7 +34,8 @@ public sealed class AddActivityCommandHandler(
         var userRequests = new List<UserRequest>();
         foreach (var memberName in request.Members)
         {
-            var member = await _unitOfWork.Users.FindByUserName(memberName);
+            //check
+            var member = await _unitOfWork.Users.FindById(memberName);
             if (member == null)
             {
                 throw new NotFoundUserNameException(memberName);
@@ -56,9 +58,9 @@ public sealed class AddActivityCommandHandler(
 
 
         //add to activity table
-        await _unitOfWork.Activities.AddActivity(activity, cancellationToken);
+        _unitOfWork.Activities.Add(activity);
         //send all requests
-        await _unitOfWork.Requests.AddRangeRequest(userRequests, cancellationToken);
+        _unitOfWork.Requests.AddRange(userRequests);
 
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }

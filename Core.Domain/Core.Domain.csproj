@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Share\Share.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Odering\" />
+  </ItemGroup>
+
 </Project>

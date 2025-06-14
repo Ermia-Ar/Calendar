@@ -110,7 +110,6 @@ C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\System.Text.En
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\obj\Debug\net8.0\Calendar.Api.sourcelink.json
-C:\Users\DELL\source\repos\Calendar\Calendar.Api\obj\Debug\net8.0\Calendar.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Humanizer.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -179,12 +178,6 @@ C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\zh-Hant\Micros
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\DotNetEnv.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Sprache.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Dapper.dll
-C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\System.Data.SqlClient.dll
-C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
-C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
-C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
-C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
-C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\AWSSDK.Core.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\AWSSDK.S3.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\EPPlus.dll
@@ -203,3 +196,5 @@ C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Serilog.Except
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Share.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Share.pdb
+C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Mapster.dll
+C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Mapster.Core.dll

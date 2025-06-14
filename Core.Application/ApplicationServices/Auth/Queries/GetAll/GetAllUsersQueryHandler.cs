@@ -1,0 +1,22 @@
+﻿using AutoMapper;
+using Core.Domain.Interfaces;
+using Mapster;
+using MediatR;
+
+namespace Core.Application.ApplicationServices.Auth.Queries.GetAll;
+
+
+public class GetAllUsersQueryHandler(IMapper mapper, IUnitOfWork unitOfWork)
+            : IRequestHandler<GetAllUsersQueryRequest, List<GetAllUserQueryResponse>>
+{
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMapper _mapper = mapper;
+
+    public async Task<List<GetAllUserQueryResponse>> Handle(GetAllUsersQueryRequest request, CancellationToken cancellationToken)
+    {
+        var users = await _unitOfWork.Users.GetAll(request.Search, request.Category, cancellationToken);
+        var userResponse = users.Adapt<List<GetAllUserQueryResponse>>();
+
+        return userResponse;
+    }
+}

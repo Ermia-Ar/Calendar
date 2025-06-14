@@ -7,5 +7,4 @@ public interface ITokenServices
 {
     Task<string> GetJWTToken(User user);
     JwtSecurityToken ReadJwtToken(string accessToken);
-
 }

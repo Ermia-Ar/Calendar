@@ -1,142 +1,135 @@
-﻿using Core.Application.ApplicationServices.Activities.Queries.GetById;
-using Core.Domain.Enum;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SharedKernel.ResponseResult;
-
+﻿
 namespace Calendar.Api.Controllers;
 
 [Route("api/[controller]/")]
 [ApiController]
-[Authorize]
-public class ActivityController : ControllerBase
+public class ActivitiesController(ISender sender) : ControllerBase
 {
-    private IMediator _mediator;
-
-    public ActivityController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
+    private readonly ISender _sender = sender;
+    
     [HttpPost]
-    [Route("CreateActivity")]
     //[Authorize(CalendarClaims.CreateActivity)]
-    public async Task<SuccessResponse> CreateActivity([FromBody] CreateActivityRequest activityRequest)
+    public async Task<SuccessResponse> Post([FromBody] AddActivityCommandRequest request
+        ,CancellationToken token = default)
     {
-        var request = new CreateActivityCommand (activityRequest);
-        var result = await _mediator.Send(request);
-
+        await _sender.Send(request,token);
         return Result.Ok();
     }
     
-    [HttpPost]
-    [Route("CreateActivityForProject")]
+    [HttpPost("ForProject")]
     //[Authorize(CalendarClaims.CreateActivityForProject)]
-    public async Task<SuccessResponse> CreateActivityForProject([FromBody] CreateActivityForProjectRequest activityRequest)
+    public async Task<SuccessResponse> PostForProject([FromBody] AddActivityForProjectCommandRequest request
+        , CancellationToken token = default)
     {
-        var request = new AddActivityForProjectCommand {CreateActivity = activityRequest };
-        var result = await _mediator.Send(request);
-
+        await _sender.Send(request,token);
         return Result.Ok();
     }
 
-    [HttpPost]
-    [Route("CreateSubActivity")]
+    [HttpPost("SubActivity")]
     //[Authorize(CalendarClaims.CreateSubActivity)]
-    public async Task<SuccessResponse> CreateSubActivity([FromBody] CreateSubActivityRequest activityRequest)
+    public async Task<SuccessResponse> PostSubActivity([FromBody] AddSubActivityCommandRequest request
+         , CancellationToken token = default)
     {
-        var request = new CreateSubActivityCommand { CreateActivity = activityRequest};
-        var result = await _mediator.Send(request);
+        await _sender.Send(request, token);
+        return Result.Ok();
+    }
+
+    [HttpPost("SubmitRequest")]
+    //[Authorize(CalendarClaims.SendActivityRequest)]
+    public async Task<SuccessResponse> SendRequest([FromBody] SubmitActivityRequestCommandRequest request
+        , CancellationToken token = default)
+    {
+        await _sender.Send(request, token);
 
         return Result.Ok();
     }
 
-    [HttpDelete]
-    [Route("DeleteActivity{id:guid}")]
+    [HttpDelete("{id:guid:required}")]
     //[Authorize(CalendarClaims.DeleteActivity)]
-    public async Task<SuccessResponse> DeleteActivity([FromRoute] Guid id)
+    public async Task<SuccessResponse> Remove([FromRoute] Guid id
+        , CancellationToken token = default)
     {
-        var request = new DeleteActivityCommand (id.ToString());
-        var result = await _mediator.Send(request);
+        var request = new DeleteActivityCommandRequest(id.ToString());
+        await _sender.Send(request, token);
 
         return Result.Ok();
     }
 
-    [HttpDelete]
-    [Route("ExitingActivity{id:guid}")]
+    [HttpDelete("Exiting/{id:guid}")]
     //[Authorize(CalendarClaims.ExitingActivity)]
-    public async Task<SuccessResponse> ExitingActivity([FromRoute] Guid id)
+    public async Task<SuccessResponse> Exiting([FromRoute] Guid id
+       , CancellationToken token = default)
     {
-        var request = new ExitingActivityCommand (id.ToString());
-        var result = await _mediator.Send(request);
+        var request = new ExitingActivityCommandRequest(id.ToString());
+        await _sender.Send(request, token);
 
         return Result.Ok();
     }
 
-    [HttpDelete]
-    [Route("RemoveMemberOfActivity")]
+    [HttpDelete("RemoveOf/{id:guid:required}/Member/{memberId:guid:required}")]
     //[Authorize(CalendarClaims.RemoveMemberOfActivity)]
-    public async Task<SuccessResponse> RemoveMemberOfActivity(Guid activityId, string userName)
+    public async Task<SuccessResponse> RemoveMember(Guid id, Guid memberId
+        , CancellationToken token = default)
     {
-        var request = new RemoveMemberOfActivityCommand(activityId.ToString(), userName);
-        var result = await _mediator.Send(request);
+        var request = new RemoveMemberOfActivityCommandRequest(id.ToString()
+            , memberId.ToString());
+        await _sender.Send(request, token);
 
         return Result.Ok();
     }
 
     [HttpPut]
-    [Route("UpdateActivity")]
     //[Authorize(CalendarClaims.UpdateActivity)]
-    public async Task<SuccessResponse> UpdateActivity([FromBody] UpdateActivityRequest activityRequest)
+    public async Task<SuccessResponse> Put([FromBody] UpdateActivityCommandRequest request
+         , CancellationToken token = default)
     {
-        var request = new UpdateActivityCommand(activityRequest);
-        var result = await _mediator.Send(request);
+        await _sender.Send(request, token);
 
         return Result.Ok();
     }
 
-    [HttpPut]
-    [Route("CompleteActivity")]
+    [HttpPut("Complete/{id:guid:required}")]
     //[Authorize(CalendarClaims.CompleteActivity)]
-    public async Task<SuccessResponse> CompleteActivity(Guid activityId)
+    public async Task<SuccessResponse> Complete(Guid id
+        , CancellationToken token = default)
     {
-        var request = new CompleteActivityCommand(activityId.ToString());
-        var result = await _mediator.Send(request);
+        var request = new CompleteActivityCommandRequest(id.ToString());
+        await _sender.Send(request, token);
 
         return Result.Ok();
     }
 
-    [HttpGet]
-    [Route("GetUserActivity")]
+    [HttpGet("GetAll")]
     //[Authorize(CalendarClaims.GetAllUserActivity)]
-    public async Task<SuccessResponse<List<GetActivityByIdQueryResponse>>> GetAllUserActivity(DateTime? startDate, ActivityCategory? activityCategory
-        , bool UserIsOwner, bool isCompleted, bool isHistory)
+    public async Task<SuccessResponse<List<GetUserActivitiesQueryResponse>>> GetAllUser
+    (DateTime? startDate, ActivityCategory? activityCategory
+        , bool UserIsOwner, bool isCompleted, bool isHistory
+        , CancellationToken token = default)
     {
-        var request = new GetUserActivitiesQuery
+        var request = new GetUserActivitiesQueryRequest
             (startDate, UserIsOwner, isCompleted, isHistory, activityCategory);
-        var result = await _mediator.Send(request);
+        var result = await _sender.Send(request, token);
 
         return Result.Ok(result);
     }
 
-    [HttpGet]
-    [Route("GetMemberOfActivity{activityId:guid}")]
+    [HttpGet("GetMember/{id:guid}")]
     //[Authorize(CalendarClaims.GetMemberOfActivity)]
-    public async Task<SuccessResponse<List<UserResponse>>> GetMemberOfActivity(Guid activityId)
+    public async Task<SuccessResponse<List<GetMemberOfActivityQueryResponse>>> GetMember(Guid id
+        , CancellationToken token = default)
     {
-        var request = new GetMemberOfActivityQuery(activityId.ToString());
-        var result = await _mediator.Send(request);
+        var request = new GetMemberOfActivityQueryRequest(id.ToString());
+        var result = await _sender.Send(request, token);
 
         return Result.Ok(result);
     }
 
-    [HttpGet]
-    [Route("GetActivityById{id:guid}")]
-    public async Task<SuccessResponse<GetActivityByIdQueryResponse>> GetActivityById(Guid id)
+    [HttpGet("Get/{id:guid}")]
+    public async Task<SuccessResponse<GetActivityByIdQueryResponse>> GetById(Guid id
+        , CancellationToken token = default)
     {
-        var request = new GetActivityByIdQuery(id.ToString());
-        var result = await _mediator.Send(request);
+        var request = new GetActivityByIdQueryRequest(id.ToString());
+        var result = await _sender.Send(request, token);
 
         return Result.Ok(result);
     }

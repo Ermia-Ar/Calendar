@@ -9,7 +9,7 @@ using DomainUser = Core.Domain.Entity.User;
 
 namespace Infrastructure.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUsersRepository
     {
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
@@ -39,7 +39,7 @@ namespace Infrastructure.Repositories
         public async Task<DomainUser?> FindById(string userId) =>
             _mapper.Map<DomainUser?>(await _userManager.FindByIdAsync(userId));
 
-        public async Task<List<DomainUser>> GetAllUsers(string? search , UserCategory? category, CancellationToken token)
+        public async Task<List<DomainUser>> GetAll(string? search , UserCategory? category, CancellationToken token)
         {
             var users = _userManager.Users;
             if(search != null)

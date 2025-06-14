@@ -1,75 +1,56 @@
-﻿using Core.Application.ApplicationServices.Comments.Queries.GetComments;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SharedKernel.ResponseResult;
+﻿
+namespace Calendar.Api.Controllers;
 
-namespace Calendar.Api.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class CommentsController(ISender sender) : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize]
-    public class CommentController : ControllerBase
+    private readonly ISender _sender = sender;
+
+    [HttpPost]
+    //[Authorize(CalendarClaims.CreateComment)]
+    public async Task<SuccessResponse> Post(AddCommentCommandRequest request,
+        CancellationToken token = default)
     {
-        private readonly IMediator _mediator;
+        await _sender.Send(request, token);
+        return Result.Ok();
+    }
 
-        public CommentController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    [HttpPut("{id:guid:required}")]
+    //[Authorize(CalendarClaims.UpdateComment)]
+    public async Task<SuccessResponse> Put(Guid id, string content,
+        CancellationToken token = default)
+    {
+        var request = new UpdateCommentCommandRequest(id.ToString(), content);
+        await _sender.Send(request, token);
+        return Result.Ok();
+    }
 
-        [HttpPost]
-        [Route("CreateComment")]
-        //[Authorize(CalendarClaims.CreateComment)]
-        public async Task<SuccessResponse> CreateComment(Guid projectId, string activityId, string content)
-        {
-            var request = new CreateCommentCommand(projectId.ToString(), activityId, content);
-            var result = await _mediator.Send(request);
+    [HttpDelete("{id:guid:required}")]
+    //[Authorize(CalendarClaims.DeleteComment)]
+    public async Task<SuccessResponse> Remove(Guid id,
+        CancellationToken token = default)
+    {
+        var request = new DeleteCommentCommandRequest(id.ToString());
+        await _sender.Send(request, token);
+        return Result.Ok();
+    }
 
-            return Result.Ok();
-        }
+    [HttpGet("{id:guid:required}")]
+    public async Task<SuccessResponse<GetCommentByIdQueryResponse>> GetById(Guid id,
+        CancellationToken token = default)
+    {
+        var result = await _sender.Send(new GetCommentByIdQueryRequest(id.ToString()), token);
+        return Result.Ok(result);
+    }
 
-        [HttpGet]
-        [Route("GetComments")]
-        //[Authorize(CalendarClaims.GetComments)]
-        public async Task<SuccessResponse<List<GetCommentsQueryResponse>>> 
-            GetComments(Guid? projectId, Guid? activityId, string? search, bool isUserOwner)
-        {
-            var request = new GetCommentsQueryRequest(projectId.ToString(), activityId.ToString(), search, isUserOwner);
-            var result = await _mediator.Send(request);
-
-            return Result.Ok(result);
-        }
-
-        [HttpGet]
-        [Route("GetCommentById{id:guid}")]
-        public async Task<SuccessResponse<GetCommentsQueryResponse>> GetCommentById(Guid id)
-        {
-            var request = new GetCommentByIdQuery(id.ToString());
-            var result = await _mediator.Send(request);
-
-            return Result.Ok(result);
-        }
-
-        [HttpPut]
-        [Route("EditComment")]
-        //[Authorize(CalendarClaims.UpdateComment)]
-        public async Task<SuccessResponse> UpdateComment(Guid id, string content)
-        {
-            var request = new UpdateCommentCommand(id.ToString(), content);
-            var result = await _mediator.Send(request);
-
-            return Result.Ok();
-        }
-
-        [HttpDelete]
-        [Route("DeleteComment")]
-        //[Authorize(CalendarClaims.DeleteComment)]
-        public async Task<SuccessResponse> DeleteComment(Guid id)
-        {
-            var request = new DeleteCommentCommand(id.ToString());
-            var result = await _mediator.Send(request);
-            return Result.Ok();
-        }
+    [HttpGet]
+    //[Authorize(CalendarClaims.GetComments)]
+    public async Task<SuccessResponse<List<GetCommentsQueryResponse>>> GetAll([FromQuery] GetAllCommentDto model,
+        CancellationToken token = default)
+    {
+        var request = GetAllCommentsQueryRequest.Create(model);
+        var result = await _sender.Send(request, token);
+        return Result.Ok(result);
     }
 }

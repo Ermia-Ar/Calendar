@@ -1,61 +1,54 @@
-﻿using Core.Domain.Enum;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using SharedKernel.ResponseResult;
+﻿
+namespace Calendar.Api.Controllers;
 
-namespace Calendar.Api.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class AuthController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+    private IMediator _mediator;
+
+    public AuthController(IMediator mediator)
     {
-        private IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public AuthController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    [HttpPost("Register")]
+    public async Task<SuccessResponse> Register([FromBody] RegisterCommandRequest request
+        , CancellationToken token = default)
+    {
+        await _mediator.Send(request, token);
 
-        [HttpPost]
-        [Route("Register")]
-        public async Task<SuccessResponse<string>> Register([FromBody] RegisterRequest registerRequest)
-        {
-            var request = new RegisterCommand(registerRequest);
-            var result = await _mediator.Send(request);
+        return Result.Ok();
+    }
 
-            return Result.Ok(result);
-        }
+    [HttpPost("Login")]
+    public async Task<SuccessResponse> Login([FromBody] LoginCommandRequest request
+        , CancellationToken token = default)
+    {
+        await _mediator.Send(request, token);
 
-        [HttpPost]
-        [Route("Login")]
-        public async Task<SuccessResponse<string>> Login([FromBody] LoginRequest loginRequest)
-        {
-            var request = new LoginCommand (loginRequest);
-            var result = await _mediator.Send(request);
+        return Result.Ok();
+    }
 
-            return Result.Ok(result);
-        }
+    [HttpGet("{id:guid:required}")]
+    //[Authorize(CalendarClaims.GetUserByUserName)]
+    public async Task<SuccessResponse<GetUserByIdQueryResponse>> GetById(Guid id,
+        CancellationToken token = default)
+    {
+        var request = new GetUserByIdQueryRequest(id.ToString());
+        var result = await _mediator.Send(request, token);
 
-        [HttpGet]
-        [Route("GetUserByUserName")]
-        //[Authorize(CalendarClaims.GetUserByUserName)]
-        public async Task<SuccessResponse<UserResponse>> GetUserByUserName(string userName)
-        {
-            var request = new GetUserByUserNameQuery (userName);
-            var result = await _mediator.Send(request);
+        return Result.Ok(result);
+    }
 
-            return Result.Ok(result);
-        }
+    [HttpGet]
+    //[Authorize(CalendarClaims.GetAllUsers)]
+    public async Task<SuccessResponse<List<GetAllUserQueryResponse>>> GetAll(string? search , UserCategory? category
+        , CancellationToken token = default)
+    {
+        var request = new GetAllUsersQueryRequest(search, category);
+        var result = await _mediator.Send(request, token);
 
-        [HttpGet]
-        [Route("GetAllUsers")]
-        //[Authorize(CalendarClaims.GetAllUsers)]
-        public async Task<SuccessResponse<List<UserResponse>>> GetAllUsers(string? search , UserCategory? category)
-        {
-            var request = new GetAllUsersQuery(search, category);
-            var result = await _mediator.Send(request);
-
-            return Result.Ok(result);
-        }
+        return Result.Ok(result);
     }
 }

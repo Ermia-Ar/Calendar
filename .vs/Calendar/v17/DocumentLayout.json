@@ -7,20 +7,8 @@
       "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\entity\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.domain\\entity\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\entity\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.domain\\entity\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\entity\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.domain\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.domain\\entity\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C95CD70-B0F5-4D3C-AF0D-1DF15EEB7925}|Core.Domain\\Core.Domain.csproj|solutionrelative:core.domain\\entity\\userrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\applicationservices\\activities\\commands\\add\\addactivitycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\applicationservices\\activities\\commands\\add\\addactivitycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,67 +38,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserRequest.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\UserRequest.cs",
-              "RelativeDocumentMoniker": "Core.Domain\\Entity\\UserRequest.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\UserRequest.cs",
-              "RelativeToolTip": "Core.Domain\\Entity\\UserRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T11:13:08.482Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\User.cs",
-              "RelativeDocumentMoniker": "Core.Domain\\Entity\\User.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\User.cs",
-              "RelativeToolTip": "Core.Domain\\Entity\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T11:13:06.053Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Project.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\Project.cs",
-              "RelativeDocumentMoniker": "Core.Domain\\Entity\\Project.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\Project.cs",
-              "RelativeToolTip": "Core.Domain\\Entity\\Project.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T11:13:01.397Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Comment.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\Comment.cs",
-              "RelativeDocumentMoniker": "Core.Domain\\Entity\\Comment.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\Comment.cs",
-              "RelativeToolTip": "Core.Domain\\Entity\\Comment.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T11:12:57.277Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Activity.cs",
               "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\Activity.cs",
               "RelativeDocumentMoniker": "Core.Domain\\Entity\\Activity.cs",
               "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Domain\\Entity\\Activity.cs",
               "RelativeToolTip": "Core.Domain\\Entity\\Activity.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAPAAAA",
+              "ViewState": "AQIAACkAAAAAAAAAAAAAwEAAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T11:12:32.022Z",
+              "WhenOpened": "2025-06-14T13:30:55.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddActivityCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\ApplicationServices\\Activities\\Commands\\Add\\AddActivityCommandHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\ApplicationServices\\Activities\\Commands\\Add\\AddActivityCommandHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\ApplicationServices\\Activities\\Commands\\Add\\AddActivityCommandHandler.cs",
+              "RelativeToolTip": "Core.Application\\ApplicationServices\\Activities\\Commands\\Add\\AddActivityCommandHandler.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBkAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T13:30:32.616Z",
               "EditorCaption": ""
             }
           ]

@@ -8,19 +8,19 @@ public class UnitOfWorks : IUnitOfWork
 {
     private readonly ApplicationContext _context;
 
-    public IActivityRepository Activities { get; private set; }
+    public IActivitiesRepository Activities { get; private set; }
 
-    public IRequestRepository Requests { get; private set; }
+    public IRequestsRepository Requests { get; private set; }
 
-    public IProjectRepository Projects { get; private set; }
+    public IProjectsRepository Projects { get; private set; }
 
-    public ICommentRepository Comments { get; private set; }
+    public ICommentsRepository Comments { get; private set; }
 
-    public IUserRepository Users { get; private set; }
+    public IUsersRepository Users { get; private set; }
 
     public UnitOfWorks(ApplicationContext context,
-        IActivityRepository activities, IRequestRepository requests,
-        IProjectRepository projects, IUserRepository users, ICommentRepository comments)
+        IActivitiesRepository activities, IRequestsRepository requests,
+        IProjectsRepository projects, IUsersRepository users, ICommentsRepository comments)
     {
         _context = context;
         Activities = activities;

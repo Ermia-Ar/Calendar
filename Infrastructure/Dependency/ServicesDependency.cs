@@ -18,12 +18,12 @@ public static class ServicesDependency
     {
         //services.AddScoped<IAuthServices, AuthServices>();
         services.AddScoped<ICurrentUserServices, CurrentUserService>();
-        services.AddScoped<IActivityRepository, ActivityRepository>();
-        services.AddScoped<ICommentRepository, CommentRepository>();
-        services.AddScoped<IRequestRepository, RequestRepository>();
-        services.AddScoped<IProjectRepository, ProjectRepository>();
+        services.AddScoped<IActivitiesRepository, ActivityRepository>();
+        services.AddScoped<ICommentsRepository, CommentRepository>();
+        services.AddScoped<IRequestsRepository, RequestRepository>();
+        services.AddScoped<IProjectsRepository, ProjectRepository>();
         services.AddScoped<ILoggerService, SerilogLoggerService>();
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUsersRepository, UserRepository>();
         services.AddScoped<ITokenServices, TokenServices>();
         services.AddScoped<IUnitOfWork, UnitOfWorks>();
         services.AddAutoMapper(typeof(InfraProfile));

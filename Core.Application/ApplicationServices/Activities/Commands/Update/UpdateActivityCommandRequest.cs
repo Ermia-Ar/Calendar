@@ -4,7 +4,7 @@ using MediatR;
 namespace Core.Application.ApplicationServices.Activities.Commands.UpdateActivity;
 
 public record class UpdateActivityCommandRequest(
-    string Id,
+    string Id ,
     string Title,
     string? Description,
     DateTime StartDate,

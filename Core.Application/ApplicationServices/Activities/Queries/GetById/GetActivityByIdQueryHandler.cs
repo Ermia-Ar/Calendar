@@ -15,7 +15,7 @@ public sealed class GetActivityByIdQueryHandler(IUnitOfWork unitOfWork, IMapper 
     public async Task<GetActivityByIdQueryResponse> Handle(GetActivityByIdQueryRequest request, CancellationToken cancellationToken)
     {
         var activity = await _unitOfWork.Activities
-            .GetActivityById(request.Id, cancellationToken);
+            .GetById(request.Id, cancellationToken);
 
         return activity.Adapt<GetActivityByIdQueryResponse>();
     }

@@ -1,43 +1,43 @@
-﻿using Core.Application.ApplicationServices.Comments.Queries.GetCommentById;
-using Core.Application.ApplicationServices.Projects.Queries.GetProjectById;
+﻿using Core.Application.ApplicationServices.Projects.Queries.GetById;
 using Core.Domain.Entity;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
 using Infrastructure.Data;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SharedKernel.Helper;
 
 namespace Infrastructure.Repositories
 {
-    public class ProjectRepository(ApplicationContext context, IConfiguration configuration) : IProjectRepository
+    public class ProjectRepository(ApplicationContext context, IConfiguration configuration) : IProjectsRepository
     {
         private readonly ApplicationContext _context = context;
         private readonly IConfiguration _configuration = configuration;
 
         //Commands
-        public async Task AddProject(Project project, CancellationToken token)
+        public void Add(Project project)
         {
-            await _context.Projects.AddAsync(project, token);
+            _context.Projects.Add(project);
         }
 
-        public void DeleteProject(Project project)
+        public void Remove(Project project)
         {
             _context.Projects.Remove(project);
         }
 
-        public void DeleteRangeProject(ICollection<Project> projects)
+        public void RemoveRange(ICollection<Project> projects)
         {
             _context.Projects.RemoveRange(projects);
         }
 
-        public void UpdateProject(Project project)
+        public void Update(Project project)
         {
             _context.Projects.Update(project);
         }
 
         //Queries
-        public async Task<IResponse?> GetProjectById(string id, CancellationToken token)
+        public async Task<IResponse?> GetById(string id, CancellationToken token)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
             await connection.OpenAsync(token);
@@ -49,6 +49,11 @@ namespace Infrastructure.Repositories
                 ("SP_GetProjectById", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
             return comment.FirstOrDefault();
+        }
+
+        public async Task<Project?> FindById(string id, CancellationToken token)
+        {
+            return await _context.Projects.FirstOrDefaultAsync(x => x.Id == id, token);
         }
     }
 }
