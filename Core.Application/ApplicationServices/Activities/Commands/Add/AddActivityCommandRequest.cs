@@ -7,8 +7,8 @@ public sealed record AddActivityCommandRequest(
      string Title ,
      string? Description ,
      DateTime StartDate ,
-     int? DurationInMinute ,
-     int? NotificationBeforeInMinute ,
+     int DurationInMinute ,
+     int NotificationBeforeInMinute ,
      ActivityCategory Category ,
      string[] Members ,
      string? Message

@@ -14,7 +14,9 @@ public class GetAllUsersQueryHandler(IMapper mapper, IUnitOfWork unitOfWork)
 
     public async Task<List<GetAllUserQueryResponse>> Handle(GetAllUsersQueryRequest request, CancellationToken cancellationToken)
     {
-        var users = await _unitOfWork.Users.GetAll(request.Search, request.Category, cancellationToken);
+        var users = await _unitOfWork.Users.GetAll(request.Filtering.Search
+            , request.Filtering.Category, cancellationToken);
+
         var userResponse = users.Adapt<List<GetAllUserQueryResponse>>();
 
         return userResponse;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.Services;
-using Core.Domain.Entity;
+using Core.Domain.Entity.Users;
 using Core.Domain.Interfaces;
 using MediatR;
 

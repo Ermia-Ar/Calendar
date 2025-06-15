@@ -1,4 +1,5 @@
 using Calendar.Api.Common;
+using Calendar.Api.Hubs;
 using Core.Application;
 using Infrastructure.Data;
 using Infrastructure.Dependency;
@@ -51,6 +52,10 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.MapHub<PresenceHub>("/PresenceHub");
+app.MapHub<CalendarSyncHub>("/CalendarHub");
+app.MapHub<NotificationHub>("/NotificationHub");
 
 app.MapControllers(); 
 app.Run();

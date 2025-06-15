@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Projects.Exceptions;
-using Core.Domain.Entity;
+using Core.Domain.Entity.Activities;
+using Core.Domain.Entity.Comments;
 using Core.Domain.Interfaces;
 using Mapster;
 using MediatR;
@@ -25,22 +26,21 @@ public class DeleteProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper,
         }
 
         // delete from comments table
-        var comments = (await _unitOfWork.Comments.GetAll
-            (request.ProjectId, null, null, null, cancellationToken))
-            .Adapt<List<Comment>>();
+        var comments = await _unitOfWork.Comments.Find
+            (request.ProjectId, null, cancellationToken);
 
         _unitOfWork.Comments.RemoveRange(comments);
 
         // delete all request for this project 
         var requests = (await _unitOfWork.Requests
-            .GetAll(request.ProjectId, null, null, null, null, cancellationToken))
-            .Adapt<List<UserRequest>>();
+            .GetAll(request.ProjectId, null, cancellationToken))
+            .ToList();
+
         _unitOfWork.Requests.RemoveRange(requests);
 
         // delete all activity for this project 
         var activities = (await _unitOfWork.Activities
-            .GetActivities(request.ProjectId, cancellationToken))
-            .Adapt<List<Activity>>();
+            .Find(request.ProjectId, cancellationToken));
 
         _unitOfWork.Activities.RemoveRange(activities);
 

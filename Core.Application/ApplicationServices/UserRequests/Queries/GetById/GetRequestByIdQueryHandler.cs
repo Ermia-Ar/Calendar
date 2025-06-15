@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Interfaces;
+using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.UserRequests.Queries.GetById
@@ -8,9 +9,11 @@ namespace Core.Application.ApplicationServices.UserRequests.Queries.GetById
     {
         public IUnitOfWork _unitOfWork = unitOfWork;
 
-        public Task<GetRequestByIdQueryResponse> Handle(GetRequestByIdQueryRequest request, CancellationToken cancellationToken)
+        public async Task<GetRequestByIdQueryResponse> Handle(GetRequestByIdQueryRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var userRequest = await _unitOfWork.Requests.GetById(request.Id, cancellationToken);
+
+            return userRequest.Adapt<GetRequestByIdQueryResponse>();
         }
     }
 }

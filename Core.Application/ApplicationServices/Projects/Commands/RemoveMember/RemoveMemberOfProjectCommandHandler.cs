@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.ApplicationServices.UserRequests.Exceptions;
-using Core.Domain.Entity;
-using Core.Domain.Enum;
 using Core.Domain.Interfaces;
-using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.RemoveMember;
 
-public class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+public sealed class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
         : IRequestHandler<RemoveMemberOfProjectCommandRequest>
 {
 
@@ -30,11 +27,8 @@ public class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, IMapper
         //
         var receiver = await _unitOfWork.Users.FindByUserName(request.UserName);
 
-        var userRequests = (await _unitOfWork.Requests
-            .GetAll(request.ProjectId, null
-            , userId, RequestStatus.Accepted
-            , null, cancellationToken))
-            .Adapt<List<UserRequest>>();
+        var userRequests = await _unitOfWork.Requests.FindMember(request.ProjectId, null
+            , userId, cancellationToken);
 
         if (!userRequests.Any())
         {
@@ -43,6 +37,7 @@ public class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, IMapper
 
 
         _unitOfWork.Requests.RemoveRange(userRequests);
+
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }
 }

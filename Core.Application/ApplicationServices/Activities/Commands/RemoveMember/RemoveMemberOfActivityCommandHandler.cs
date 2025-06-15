@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Application.ApplicationServices.UserRequests.Exceptions;
-using Core.Domain.Entity;
+using Core.Domain.Entity.UserRequests;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces;
 using Mapster;
@@ -19,21 +19,18 @@ namespace Core.Application.ApplicationServices.Activities.Commands.RemoveMember
         public async Task Handle(RemoveMemberOfActivityCommandRequest request, CancellationToken cancellationToken)
         {
             var userId = _currentUser.GetUserId();
+
             var activity = await _unitOfWork.Activities
                 .FindById(request.ActivityId, cancellationToken);
 
-            if (activity.UserId != _currentUser.GetUserId())
+            if (activity.UserId != userId)
             {
                 throw new OnlyActivityCreatorAllowedException();
             }
-            // get user by username
-            var receiver = await _unitOfWork.Users
-                    .FindByUserName(request.UserName);
 
             //find request
-            var userRequest = (await _unitOfWork.Requests.GetAll(null, request.ActivityId
-            , userId, RequestStatus.Accepted, RequestFor.Activity, cancellationToken))
-            .Adapt<List<UserRequest>>();
+            var userRequest = await _unitOfWork.Requests.FindMember(null, request.ActivityId
+               , request.UserId, cancellationToken);
 
             if (userRequest == null)
             {

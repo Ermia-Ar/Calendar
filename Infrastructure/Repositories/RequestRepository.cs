@@ -1,10 +1,10 @@
-﻿using Core.Application.ApplicationServices.Activities.Queries.GetMembers;
-using Core.Application.ApplicationServices.Activities.Queries.GetAll;
-using Core.Application.ApplicationServices.Projects.Queries.GetMembers;
+﻿using Core.Application.ApplicationServices.Activities.Queries.GetAll;
+using Core.Application.ApplicationServices.Activities.Queries.GetMembers;
 using Core.Application.ApplicationServices.Projects.Queries.GetAll;
-using Core.Application.ApplicationServices.UserRequests.Queries.GetById;
+using Core.Application.ApplicationServices.Projects.Queries.GetMembers;
 using Core.Application.ApplicationServices.UserRequests.Queries.GetAll;
-using Core.Domain.Entity;
+using Core.Application.ApplicationServices.UserRequests.Queries.GetById;
+using Core.Domain.Entity.UserRequests;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
@@ -28,28 +28,56 @@ public class RequestRepository : IRequestsRepository
         _context = context;
         _configuration = configuration;
     }
-
-    //Queries
-    public Task<IReadOnlyCollection<IResponse>> GetAll(string? projectId, string? activityId
-        , string? receiverId, RequestStatus? status, RequestFor? requestFor, CancellationToken token)
+    //Commands
+    public void Remove(UserRequest request)
     {
-        throw new NotImplementedException();
+        _context.UserRequests.Remove(request);
     }
 
-    public async Task<IReadOnlyCollection<IResponse>> GetUserRequests(string? projectId, string? activityId, string? receiverId
-        , string? senderId, RequestFor? requestFor, RequestStatus? status, bool? isExpire, CancellationToken token)
+    public void RemoveRange(ICollection<UserRequest> requests)
+    {
+        _context.UserRequests.RemoveRange(requests);
+    }
+
+    public void Add(UserRequest request)
+    {
+        _context.UserRequests.Add(request);
+    }
+
+    public void AddRange(ICollection<UserRequest> requests)
+    {
+        _context.UserRequests.AddRange(requests);
+    }
+
+    public void Update(UserRequest request)
+    {
+        _context.UserRequests.Update(request);
+    }
+
+
+    //Queries
+    public async Task<IReadOnlyCollection<UserRequest>> GetAll(string? projectId
+        , string? activityId, CancellationToken token)
+    {
+        return await _context.UserRequests.Where
+            (x => (projectId != null ? x.ProjectId == projectId : true)
+            && (activityId != null ? x.ActivityId == activityId : true))
+            .ToListAsync();
+    }
+
+    public async Task<IReadOnlyCollection<IResponse>> GetAllRequests(string? projectId, string? activityId, string? receiverId
+        , string? senderId, RequestFor? requestFor, RequestStatus? status, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
         await connection.OpenAsync();
 
         var parameters = new DynamicParameters();
-        parameters.Add("IsExpire", isExpire);
         parameters.Add("SenderId", senderId);
         parameters.Add("ReceiverId", receiverId);
         parameters.Add("RequestFor", requestFor);
         parameters.Add("IsActive", true);
 
-        var userRequests = await connection.QueryAsync<GetUserRequestQueryResponse>
+        var userRequests = await connection.QueryAsync<GetAllRequestQueryResponse>
             ("SP_GetRequests", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
         return userRequests.ToImmutableList();
@@ -83,7 +111,7 @@ public class RequestRepository : IRequestsRepository
         parameters.Add("ownerId", userIsOwner? userId:null);
         parameters.Add("History", isHistory == true ? DateTime.Now : null);
 
-        var projects = await connection.QueryAsync<GetUserProjectQueryResponse>
+        var projects = await connection.QueryAsync<GetAllProjectQueryResponse>
             ("SP_GetProjects", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
 
@@ -125,7 +153,7 @@ public class RequestRepository : IRequestsRepository
         parameters.Add("category", category ?? null);
         parameters.Add("isCompleted", isCompleted == true ? true : null);
 
-        var activities = await connection.QueryAsync<GetUserActivitiesQueryResponse>
+        var activities = await connection.QueryAsync<GetAllActivitiesQueryResponse>
             ("SP_GetActivities", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
 
@@ -148,39 +176,56 @@ public class RequestRepository : IRequestsRepository
 
         return members.ToImmutableList();
     }
-
-    //Commands
-    public void Remove(UserRequest request)
+    public async Task<string[]> GetMemberIdsOfProject(string projectId, CancellationToken token)
     {
-        _context.UserRequests.Remove(request);
+        using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
+        await connection.OpenAsync(token);
+
+        var parameters = new DynamicParameters();
+        parameters.Add("isExpire", true);
+        parameters.Add("requestFor", RequestFor.Project);
+        parameters.Add("projectId", projectId);
+        parameters.Add("status", RequestStatus.Accepted);
+
+        var members = await connection.QueryAsync<string>
+            ("SP_GetMemberIdsOfProject", parameters, commandType: System.Data.CommandType.StoredProcedure);
+
+
+        return members.ToArray();
     }
 
-    public void RemoveRange(ICollection<UserRequest> requests)
+    public async Task<string[]> GetMemberIdsOfActivity(string activityId, CancellationToken token)
     {
-        _context.UserRequests.RemoveRange(requests);
+        using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
+        await connection.OpenAsync(token);
+
+        var parameters = new DynamicParameters();
+        parameters.Add("isExpire", true);
+        parameters.Add("requestFor", RequestFor.Activity);
+        parameters.Add("activityId", activityId);
+        parameters.Add("status", (int)RequestStatus.Accepted);
+
+        var members = await connection.QueryAsync<string>
+            ("SP_GetMemberIdsOfActivity", parameters, commandType: System.Data.CommandType.StoredProcedure);
+
+
+        return members.ToArray();
     }
 
-    public void Add(UserRequest request)
+    public async Task<UserRequest?> FindById(string id, CancellationToken token)
     {
-        _context.UserRequests.Add(request);
+        return await _context.UserRequests
+            .FirstOrDefaultAsync(x => x.Id == id, token);
     }
 
-    public void AddRange(ICollection<UserRequest> requests)
+    public async Task<List<UserRequest>> FindMember(string? projectId
+        , string? activityId, string receiverId, CancellationToken token)
     {
-        _context.UserRequests.AddRange(requests);
+        return await _context.UserRequests.Where
+            (x => (projectId != null ? x.ProjectId == projectId : true)
+            && (activityId != null ? x.ActivityId == activityId : true) 
+            && x.ReceiverId == receiverId
+            && x.Status == RequestStatus.Accepted)
+            .ToListAsync();
     }
-
-    public void UpdateRequest(UserRequest request)
-    {
-        _context.UserRequests.Update(request);
-    }
-
-    public void AnswerRequest(UserRequest request, bool isAccepted, CancellationToken token)
-    {
-        request.IsExpire = true;
-        request.AnsweredAt = DateTime.Now;
-        request.Status = isAccepted ? RequestStatus.Accepted : RequestStatus.Rejected;
-    }
-
- 
 }

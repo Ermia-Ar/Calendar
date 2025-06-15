@@ -8,8 +8,8 @@ namespace Core.Application.ApplicationServices.Activities.Commands.AddSubActivit
          string Title,
          string? Description,
          DateTime StartDate,
-         int? DurationInMinute,
-         int? NotificationBeforeInMinute,
+         int DurationInMinute,
+         int NotificationBeforeInMinute,
          ActivityCategory Category 
         ) : IRequest;
 }

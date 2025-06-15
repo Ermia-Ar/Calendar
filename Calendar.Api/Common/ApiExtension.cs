@@ -1,4 +1,5 @@
-﻿using Core.Domain.Exceptions;
+﻿using Calendar.Api.Hubs;
+using Core.Domain.Exceptions;
 using DotNetEnv;
 using Infrastructure.Data;
 using Infrastructure.Models;
@@ -21,11 +22,22 @@ public static class ApiExtension
         {
             services.AddSwaggerConfig();
         }
-        services.AddControllers(); 
+        services.AddsSignalR();
+        services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddAuthenticationConfig(configuration);
         return services;
 
+    }
+
+    private static IServiceCollection AddsSignalR(this IServiceCollection services)
+    {
+        services.AddScoped<PresenceHub>();
+        services.AddScoped<NotificationHub>();
+        services.AddScoped<CalendarSyncHub>();
+        services.AddSignalR();
+
+        return services;
     }
 
     private static IServiceCollection AddSwaggerConfig(this IServiceCollection services)

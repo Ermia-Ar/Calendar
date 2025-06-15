@@ -2,7 +2,7 @@
 
 namespace Core.Application.ApplicationServices.UserRequests.Queries.GetById
 {
-    public record class GetRequestByIdQueryRequest(
+    public sealed record GetRequestByIdQueryRequest(
         string Id
 
         ) : IRequest<GetRequestByIdQueryResponse>;

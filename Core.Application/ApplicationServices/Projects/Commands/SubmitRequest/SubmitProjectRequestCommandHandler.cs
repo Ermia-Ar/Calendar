@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.ApplicationServices.Projects.Exceptions;
-using Core.Domain.Entity;
+using Core.Domain.Entity.UserRequests;
 using Core.Domain.Interfaces;
 using Mapster;
 using MediatR;
@@ -27,27 +27,21 @@ public sealed class SubmitProjectRequestCommandHandler(IUnitOfWork unitOfWork, I
             throw new OnlyProjectCreatorAllowedException();
         }
 
-        var addRequest = _mapper.Map<UserRequest>(request);
-        addRequest.Id = Guid.NewGuid().ToString();
-        addRequest.Sender.Id = _currentUserServices.GetUserId();
-        addRequest.Status = Domain.Enum.RequestStatus.Pending;
-        addRequest.RequestFor = Domain.Enum.RequestFor.Project;
-        addRequest.InvitedAt = DateTime.Now;
-        addRequest.ProjectId = request.ProjectId;
-        addRequest.IsExpire = false;
-
         //send for each Receivers
         var userRequests = new List<UserRequest>();
-        foreach (var memberName in request.Receivers)
+        foreach (var memberId in request.ReceiverIds)
         {
-            var receiver = await _unitOfWork.Users.FindByUserName(memberName);
+            var receiver = await _unitOfWork.Users.FindById(memberId);
             if (receiver != null)
             {
-                throw new NotFoundUserNameException(memberName);
+                throw new NotFoundUserIdException(memberId);
             }
-            addRequest.Id = Guid.NewGuid().ToString();
-            addRequest.ReceiverId = receiver.Id;
-            userRequests.Add(addRequest);
+
+            var sendRequest = RequestFactory.CreateProjectRequest(
+                request.ProjectId, userId, memberId, request.Message
+                );
+
+            userRequests.Add(sendRequest);
         }
 
         _unitOfWork.Requests.AddRange(userRequests);

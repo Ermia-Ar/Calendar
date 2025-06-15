@@ -1,4 +1,7 @@
-﻿using Core.Domain.Entity;
+﻿using Core.Domain.Entity.Activities;
+using Core.Domain.Entity.Comments;
+using Core.Domain.Entity.Projects;
+using Core.Domain.Entity.UserRequests;
 using Core.Domain.Enum;
 using Microsoft.AspNetCore.Identity;
 

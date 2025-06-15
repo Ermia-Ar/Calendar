@@ -22,6 +22,7 @@ public class ActivitiesController(ISender sender) : ControllerBase
         , CancellationToken token = default)
     {
         await _sender.Send(request,token);
+
         return Result.Ok();
     }
 
@@ -31,6 +32,7 @@ public class ActivitiesController(ISender sender) : ControllerBase
          , CancellationToken token = default)
     {
         await _sender.Send(request, token);
+
         return Result.Ok();
     }
 
@@ -44,44 +46,42 @@ public class ActivitiesController(ISender sender) : ControllerBase
         return Result.Ok();
     }
 
-    [HttpDelete("{id:guid:required}")]
-    //[Authorize(CalendarClaims.DeleteActivity)]
-    public async Task<SuccessResponse> Remove([FromRoute] Guid id
+    [HttpGet("All")]
+    //[Authorize(CalendarClaims.GetAllUserActivity)]
+    public async Task<SuccessResponse<List<GetAllActivitiesQueryResponse>>> GetAll([FromQuery] GetAllActivitiesDto model
         , CancellationToken token = default)
     {
-        var request = new DeleteActivityCommandRequest(id.ToString());
-        await _sender.Send(request, token);
+        var request = GetAllActivitiesQueryRequest.Create(model);
+        var result = await _sender.Send(request, token);
 
-        return Result.Ok();
+        return Result.Ok(result);
     }
 
-    [HttpDelete("Exiting/{id:guid}")]
-    //[Authorize(CalendarClaims.ExitingActivity)]
-    public async Task<SuccessResponse> Exiting([FromRoute] Guid id
-       , CancellationToken token = default)
-    {
-        var request = new ExitingActivityCommandRequest(id.ToString());
-        await _sender.Send(request, token);
-
-        return Result.Ok();
-    }
-
-    [HttpDelete("RemoveOf/{id:guid:required}/Member/{memberId:guid:required}")]
-    //[Authorize(CalendarClaims.RemoveMemberOfActivity)]
-    public async Task<SuccessResponse> RemoveMember(Guid id, Guid memberId
+    [HttpGet("GetMember/{id:guid}")]
+    //[Authorize(CalendarClaims.GetMemberOfActivity)]
+    public async Task<SuccessResponse<List<GetMemberOfActivityQueryResponse>>> GetMember(Guid id
         , CancellationToken token = default)
     {
-        var request = new RemoveMemberOfActivityCommandRequest(id.ToString()
-            , memberId.ToString());
-        await _sender.Send(request, token);
+        var request = new GetMemberOfActivityQueryRequest(id.ToString());
+        var result = await _sender.Send(request, token);
 
-        return Result.Ok();
+        return Result.Ok(result);
+    }
+
+    [HttpGet("{id:guid}")]
+    public async Task<SuccessResponse<GetActivityByIdQueryResponse>> GetById(Guid id
+        , CancellationToken token = default)
+    {
+        var request = new GetActivityByIdQueryRequest(id.ToString());
+        var result = await _sender.Send(request, token);
+
+        return Result.Ok(result);
     }
 
     [HttpPut]
     //[Authorize(CalendarClaims.UpdateActivity)]
-    public async Task<SuccessResponse> Put([FromBody] UpdateActivityCommandRequest request
-         , CancellationToken token = default)
+    public async Task<SuccessResponse> Put(UpdateActivityCommandRequest request
+     , CancellationToken token = default)
     {
         await _sender.Send(request, token);
 
@@ -99,38 +99,29 @@ public class ActivitiesController(ISender sender) : ControllerBase
         return Result.Ok();
     }
 
-    [HttpGet("GetAll")]
-    //[Authorize(CalendarClaims.GetAllUserActivity)]
-    public async Task<SuccessResponse<List<GetUserActivitiesQueryResponse>>> GetAllUser
-    (DateTime? startDate, ActivityCategory? activityCategory
-        , bool UserIsOwner, bool isCompleted, bool isHistory
+    [HttpDelete("{id:guid:required}")]
+    //[Authorize(CalendarClaims.DeleteActivity)]
+    public async Task<SuccessResponse> Remove([FromRoute] Guid id
         , CancellationToken token = default)
     {
-        var request = new GetUserActivitiesQueryRequest
-            (startDate, UserIsOwner, isCompleted, isHistory, activityCategory);
-        var result = await _sender.Send(request, token);
+        var request = new DeleteActivityCommandRequest(id.ToString());
+        await _sender.Send(request, token);
 
-        return Result.Ok(result);
+        return Result.Ok();
     }
 
-    [HttpGet("GetMember/{id:guid}")]
-    //[Authorize(CalendarClaims.GetMemberOfActivity)]
-    public async Task<SuccessResponse<List<GetMemberOfActivityQueryResponse>>> GetMember(Guid id
+    [HttpDelete("RemoveOf/{id:guid:required}/Member/{memberId:guid:required}")]
+    //[Authorize(CalendarClaims.RemoveMemberOfActivity)]
+    public async Task<SuccessResponse> RemoveMember(Guid id, Guid memberId
         , CancellationToken token = default)
     {
-        var request = new GetMemberOfActivityQueryRequest(id.ToString());
-        var result = await _sender.Send(request, token);
+        var request = new RemoveMemberOfActivityCommandRequest(id.ToString()
+            , memberId.ToString());
+        await _sender.Send(request, token);
 
-        return Result.Ok(result);
+        return Result.Ok();
     }
 
-    [HttpGet("Get/{id:guid}")]
-    public async Task<SuccessResponse<GetActivityByIdQueryResponse>> GetById(Guid id
-        , CancellationToken token = default)
-    {
-        var request = new GetActivityByIdQueryRequest(id.ToString());
-        var result = await _sender.Send(request, token);
 
-        return Result.Ok(result);
-    }
+
 }

@@ -3,13 +3,15 @@ using Core.Application.Services;
 using Core.Domain.Helper;
 using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
-using DomainUser = Core.Domain.Entity.User;
+using DomainUser = Core.Domain.Entity.Users.User;
+using User = Infrastructure.Models.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Core.Domain.Interfaces;
+using Core.Domain.Entity.Users;
 
 namespace Infrastructure.Services;
 
@@ -33,21 +35,7 @@ public class TokenServices : ITokenServices
     {
         var domainUser = _mapper.Map<User>(user);
         var (JwtToken, AccessToken) = await GenerateJwtToken(domainUser);
-        //var refreshToken = GetRefreshToken(user.UserName);
-        //var userRefreshToken = new UserRefreshToken
-        //{
-        //    AddedTime = DateTime.Now,
-        //    ExpiryDate = DateTime.Now.AddDays(10),
-        //    IsUsed = false,
-        //    IsRevoked = false,
-        //    JwtId = JwtToken.Id,
-        //    RefreshToken = refreshToken.TokenString,
-        //    Token = AccessToken,
-        //    UserId = user.Id
-        //};
-        //await _dbContext.userRefreshToken.AddAsync(userRefreshToken);
-        //await _dbContext.SaveChangesAsync();
-      
+
         return AccessToken;
     }
 
@@ -68,24 +56,6 @@ public class TokenServices : ITokenServices
         return (JwtToken, AccessToken);
     }
 
-    //private RefreshToken GetRefreshToken(string UserName)
-    //{
-    //    var refreshToken = new RefreshToken()
-    //    {
-    //        TokenString = GenerateRefreshToken(),
-    //        UserName = UserName,
-    //        ExpireAt = DateTime.Now.AddDays(10),
-    //    };
-    //    return refreshToken;
-    //}
-
-    //private string GenerateRefreshToken()
-    //{
-    //    var RandomNumber = new byte[32];
-    //    var RandomNumberGenerate = RandomNumberGenerator.Create();
-    //    RandomNumberGenerate.GetBytes(RandomNumber);
-    //    return Convert.ToBase64String(RandomNumber);
-    //}
 
     private async Task<List<Claim>> GetClaims(User user)
     {
@@ -105,30 +75,6 @@ public class TokenServices : ITokenServices
 
         return claims;
     }
-
-    //public async Task<JwtAuthResult> GetRefreshToken(string codeMelly, JwtSecurityToken JwtToken
-    //    , DateTime? ExpiryDate, string refreshToken)
-    //{
-    //    var user = await _userManager.Users.FirstOrDefaultAsync(x => x.CodeMelly == codeMelly);
-
-    //    if (user == null)
-    //    {
-    //        throw new SecurityTokenException("User Is Not Found");
-    //    }
-    //    var (jwtSecurityToken, NewToken) = await GenerateJwtToken(user);
-    //    var response = new JwtAuthResult();
-    //    response.AccessToken = NewToken;
-
-    //    var refreshTokenResult = new RefreshToken();
-    //    refreshTokenResult.TokenString = refreshToken;
-    //    refreshTokenResult.ExpireAt = (DateTime)ExpiryDate;
-    //    //get user name
-    //    var username = JwtToken.Claims.FirstOrDefault(x => x.Type == nameof(UserClaimsModel.UserName)).Value;
-    //    refreshTokenResult.UserName = username;
-    //    response.refreshToken = refreshTokenResult;
-    //    return response;
-    //}
-
     public JwtSecurityToken ReadJwtToken(string AccessToken)
     {
         if (string.IsNullOrEmpty(AccessToken))
@@ -171,52 +117,4 @@ public class TokenServices : ITokenServices
             return ex.Message;
         }
     }
-
-    //public async Task<(string, DateTime?)> ValidateDetails(JwtSecurityToken jwtToken, string AccessToken, string RefreshToken)
-    //{
-    //    if (jwtToken == null || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256))
-    //    {
-    //        return ("AlgorithmIsWrong", null);
-    //    }
-    //    if (jwtToken.ValidTo > DateTime.UtcNow)
-    //    {
-    //        return ("TokenIsNotExpired", null);
-    //    }
-
-    //    //Get User
-    //    var userId = jwtToken.Claims.FirstOrDefault(x => x.Type == nameof(UserClaimsModel.Id)).Value;
-    //    var userRefreshToken = await _dbContext.userRefreshToken.FirstOrDefaultAsync(x => x.Token == AccessToken
-    //                                     && x.RefreshToken == RefreshToken &&
-    //                                     x.UserId == userId.ToString());
-
-    //    if (userRefreshToken == null)
-    //    {
-    //        return ("RefreshTokenIsNotFound", null);
-    //    }
-
-    //    if (userRefreshToken.ExpiryDate < DateTime.UtcNow ||
-    //        userRefreshToken.IsUsed == true || userRefreshToken.IsRevoked == true)
-    //    {
-    //        userRefreshToken.IsRevoked = true;
-    //        userRefreshToken.IsUsed = true;
-    //        _dbContext.userRefreshToken.Update(userRefreshToken);
-    //        return ("Refresh Token Is Expired Please Login Again", null);
-    //    }
-    //    await _dbContext.SaveChangesAsync();
-    //    //get code melly 
-    //    var codeMelly = jwtToken.Claims.FirstOrDefault(x => x.Type == nameof(UserClaimsModel.CodeMelly)).Value;
-    //    var ExpireDate = userRefreshToken.ExpiryDate;
-    //    return (codeMelly, ExpireDate);
-    //}
-
-    //public async Task ExpiredRefreshToken(string refreshToken)
-    //{
-    //    var token = await _dbContext.userRefreshToken.
-    //        SingleOrDefaultAsync(x => x.RefreshToken == refreshToken);
-
-    //    token.IsRevoked = true;
-    //    token.IsUsed = true;
-
-    //    await _dbContext.SaveChangesAsync();
-    //}
 }

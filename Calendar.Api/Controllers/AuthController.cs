@@ -43,10 +43,10 @@ public class AuthController : ControllerBase
 
     [HttpGet]
     //[Authorize(CalendarClaims.GetAllUsers)]
-    public async Task<SuccessResponse<List<GetAllUserQueryResponse>>> GetAll(string? search , UserCategory? category
+    public async Task<SuccessResponse<List<GetAllUserQueryResponse>>> GetAll([FromQuery]GetAllUsersDto model
         , CancellationToken token = default)
     {
-        var request = new GetAllUsersQueryRequest(search, category);
+        var request = GetAllUsersQueryRequest.Create(model);
         var result = await _mediator.Send(request, token);
 
         return Result.Ok(result);

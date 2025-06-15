@@ -1,0 +1,230 @@
+2025-06-15 00:59:37.930 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-15 00:59:38.104 +04:30 [INF] Now listening on: https://localhost:7107
+2025-06-15 00:59:38.107 +04:30 [INF] Now listening on: http://localhost:5150
+2025-06-15 00:59:38.110 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 00:59:38.112 +04:30 [INF] Hosting environment: Development
+2025-06-15 00:59:38.113 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-06-15 00:59:40.461 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-06-15 00:59:40.746 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 290.4854ms
+2025-06-15 00:59:40.766 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-15 00:59:40.766 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-06-15 00:59:40.776 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 9.8077ms
+2025-06-15 00:59:40.849 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 83.0414ms
+2025-06-15 00:59:40.881 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-06-15 00:59:41.047 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 166.1411ms
+2025-06-15 01:00:07.347 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-15 01:00:07.518 +04:30 [INF] Now listening on: https://localhost:7107
+2025-06-15 01:00:07.520 +04:30 [INF] Now listening on: http://localhost:5150
+2025-06-15 01:00:07.523 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 01:00:07.526 +04:30 [INF] Hosting environment: Development
+2025-06-15 01:00:07.527 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-06-15 01:00:08.543 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-06-15 01:00:08.760 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 222.8069ms
+2025-06-15 01:00:08.833 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-15 01:00:08.840 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-06-15 01:00:08.843 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 9.9025ms
+2025-06-15 01:00:08.888 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 48.165ms
+2025-06-15 01:00:08.919 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-06-15 01:00:09.060 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 141.2203ms
+2025-06-15 01:02:10.348 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-15 01:02:10.546 +04:30 [INF] Now listening on: https://localhost:7107
+2025-06-15 01:02:10.548 +04:30 [INF] Now listening on: http://localhost:5150
+2025-06-15 01:02:10.573 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 01:02:10.627 +04:30 [INF] Hosting environment: Development
+2025-06-15 01:02:10.628 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-06-15 01:02:11.988 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-06-15 01:02:12.213 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 236.1535ms
+2025-06-15 01:02:12.236 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-15 01:02:12.238 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-06-15 01:02:12.246 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 10.2078ms
+2025-06-15 01:02:12.336 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 97.6862ms
+2025-06-15 01:02:12.366 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-06-15 01:02:12.516 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 149.7503ms
+2025-06-15 01:02:45.586 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-15 01:02:45.748 +04:30 [INF] Now listening on: https://localhost:7107
+2025-06-15 01:02:45.751 +04:30 [INF] Now listening on: http://localhost:5150
+2025-06-15 01:02:45.755 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 01:02:45.757 +04:30 [INF] Hosting environment: Development
+2025-06-15 01:02:45.758 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-06-15 01:02:46.830 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-06-15 01:02:47.033 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 210.6484ms
+2025-06-15 01:02:47.073 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-15 01:02:47.078 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-06-15 01:02:47.086 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 12.8803ms
+2025-06-15 01:02:47.126 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 48.0582ms
+2025-06-15 01:02:47.156 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-06-15 01:02:47.287 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 132.1968ms
+2025-06-15 01:02:55.859 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/ - null null
+2025-06-15 01:02:55.914 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/ - 404 0 null 54.8418ms
+2025-06-15 01:02:55.920 +04:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7107/, Response status code: 404
+2025-06-15 01:03:01.104 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/PresenceHub - null null
+2025-06-15 01:03:01.124 +04:30 [INF] Executing endpoint '/PresenceHub'
+2025-06-15 01:03:01.131 +04:30 [INF] Executed endpoint '/PresenceHub'
+2025-06-15 01:03:01.132 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/PresenceHub - 400 null text/plain 28.3531ms
+2025-06-15 01:03:01.155 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/favicon.ico - null null
+2025-06-15 01:03:01.162 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/favicon.ico - 404 0 null 6.8834ms
+2025-06-15 01:03:01.165 +04:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7107/favicon.ico, Response status code: 404
+2025-06-15 01:22:21.054 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-15 01:22:21.224 +04:30 [INF] Now listening on: https://localhost:7107
+2025-06-15 01:22:21.227 +04:30 [INF] Now listening on: http://localhost:5150
+2025-06-15 01:22:21.230 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 01:22:21.232 +04:30 [INF] Hosting environment: Development
+2025-06-15 01:22:21.233 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-06-15 01:22:22.235 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-06-15 01:22:22.454 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 238.4425ms
+2025-06-15 01:22:22.486 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-06-15 01:22:22.486 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-15 01:22:22.500 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 12.586ms
+2025-06-15 01:22:22.545 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 59.2509ms
+2025-06-15 01:22:22.577 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-06-15 01:22:22.732 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 154.2897ms
+2025-06-15 13:10:39.379 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-15 13:10:39.638 +04:30 [INF] Now listening on: https://localhost:7107
+2025-06-15 13:10:39.641 +04:30 [INF] Now listening on: http://localhost:5150
+2025-06-15 13:10:39.644 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 13:10:39.646 +04:30 [INF] Hosting environment: Development
+2025-06-15 13:10:39.647 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-06-15 13:10:42.205 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-06-15 13:10:42.429 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 234.8283ms
+2025-06-15 13:10:42.458 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-15 13:10:42.469 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-06-15 13:10:42.471 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 12.9313ms
+2025-06-15 13:10:42.513 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 45.4828ms
+2025-06-15 13:10:42.545 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-06-15 13:10:42.727 +04:30 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - Calendar.Api.Controllers.UserRequestsController.GetAll (Calendar.Api). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-15 13:10:42.745 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 200.5813ms
+2025-06-15 13:11:48.775 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-15 13:11:48.947 +04:30 [INF] Now listening on: https://localhost:7107
+2025-06-15 13:11:48.949 +04:30 [INF] Now listening on: http://localhost:5150
+2025-06-15 13:11:48.951 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 13:11:48.953 +04:30 [INF] Hosting environment: Development
+2025-06-15 13:11:48.972 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-06-15 13:11:49.776 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-06-15 13:11:50.052 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 288.6694ms
+2025-06-15 13:11:50.070 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-15 13:11:50.070 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-06-15 13:11:50.078 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 8.1383ms
+2025-06-15 13:11:50.118 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 47.7224ms
+2025-06-15 13:11:50.147 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-06-15 13:11:50.301 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 154.3737ms
+2025-06-15 13:12:14.441 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-15 13:12:14.628 +04:30 [INF] Now listening on: https://localhost:7107
+2025-06-15 13:12:14.631 +04:30 [INF] Now listening on: http://localhost:5150
+2025-06-15 13:12:14.635 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 13:12:14.637 +04:30 [INF] Hosting environment: Development
+2025-06-15 13:12:14.637 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-06-15 13:12:15.714 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-06-15 13:12:15.978 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 270.3013ms
+2025-06-15 13:12:16.010 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-06-15 13:12:16.010 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-15 13:12:16.030 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 20.0448ms
+2025-06-15 13:12:16.059 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 49.272ms
+2025-06-15 13:12:16.088 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-06-15 13:12:16.239 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 150.7251ms
+2025-06-15 13:12:35.134 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/UserRequests/All - null null
+2025-06-15 13:12:35.181 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.UserRequestsController.GetAll (Calendar.Api)'
+2025-06-15 13:12:35.204 +04:30 [INF] Route matched with {action = "GetAll", controller = "UserRequests"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.UserRequests.Queries.GetAll.GetAllRequestQueryResponse]]] GetAll(Core.Application.ApplicationServices.UserRequests.Queries.GetAll.GetAllRequestDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.UserRequestsController (Calendar.Api).
+2025-06-15 13:12:35.226 +04:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-06-15 13:12:35.248 +04:30 [INF] Executed action Calendar.Api.Controllers.UserRequestsController.GetAll (Calendar.Api) in 37.4446ms
+2025-06-15 13:12:35.250 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.UserRequestsController.GetAll (Calendar.Api)'
+2025-06-15 13:12:35.251 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/UserRequests/All - 400 null application/problem+json; charset=utf-8 117.2056ms
+2025-06-15 13:14:26.184 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-15 13:14:26.361 +04:30 [INF] Now listening on: https://localhost:7107
+2025-06-15 13:14:26.363 +04:30 [INF] Now listening on: http://localhost:5150
+2025-06-15 13:14:26.367 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-15 13:14:26.369 +04:30 [INF] Hosting environment: Development
+2025-06-15 13:14:26.370 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-06-15 13:14:27.673 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-06-15 13:14:27.914 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 249.6316ms
+2025-06-15 13:14:27.936 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-15 13:14:27.936 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-06-15 13:14:27.945 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 8.9586ms
+2025-06-15 13:14:27.987 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.9542ms
+2025-06-15 13:14:28.019 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-06-15 13:14:28.180 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 161.7304ms
+2025-06-15 13:14:35.488 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activities/All - null null
+2025-06-15 13:14:35.537 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api)'
+2025-06-15 13:14:35.559 +04:30 [INF] Route matched with {action = "GetAll", controller = "Activities"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesQueryResponse]]] GetAll(Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ActivitiesController (Calendar.Api).
+2025-06-15 13:14:35.823 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api) in 257.4434ms
+2025-06-15 13:14:35.867 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api)'
+2025-06-15 13:14:36.021 +04:30 [ERR] An unhandled exception has occurred while executing the request.
+System.MissingMethodException: Method not found: 'System.Threading.Tasks.Task`1<System.__Canon> MediatR.RequestHandlerDelegate`1.Invoke()'.
+   at SharedKernel.Behavior.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at SharedKernel.Behavior.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_1.<Handle>b__2(CancellationToken t)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Calendar.Api.Controllers.ActivitiesController.GetAll(GetAllActivitiesDto model, CancellationToken token) in C:\Users\DELL\source\repos\Calendar\Calendar.Api\Controllers\ActivityController.cs:line 55
+   at lambda_method36(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Share.Middlewere.NotFoundExceptionMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in C:\Users\DELL\source\repos\Calendar\Share\Middlewere\NotFoundExceptionMiddleware.cs:line 14
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Share.Middlewere.BadRequestExceptionMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in C:\Users\DELL\source\repos\Calendar\Share\Middlewere\BadRequestExceptionMiddleware.cs:line 14
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-15 13:14:36.055 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activities/All - 500 null text/plain; charset=utf-8 566.9539ms
+2025-06-15 13:15:11.729 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activities/All - null null
+2025-06-15 13:15:11.738 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api)'
+2025-06-15 13:15:11.741 +04:30 [INF] Route matched with {action = "GetAll", controller = "Activities"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesQueryResponse]]] GetAll(Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ActivitiesController (Calendar.Api).
+2025-06-15 13:15:11.894 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api) in 146.9368ms
+2025-06-15 13:15:11.930 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api)'
+2025-06-15 13:15:12.075 +04:30 [ERR] An unhandled exception has occurred while executing the request.
+System.MissingMethodException: Method not found: 'System.Threading.Tasks.Task`1<System.__Canon> MediatR.RequestHandlerDelegate`1.Invoke()'.
+   at SharedKernel.Behavior.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at SharedKernel.Behavior.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_1.<Handle>b__2(CancellationToken t)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Calendar.Api.Controllers.ActivitiesController.GetAll(GetAllActivitiesDto model, CancellationToken token) in C:\Users\DELL\source\repos\Calendar\Calendar.Api\Controllers\ActivityController.cs:line 55
+   at lambda_method36(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Share.Middlewere.NotFoundExceptionMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in C:\Users\DELL\source\repos\Calendar\Share\Middlewere\NotFoundExceptionMiddleware.cs:line 14
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Share.Middlewere.BadRequestExceptionMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in C:\Users\DELL\source\repos\Calendar\Share\Middlewere\BadRequestExceptionMiddleware.cs:line 14
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-15 13:15:12.094 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/api/Activities/All - 500 null text/plain; charset=utf-8 365.3367ms
+2025-06-15 13:15:35.247 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/api/Activities/All - null null
+2025-06-15 13:15:35.255 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api)'
+2025-06-15 13:15:35.259 +04:30 [INF] Route matched with {action = "GetAll", controller = "Activities"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesQueryResponse]]] GetAll(Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ActivitiesController (Calendar.Api).

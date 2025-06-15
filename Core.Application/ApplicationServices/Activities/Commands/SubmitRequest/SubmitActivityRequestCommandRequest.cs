@@ -4,7 +4,7 @@ namespace Core.Application.ApplicationServices.Activities.Commands.SubmitRequest
 
 public record class SubmitActivityRequestCommandRequest(
     string ActivityId,
-    string[] Receivers,
+    string[] ReceiverIds,
     string? Message
 
     ) : IRequest;

@@ -1,62 +1,62 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.Features.Activities.Commands;
-using Core.Domain.Entity;
-using Core.Domain.Enum;
+using Core.Domain.Entity.Activities;
+using Core.Domain.Entity.UserRequests;
 using Core.Domain.Interfaces;
 using MediatR;
 
-namespace Core.Application.ApplicationServices.Activities.Commands.AddForProject
+namespace Core.Application.ApplicationServices.Activities.Commands.AddForProject;
+
+public sealed class AddActivityForProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
+    : IRequestHandler<AddActivityForProjectCommandRequest>
 {
-    public sealed class AddActivityForProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
-                : IRequestHandler<AddActivityForProjectCommandRequest>
+
+    public readonly IUnitOfWork _unitOfWork = unitOfWork;
+    public readonly ICurrentUserServices _currentUser = currentUser;
+    public readonly IMapper _mapper = mapper;
+
+    public async Task Handle(AddActivityForProjectCommandRequest request, CancellationToken cancellationToken)
     {
+        var ownerId = _currentUser.GetUserId();
 
-        public readonly IUnitOfWork _unitOfWork = unitOfWork;
-        public readonly ICurrentUserServices _currentUser = currentUser;
-        public readonly IMapper _mapper = mapper;
+        //check if user is the owner of project or not 
+        var project = await _unitOfWork.Projects
+            .FindById(request.ProjectId, cancellationToken);
 
-        public async Task Handle(AddActivityForProjectCommandRequest request, CancellationToken cancellationToken)
+        if (project.OwnerId != ownerId)
         {
-            var ownerId = _currentUser.GetUserId();
-
-            //check if user is the owner of project or not 
-            var project = await _unitOfWork.Projects
-                .FindById(request.ProjectId, cancellationToken);
-
-            if (project.OwnerId != ownerId)
-            {
-                throw new OnlyProjectCreatorAllowedException();
-            }
-
-            var activity = Activity.Create(null, ownerId, request.ProjectId,
-                  request.Title, request.Description,
-                  request.StartDate, request.DurationInMinute,
-                  request.NotificationBeforeInMinute,
-                  request.Category);
-
-
-            //sent request for all member of project
-            var memberIds = await _unitOfWork.Requests
-                .GetMemberIdsOfProject(request.ProjectId, cancellationToken);
-
-            var userRequests = new List<UserRequest>();
-            foreach (var memberId in memberIds)
-            {
-                var sendRequest = UserRequest.CreateUserRequest(activity.Id
-                    , project.Id, ownerId
-                    , memberId, null, false
-                    , RequestStatus.Accepted);
-
-                userRequests.Add(sendRequest);
-            }
-
-            // add to activity table
-            _unitOfWork.Activities.Add(activity);
-
-            _unitOfWork.Requests.AddRange(userRequests);
-
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
+            throw new OnlyProjectCreatorAllowedException();
         }
+        // create
+        var activity = ActivityFactory.CreateForProject(ownerId, request.ProjectId
+            , request.Title, request.Description
+            , request.StartDate,request.Category 
+            , request.DurationInMinute
+            , request.NotificationBeforeInMinute);
+
+
+        //create request for all member of project
+        var memberIds = await _unitOfWork.Requests
+            .GetMemberIdsOfProject(request.ProjectId, cancellationToken);
+
+        var userRequests = new List<UserRequest>();
+        foreach (var memberId in memberIds)
+        {
+            var sendRequest = RequestFactory.CreateProjectRequest(project.Id
+                , ownerId, memberId, null);
+
+            // make request accepted
+            sendRequest.Accept();
+
+            userRequests.Add(sendRequest);
+        }
+
+        // add to activity table
+        _unitOfWork.Activities.Add(activity);
+
+        _unitOfWork.Requests.AddRange(userRequests);
+
+        await _unitOfWork.SaveChangeAsync(cancellationToken);
     }
 }

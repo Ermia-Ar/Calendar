@@ -1,4 +1,4 @@
-﻿using Core.Domain.Entity;
+﻿using Core.Domain.Entity.Users;
 using Core.Domain.Enum;
 
 namespace Core.Domain.Interfaces.Repositories;

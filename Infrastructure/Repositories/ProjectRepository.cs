@@ -1,5 +1,5 @@
 ﻿using Core.Application.ApplicationServices.Projects.Queries.GetById;
-using Core.Domain.Entity;
+using Core.Domain.Entity.Projects;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
 using Infrastructure.Data;
@@ -53,7 +53,8 @@ namespace Infrastructure.Repositories
 
         public async Task<Project?> FindById(string id, CancellationToken token)
         {
-            return await _context.Projects.FirstOrDefaultAsync(x => x.Id == id, token);
+            return await _context.Projects
+                .FirstOrDefaultAsync(x => x.Id == id, token);
         }
     }
 }

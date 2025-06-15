@@ -4,5 +4,5 @@ namespace Core.Application.ApplicationServices.Activities.Commands.RemoveMember;
 
 public record class RemoveMemberOfActivityCommandRequest(
     string ActivityId,
-    string UserName)
+    string UserId)
     : IRequest;

@@ -1,7 +1,5 @@
 ﻿using Core.Application.ApplicationServices.Comments.Exceptions;
-using Core.Domain.Entity;
 using Core.Domain.Interfaces;
-using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Comments.Commands.Update;
@@ -22,10 +20,9 @@ public class UpdateCommentCommandHandler(IUnitOfWork unitOfWork, ICurrentUserSer
         {
             throw new OnlyCommentCreatorAllowedException();
         }
-        //update
-        comment.Content = request.Content;
-        comment.UpdatedDate = DateTime.Now;
-        comment.IsEdited = true;
+
+        comment.UpdateContent(request.Content);
+
         _unitOfWork.Comments.Update(comment);
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }

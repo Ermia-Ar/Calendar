@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Auth.Exceptions;
-using Core.Domain.Entity;
+using Core.Domain.Entity.Projects;
+using Core.Domain.Entity.UserRequests;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces;
 using MediatR;
@@ -19,7 +20,7 @@ public class AddProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IC
         var ownerId = _currentUserServices.GetUserId();
 
         //map to project entity
-        var project = Project.Create(ownerId, request.Title
+        var project = ProjectFactory.Create(ownerId, request.Title
             , request.Description
             , request.StartDate
             , request.EndDate);
@@ -32,23 +33,22 @@ public class AddProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IC
             var receiver = await _unitOfWork.Users.FindById(memberId);
             if (receiver == null)
             {
-                throw new NotFoundUserNameException(memberId);
+                throw new NotFoundUserIdException(memberId);
             }
 
-            var sendRequest1 = UserRequest.CreateUserRequest(null
-               , project.Id, ownerId, receiver.Id
-               , request.RequestMassage
-               , false, RequestStatus.Pending);
+            var sendRequest1 = RequestFactory.CreateProjectRequest(project.Id
+               , ownerId, receiver.Id
+               , request.Massage);
 
             userRequests.Add(sendRequest1);
         }
 
         //add the owner of project to the members 
-        var sendRequest = UserRequest.CreateUserRequest(null
-            , project.Id, ownerId, ownerId
-            , request.RequestMassage
-            , false, RequestStatus.Accepted);
-        sendRequest.IsActive = false;
+        var sendRequest = RequestFactory.CreateProjectRequest(project.Id
+            , ownerId, ownerId, request.Massage);
+        sendRequest.Accept();
+        sendRequest.MakeUnActive();
+
         userRequests.Add(sendRequest);
 
 

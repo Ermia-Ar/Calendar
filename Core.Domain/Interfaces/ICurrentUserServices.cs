@@ -1,4 +1,4 @@
-﻿using Core.Domain.Entity;
+﻿using Core.Domain.Entity.Users;
 
 namespace Core.Domain.Interfaces;
 

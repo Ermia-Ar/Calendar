@@ -1,7 +1,6 @@
 ﻿using Core.Application.ApplicationServices.Activities.Exceptions;
-using Core.Domain.Entity;
+using Core.Domain.Entity.Comments;
 using Core.Domain.Interfaces;
-using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Comments.Commands.Add;
@@ -25,16 +24,9 @@ public sealed class AddCommentCommandHandler(IUnitOfWork unitOfWork, ICurrentUse
             throw new OnlyActivityMembersAllowedException();
         }
 
-        var comment = new Comment
-        {
-            Id = Guid.NewGuid().ToString(),
-            ProjectId = request.ProjectId,
-            ActivityId = request.ActivityId,
-            Content = request.Content,
-            CreatedDate = DateTime.UtcNow,
-            UpdatedDate = DateTime.UtcNow,
-            UserId = userId,
-        };
+        var comment = CommentFactory.Create(userId, request.ActivityId
+            , request.ProjectId, request.Content);
+
         _unitOfWork.Comments.Add(comment);
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }

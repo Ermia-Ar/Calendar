@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces.Repositories;
-using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using DomainUser = Core.Domain.Entity.User;
+using DomainUser = Core.Domain.Entity.Users.User;
+using User = Infrastructure.Models.User;
 
 
 namespace Infrastructure.Repositories

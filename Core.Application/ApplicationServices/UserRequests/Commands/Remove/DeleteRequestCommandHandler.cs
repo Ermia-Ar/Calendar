@@ -27,8 +27,8 @@ public sealed class DeleteRequestCommandHandler(IUnitOfWork unitOfWork, IMapper 
         {
             if (userRequest.Status == RequestStatus.Accepted)
             {
-                userRequest.IsActive = false;
-                _unitOfWork.Requests.UpdateRequest(userRequest);
+                userRequest.MakeUnActive();
+                _unitOfWork.Requests.Update(userRequest);
             }
             else
             {

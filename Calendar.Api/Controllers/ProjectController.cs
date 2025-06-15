@@ -56,10 +56,10 @@ public class ProjectController : ControllerBase
 
     [HttpGet("GetAll")]
     //[Authorize(CalendarClaims.GetAllUserProjects)]
-    public async Task<SuccessResponse<List<GetUserProjectQueryResponse>>> GetAll(DateTime? startDate, bool userIsOwner, bool isHistory
+    public async Task<SuccessResponse<List<GetAllProjectQueryResponse>>> GetAll([FromQuery] GetAllProjectDto model
         , CancellationToken token = default)
     {
-        var request = new GetUserProjectsQueryRequest(startDate, userIsOwner, isHistory);
+        var request = GetAllProjectsQueryRequest.Create(model);
         var result = await _sender.Send(request, token);
 
         return Result.Ok(result);
@@ -73,17 +73,6 @@ public class ProjectController : ControllerBase
         var result = await _sender.Send(request, token);
 
         return Result.Ok(result);
-    }
-    //Check
-    [HttpDelete("Exiting/{id:guid:required}")]
-    //[Authorize(CalendarClaims.ExitingProject)]
-    public async Task<SuccessResponse> Exiting(Guid id
-        , CancellationToken token = default)
-    {
-        var request = new ExitingProjectCommandRequest(id.ToString());
-        await _sender.Send(request, token);
-
-        return Result.Ok();
     }
 
     [HttpDelete("RemoveOf/{id:guid:required}/Member/{memberId:guid:required}")]

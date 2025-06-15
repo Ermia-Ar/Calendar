@@ -1,6 +1,6 @@
 ﻿using Core.Application.ApplicationServices.Activities.Queries.GetById;
 using Core.Application.ApplicationServices.Projects.Queries.GetActivities;
-using Core.Domain.Entity;
+using Core.Domain.Entity.Activities;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
 using Infrastructure.Data;
@@ -24,7 +24,7 @@ public class ActivityRepository(ApplicationContext context,
     {
         _context.Activities.Update(UpdateActivity);
     }
-    public async Task Add(Activity activity, CancellationToken token)
+    public void Add(Activity activity)
     {
         _context.Activities.Add(activity);
     }
@@ -38,12 +38,13 @@ public class ActivityRepository(ApplicationContext context,
     {
         _context.Activities.RemoveRange(activities);
     }
+
     //Queries
     public async Task<IReadOnlyCollection<IResponse>> GetActivities(string projectId, CancellationToken token
         , DateTime? startDate = null)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
-        await connection.OpenAsync();
+        await connection.OpenAsync(token);
 
         var parameters = new DynamicParameters();
         parameters.Add("projectId", projectId);
@@ -63,7 +64,7 @@ public class ActivityRepository(ApplicationContext context,
     {
 
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
-        await connection.OpenAsync();
+        await connection.OpenAsync(token);
 
         var parameters = new DynamicParameters();
         parameters.Add("projectId", projectId);
@@ -83,7 +84,7 @@ public class ActivityRepository(ApplicationContext context,
     public async Task<IResponse?> GetById(string id, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
-        await connection.OpenAsync();
+        await connection.OpenAsync(token);
 
         var parameters = new DynamicParameters();
         parameters.Add("activityId", id);
@@ -96,5 +97,17 @@ public class ActivityRepository(ApplicationContext context,
             );
 
         return activities.FirstOrDefault();
+    }
+
+    public async Task<Activity?> FindById(string id, CancellationToken token)
+    {
+        return await _context.Activities
+            .FirstOrDefaultAsync(x => x.Id == id, token);
+    }
+
+    public async Task<List<Activity>> Find(string? projectId, CancellationToken token)
+    {
+        return await _context.Activities.Where(x => x.ProjectId == projectId)
+            .ToListAsync(token);
     }
 }

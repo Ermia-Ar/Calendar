@@ -7,7 +7,7 @@ public record class AddProjectCommandRequest(
     string Description ,
     DateTime StartDate ,
     DateTime EndDate ,
-    string RequestMassage ,
+    string Massage ,
     string[] MemberIds
     
     ): IRequest;

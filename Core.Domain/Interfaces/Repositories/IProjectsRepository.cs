@@ -1,4 +1,4 @@
-﻿using Core.Domain.Entity;
+﻿using Core.Domain.Entity.Projects;
 using SharedKernel.Helper;
 
 namespace Core.Domain.Interfaces.Repositories

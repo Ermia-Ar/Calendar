@@ -3,7 +3,7 @@ using SharedKernel.Helper;
 
 namespace Core.Application.ApplicationServices.UserRequests.Queries.GetById
 {
-    public record class GetRequestByIdQueryResponse (
+    public sealed record GetRequestByIdQueryResponse (
         string Id,
         string ProjectId,
         string? ActivityId,

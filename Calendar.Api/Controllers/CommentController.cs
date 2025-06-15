@@ -46,7 +46,7 @@ public class CommentsController(ISender sender) : ControllerBase
 
     [HttpGet]
     //[Authorize(CalendarClaims.GetComments)]
-    public async Task<SuccessResponse<List<GetCommentsQueryResponse>>> GetAll([FromQuery] GetAllCommentDto model,
+    public async Task<SuccessResponse<List<GetAllCommentsQueryResponse>>> GetAll([FromQuery] GetAllCommentDto model,
         CancellationToken token = default)
     {
         var request = GetAllCommentsQueryRequest.Create(model);

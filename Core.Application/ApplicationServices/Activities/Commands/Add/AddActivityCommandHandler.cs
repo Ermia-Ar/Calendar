@@ -1,5 +1,6 @@
 ﻿using Core.Application.ApplicationServices.Auth.Exceptions;
-using Core.Domain.Entity;
+using Core.Domain.Entity.Activities;
+using Core.Domain.Entity.UserRequests;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces;
 using MediatR;
@@ -23,11 +24,11 @@ public sealed class AddActivityCommandHandler(
         var ownerId = _currentUser.GetUserId();
 
         // map to activity table
-        var activity = Activity.Create(null, ownerId, projectId,
-            request.Title, request.Description,
-            request.StartDate, request.DurationInMinute,
-            request.NotificationBeforeInMinute,
-            request.Category);
+        var activity = ActivityFactory.Create(ownerId
+            , request.Title, request.Description
+            , request.StartDate, request.Category
+            , request.DurationInMinute,request.NotificationBeforeInMinute
+            );
 
 
         //create request for all members
@@ -38,22 +39,20 @@ public sealed class AddActivityCommandHandler(
             var member = await _unitOfWork.Users.FindById(memberName);
             if (member == null)
             {
-                throw new NotFoundUserNameException(memberName);
+                throw new NotFoundUserIdException(memberName);
             }
-            var sendRequest1 = UserRequest.CreateUserRequest(activity.Id
-                , projectId, ownerId, member.Id
-                , request.Message
-                , false, RequestStatus.Pending);
+            var sendRequest1 = RequestFactory.CreateActivityRequest(projectId, activity.Id
+                , ownerId, member.Id, request.Message, false);
 
             userRequests.Add(sendRequest1);
         }
 
         //add owner to activity members
-        var sendRequest = UserRequest.CreateUserRequest(activity.Id
-                , activity.ProjectId, ownerId, ownerId
-                , request.Message
-                , false, RequestStatus.Accepted);
-        sendRequest.IsActive = false;
+        var sendRequest = RequestFactory.CreateActivityRequest(projectId
+            , activity.Id, ownerId, ownerId
+            , request.Message, false);
+        sendRequest.Accept();
+        sendRequest.MakeUnActive();
         userRequests.Add(sendRequest);
 
 

@@ -1,4 +1,4 @@
-﻿using Core.Domain.Entity;
+﻿using Core.Domain.Entity.Users;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Core.Application.Services;

@@ -1,64 +1,59 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Activities.Exceptions;
-using Core.Domain.Entity;
 using Core.Domain.Interfaces;
-using Mapster;
 using MediatR;
 
-namespace Core.Application.ApplicationServices.Activities.Commands.Remove
+namespace Core.Application.ApplicationServices.Activities.Commands.Remove;
+
+public sealed class DeleteActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
+            : IRequestHandler<DeleteActivityCommandRequest>
 {
-    public class DeleteActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
-                : IRequestHandler<DeleteActivityCommandRequest>
+    public readonly IUnitOfWork _unitOfWork = unitOfWork;
+    public readonly ICurrentUserServices _currentUser = currentUser;
+    public readonly IMapper _mapper = mapper;
+
+    public async Task Handle(DeleteActivityCommandRequest request, CancellationToken cancellationToken)
     {
-        public readonly IUnitOfWork _unitOfWork = unitOfWork;
-        public readonly ICurrentUserServices _currentUser = currentUser;
-        public readonly IMapper _mapper = mapper;
+        var activity = await _unitOfWork.Activities
+            .FindById(request.Id, cancellationToken);
 
-        public async Task Handle(DeleteActivityCommandRequest request, CancellationToken cancellationToken)
+        if (activity.UserId != _currentUser.GetUserId())
         {
-            var activity = await _unitOfWork.Activities
-                .FindById(request.Id, cancellationToken);
-
-            if (activity.UserId != _currentUser.GetUserId())
-            {
-                throw new OnlyActivityCreatorAllowedException();
-            }
-            //remove from comments table 
-            await DeleteRangeCommentByActivityId(request.Id, cancellationToken);
-            //remove from UserRequests table
-            await DeleteRangeRequestByActivityId(request.Id, cancellationToken);
-            //remove from activities table
-            await DeleteActivityById(request.Id, cancellationToken);
-
-            //
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
+            throw new OnlyActivityCreatorAllowedException();
         }
+        //remove from comments table 
+        await DeleteRangeCommentByActivityId(request.Id, cancellationToken);
+        //remove from UserRequests table
+        await DeleteRangeRequestByActivityId(request.Id, cancellationToken);
+        //remove from activities table
+        await DeleteActivityById(request.Id, cancellationToken);
 
-        private async Task DeleteRangeCommentByActivityId(string activityId, CancellationToken token)
-        {
-            var comments = (await _unitOfWork.Comments
-                .GetAll(null, activityId, null, null, token))
-                .Adapt<List<Comment>>();
+        //
+        await _unitOfWork.SaveChangeAsync(cancellationToken);
+    }
 
-            _unitOfWork.Comments.RemoveRange(comments);
-        }
+    private async Task DeleteRangeCommentByActivityId(string activityId, CancellationToken token)
+    {
+        var comments = await _unitOfWork.Comments
+            .Find(null, activityId, token);
 
-        private async Task DeleteRangeRequestByActivityId(string activityId, CancellationToken token)
-        {
-            var request = (await _unitOfWork.Requests
-                .GetAll(null, activityId,null, null,null, token))
-                .Adapt<List<UserRequest>>();
+        _unitOfWork.Comments.RemoveRange(comments);
+    }
 
-            _unitOfWork.Requests.RemoveRange(request);
-        }
+    private async Task DeleteRangeRequestByActivityId(string activityId, CancellationToken token)
+    {
+        var request = (await _unitOfWork.Requests
+            .GetAll(null, activityId, token))
+            .ToList();
 
-        public async Task DeleteActivityById(string activityId, CancellationToken token)
-        {
-            var activity = (await _unitOfWork.Activities
-                .GetById(activityId, token))
-                .Adapt<Activity>();
+        _unitOfWork.Requests.RemoveRange(request);
+    }
 
-            _unitOfWork.Activities.Delete(activity);
-        }
+    public async Task DeleteActivityById(string activityId, CancellationToken token)
+    {
+        var activity = (await _unitOfWork.Activities
+            .FindById(activityId, token));
+
+        _unitOfWork.Activities.Delete(activity);
     }
 }

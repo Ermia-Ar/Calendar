@@ -1,4 +1,4 @@
-﻿using Core.Domain.Entity;
+﻿using Core.Domain.Entity.Comments;
 using SharedKernel.Helper;
 
 namespace Core.Domain.Interfaces.Repositories
@@ -10,10 +10,12 @@ namespace Core.Domain.Interfaces.Repositories
         Task<IResponse?> GetById(string id, CancellationToken token);
         void RemoveRange(ICollection<Comment> comments);
         void Add(Comment comment);
-
         Task<Comment?> FindById(string id, CancellationToken token);
+        Task<List<Comment>> Find(string? projectId, string? activityId
+            , CancellationToken token);
 
         Task<IReadOnlyCollection<IResponse>> GetAll(
-            string? projectId, string? activityId, string? search, string? userId, CancellationToken token);
+            string? projectId, string? activityId, string? search
+            , string? userId, CancellationToken token);
     }
 }

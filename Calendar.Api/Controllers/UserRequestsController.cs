@@ -1,4 +1,7 @@
 ﻿
+using Core.Application.ApplicationServices.UserRequests.Queries.GetAll;
+using Core.Application.ApplicationServices.UserRequests.Queries.GetById;
+
 namespace Calendar.Api.Controllers;
 
 [Route("api/[controller]")]
@@ -34,43 +37,24 @@ public class UserRequestsController : ControllerBase
         return Result.Ok();
     }
 
-    //[HttpGet]
-    //[Route("GetRequestsReceived")]
-    ////[Authorize(CalendarClaims.GetRequestsReceived)]
-    //public async Task<SuccessResponse<List<RequestResponse>>> GetRequestsReceived(RequestFor? requestFor)
-    //{
-    //    var request = new GetRequestsReceivedQuery (requestFor);
-    //    var result = await _sender.Send(request);
-    //    return Result.Ok(result);
-    //}
+    [HttpGet("{id:guid:required}")]
+    public async Task<SuccessResponse<GetRequestByIdQueryResponse>> GetById(Guid id
+        , CancellationToken token)
+    {
+        var request = new GetRequestByIdQueryRequest(id.ToString());
+        var result = await _sender.Send(request, token);
 
-    //[HttpGet]
-    //[Route("GetRequestsResponse")]
-    ////[Authorize(CalendarClaims.GetRequestsResponse)]
-    //public async Task<SuccessResponse<List<RequestResponse>>> GetRequestsResponse(RequestFor? requestFor)
-    //{
-    //    var request = new GetRequestsResponseQuery (requestFor);
-    //    var result = await _mediator.Send(request);
-    //    return Result.Ok(result);
-    //}
+        return Result.Ok(result);
+    }
 
-    //[HttpGet]
-    //[Route("GetUnAnsweredRequest")]
-    ////[Authorize(CalendarClaims.GetUnAnsweredRequest)]
-    //public async Task<SuccessResponse<List<RequestResponse>>> GetUnAnsweredRequest(RequestFor? requestFor)
-    //{
-    //    var request = new GetUnAnsweredRequestQuery (requestFor);
-    //    var result = await _mediator.Send(request);
-    //    return Result.Ok(result);
-    //}
+    [HttpGet("All")]
+    public async Task<SuccessResponse<List<GetAllRequestQueryResponse>>> GetAll([FromQuery] GetAllRequestDto model
+        , CancellationToken token)
+    {
+        var request = GetAllRequestsQueryRequest.Create(model);
+        var result = await _sender.Send(request, token);   
 
-    //[HttpGet]
-    //[Route("GetResponsesUserSent")]
-    ////[Authorize(CalendarClaims.GetResponsesUserSent)]
-    //public async Task<SuccessResponse<List<RequestResponse>>> GetResponsesUserSent(RequestFor? requestFor)
-    //{
-    //    var request = new GetResponsesUserSentQuery (requestFor);
-    //    var result = await _mediator.Send(request);
-    //    return Result.Ok(result);
-    //}
+        return Result.Ok(result);
+    }
+
 }

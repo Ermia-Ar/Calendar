@@ -8,7 +8,6 @@ public static class ConfigServices
 {
     public static IServiceCollection RegisterSharedServices(this IServiceCollection services)
     {
-
         services.AddScoped<BadRequestExceptionMiddleware>();
         services.AddScoped<NotFoundExceptionMiddleware>();
         return services;

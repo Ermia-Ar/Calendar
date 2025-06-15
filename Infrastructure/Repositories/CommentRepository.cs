@@ -1,6 +1,6 @@
-﻿using Core.Application.ApplicationServices.Comments.Queries.GetById;
-using Core.Application.ApplicationServices.Comments.Queries.GetAll;
-using Core.Domain.Entity;
+﻿using Core.Application.ApplicationServices.Comments.Queries.GetAll;
+using Core.Application.ApplicationServices.Comments.Queries.GetById;
+using Core.Domain.Entity.Comments;
 using Core.Domain.Interfaces.Repositories;
 using Dapper;
 using Infrastructure.Data;
@@ -12,15 +12,16 @@ using System.Collections.Immutable;
 
 namespace Infrastructure.Repositories;
 
-public class CommentRepository(ApplicationContext context, IConfiguration configuration) : ICommentsRepository
+public class CommentRepository(ApplicationContext context
+                              , IConfiguration configuration) : ICommentsRepository
 {
     private readonly ApplicationContext _context = context;
     private readonly IConfiguration _configuration = configuration;
 
     //Commands
-    public async Task Add(Comment comment,CancellationToken token)
+    public void Add(Comment comment)
     {
-        await _context.Comments.AddAsync(comment,token);
+        _context.Comments.AddAsync(comment);
     }
 
     public void Remove(Comment comment)
@@ -53,7 +54,8 @@ public class CommentRepository(ApplicationContext context, IConfiguration config
         return comment.FirstOrDefault();
     }
 
-    public async Task<IReadOnlyCollection<IResponse>> GetAll(string? projectId, string? activityId, string? search, string? userId, CancellationToken token)
+    public async Task<IReadOnlyCollection<IResponse>> GetAll(string? projectId
+        , string? activityId, string? search, string? userId, CancellationToken token)
     {
 
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -65,10 +67,23 @@ public class CommentRepository(ApplicationContext context, IConfiguration config
         parameters.Add("search", search);
         parameters.Add("userId", userId);
 
-        var comments = await connection.QueryAsync<GetCommentsQueryResponse>
+        var comments = await connection.QueryAsync<GetAllCommentsQueryResponse>
             ("SP_GetComments", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
         return comments.ToImmutableList();
     }
 
+    public async Task<Comment?> FindById(string id, CancellationToken token)
+    {
+        return await _context.Comments
+            .FirstOrDefaultAsync(x => x.Id == id, token);
+    }
+
+    public async Task<List<Comment>> Find(string? projectId, string? activityId, CancellationToken token)
+    {
+        return await _context.Comments
+            .Where(x => (projectId != null ? x.ProjectId == projectId : true)
+            && (activityId != null ? x.ActivityId == activityId : true))
+            .ToListAsync(token);
+    }
 }

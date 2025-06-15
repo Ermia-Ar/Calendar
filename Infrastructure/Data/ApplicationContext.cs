@@ -1,8 +1,12 @@
-﻿using Core.Domain.Entity;
-using UserModel = Infrastructure.Models.User;
+﻿using UserModel = Infrastructure.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Core.Domain.Entity.Activities;
+using Core.Domain.Entity.Comments;
+using Core.Domain.Entity.Projects;
+using Core.Domain.Entity.Users;
+using Core.Domain.Entity.UserRequests;
 
 namespace Infrastructure.Data
 {
@@ -75,10 +79,10 @@ namespace Infrastructure.Data
                 .HasForeignKey(x => x.ActivityId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Entity<Activity>()
-                .HasOne(a => a.Project)
-                .WithMany(p => p.Activities)
-                .HasForeignKey(a => a.ProjectId);
+            //builder.Entity<Activity>()
+            //    .HasOne(a => a.Project)
+            //    .WithMany(p => p.Activities)
+            //    .HasForeignKey(a => a.ProjectId);
 
             builder.Entity<Comment>()
                 .HasOne(x => x.Project)
@@ -86,11 +90,11 @@ namespace Infrastructure.Data
                 .HasForeignKey(x => x.ProjectId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.Entity<Activity>()
-                .HasOne(a => a.User)
-                .WithMany(u => u.Activities)
-                .HasForeignKey(a => a.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
+            //builder.Entity<Activity>()
+            //    .HasOne(a => a.User)
+            //    .WithMany(u => u.Activities)
+            //    .HasForeignKey(a => a.UserId)
+            //    .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<Project>()
                 .HasOne(p => p.User)
@@ -98,11 +102,11 @@ namespace Infrastructure.Data
                 .HasForeignKey(p => p.OwnerId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.Entity<Activity>()
-            .HasOne(a => a.User)
-            .WithMany(u => u.Activities)
-            .HasForeignKey(a => a.UserId)
-            .OnDelete(DeleteBehavior.NoAction);
+            //builder.Entity<Activity>()
+            //.HasOne(a => a.User)
+            //.WithMany(u => u.Activities)
+            //.HasForeignKey(a => a.UserId)
+            //.OnDelete(DeleteBehavior.NoAction);
 
             var project = new Project
             {
