@@ -13,7 +13,7 @@ public static class ActivityFactory
             Id = Guid.NewGuid().ToString(),
             ParentId = null,
             UserId = userId,
-            ProjectId = "",
+            ProjectId = "8c56ac14-ae28-4425-9a19-690d27d3a16d",
             Title = title,
             Description = Description,
             Category = category,

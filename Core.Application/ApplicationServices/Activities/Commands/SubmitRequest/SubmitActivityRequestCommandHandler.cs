@@ -32,7 +32,7 @@ public sealed class SubmitActivityRequestCommandHandler(IUnitOfWork unitOfWork, 
         foreach (var memberId in request.ReceiverIds)
         {
             var receiver = await _unitOfWork.Users.FindById(memberId);
-            if (receiver != null)
+            if (receiver == null)
             {
                 throw new NotFoundUserIdException(memberId);
             }

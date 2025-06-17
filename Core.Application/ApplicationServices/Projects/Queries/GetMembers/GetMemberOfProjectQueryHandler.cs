@@ -6,11 +6,10 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Queries.GetMembers;
 
-public class GetMemberOfProjectQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+public class GetMemberOfProjectQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
             : IRequestHandler<GetMemberOfProjectQueryRequest, List<GetMemberOfProjectQueryResponse>>
 {
     private IUnitOfWork _unitOfWork = unitOfWork;
-    private IMapper _mapper = mapper;
     private ICurrentUserServices _currentUserServices = currentUserServices;
 
     public async Task<List<GetMemberOfProjectQueryResponse>> Handle(GetMemberOfProjectQueryRequest request, CancellationToken cancellationToken)

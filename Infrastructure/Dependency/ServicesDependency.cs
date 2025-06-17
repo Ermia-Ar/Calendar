@@ -2,7 +2,6 @@
 using Core.Domain.Interfaces;
 using Core.Domain.Interfaces.Repositories;
 using Infrastructure.Base.CurrentUserServices;
-using Infrastructure.Mapper;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Infrastructure.UnitOfWork;
@@ -26,7 +25,6 @@ public static class ServicesDependency
         services.AddScoped<IUsersRepository, UserRepository>();
         services.AddScoped<ITokenServices, TokenServices>();
         services.AddScoped<IUnitOfWork, UnitOfWorks>();
-        services.AddAutoMapper(typeof(InfraProfile));
 
         return services;
     }

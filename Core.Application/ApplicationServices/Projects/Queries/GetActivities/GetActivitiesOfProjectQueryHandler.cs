@@ -7,11 +7,10 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Queries.GetActivities;
 
-public class GetActivitiesOfProjectQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+public class GetActivitiesOfProjectQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
             : IRequestHandler<GetActivitiesOfProjectQueryRequest, List<GetActivityOfProjectQueryResponse>>
 {
     private IUnitOfWork _unitOfWork = unitOfWork;
-    private IMapper _mapper = mapper;
     private ICurrentUserServices _currentUserServices = currentUserServices;
 
     public async Task<List<GetActivityOfProjectQueryResponse>> Handle(GetActivitiesOfProjectQueryRequest request, CancellationToken cancellationToken)
@@ -26,8 +25,9 @@ public class GetActivitiesOfProjectQueryHandler(IUnitOfWork unitOfWork, IMapper 
             throw new OnlyProjectMembersAllowedException();
         }
 
-        var activities = await _unitOfWork.Activities
-            .GetActivities(request.ProjectId, cancellationToken);
+        var activities = await _unitOfWork.Requests
+            .GetActivities(userId, request.ProjectId, cancellationToken
+            , null, null, null);
 
         var response = activities.Adapt<List<GetActivityOfProjectQueryResponse>>();
 

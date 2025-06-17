@@ -7,6 +7,10 @@ namespace Core.Domain.Entity.UserRequests;
 
 public class UserRequest
 {
+    public UserRequest()
+    {
+        
+    }
     public string Id { get; set; }
 
     public string? ActivityId { get; set; }
@@ -21,7 +25,6 @@ public class UserRequest
     public string ReceiverId { get; set; }
     public User Receiver { get; set; }
 
-    //For Activity Or Project
     public RequestFor RequestFor { get; set; }
 
     public RequestStatus Status { get; set; }
@@ -46,10 +49,14 @@ public class UserRequest
     public void Accept()
     {
         Status = RequestStatus.Accepted;
+        IsExpire = true;
+        AnsweredAt = DateTime.Now;
     }
 
     public void Reject()
     {
         Status = RequestStatus.Rejected;
+        IsExpire = true;
+        AnsweredAt = DateTime.Now;
     }
 }

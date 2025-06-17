@@ -3,7 +3,6 @@ using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Domain.Entity.UserRequests;
 using Core.Domain.Interfaces;
-using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.SubmitRequest;
@@ -32,7 +31,7 @@ public sealed class SubmitProjectRequestCommandHandler(IUnitOfWork unitOfWork, I
         foreach (var memberId in request.ReceiverIds)
         {
             var receiver = await _unitOfWork.Users.FindById(memberId);
-            if (receiver != null)
+            if (receiver == null)
             {
                 throw new NotFoundUserIdException(memberId);
             }

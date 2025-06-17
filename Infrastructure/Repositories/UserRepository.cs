@@ -1,10 +1,14 @@
-﻿using AutoMapper;
+﻿using Core.Application.ApplicationServices.Auth.Queries.GetAll;
+using Core.Application.ApplicationServices.Auth.Queries.GetById;
+using Core.Domain.Entity.Users;
 using Core.Domain.Enum;
 using Core.Domain.Interfaces.Repositories;
+using Dapper;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using DomainUser = Core.Domain.Entity.Users.User;
-using User = Infrastructure.Models.User;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using SharedKernel.Helper;
+using System.Collections.Immutable;
 
 
 namespace Infrastructure.Repositories
@@ -12,45 +16,99 @@ namespace Infrastructure.Repositories
     public class UserRepository : IUsersRepository
     {
         private readonly UserManager<User> _userManager;
-        private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-
-        public UserRepository(UserManager<User> userManager, IMapper mapper)
+        //commands
+        public UserRepository(UserManager<User> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
-            _mapper = mapper;
+            _configuration = configuration;
         }
 
-        public async Task<string?> AddRoleToUser(DomainUser user, string roleName) =>
-            (await _userManager.AddToRoleAsync(_mapper.Map<User>(user), roleName)).Errors.First().Description;
-
-        public async Task<string?> AddUser(DomainUser user, string password) =>
-            (await _userManager.CreateAsync(_mapper.Map<User>(user), password)).Errors.First().Description;
-
-        public async Task<bool> CheckPasswordAsync(DomainUser user, string password) =>
-            await _userManager.CheckPasswordAsync(_mapper.Map<User>(user), password);
-
-        public async Task<DomainUser?> FindByEmail(string email) =>
-            _mapper.Map<DomainUser?>(await _userManager.FindByEmailAsync(email));
-
-        public async Task<DomainUser?> FindByUserName(string userName) =>
-            _mapper.Map<DomainUser?>(await _userManager.FindByNameAsync(userName));
-
-        public async Task<DomainUser?> FindById(string userId) =>
-            _mapper.Map<DomainUser?>(await _userManager.FindByIdAsync(userId));
-
-        public async Task<List<DomainUser>> GetAll(string? search , UserCategory? category, CancellationToken token)
+        public async Task<string[]?> AddRoleToUser(User user, string roleName)
         {
-            var users = _userManager.Users;
-            if(search != null)
-            {
-                users = users.Where(x => x.UserName.Contains(search));
-            }
-            if (category.HasValue)
-            {
-                users = users.Where(x => x.Category == category);
-            }
-            return _mapper.Map<List<DomainUser>>(await users.ToListAsync(token));
+            var errors = (await _userManager.AddToRoleAsync
+                (user, roleName)).Errors;
+            return errors.Select(x => x.ToString()).ToArray();
+        }
+
+        public async Task<string[]?> AddUser(User user, string password)
+        {
+            var errors = (await _userManager.CreateAsync
+                (user, password)).Errors;
+            return errors.Select(x => x.ToString()).ToArray();
+        }
+
+        //Queries
+        public async Task<bool> CheckPasswordAsync(User user, string password) =>
+            await _userManager.CheckPasswordAsync(user, password);
+
+        public async Task<User?> FindByEmail(string email) =>
+           (await _userManager.FindByEmailAsync(email));
+
+        public async Task<User?> FindByUserName(string userName) =>
+           (await _userManager.FindByNameAsync(userName));
+
+        public async Task<User?> FindById(string userId) =>
+            (await _userManager.FindByIdAsync(userId));
+
+        //public async Task<List<User>> GetAll(string? search , UserCategory? category, CancellationToken token)
+        //{
+        //    var users = _userManager.Users;
+        //    if(search != null)
+        //    {
+        //        users = users.Where(x => x.UserName.Contains(search));
+        //    }
+        //    if (category.HasValue)
+        //    {
+        //        users = users.Where(x => x.Category == category);
+        //    }
+        //    return (await users.ToListAsync(token));
+        //}
+
+        public async Task<IReadOnlyCollection<IResponse>> GetAll(string? search, UserCategory? category, CancellationToken token)
+        {
+            using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
+            await connection.OpenAsync();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("search", search);
+            parameters.Add("category", category);
+
+            var result = await connection
+                .QueryAsync<GetAllUserQueryResponse>("SP_GetAllUsers", parameters, commandType: System.Data.CommandType.StoredProcedure);
+
+            return result.ToImmutableList();
+        }
+
+
+        public async Task<IResponse?> GetById(string id, CancellationToken token)
+        {
+            using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
+            await connection.OpenAsync();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("id", id);
+            parameters.Add("userName", null);
+
+            var result = await connection
+                .QueryAsync<GetUserByIdQueryResponse>("SP_GetUserBy", parameters, commandType: System.Data.CommandType.StoredProcedure);
+
+            return result.SingleOrDefault();
+        }
+
+        public async Task<IResponse?> GetByUserName(string userName, CancellationToken token)
+        {
+            using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
+            await connection.OpenAsync();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("id", null);
+            parameters.Add("userName", userName);
+
+            var result = await connection
+                .QueryAsync<GetAllUserQueryResponse>("SP_GetAllUsers", parameters, commandType: System.Data.CommandType.StoredProcedure);
+            return result.SingleOrDefault();
         }
     }
 }

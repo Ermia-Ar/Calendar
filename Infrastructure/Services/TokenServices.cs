@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using Core.Application.Services;
 using Core.Domain.Helper;
-using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
-using DomainUser = Core.Domain.Entity.Users.User;
-using User = Infrastructure.Models.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,6 +14,7 @@ namespace Infrastructure.Services;
 
 public class TokenServices : ITokenServices
 {
+   
     private readonly UserManager<User> _userManager;
     private readonly ICurrentUserServices _currentUserServices;
     private readonly IConfiguration _configuration;
@@ -31,7 +29,7 @@ public class TokenServices : ITokenServices
         _configuration = configuration;
     }
 
-    public async Task<string> GetJWTToken(DomainUser user)
+    public async Task<string> GetJWTToken(User user)
     {
         var domainUser = _mapper.Map<User>(user);
         var (JwtToken, AccessToken) = await GenerateJwtToken(domainUser);
@@ -49,7 +47,7 @@ public class TokenServices : ITokenServices
            _configuration["Jwt:Issuer"],
            _configuration["Jwt:Audience"],
            claims,
-           expires: DateTime.Now.AddDays(5),
+           expires: DateTime.Now.AddHours(2),
            signingCredentials: credentials);
 
         var AccessToken = new JwtSecurityTokenHandler().WriteToken(JwtToken);

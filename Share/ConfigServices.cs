@@ -1,21 +1,21 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Share.Middlewere;
+using SharedKernel.Exceptions.Middleware;
 
 namespace Share;
 
 public static class ConfigServices
 {
-    public static IServiceCollection RegisterSharedServices(this IServiceCollection services)
+    public static IServiceCollection ServicesDI(this IServiceCollection service)
     {
-        services.AddScoped<BadRequestExceptionMiddleware>();
-        services.AddScoped<NotFoundExceptionMiddleware>();
-        return services;
+        service.AddScoped<MamrpExceptionHandlingMiddleware>();
+
+        return service; 
     }
+
     public static IApplicationBuilder UseShared(this IApplicationBuilder app)
     {
-        app.UseMiddleware<BadRequestExceptionMiddleware>();
-        app.UseMiddleware<NotFoundExceptionMiddleware>();
+        app.UseMiddleware<MamrpExceptionHandlingMiddleware>();
         return app;
     }
 }

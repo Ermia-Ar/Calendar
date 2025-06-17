@@ -5,11 +5,10 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Queries.GetById;
 
-public sealed class GetActivityByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+public sealed class GetActivityByIdQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
         : IRequestHandler<GetActivityByIdQueryRequest, GetActivityByIdQueryResponse>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly IMapper _mapper = mapper;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
 
     public async Task<GetActivityByIdQueryResponse> Handle(GetActivityByIdQueryRequest request, CancellationToken cancellationToken)

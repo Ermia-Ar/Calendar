@@ -15,10 +15,9 @@ public sealed class GetAllRequestQueryHandler(IUnitOfWork unitOfWork)
         var requests = await _unitOfWork.Requests.GetAllRequests
             (request.Filtering.ProjectId, request.Filtering.ActivityId
             , request.Filtering.ReceiverId, request.Filtering.SenderId
-            , request.Filtering.RequestFor, request.Filtering.Status
-            ,cancellationToken);
+            , request.Filtering.RequestFor,cancellationToken);
 
-        var response = request.Adapt<List<GetAllRequestQueryResponse>>();
+        var response = requests.Adapt<List<GetAllRequestQueryResponse>>();
         return response;
     }
 }

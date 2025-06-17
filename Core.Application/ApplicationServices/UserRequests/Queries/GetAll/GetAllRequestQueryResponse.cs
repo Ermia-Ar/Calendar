@@ -14,8 +14,7 @@ public sealed record GetAllRequestQueryResponse (
     RequestStatus Status ,
     DateTime InvitedAt ,
     DateTime? AnsweredAt ,
-    string? Message ,
-    bool IsExpire 
+    string? Message 
     ) : IResponse;
 
 public sealed class GetAllRequestProfile : IRegister

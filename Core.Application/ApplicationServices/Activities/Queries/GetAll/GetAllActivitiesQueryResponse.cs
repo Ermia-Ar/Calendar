@@ -20,6 +20,7 @@ public record class GetAllActivitiesQueryResponse
     ActivityCategory Category,
     bool IsCompleted,
     bool IsEdited
+
 ) : IResponse;
 
 public class GetAllActivitiesProfile : IRegister

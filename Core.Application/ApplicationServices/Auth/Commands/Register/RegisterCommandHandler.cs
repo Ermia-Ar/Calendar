@@ -23,21 +23,20 @@ public class RegisterCommandHandler
     public async Task Handle(RegisterCommandRequest request, CancellationToken cancellationToken)
     {
         //map to User
-        var user = _mapper.Map<User>(request);
-        user.Id = Guid.NewGuid().ToString();
+        var user = UserFactory.Create(request.UserName
+            , request.Email, request.Password, request.Category);
 
         //Add to user table
         var result = await _unitOfWork.Users.AddUser(user, request.Password);
-        if (result != null)
+        if (result.Any())
         {
-            throw new BadRegisterRequestException(result);
+            throw new BadRegisterRequestException(result.First());
         }
         result = await _unitOfWork.Users.AddRoleToUser(user, "User");
-        if (result != null)
+        if (result.Any())
         {
-            throw new BadRegisterRequestException(result);
+            throw new BadRegisterRequestException(result.First());
         }
-        var token = await _tokenServices.GetJWTToken(user);
     }
 }
 

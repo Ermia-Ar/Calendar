@@ -12,10 +12,11 @@ public sealed class GetAllActivitiesQueryHandler(IUnitOfWork unitOfWork, ICurren
 
     public async Task<List<GetAllActivitiesQueryResponse>> Handle(GetAllActivitiesQueryRequest request, CancellationToken cancellationToken)
     {
+        string projectId = "8c56ac14-ae28-4425-9a19-690d27d3a16d";
         var userId = _currentUserServices.GetUserId();
 
         var activities = await _unitOfWork.Requests.GetActivities
-            (userId, request.Filtering.UserIsOwner, cancellationToken
+            (userId, projectId, cancellationToken
             , request.Filtering.StartDate, request.Filtering.Category
             , request.Filtering.IsCompleted, request.Filtering.IsHistory);
 

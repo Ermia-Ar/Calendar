@@ -1,0 +1,45 @@
+﻿@model Calendar.UI.Models.AddProjectDto
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Add New Project</h2>
+        <a class="btn btn-secondary" asp-page="/Projects/Index">Back to List</a>
+    </div>
+
+    <form method="post" class="needs-validation" asp-action="Add" novalidate>
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label asp-for="StartDate" class="form-label">Start Date</label>
+                <input asp-for="StartDate" type="datetime-local" class="form-control" />
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="EndDate" class="form-label">End Date</label>
+                <input asp-for="EndDate" type="datetime-local" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Massage" class="form-label">Massage</label>
+            <input asp-for="Massage" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MemberIds" class="form-label">Member User Name</label>
+            <input asp-for="MemberIds" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+

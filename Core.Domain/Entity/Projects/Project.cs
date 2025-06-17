@@ -7,6 +7,10 @@ namespace Core.Domain.Entity.Projects;
 
 public class Project
 {
+    public Project()
+    {
+        
+    }
     public string Id { get; set; }
 
     public string OwnerId { get; set; }
@@ -31,19 +35,4 @@ public class Project
     public ICollection<UserRequest> UserRequests { get; set; } = [];
 
     public ICollection<Comment> Comments { get; set; } = [];
-
-    public static Project Create(string ownerId, string title, string description, DateTime startDate, DateTime endDate)
-    {
-        return new Project
-        {
-            Id = Guid.NewGuid().ToString(),
-            CreatedDate = DateTime.Now,
-            UpdateDate = endDate,
-            Description = description,
-            Title = title,
-            EndDate = endDate,
-            StartDate = startDate,
-            OwnerId = ownerId,
-        };
-    }
 }

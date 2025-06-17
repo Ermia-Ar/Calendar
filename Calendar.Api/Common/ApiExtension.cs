@@ -1,8 +1,8 @@
 ﻿using Calendar.Api.Hubs;
+using Core.Domain.Entity.Users;
 using Core.Domain.Exceptions;
 using DotNetEnv;
 using Infrastructure.Data;
-using Infrastructure.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;

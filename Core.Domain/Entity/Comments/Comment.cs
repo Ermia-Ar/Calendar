@@ -6,6 +6,10 @@ namespace Core.Domain.Entity.Comments;
 
 public class Comment
 {
+    public Comment()
+    {
+        
+    }
     public string Id { get; set; }
 
     public string ProjectId { get; set; }

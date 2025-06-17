@@ -2332,6 +2332,7 @@
         "dependencies": {
           "MamRp.SharedKernel": "1.3.5",
           "Mapster": "7.4.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0",
           "Share": "1.0.0"
         },
         "runtime": {

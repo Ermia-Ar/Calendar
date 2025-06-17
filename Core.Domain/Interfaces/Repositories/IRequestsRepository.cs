@@ -18,14 +18,14 @@ namespace Core.Domain.Interfaces.Repositories
             , string? activityId, CancellationToken token);
         Task<IReadOnlyCollection<IResponse>> GetAllRequests(string? projectId, string? activityId
             , string? receiverId, string? senderId, RequestFor? requestFor
-            , RequestStatus? status, CancellationToken token);
+            , CancellationToken token);
         Task<IResponse?> GetById(string id, CancellationToken token);
         Task<IReadOnlyCollection<IResponse>> GetProjects(string userId, bool userIsOwner, CancellationToken token
            , DateTime? startDate, bool isHistory = false);
 
-        Task<IReadOnlyCollection<IResponse>> GetActivities(string userId, bool userIdOwner, CancellationToken token
-           , DateTime? startDate, ActivityCategory? category
-            , bool isCompleted = false, bool isHistory = false);
+        Task<IReadOnlyCollection<IResponse>> GetActivities(string userId, string projectId, CancellationToken token
+            , DateTime? startDate, ActivityCategory? category
+            , bool? isCompleted = false, bool? isHistory = false);
 
         Task<IReadOnlyCollection<IResponse>> GetMemberOfProject(string projectId, CancellationToken token);
 

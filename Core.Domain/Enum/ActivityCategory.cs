@@ -1,8 +1,7 @@
-﻿namespace Core.Domain.Enum
+﻿namespace Core.Domain.Enum;
+
+public enum ActivityCategory
 {
-    public enum ActivityCategory
-    {
-        Task,
-        Event,
-    }
+    Task,
+    Event,
 }

@@ -7,11 +7,10 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Queries.GetById;
 
-public sealed class GetProjectByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+public sealed class GetProjectByIdQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
             : IRequestHandler<GetProjectByIdQueryRequest, GetProjectByIdQueryResponse>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly IMapper _mapper = mapper;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
 
     public async Task<GetProjectByIdQueryResponse> Handle(GetProjectByIdQueryRequest request, CancellationToken cancellationToken)

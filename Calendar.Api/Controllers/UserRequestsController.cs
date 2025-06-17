@@ -1,11 +1,14 @@
 ﻿
 using Core.Application.ApplicationServices.UserRequests.Queries.GetAll;
 using Core.Application.ApplicationServices.UserRequests.Queries.GetById;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Calendar.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
+
 public class UserRequestsController : ControllerBase
 {
     private ISender _sender;
@@ -18,7 +21,7 @@ public class UserRequestsController : ControllerBase
 
     [HttpPost("Answer")]
     //[Authorize(CalendarClaims.AnswerRequest)]
-    public async Task<SuccessResponse> Answer(AnswerRequestCommandRequest request
+    public async Task<SuccessResponse> Answer([FromQuery]AnswerRequestCommandRequest request
         , CancellationToken token = default)
     {
         await _sender.Send(request, token);

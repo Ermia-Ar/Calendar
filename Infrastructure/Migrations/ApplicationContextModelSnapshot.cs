@@ -22,7 +22,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Core.Domain.Entity.Activity", b =>
+            modelBuilder.Entity("Core.Domain.Entity.Activities.Activity", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -80,7 +80,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Activities");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.Comment", b =>
+            modelBuilder.Entity("Core.Domain.Entity.Comments.Comment", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -121,7 +121,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Comments", (string)null);
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.Project", b =>
+            modelBuilder.Entity("Core.Domain.Entity.Projects.Project", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -153,14 +153,9 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("OwnerId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Projects", (string)null);
 
@@ -168,18 +163,75 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = "8c56ac14-ae28-4425-9a19-690d27d3a16d",
-                            CreatedDate = new DateTime(2025, 5, 26, 14, 32, 15, 426, DateTimeKind.Local).AddTicks(6954),
+                            CreatedDate = new DateTime(2025, 6, 15, 22, 24, 5, 937, DateTimeKind.Local).AddTicks(1677),
                             Description = "this is static project",
                             EndDate = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999),
                             IsEdited = false,
                             OwnerId = "05e404b3-e235-4c11-bff4-3754b22c0245",
-                            StartDate = new DateTime(2025, 5, 26, 14, 32, 15, 426, DateTimeKind.Local).AddTicks(6905),
+                            StartDate = new DateTime(2025, 6, 15, 22, 24, 5, 937, DateTimeKind.Local).AddTicks(1631),
                             Title = "Public Project",
-                            UpdateDate = new DateTime(2025, 5, 26, 14, 32, 15, 426, DateTimeKind.Local).AddTicks(6956)
+                            UpdateDate = new DateTime(2025, 6, 15, 22, 24, 5, 937, DateTimeKind.Local).AddTicks(1679)
                         });
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.User", b =>
+            modelBuilder.Entity("Core.Domain.Entity.UserRequests.UserRequest", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ActivityId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("AnsweredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InvitedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsExpire")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsGuest")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ReceiverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("RequestFor")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("UserRequests");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entity.Users.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -245,63 +297,6 @@ namespace Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Domain.Entity.UserRequest", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ActivityId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("AnsweredAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("InvitedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsExpire")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsGuest")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProjectId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ReceiverId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("RequestFor")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SenderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActivityId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("ReceiverId");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("UserRequests");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -446,20 +441,20 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.Activity", b =>
+            modelBuilder.Entity("Core.Domain.Entity.Activities.Activity", b =>
                 {
-                    b.HasOne("Core.Domain.Entity.Activity", "Parent")
+                    b.HasOne("Core.Domain.Entity.Activities.Activity", "Parent")
                         .WithMany("SubActivities")
                         .HasForeignKey("ParentId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Core.Domain.Entity.Project", "Project")
+                    b.HasOne("Core.Domain.Entity.Projects.Project", "Project")
                         .WithMany("Activities")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Core.Domain.Entity.User", "User")
+                    b.HasOne("Core.Domain.Entity.Users.User", "User")
                         .WithMany("Activities")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -472,21 +467,21 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.Comment", b =>
+            modelBuilder.Entity("Core.Domain.Entity.Comments.Comment", b =>
                 {
-                    b.HasOne("Core.Domain.Entity.Activity", "Activity")
+                    b.HasOne("Core.Domain.Entity.Activities.Activity", "Activity")
                         .WithMany("Comments")
                         .HasForeignKey("ActivityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Core.Domain.Entity.Project", "Project")
+                    b.HasOne("Core.Domain.Entity.Projects.Project", "Project")
                         .WithMany("Comments")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Core.Domain.Entity.User", "User")
+                    b.HasOne("Core.Domain.Entity.Users.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -499,40 +494,37 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.Project", b =>
+            modelBuilder.Entity("Core.Domain.Entity.Projects.Project", b =>
                 {
-                    b.HasOne("Core.Domain.Entity.User", "User")
-                        .WithMany()
+                    b.HasOne("Core.Domain.Entity.Users.User", "User")
+                        .WithMany("Projects")
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Core.Domain.Entity.User", null)
-                        .WithMany("Projects")
-                        .HasForeignKey("UserId");
-
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.UserRequest", b =>
+            modelBuilder.Entity("Core.Domain.Entity.UserRequests.UserRequest", b =>
                 {
-                    b.HasOne("Core.Domain.Entity.Activity", "Activity")
-                        .WithMany()
-                        .HasForeignKey("ActivityId");
+                    b.HasOne("Core.Domain.Entity.Activities.Activity", "Activity")
+                        .WithMany("UserRequests")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Core.Domain.Entity.Project", "Project")
+                    b.HasOne("Core.Domain.Entity.Projects.Project", "Project")
                         .WithMany("UserRequests")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Core.Domain.Entity.User", "Receiver")
+                    b.HasOne("Core.Domain.Entity.Users.User", "Receiver")
                         .WithMany("ReceiveRequests")
                         .HasForeignKey("ReceiverId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Core.Domain.Entity.User", "Sender")
+                    b.HasOne("Core.Domain.Entity.Users.User", "Sender")
                         .WithMany("SendRequests")
                         .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -558,7 +550,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Core.Domain.Entity.User", null)
+                    b.HasOne("Core.Domain.Entity.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -567,7 +559,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Core.Domain.Entity.User", null)
+                    b.HasOne("Core.Domain.Entity.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -582,7 +574,7 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core.Domain.Entity.User", null)
+                    b.HasOne("Core.Domain.Entity.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -591,21 +583,23 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Core.Domain.Entity.User", null)
+                    b.HasOne("Core.Domain.Entity.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.Activity", b =>
+            modelBuilder.Entity("Core.Domain.Entity.Activities.Activity", b =>
                 {
                     b.Navigation("Comments");
 
                     b.Navigation("SubActivities");
+
+                    b.Navigation("UserRequests");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.Project", b =>
+            modelBuilder.Entity("Core.Domain.Entity.Projects.Project", b =>
                 {
                     b.Navigation("Activities");
 
@@ -614,7 +608,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("UserRequests");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entity.User", b =>
+            modelBuilder.Entity("Core.Domain.Entity.Users.User", b =>
                 {
                     b.Navigation("Activities");
 

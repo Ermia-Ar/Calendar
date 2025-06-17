@@ -6,11 +6,10 @@ using MediatR;
 namespace Core.Application.ApplicationServices.Auth.Queries.GetAll;
 
 
-public class GetAllUsersQueryHandler(IMapper mapper, IUnitOfWork unitOfWork)
+public class GetAllUsersQueryHandler(IUnitOfWork unitOfWork)
             : IRequestHandler<GetAllUsersQueryRequest, List<GetAllUserQueryResponse>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly IMapper _mapper = mapper;
 
     public async Task<List<GetAllUserQueryResponse>> Handle(GetAllUsersQueryRequest request, CancellationToken cancellationToken)
     {

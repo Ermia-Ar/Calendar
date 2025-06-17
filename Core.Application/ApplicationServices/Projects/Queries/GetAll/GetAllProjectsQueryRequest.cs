@@ -21,7 +21,6 @@ public sealed record GetAllProjectsQueryRequest(
 
 
 public sealed record GetAllProjectDto(
-
     int PageSize,
     int PageNum,
     OrderingType Type,

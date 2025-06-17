@@ -1,5 +1,4 @@
-﻿using Share.Abstract;
-using SharedKernel.Exceptions;
+﻿using SharedKernel.Exceptions;
 
 namespace Core.Application.ApplicationServices.Auth.Exceptions;
 

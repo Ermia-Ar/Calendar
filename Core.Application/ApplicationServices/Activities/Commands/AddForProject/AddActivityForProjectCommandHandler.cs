@@ -8,13 +8,12 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.AddForProject;
 
-public sealed class AddActivityForProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
+public sealed class AddActivityForProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser)
     : IRequestHandler<AddActivityForProjectCommandRequest>
 {
 
     public readonly IUnitOfWork _unitOfWork = unitOfWork;
     public readonly ICurrentUserServices _currentUser = currentUser;
-    public readonly IMapper _mapper = mapper;
 
     public async Task Handle(AddActivityForProjectCommandRequest request, CancellationToken cancellationToken)
     {
@@ -43,11 +42,12 @@ public sealed class AddActivityForProjectCommandHandler(IUnitOfWork unitOfWork, 
         var userRequests = new List<UserRequest>();
         foreach (var memberId in memberIds)
         {
-            var sendRequest = RequestFactory.CreateProjectRequest(project.Id
-                , ownerId, memberId, null);
+            var sendRequest = RequestFactory.CreateActivityRequest(activity.ProjectId
+                , activity.Id, ownerId, memberId, null, false);
 
             // make request accepted
             sendRequest.Accept();
+            sendRequest.MakeUnActive();
 
             userRequests.Add(sendRequest);
         }

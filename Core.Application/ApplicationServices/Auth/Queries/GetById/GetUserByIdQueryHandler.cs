@@ -5,17 +5,10 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Auth.Queries.GetById;
 
-public class GetUserByIdQueryHandler
-    : IRequestHandler<GetUserByIdQueryRequest, GetUserByIdQueryResponse>
+public class GetUserByIdQueryHandler(IUnitOfWork unitOfWork)
+        : IRequestHandler<GetUserByIdQueryRequest, GetUserByIdQueryResponse>
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-
-    public GetUserByIdQueryHandler(IMapper mapper, IUnitOfWork unitOfWork)
-    {
-        _mapper = mapper;
-        _unitOfWork = unitOfWork;
-    }
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<GetUserByIdQueryResponse> Handle(GetUserByIdQueryRequest request, CancellationToken cancellationToken)
     {

@@ -3,16 +3,16 @@ using Core.Domain.Entity.Comments;
 using Core.Domain.Entity.Projects;
 using Core.Domain.Entity.UserRequests;
 using Core.Domain.Enum;
+using Microsoft.AspNetCore.Identity;
 
 namespace Core.Domain.Entity.Users;
 
-public class User
+public class User : IdentityUser
 {
-    public string Id { get; set; }
-
-    public string UserName { get; set; } = null!;
-
-    public string Email { get; set; } = null!;
+    public User()
+    {
+        
+    }
 
     public UserCategory Category { get; set; }
 

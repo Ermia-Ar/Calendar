@@ -66,13 +66,13 @@ public class RequestRepository : IRequestsRepository
     }
 
     public async Task<IReadOnlyCollection<IResponse>> GetAllRequests(string? projectId, string? activityId, string? receiverId
-        , string? senderId, RequestFor? requestFor, RequestStatus? status, CancellationToken token)
+        , string? senderId, RequestFor? requestFor, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
-        await connection.OpenAsync();
+        await connection.OpenAsync(token);
 
         var parameters = new DynamicParameters();
-        parameters.Add("SenderId", senderId);
+        parameters.Add("SenderId", receiverId);
         parameters.Add("ReceiverId", receiverId);
         parameters.Add("RequestFor", requestFor);
         parameters.Add("IsActive", true);
@@ -82,10 +82,11 @@ public class RequestRepository : IRequestsRepository
 
         return userRequests.ToImmutableList();
     }
+
     public async Task<IResponse?> GetById(string id, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
-        await connection.OpenAsync();
+        await connection.OpenAsync(token);
 
         var parameters = new DynamicParameters();
         parameters.Add("requestId", id);
@@ -136,8 +137,8 @@ public class RequestRepository : IRequestsRepository
         return members.ToImmutableList();
     }
 
-    public async Task<IReadOnlyCollection<IResponse>> GetActivities(string userId, bool userIsOwner, CancellationToken token
-        , DateTime? startDate, ActivityCategory? category, bool isCompleted, bool isHistory)
+    public async Task<IReadOnlyCollection<IResponse>> GetActivities(string userId, string projectId, CancellationToken token
+        , DateTime? startDate, ActivityCategory? category, bool? isCompleted, bool? isHistory = false)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
         await connection.OpenAsync(token);
@@ -145,13 +146,13 @@ public class RequestRepository : IRequestsRepository
         var parameters = new DynamicParameters();
         parameters.Add("isExpire", true);
         parameters.Add("requestFor", (int)RequestFor.Activity);
-        parameters.Add("receiverId", userId);//ToDo
-        parameters.Add("status", RequestStatus.Accepted);
+        parameters.Add("receiverId", userId);
+        parameters.Add("status", (int)RequestStatus.Accepted);
         parameters.Add("startDate", startDate);
         parameters.Add("History", isHistory == true ? DateTime.Now : null);
-        parameters.Add("ownerId", userIsOwner? userId:null);
-        parameters.Add("category", category ?? null);
-        parameters.Add("isCompleted", isCompleted == true ? true : null);
+        parameters.Add("ownerId", projectId);
+        parameters.Add("category", category);
+        parameters.Add("isCompleted", isCompleted);
 
         var activities = await connection.QueryAsync<GetAllActivitiesQueryResponse>
             ("SP_GetActivities", parameters, commandType: System.Data.CommandType.StoredProcedure);
@@ -159,6 +160,7 @@ public class RequestRepository : IRequestsRepository
 
         return activities.ToImmutableList();
     }
+
     public async Task<IReadOnlyCollection<IResponse>> GetMemberOfActivity(string activityId, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -176,6 +178,7 @@ public class RequestRepository : IRequestsRepository
 
         return members.ToImmutableList();
     }
+
     public async Task<string[]> GetMemberIdsOfProject(string projectId, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));

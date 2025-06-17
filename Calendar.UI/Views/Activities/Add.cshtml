@@ -1,0 +1,42 @@
+﻿@model AddActivityDto
+
+<h2>Add New Activity</h2>
+
+<form method="post" asp-controller="Activities" asp-action="Add">
+
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartDate">Start Date</label>
+        <input asp-for="StartDate" class="form-control" type="datetime-local" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DurationInMinute">Duration (minutes)</label>
+        <input asp-for="DurationInMinute" class="form-control" type="number" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NotificationBeforeInMinute">Notify Before (minutes)</label>
+        <input asp-for="NotificationBeforeInMinute" class="form-control" type="number" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category">Category</label>
+        <select asp-for="Category" class="form-control">
+            <option value="0">Task</option>
+            <option value="1">Event</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Save Activity</button>
+    <a href="/Projects" class="btn btn-secondary mt-2">Cancel</a>
+</form>

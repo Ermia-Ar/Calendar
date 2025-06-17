@@ -4,7 +4,7 @@ using SharedKernel.Helper;
 namespace Core.Application.ApplicationServices.Projects.Queries.GetAll;
 
 public record class GetAllProjectQueryResponse(
-    string Project_Id,
+    string Id,
     string OwnerId,
     string Title,
     string Description,

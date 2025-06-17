@@ -15,7 +15,7 @@ public sealed record GetAllActivitiesQueryRequest(
     public static GetAllActivitiesQueryRequest Create(GetAllActivitiesDto model)
     {
         return new GetAllActivitiesQueryRequest(new PaginationFilter(model.PageNum, model.PageSize),
-            new GetAllActivitiesFiltering(model.StartDate, model.UserIsOwner
+            new GetAllActivitiesFiltering(model.StartDate
             , model.IsCompleted, model.IsHistory, model.Category), model.Type);
     }
 }
@@ -27,8 +27,7 @@ public record GetAllActivitiesDto
     int PageSize,
     OrderingType? Type,
     DateTime? StartDate,
-    bool UserIsOwner,
-    bool IsCompleted,
-    bool IsHistory,
+    bool? IsCompleted,
+    bool? IsHistory,
     ActivityCategory? Category
 );

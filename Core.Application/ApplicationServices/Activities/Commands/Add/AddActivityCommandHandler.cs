@@ -1,7 +1,6 @@
 ﻿using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Domain.Entity.Activities;
 using Core.Domain.Entity.UserRequests;
-using Core.Domain.Enum;
 using Core.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -61,6 +60,13 @@ public sealed class AddActivityCommandHandler(
         //send all requests
         _unitOfWork.Requests.AddRange(userRequests);
 
-        await _unitOfWork.SaveChangeAsync(cancellationToken);
+        try
+        {
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            //
+        }
     }
 }

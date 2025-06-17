@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\DELL\\source\\repos\\Calendar\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\source\\repos\\calendar\\core.application\\applicationservices\\projects\\commands\\removemember\\removememberofprojectcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\applicationservices\\projects\\commands\\removemember\\removememberofprojectcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{664986D2-9B50-425C-B0D1-39427C1404B8}|Calendar.UI\\Calendar.UI.csproj|c:\\users\\dell\\source\\repos\\calendar\\calendar.ui\\controllers\\projects\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{664986D2-9B50-425C-B0D1-39427C1404B8}|Calendar.UI\\Calendar.UI.csproj|solutionrelative:calendar.ui\\controllers\\projects\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{664986D2-9B50-425C-B0D1-39427C1404B8}|Calendar.UI\\Calendar.UI.csproj|c:\\users\\dell\\source\\repos\\calendar\\calendar.ui\\views\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{664986D2-9B50-425C-B0D1-39427C1404B8}|Calendar.UI\\Calendar.UI.csproj|solutionrelative:calendar.ui\\views\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{664986D2-9B50-425C-B0D1-39427C1404B8}|Calendar.UI\\Calendar.UI.csproj|c:\\users\\dell\\source\\repos\\calendar\\calendar.ui\\controllers\\requests\\requestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{664986D2-9B50-425C-B0D1-39427C1404B8}|Calendar.UI\\Calendar.UI.csproj|solutionrelative:calendar.ui\\controllers\\requests\\requestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +43,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RemoveMemberOfProjectCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\ApplicationServices\\Projects\\Commands\\RemoveMember\\RemoveMemberOfProjectCommandHandler.cs",
+              "RelativeDocumentMoniker": "Core.Application\\ApplicationServices\\Projects\\Commands\\RemoveMember\\RemoveMemberOfProjectCommandHandler.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\ApplicationServices\\Projects\\Commands\\RemoveMember\\RemoveMemberOfProjectCommandHandler.cs",
+              "RelativeToolTip": "Core.Application\\ApplicationServices\\Projects\\Commands\\RemoveMember\\RemoveMemberOfProjectCommandHandler.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABoAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T20:46:24.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProjectsController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\Controllers\\Projects\\ProjectsController.cs",
+              "RelativeDocumentMoniker": "Calendar.UI\\Controllers\\Projects\\ProjectsController.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\Controllers\\Projects\\ProjectsController.cs",
+              "RelativeToolTip": "Calendar.UI\\Controllers\\Projects\\ProjectsController.cs",
+              "ViewState": "AQIAAG0AAAAAAAAAAAAAAH0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T20:44:34.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\Views\\Projects\\Index.cshtml",
+              "RelativeDocumentMoniker": "Calendar.UI\\Views\\Projects\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\Views\\Projects\\Index.cshtml",
+              "RelativeToolTip": "Calendar.UI\\Views\\Projects\\Index.cshtml",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAAC8AAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-17T20:42:18.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RequestsController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\Controllers\\Requests\\RequestsController.cs",
+              "RelativeDocumentMoniker": "Calendar.UI\\Controllers\\Requests\\RequestsController.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\Controllers\\Requests\\RequestsController.cs",
+              "RelativeToolTip": "Calendar.UI\\Controllers\\Requests\\RequestsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T20:41:54.422Z",
+              "EditorCaption": ""
             }
           ]
         },

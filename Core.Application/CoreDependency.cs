@@ -12,7 +12,7 @@ public static class CoreDependency
     {
         // Get Validators
         services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        //services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         //
         services.AddMediatR(cfg =>

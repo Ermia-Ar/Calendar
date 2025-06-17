@@ -5,10 +5,9 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Queries.GetAll;
 
-public sealed class GetAllProjectsQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices, IMapper mapper)
+public sealed class GetAllProjectsQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
             : IRequestHandler<GetAllProjectsQueryRequest, List<GetAllProjectQueryResponse>>
 {
-    private readonly IMapper _mapper = mapper;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 

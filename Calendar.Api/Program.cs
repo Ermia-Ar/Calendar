@@ -6,6 +6,7 @@ using Infrastructure.Dependency;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Share;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,17 +25,19 @@ builder.Services
     .AddHttpContextAccessor();
 
 builder.Services.AddDbContext<ApplicationContext>(option =>
-    option.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("Connection"));
+    option.EnableSensitiveDataLogging();
+});
 
 // add dependency 
 builder.Services.AddCoreDependencies()
     .AddServiceDescriptors();
 
-builder.Services
-    .RegisterSharedServices();
-
-builder.Services
+builder.Services.ServicesDI()
     .AddApiServices(builder.Configuration);
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly()); 
 
 var app = builder.Build();
 

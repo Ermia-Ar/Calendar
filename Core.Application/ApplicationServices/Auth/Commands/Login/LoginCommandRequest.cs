@@ -7,4 +7,4 @@ public record class LoginCommandRequest(
         string UserNameOrEmail,
         string Password
 
-    ): IRequest;
+    ): IRequest<string>;

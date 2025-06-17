@@ -28,11 +28,11 @@ public record GetAllRequestDto(
     int PageNum,
     int PageSize,
     OrderingType Type,
-    string ProjectId,
-    string ActivityId,
-    string SenderId,
-    string ReceiverId,
-    RequestStatus Status,
-    RequestFor RequestFor,
+    string? ProjectId,
+    string? ActivityId,
+    string? SenderId,
+    string? ReceiverId,
+    RequestStatus? Status,
+    RequestFor? RequestFor,
     DateTime Date
 );
