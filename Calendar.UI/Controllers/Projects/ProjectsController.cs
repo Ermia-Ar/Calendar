@@ -65,7 +65,7 @@ public class ProjectsController(IHttpClientFactory httpClientFactory, ICurrentUs
             var response1 = (await _httpClient.GetStringAsync(uri));
 
             var result1 = Converter.FromJson<Response<GetUserByUserNameDto>>(response1);
-            requestModel.ReceiverIds.Add(result1.Value.Id);
+            requestModel.MemberIds.Add(result1.Value.Id);
         }
 
         requestModel.Message = model.Message;
@@ -123,12 +123,74 @@ public class ProjectsController(IHttpClientFactory httpClientFactory, ICurrentUs
 
     public async Task<IActionResult> Leave(string id)
     {
+        var response = (await _httpClient.DeleteAsync($"Projects/Exiting/{id}")).Content;
+        var result = Converter.FromJson<Response>(await response.ReadAsStringAsync());
 
+        if (result.IsSuccess)
+        {
+            return RedirectToAction("index");
+        }
+
+        Console.WriteLine("Error : ", result.Errors);
+        return RedirectToAction("Index");
     }
 
     public async Task<IActionResult> Remove(string id)
     {
-        throw new NotImplementedException();
+        var response = (await _httpClient.DeleteAsync($"Projects/{id}")).Content;
+        var result = Converter.FromJson<Response>(await response.ReadAsStringAsync());
+
+        if (result.IsSuccess)
+        {
+            return RedirectToAction("index");
+        }
+
+        Console.WriteLine("Error : ", result.Errors);
+        return RedirectToAction("Index");
+    }
+
+    public async Task<IActionResult> Members(string id, bool isOwner)
+    {
+        var response = await _httpClient.GetStringAsync($"Projects/Members/{id}");
+        var result = Converter.FromJson<Response<List<GetMemberOfProjectDto>>>(response);
+
+        ViewBag.isOwner = isOwner;
+        ViewBag.projectId = id;
+
+        if (result.IsSuccess)
+        {
+            return View(result.Value);
+        }
+        Console.WriteLine("Error : ", result.Errors);
+        return RedirectToAction("Index");
+    }
+
+    public async Task<IActionResult> Comments(string id, bool isOwner)
+    {
+        var response = await _httpClient.GetStringAsync($"Comments?ProjectId={id}");
+        var result = Converter.FromJson<Response<List<GetAllCommentsDto>>>(response);
+        ViewBag.isOwner = isOwner;
+
+        if (result.IsSuccess)
+        {
+            return View(result.Value);
+        }
+        Console.WriteLine("Error : ", result.Errors);
+        return RedirectToAction("Index");
+    }
+
+    public async Task<IActionResult> RemoveMember(string id, string mId)
+    {
+        var response = (await _httpClient.DeleteAsync($"Projects/RemoveOf/{id}/Member/{mId}")).Content;
+        var result = Converter.FromJson<Response>(await response.ReadAsStringAsync());
+
+        if (result.IsSuccess)
+        {
+            return RedirectToAction("Members", new { id = id, isOwner = true });
+        }
+
+        Console.WriteLine("Error : ", result.Errors);
+        return RedirectToAction("Members", new { id = id, isOwner = true });
     }
 
 }

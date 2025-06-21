@@ -1,5 +1,6 @@
 ﻿using Calendar.UI.Setting;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Calendar.UI.Services;
 
@@ -25,7 +26,7 @@ public sealed class CurrentUser : ICurrentUser
         var handler = new JwtSecurityTokenHandler();
         var token = handler.ReadJwtToken(jwtToken);
 
-        return token.Claims.FirstOrDefault(c => c.Type == nameof(UserClaimsModel.Email))?.Value;
+        return token.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
 
     }
 
@@ -35,7 +36,7 @@ public sealed class CurrentUser : ICurrentUser
         var handler = new JwtSecurityTokenHandler();
         var token = handler.ReadJwtToken(jwtToken);
 
-        return token.Claims.FirstOrDefault(c => c.Type == nameof(UserClaimsModel.Id))?.Value;
+        return token.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
     }
 
     public string? GetUserName()
@@ -44,6 +45,6 @@ public sealed class CurrentUser : ICurrentUser
         var handler = new JwtSecurityTokenHandler();
         var token = handler.ReadJwtToken(jwtToken);
 
-        return token.Claims.FirstOrDefault(c => c.Type == nameof(UserClaimsModel.UserName))?.Value;
+        return token.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
     }
 }

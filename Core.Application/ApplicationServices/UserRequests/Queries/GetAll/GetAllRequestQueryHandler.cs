@@ -12,7 +12,7 @@ public sealed class GetAllRequestQueryHandler(IUnitOfWork unitOfWork)
 
     public async Task<List<GetAllRequestQueryResponse>> Handle(GetAllRequestsQueryRequest request, CancellationToken cancellationToken)
     {
-        var requests = await _unitOfWork.Requests.GetAllRequests
+        var requests = await _unitOfWork.Requests.GetAll
             (request.Filtering.ProjectId, request.Filtering.ActivityId
             , request.Filtering.ReceiverId, request.Filtering.SenderId
             , request.Filtering.RequestFor,cancellationToken);

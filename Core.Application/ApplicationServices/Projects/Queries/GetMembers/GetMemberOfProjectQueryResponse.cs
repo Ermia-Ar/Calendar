@@ -8,7 +8,8 @@ public record class GetMemberOfProjectQueryResponse (
     string Id,
     string UserName,
     string Email,
-    UserCategory Category
+    UserCategory Category,
+    bool IsOwner
     ) : IResponse;
 
 public class GetMemberOfProjectProfile : IRegister

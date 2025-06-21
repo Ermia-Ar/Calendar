@@ -3,13 +3,12 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.AddSubActivity
 {
-    public record class AddSubActivityCommandRequest(
+    public sealed record AddSubActivityCommandRequest(
          string ActivityId,
-         string Title,
          string? Description,
          DateTime StartDate,
          int DurationInMinute,
          int NotificationBeforeInMinute,
-         ActivityCategory Category 
+         string[] MemberIds
         ) : IRequest;
 }

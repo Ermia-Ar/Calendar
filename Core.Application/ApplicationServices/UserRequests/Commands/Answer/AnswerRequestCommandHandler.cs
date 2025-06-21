@@ -42,7 +42,7 @@ public class AnswerRequestCommandHandler
 
             // if the user is already member of project
             var members = await _unitOfWork.Requests
-                .GetMemberIdsOfProject(userRequest.ProjectId, cancellationToken);
+                .FindMemberIdsOfProject(userRequest.ProjectId, cancellationToken);
 
             if (!members.Any(x => x == userId))
             {

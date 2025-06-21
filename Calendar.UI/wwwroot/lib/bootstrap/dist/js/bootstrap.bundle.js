@@ -749,7 +749,11 @@
       }
 
       const target = getElementFromSelector(this) || this.closest(`.${name}`);
-      const instance = component.getOrCreateInstance(target); // Method argument is left, for Alert and only, as it doesn't implement the 'hide' method
+        const instance = component.getOrCreateInstance(target); // Method argument is left, for 
+      
+
+
+and only, as it doesn't implement the 'hide' method
 
       instance[method]();
     });

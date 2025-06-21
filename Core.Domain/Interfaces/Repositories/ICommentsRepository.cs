@@ -13,9 +13,8 @@ namespace Core.Domain.Interfaces.Repositories
         Task<Comment?> FindById(string id, CancellationToken token);
         Task<List<Comment>> Find(string? projectId, string? activityId
             , CancellationToken token);
-
-        Task<IReadOnlyCollection<IResponse>> GetAll(
-            string? projectId, string? activityId, string? search
+        Task<IReadOnlyCollection<IResponse>> GetAll(string? projectId
+            , string? activityId, string? search
             , string? userId, CancellationToken token);
     }
 }

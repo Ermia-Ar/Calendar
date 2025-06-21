@@ -15,7 +15,7 @@ public sealed class AddCommentCommandHandler(IUnitOfWork unitOfWork, ICurrentUse
     {
         string userId = _currentUserServices.GetUserId();
 
-        var isMember = (await _unitOfWork.Requests.GetMemberIdsOfActivity
+        var isMember = (await _unitOfWork.Requests.FindMemberIdsOfActivity
             (request.ActivityId, cancellationToken))
             .Any(Id => Id == userId);
 
@@ -23,9 +23,11 @@ public sealed class AddCommentCommandHandler(IUnitOfWork unitOfWork, ICurrentUse
         {
             throw new OnlyActivityMembersAllowedException();
         }
+        var activity = await _unitOfWork.Activities
+            .FindById(request.ActivityId, cancellationToken);
 
         var comment = CommentFactory.Create(userId, request.ActivityId
-            , request.ProjectId, request.Content);
+            , activity.ProjectId, request.Content);
 
         _unitOfWork.Comments.Add(comment);
         await _unitOfWork.SaveChangeAsync(cancellationToken);

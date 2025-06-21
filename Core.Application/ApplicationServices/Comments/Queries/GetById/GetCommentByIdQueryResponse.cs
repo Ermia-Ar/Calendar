@@ -3,13 +3,14 @@ using SharedKernel.Helper;
 
 namespace Core.Application.ApplicationServices.Comments.Queries.GetById;
 
-public record class GetCommentByIdQueryResponse
+public sealed record GetCommentByIdQueryResponse
      (string Id,
     string ActivityId,
     string Content,
     DateTime CreatedDate,
     DateTime UpdatedDate,
-    bool IsEdited) : IResponse;
+    bool IsEdited
+    ) : IResponse;
 
 public class GetCommentByIdProfile : IRegister
 {

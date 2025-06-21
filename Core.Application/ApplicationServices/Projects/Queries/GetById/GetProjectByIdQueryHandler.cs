@@ -18,7 +18,7 @@ public sealed class GetProjectByIdQueryHandler(IUnitOfWork unitOfWork, ICurrentU
         var userId = _currentUserServices.GetUserId();
 
         var isMember = (await _unitOfWork.Requests
-            .GetMemberIdsOfProject(request.Id, cancellationToken))
+            .FindMemberIdsOfProject(request.Id, cancellationToken))
             .Any(x => x == userId);
 
         if (!isMember)

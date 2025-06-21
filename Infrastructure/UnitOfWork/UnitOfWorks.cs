@@ -30,9 +30,6 @@ public class UnitOfWorks : IUnitOfWork
         Comments = comments;
     }
 
-    // did not use cause there is async methods 
-
-
     public void Dispose()
     {
         _context.Dispose();

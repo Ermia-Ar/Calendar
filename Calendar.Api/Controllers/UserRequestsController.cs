@@ -1,7 +1,9 @@
 ﻿
+using Calendar.Api.Hubs;
 using Core.Application.ApplicationServices.UserRequests.Queries.GetAll;
 using Core.Application.ApplicationServices.UserRequests.Queries.GetById;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Calendar.Api.Controllers;
 
@@ -9,22 +11,21 @@ namespace Calendar.Api.Controllers;
 [ApiController]
 [Authorize]
 
-public class UserRequestsController : ControllerBase
+public class UserRequestsController(ISender sender, IHubContext<CommonHub> hubContext) : ControllerBase
 {
-    private ISender _sender;
+    private readonly ISender _sender = sender;
+    private readonly IHubContext<CommonHub> _hubContext = hubContext;
 
-    public UserRequestsController(ISender sender)
-    {
-        _sender = sender;
-    }
-
-
-    [HttpPost("Answer")]
+	[HttpPost("Answer")]
     //[Authorize(CalendarClaims.AnswerRequest)]
     public async Task<SuccessResponse> Answer([FromQuery]AnswerRequestCommandRequest request
         , CancellationToken token = default)
     {
         await _sender.Send(request, token);
+
+        //send to sender request and send to group for this activity/project
+        //await _hubContext.Clients
+        //    .User().SendAsync("AnswerRequest", token);
 
         return Result.Ok();
     }
@@ -36,6 +37,10 @@ public class UserRequestsController : ControllerBase
     {
         var request = new DeleteRequestCommandRequest(id.ToString());
         await _sender.Send(request);
+
+        //send to receiver request
+        //await _hubContext.Clients
+        //        .User().SendAsync("RemoveRequest", token);
 
         return Result.Ok();
     }

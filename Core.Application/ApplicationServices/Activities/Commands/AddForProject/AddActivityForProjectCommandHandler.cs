@@ -34,13 +34,8 @@ public sealed class AddActivityForProjectCommandHandler(IUnitOfWork unitOfWork, 
             , request.DurationInMinute
             , request.NotificationBeforeInMinute);
 
-
-        //create request for all member of project
-        var memberIds = await _unitOfWork.Requests
-            .GetMemberIdsOfProject(request.ProjectId, cancellationToken);
-
         var userRequests = new List<UserRequest>();
-        foreach (var memberId in memberIds)
+        foreach (var memberId in request.MemberIds)
         {
             var sendRequest = RequestFactory.CreateActivityRequest(activity.ProjectId
                 , activity.Id, ownerId, memberId, null, false);

@@ -10,5 +10,6 @@ public sealed record class AddActivityForProjectCommandRequest(
      DateTime StartDate ,
      int DurationInMinute ,
      int NotificationBeforeInMinute ,
-     ActivityCategory Category 
+     ActivityCategory Category ,
+     string[] MemberIds
     ) : IRequest;

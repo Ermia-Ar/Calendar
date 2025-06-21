@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yy4t91l6PM9olwolVs1M+jwTCZrXiPESqvRL3CHzxQE=",
+  "Hash": "bz7NOl1kqcKlae+iFs0lGghWTibvn/OiyBeH3EtpHPY=",
   "Source": "Calendar.UI",
   "BasePath": "_content/Calendar.UI",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\wwwroot\\js\\Common.js",
+      "SourceId": "Calendar.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\wwwroot\\",
+      "BasePath": "_content/Calendar.UI",
+      "RelativePath": "js/Common.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Common.js"
     },
     {
       "Identity": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\wwwroot\\js\\site.js",

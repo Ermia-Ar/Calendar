@@ -20,14 +20,6 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 
-builder.Services.AddAuthentication(op =>
-{
-    op.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-})
-.AddCookie(op =>
-{
-    op.LoginPath = "/Auth/Login";
-});
 builder.Services.AddTransient<TokenHandler>(); 
 
 

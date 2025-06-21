@@ -33,7 +33,7 @@ public class DeleteProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper,
 
         // delete all request for this project 
         var requests = (await _unitOfWork.Requests
-            .GetAll(request.ProjectId, null, cancellationToken))
+            .Find(request.ProjectId, null, cancellationToken))
             .ToList();
 
         _unitOfWork.Requests.RemoveRange(requests);

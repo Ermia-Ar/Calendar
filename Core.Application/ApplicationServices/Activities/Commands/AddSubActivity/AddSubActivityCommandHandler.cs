@@ -2,7 +2,6 @@
 using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Domain.Entity.Activities;
 using Core.Domain.Entity.UserRequests;
-using Core.Domain.Enum;
 using Core.Domain.Interfaces;
 using Mapster;
 using MediatR;
@@ -32,23 +31,21 @@ public sealed class AddSubActivityCommandHandler(
 
         // create sub activity
         var subActivity = ActivityFactory.CreateSubActivity(baseActivity.Id, ownerId, baseActivity.ProjectId
-            , request.Title, request.Description
-            , request.StartDate, request.Category
+            , baseActivity.Title, request.Description
+            , request.StartDate, baseActivity.Category
             , request.DurationInMinute
             , request.NotificationBeforeInMinute);
 
-        //get member of activity
-        var memberIds = await _unitOfWork.Requests.GetMemberIdsOfActivity
-            (request.ActivityId, cancellationToken);
 
         //create request for all members of base activity
         var userRequests = new List<UserRequest>();
-        foreach (var memberId in memberIds)
+        foreach (var memberId in request.MemberIds)
         {
             var sendRequest = RequestFactory.CreateActivityRequest
                 (subActivity.ProjectId, subActivity.Id
                 , ownerId, memberId, null, false);
             // make request accepted
+            sendRequest.MakeUnActive();
             sendRequest.Accept();
 
             userRequests.Add(sendRequest);

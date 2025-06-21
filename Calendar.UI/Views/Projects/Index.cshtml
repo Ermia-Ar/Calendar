@@ -28,7 +28,7 @@
             <tbody>
                 @foreach (var project in Model)
                 {
-                    <tr>
+                    <tr id="project-row-@project.Id">
                         <td>@project.Title</td>
                         <td>@project.Description</td>
                         <td>@project.StartDate.ToString("yyyy-MM-dd")</td>
@@ -39,12 +39,15 @@
                             @if(project.OwnerId == ViewBag.userId)
                             {
                                 <a href="/Projects/Activities?id=@project.Id&isOwner=true" class="btn btn-sm btn-info">Activities</a>
-                                <a href="/Projects/AddMember/@project.Id" class="btn btn-sm btn-warning">Invite new member</a>
-                                <a href="/Projects/Remove" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="/Projects/Members?id=@project.Id&isOwner=true" class="btn btn-sm btn-info">Members</a>
+                                <a href="/Projects/Comments?id=@project.Id&isOwner=true" class="btn btn-sm btn-info">Comments</a>
+                                <a href="/Projects/Remove/@project.Id" class="btn btn-sm btn-danger">Delete</a>
                             }
                             else
                             {
                                 <a href="/Projects/Activities?id=@project.Id&isOwner=false" class="btn btn-sm btn-info">Activities</a>
+                                <a href="/Projects/Members?id=@project.Id&isOwner=false" class="btn btn-sm btn-info">Members</a>
+                                <a href="/Projects/Comments?id=@project.Id&isOwner=false" class="btn btn-sm btn-info">Comments</a>
                                 <a href="/Projects/Leave/@project.Id" class="btn btn-sm btn-danger">Leave</a>
                             }
                         </td>

@@ -11,7 +11,8 @@ public record class GetAllCommentsQueryResponse
     string Content,
     DateTime CreatedDate,
     DateTime UpdatedDate,
-    bool IsEdited) : IResponse;
+    bool IsEdited) 
+    : IResponse;
 
 public class GetCommentsProfile : IRegister
 {

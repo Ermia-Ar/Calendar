@@ -28,8 +28,6 @@ public class AuthController : Controller
         {
             Response.Cookies.Append("AccessToken", result.Value, new CookieOptions
             {
-                HttpOnly = true,
-                Secure = true,         
                 SameSite = SameSiteMode.Strict,
                 Expires = DateTimeOffset.UtcNow.AddHours(1) 
             });

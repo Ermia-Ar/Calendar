@@ -1,0 +1,20 @@
+﻿@model AddMemberToProjectRequest
+
+<h2>Invite Members to Project</h2>
+
+<form asp-action="AddMember" asp-controller="Activities" method="post">
+    <div class="mb-3">
+        <label for="ReceiverNames" class="form-label">Member to Invite</label>
+        <input type="text" name="ReceiverNames" class="form-control"
+               placeholder="Enter comma-separated user names">
+        <small class="form-text text-muted">e.g. user1@example.com, user2@example.com</small>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Message" class="form-label"></label>
+        <textarea asp-for="Message" class="form-control" rows="3" placeholder="Optional message..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Send Invitations</button>
+</form>
+

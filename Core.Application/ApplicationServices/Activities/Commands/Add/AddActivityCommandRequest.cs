@@ -10,6 +10,6 @@ public sealed record AddActivityCommandRequest(
      int DurationInMinute ,
      int NotificationBeforeInMinute ,
      ActivityCategory Category ,
-     string[] Members ,
+     string[] MemberIds ,
      string? Message
 ) : IRequest;

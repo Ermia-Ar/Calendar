@@ -56,7 +56,7 @@ public class RequestRepository : IRequestsRepository
 
 
     //Queries
-    public async Task<IReadOnlyCollection<UserRequest>> GetAll(string? projectId
+    public async Task<IReadOnlyCollection<UserRequest>> Find(string? projectId
         , string? activityId, CancellationToken token)
     {
         return await _context.UserRequests.Where
@@ -65,7 +65,7 @@ public class RequestRepository : IRequestsRepository
             .ToListAsync();
     }
 
-    public async Task<IReadOnlyCollection<IResponse>> GetAllRequests(string? projectId, string? activityId, string? receiverId
+    public async Task<IReadOnlyCollection<IResponse>> GetAll(string? projectId, string? activityId, string? receiverId
         , string? senderId, RequestFor? requestFor, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -179,7 +179,7 @@ public class RequestRepository : IRequestsRepository
         return members.ToImmutableList();
     }
 
-    public async Task<string[]> GetMemberIdsOfProject(string projectId, CancellationToken token)
+    public async Task<string[]> FindMemberIdsOfProject(string projectId, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
         await connection.OpenAsync(token);
@@ -197,7 +197,7 @@ public class RequestRepository : IRequestsRepository
         return members.ToArray();
     }
 
-    public async Task<string[]> GetMemberIdsOfActivity(string activityId, CancellationToken token)
+    public async Task<string[]> FindMemberIdsOfActivity(string activityId, CancellationToken token)
     {
         using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
         await connection.OpenAsync(token);
@@ -231,4 +231,26 @@ public class RequestRepository : IRequestsRepository
             && x.Status == RequestStatus.Accepted)
             .ToListAsync();
     }
+
+	public async Task<string[]> FindProjectIds(string userId, CancellationToken token)
+	{
+		var projectIds = await _context.UserRequests.Where(x => x.RequestFor == RequestFor.Project
+            && x.Status == RequestStatus.Accepted
+            && x.ReceiverId == userId)
+            .Select(x => x.ProjectId)
+            .ToArrayAsync();
+
+        return projectIds;
+	}
+
+	public async Task<string[]> FindActivityIds(string userId, CancellationToken token)
+	{
+		var activityIds = await _context.UserRequests.Where(x => x.RequestFor == RequestFor.Activity
+	        && x.Status == RequestStatus.Accepted
+	        && x.ReceiverId == userId)
+	        .Select(x => x.ActivityId)
+	        .ToArrayAsync();
+
+		return activityIds;
+	}
 }

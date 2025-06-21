@@ -28,7 +28,7 @@ public sealed class SubmitProjectRequestCommandHandler(IUnitOfWork unitOfWork, I
 
         //send for each Receivers
         var userRequests = new List<UserRequest>();
-        foreach (var memberId in request.ReceiverIds)
+        foreach (var memberId in request.MemberIds)
         {
             var receiver = await _unitOfWork.Users.FindById(memberId);
             if (receiver == null)

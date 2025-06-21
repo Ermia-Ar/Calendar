@@ -8,6 +8,7 @@ public static class CommentFactory
         return new Comment()
         {
             Id = Guid.NewGuid().ToString(),
+            ActivityId = activityId,
             ProjectId = projectId,
             UserId = userId,
             Content = content,

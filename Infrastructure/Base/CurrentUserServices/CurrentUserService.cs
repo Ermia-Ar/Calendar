@@ -1,29 +1,23 @@
-﻿using Core.Domain.Helper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using AutoMapper;
 using Core.Domain.Interfaces;
 using Core.Domain.Entity.Users;
+using System.Security.Claims;
 
 
 namespace Infrastructure.Base.CurrentUserServices;
 
-public class CurrentUserService : ICurrentUserServices
+public class CurrentUserService(IHttpContextAccessor httpContextAccessor
+    , UserManager<User> userManager) : ICurrentUserServices
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly UserManager<User> _userManager;
+    private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
+    private readonly UserManager<User> _userManager = userManager;
 
-    public CurrentUserService(IHttpContextAccessor httpContextAccessor, UserManager<User> userManager)
+	public string GetUserId()
     {
-        _httpContextAccessor = httpContextAccessor;
-        _userManager = userManager;
-    }
-
-
-    public string GetUserId()
-    {
-        var userId = _httpContextAccessor.HttpContext.User.Claims
-            .SingleOrDefault(claim => claim.Type == nameof(UserClaimsModel.Id))?.Value;
+        var userId = _httpContextAccessor.HttpContext?.User.Claims
+            .SingleOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
 
         if (userId == null)
         {
@@ -35,7 +29,7 @@ public class CurrentUserService : ICurrentUserServices
     public string GetUserName()
     {
         var userId = _httpContextAccessor.HttpContext.User.Claims
-            .SingleOrDefault(claim => claim.Type == nameof(UserClaimsModel.UserName))?.Value;
+            .SingleOrDefault(claim => claim.Type == ClaimTypes.Name)?.Value;
 
         if (userId == null)
         {
@@ -47,7 +41,7 @@ public class CurrentUserService : ICurrentUserServices
     public string GetUserEmail()
     {
         var userId = _httpContextAccessor.HttpContext.User.Claims
-            .SingleOrDefault(claim => claim.Type == nameof(UserClaimsModel.Email))?.Value;
+            .SingleOrDefault(claim => claim.Type == ClaimTypes.Email)?.Value;
 
         if (userId == null)
         {

@@ -32,7 +32,7 @@ namespace Core.Application.ApplicationServices.Activities.Commands.RemoveMember
             var userRequest = await _unitOfWork.Requests.FindMember(null, request.ActivityId
                , request.UserId, cancellationToken);
 
-            if (userRequest == null)
+            if (!userRequest.Any())
             {
                 throw new NotFoundMemberException("No such member was found.");
             }

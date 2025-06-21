@@ -32,7 +32,7 @@ public sealed class AddActivityCommandHandler(
 
         //create request for all members
         var userRequests = new List<UserRequest>();
-        foreach (var memberName in request.Members)
+        foreach (var memberName in request.MemberIds)
         {
             //check
             var member = await _unitOfWork.Users.FindById(memberName);

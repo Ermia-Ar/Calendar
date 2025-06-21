@@ -1,0 +1,65 @@
+﻿@model List<GetMemberOfActivityDto>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+
+<div style="position: relative; min-height: 80vh;">
+
+    @if (ViewBag.isOwner)
+    {
+        <div style="position: absolute; top: 10px; right: 10px;">
+            <a href="/Activities/AddMember/@ViewBag.activityId" class="btn btn-primary">➕ Invite a new  member</a>
+        </div>
+    }
+
+
+    <h2>Members</h2>
+
+    <br />
+
+    @if (Model == null || !Model.Any())
+    {
+        <p>No users are assigned.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    var user = Model[i];
+                    <tr id="member-row-@user.Id">
+                        @if (user.IsOwner)
+                        {
+                            <td>Owner</td>
+                        }
+                        else
+                        {
+                            <td>Member</td>
+                        }
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.Category</td>
+                        <td>
+                            @if (ViewBag.isOwner && !user.IsOwner)
+                            {
+                                <a href="/Activities/RemoveMember?id=@ViewBag.activityId&mId=@user.Id" class="btn btn-sm btn-danger">Remove</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

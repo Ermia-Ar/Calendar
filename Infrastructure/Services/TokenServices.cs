@@ -1,118 +1,118 @@
 ﻿using AutoMapper;
 using Core.Application.Services;
-using Core.Domain.Helper;
+using Core.Domain.Entity.Users;
+using Core.Domain.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Core.Domain.Interfaces;
-using Core.Domain.Entity.Users;
 
 namespace Infrastructure.Services;
 
 public class TokenServices : ITokenServices
 {
-   
-    private readonly UserManager<User> _userManager;
-    private readonly ICurrentUserServices _currentUserServices;
-    private readonly IConfiguration _configuration;
-    private readonly IMapper _mapper;
 
-    public TokenServices(UserManager<User> userManager,
-        IMapper mapper, ICurrentUserServices currentUserServices, IConfiguration configuration)
-    {
-        _userManager = userManager;
-        _mapper = mapper;
-        _currentUserServices = currentUserServices;
-        _configuration = configuration;
-    }
+	private readonly UserManager<User> _userManager;
+	private readonly ICurrentUserServices _currentUserServices;
+	private readonly IConfiguration _configuration;
+	private readonly IMapper _mapper;
 
-    public async Task<string> GetJWTToken(User user)
-    {
-        var domainUser = _mapper.Map<User>(user);
-        var (JwtToken, AccessToken) = await GenerateJwtToken(domainUser);
+	public TokenServices(UserManager<User> userManager,
+		IMapper mapper, ICurrentUserServices currentUserServices, IConfiguration configuration)
+	{
+		_userManager = userManager;
+		_mapper = mapper;
+		_currentUserServices = currentUserServices;
+		_configuration = configuration;
+	}
 
-        return AccessToken;
-    }
+	public async Task<string> GetJWTToken(User user)
+	{
+		var domainUser = _mapper.Map<User>(user);
+		var (JwtToken, AccessToken) = await GenerateJwtToken(domainUser);
 
-    private async Task<(JwtSecurityToken, string)> GenerateJwtToken(User user)
-    {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+		return AccessToken;
+	}
 
-        var claims = await GetClaims(user);
-        var JwtToken = new JwtSecurityToken(
-           _configuration["Jwt:Issuer"],
-           _configuration["Jwt:Audience"],
-           claims,
-           expires: DateTime.Now.AddHours(2),
-           signingCredentials: credentials);
+	private async Task<(JwtSecurityToken, string)> GenerateJwtToken(User user)
+	{
+		var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+		var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        var AccessToken = new JwtSecurityTokenHandler().WriteToken(JwtToken);
-        return (JwtToken, AccessToken);
-    }
+		var claims = await GetClaims(user);
+		var JwtToken = new JwtSecurityToken(
+		   _configuration["Jwt:Issuer"],
+		   _configuration["Jwt:Audience"],
+		   claims,
+		   expires: DateTime.Now.AddHours(2),
+		   signingCredentials: credentials);
+
+		var AccessToken = new JwtSecurityTokenHandler().WriteToken(JwtToken);
+		return (JwtToken, AccessToken);
+	}
 
 
-    private async Task<List<Claim>> GetClaims(User user)
-    {
-        var Roles = await _userManager.GetRolesAsync(user);
-        var claims = new List<Claim>()
-        {
-            new Claim(nameof(UserClaimsModel.UserName),user.UserName),
-            new Claim(nameof(UserClaimsModel.Email),user.Email),
-            new Claim(nameof(UserClaimsModel.Id),user.Id),
-        };
-        // adding roles
-        foreach (var role in Roles)
-            claims.Add(new Claim(ClaimTypes.Role, role.ToString()));
-        //add claims
-        var userClaims = await _userManager.GetClaimsAsync(user);
-        claims.AddRange(userClaims);
+	private async Task<List<Claim>> GetClaims(User user)
+	{
+		var Roles = await _userManager.GetRolesAsync(user);
+		var claims = new List<Claim>()
+		{
+			new Claim(ClaimTypes.Name, user.UserName),
+			new Claim(ClaimTypes.Email, user.Email),
+			new Claim(ClaimTypes.NameIdentifier, user.Id),
+		};
+		// adding roles
+		foreach (var role in Roles)
+			claims.Add(new Claim(ClaimTypes.Role, role.ToString()));
 
-        return claims;
-    }
-    public JwtSecurityToken ReadJwtToken(string AccessToken)
-    {
-        if (string.IsNullOrEmpty(AccessToken))
-        {
-            throw new ArgumentNullException(nameof(AccessToken));
-        }
-        var handler = new JwtSecurityTokenHandler();
-        var response = handler.ReadJwtToken(AccessToken);
-        return response;
-    }
+		//add claims
+		var userClaims = await _userManager.GetClaimsAsync(user);
+		claims.AddRange(userClaims);
 
-    public async Task<string> ValidateToken(string accessToken)
-    {
-        var handler = new JwtSecurityTokenHandler();
+		return claims;
+	}
+	public JwtSecurityToken ReadJwtToken(string AccessToken)
+	{
+		if (string.IsNullOrEmpty(AccessToken))
+		{
+			throw new ArgumentNullException(nameof(AccessToken));
+		}
+		var handler = new JwtSecurityTokenHandler();
+		var response = handler.ReadJwtToken(AccessToken);
+		return response;
+	}
 
-        var parameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidIssuer = _configuration["Jwt:Issuer"],
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])),
-            ValidAudience = _configuration["Jwt:Audience"],
-            ValidateAudience = true,
-            ValidateLifetime = true,
-        };
+	public async Task<string> ValidateToken(string accessToken)
+	{
+		var handler = new JwtSecurityTokenHandler();
 
-        try
-        {
-            var validator = handler.ValidateToken(accessToken, parameters, out SecurityToken validatedToken);
+		var parameters = new TokenValidationParameters
+		{
+			ValidateIssuer = true,
+			ValidIssuer = _configuration["Jwt:Issuer"],
+			ValidateIssuerSigningKey = true,
+			IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])),
+			ValidAudience = _configuration["Jwt:Audience"],
+			ValidateAudience = true,
+			ValidateLifetime = true,
+		};
 
-            if (validator == null)
-            {
-                return "InvalidToken";
-            }
+		try
+		{
+			var validator = handler.ValidateToken(accessToken, parameters, out SecurityToken validatedToken);
 
-            return "NotExpired";
-        }
-        catch (Exception ex)
-        {
-            return ex.Message;
-        }
-    }
+			if (validator == null)
+			{
+				return "InvalidToken";
+			}
+
+			return "NotExpired";
+		}
+		catch (Exception ex)
+		{
+			return ex.Message;
+		}
+	}
 }

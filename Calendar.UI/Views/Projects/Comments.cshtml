@@ -1,0 +1,42 @@
+﻿@model List<GetAllCommentsDto>
+
+@{
+    ViewData["Title"] = "Comments";
+}
+<div style="position: relative; min-height: 80vh;">
+
+    <h2>Comments</h2>
+    
+    <br />
+    
+    @if (!Model.Any())
+    {
+        <p>No comments available for this activity.</p>
+    }
+    else
+    {
+        <div class="list-group">
+            @foreach (var comment in Model)
+            {
+                <div class="list-group-item">
+                    <p>@comment.Content</p>
+    
+                    <small class="text-muted">
+                        Created: @comment.CreatedDate.ToString("yyyy-MM-dd HH:mm")
+                        @if (comment.IsEdited)
+                        {
+                            <span> | Edited: @comment.UpdatedDate.ToString("yyyy-MM-dd HH:mm")</span>
+                        }
+                    </small>
+    
+                    <div class="mt-2">
+                        <a href="/Comments/Edit/@comment.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a href="/Comments/Delete/@comment.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+</div>
+

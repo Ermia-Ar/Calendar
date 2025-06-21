@@ -25,10 +25,10 @@ public sealed class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, 
             throw new OnlyProjectCreatorAllowedException();
         }
         //
-        var receiver = await _unitOfWork.Users.FindByUserName(request.UserName);
+        var receiver = await _unitOfWork.Users.FindById(request.UserId);
 
         var userRequests = await _unitOfWork.Requests.FindMember(request.ProjectId, null
-            , userId, cancellationToken);
+            , request.UserId, cancellationToken);
 
         if (!userRequests.Any())
         {

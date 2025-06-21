@@ -21,8 +21,6 @@ builder.Host.UseSerilog((context, services, configuration) =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-builder.Services
-    .AddHttpContextAccessor();
 
 builder.Services.AddDbContext<ApplicationContext>(option =>
 {
@@ -37,6 +35,21 @@ builder.Services.AddCoreDependencies()
 builder.Services.ServicesDI()
     .AddApiServices(builder.Configuration);
 
+builder.Services.AddHttpContextAccessor();
+
+
+
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowUI", policy =>
+	{
+		policy.WithOrigins("https://localhost:7190") 
+			  .AllowAnyHeader()
+			  .AllowAnyMethod()
+			  .AllowCredentials(); 
+	});
+});
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly()); 
 
 var app = builder.Build();
@@ -50,15 +63,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseShared();
 
+app.UseCors("AllowUI");
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapHub<PresenceHub>("/PresenceHub");
-app.MapHub<CalendarSyncHub>("/CalendarHub");
-app.MapHub<NotificationHub>("/NotificationHub");
+app.MapControllers();
 
-app.MapControllers(); 
+app.MapHub<CommonHub>("/CommonHub")
+	.RequireCors("AllowUI")
+	.RequireAuthorization();
+
 app.Run();

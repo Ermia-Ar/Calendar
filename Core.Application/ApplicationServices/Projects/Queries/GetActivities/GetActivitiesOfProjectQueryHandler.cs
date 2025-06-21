@@ -18,7 +18,7 @@ public class GetActivitiesOfProjectQueryHandler(IUnitOfWork unitOfWork, ICurrent
         var userId = _currentUserServices.GetUserId();
         //check if user is the owner of project or not 
         var projectMembers = await _unitOfWork.Requests
-            .GetMemberIdsOfProject(request.ProjectId, cancellationToken);
+            .FindMemberIdsOfProject(request.ProjectId, cancellationToken);
 
         if (!projectMembers.Any(x => x == userId))
         {

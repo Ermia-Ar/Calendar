@@ -43,7 +43,7 @@ public sealed class DeleteActivityCommandHandler(IUnitOfWork unitOfWork, ICurren
     private async Task DeleteRangeRequestByActivityId(string activityId, CancellationToken token)
     {
         var request = (await _unitOfWork.Requests
-            .GetAll(null, activityId, token))
+            .Find(null, activityId, token))
             .ToList();
 
         _unitOfWork.Requests.RemoveRange(request);

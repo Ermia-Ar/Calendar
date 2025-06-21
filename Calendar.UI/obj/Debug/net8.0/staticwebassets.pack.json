@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\wwwroot\\js\\Common.js",
+      "PackagePath": "staticwebassets\\js\\Common.js"
+    },
+    {
       "Id": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

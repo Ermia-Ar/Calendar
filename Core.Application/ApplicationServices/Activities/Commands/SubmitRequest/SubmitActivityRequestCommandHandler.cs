@@ -29,7 +29,7 @@ public sealed class SubmitActivityRequestCommandHandler(IUnitOfWork unitOfWork, 
 
         //send for each Receivers
         var userRequests = new List<UserRequest>();
-        foreach (var memberId in request.ReceiverIds)
+        foreach (var memberId in request.MemberIds)
         {
             var receiver = await _unitOfWork.Users.FindById(memberId);
             if (receiver == null)
@@ -39,9 +39,12 @@ public sealed class SubmitActivityRequestCommandHandler(IUnitOfWork unitOfWork, 
 
             var sendRequest = RequestFactory.CreateActivityRequest(activity.ProjectId, activity.Id
                 , senderId, memberId, request.Message, false);
+
+            userRequests.Add(sendRequest);
         }
 
         _unitOfWork.Requests.AddRange(userRequests);
+
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }
 }
