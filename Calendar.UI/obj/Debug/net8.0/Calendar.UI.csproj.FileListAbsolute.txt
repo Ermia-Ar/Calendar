@@ -261,3 +261,4 @@ C:\Users\DELL\source\repos\Calendar\Calendar.UI\obj\Debug\net8.0\refint\Calendar
 C:\Users\DELL\source\repos\Calendar\Calendar.UI\obj\Debug\net8.0\Calendar.UI.pdb
 C:\Users\DELL\source\repos\Calendar\Calendar.UI\obj\Debug\net8.0\Calendar.UI.genruntimeconfig.cache
 C:\Users\DELL\source\repos\Calendar\Calendar.UI\obj\Debug\net8.0\ref\Calendar.UI.dll
+C:\Users\DELL\source\repos\Calendar\Calendar.UI\bin\Debug\net8.0\libman.json

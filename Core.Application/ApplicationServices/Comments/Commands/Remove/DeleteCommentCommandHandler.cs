@@ -1,18 +1,17 @@
 ﻿using Core.Application.ApplicationServices.Comments.Exceptions;
-using Core.Domain.Entity;
-using Core.Domain.Interfaces;
-using Mapster;
+using Core.Application.Common;
+using Core.Domain.UnitOfWork;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Comments.Commands.Remove;
 
 public class DeleteCommentCommandHandler(ICurrentUserServices currentUserServices, IUnitOfWork unitOfWork)
-            : IRequestHandler<DeleteCommentCommandRequest>
+            : IRequestHandler<DeleteCommentCommandRequest, string>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
 
-    public async Task Handle(DeleteCommentCommandRequest request, CancellationToken cancellationToken)
+    public async Task<string> Handle(DeleteCommentCommandRequest request, CancellationToken cancellationToken)
     {
         var userId = _currentUserServices.GetUserId();
 
@@ -26,5 +25,7 @@ public class DeleteCommentCommandHandler(ICurrentUserServices currentUserService
 
         _unitOfWork.Comments.Remove(comment);
         await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+        return comment.ActivityId;  
     }
 }

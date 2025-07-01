@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Activities.Exceptions;
-using Core.Domain.Entity.Activities;
-using Core.Domain.Interfaces;
+using Core.Application.Common;
+using Core.Domain.Entities.Activities;
+using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.UpdateActivity;
 
-public sealed class UpdateActivityCommandHandler(IUnitOfWork unitOfWork
-    ,ICurrentUserServices currentUser
-    ,IMapper mapper)
+public sealed class UpdateActivityCommandHandler
+    (IUnitOfWork unitOfWork
+    ,ICurrentUserServices currentUser)
     : IRequestHandler<UpdateActivityCommandRequest>
 {
     public readonly IUnitOfWork _unitOfWork = unitOfWork;
-    public readonly IMapper _mapper = mapper;
     public readonly ICurrentUserServices _currentUser = currentUser;
 
     public async Task Handle(UpdateActivityCommandRequest request, CancellationToken cancellationToken)

@@ -1,25 +1,27 @@
 ﻿using AutoMapper;
-using Core.Domain.Interfaces;
+using Core.Application.Common;
+using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
+using SharedKernel.QueryFilterings;
 
 namespace Core.Application.ApplicationServices.Projects.Queries.GetAll;
 
 public sealed class GetAllProjectsQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
-            : IRequestHandler<GetAllProjectsQueryRequest, List<GetAllProjectQueryResponse>>
+            : IRequestHandler<GetAllProjectsQueryRequest, PaginationResult<List<GetAllProjectQueryResponse>>>
 {
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task<List<GetAllProjectQueryResponse>> Handle(GetAllProjectsQueryRequest request, CancellationToken cancellationToken)
+    public async Task<PaginationResult<List<GetAllProjectQueryResponse>>> Handle(GetAllProjectsQueryRequest request, CancellationToken cancellationToken)
     {
-        var ownerId = _currentUserServices.GetUserId();
+        var userId = _currentUserServices.GetUserId();
 
-        var projects = await _unitOfWork.Requests.GetProjects
-            (ownerId, request.Filtering.UserIsOwner, cancellationToken
-            , request.Filtering.StartDate, request.Filtering.IsHistory);
+        var projects = await _unitOfWork.Requests.GetAllProjects(userId, request.Filtering, request.Ordring, 
+            request.Pagination, cancellationToken);
 
-        var response = projects.Adapt<List<GetAllProjectQueryResponse>>();
-        return response;
+        var response = projects.Responses.Adapt<List<GetAllProjectQueryResponse>>();
+        return new PaginationResult<List<GetAllProjectQueryResponse>>(response, request.Pagination.PageNumber
+            , request.Pagination.PageSize, projects.Count);
     }
 }

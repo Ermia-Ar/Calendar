@@ -1,5 +1,4 @@
-﻿using Core.Application.ApplicationServices.Auth.Queries.GetByUserName;
-using Microsoft.AspNetCore.Authorization;
+﻿
 
 namespace Calendar.Api.Controllers;
 
@@ -34,7 +33,6 @@ public class AuthController : ControllerBase
 
     [HttpGet("{id:guid:required}")]
     [Authorize]
-    //[Authorize(CalendarClaims.GetUserByUserName)]
     public async Task<SuccessResponse<GetUserByIdQueryResponse>> GetById(Guid id,
         CancellationToken token = default)
     {
@@ -57,8 +55,7 @@ public class AuthController : ControllerBase
 
     [HttpGet]
     [Authorize]
-    //[Authorize(CalendarClaims.GetAllUsers)]
-    public async Task<SuccessResponse<List<GetAllUserQueryResponse>>> GetAll([FromQuery]GetAllUsersDto model
+    public async Task<SuccessResponse<PaginationResult<List<GetAllUserQueryResponse>>>> GetAll([FromQuery]GetAllUsersDto model
         , CancellationToken token = default)
     {
         var request = GetAllUsersQueryRequest.Create(model);

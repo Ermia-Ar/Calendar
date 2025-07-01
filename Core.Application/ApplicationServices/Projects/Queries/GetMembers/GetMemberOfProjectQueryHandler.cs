@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Projects.Exceptions;
-using Core.Domain.Interfaces;
+using Core.Application.Common;
+using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
 

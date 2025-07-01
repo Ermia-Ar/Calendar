@@ -15,7 +15,7 @@ public class RequestsController(IHttpClientFactory httpClientFactory
         var userId = _currentUser.GetUserId();
 
 		var response = await _httpClient
-            .GetStringAsync($"UserRequests/All?ReceiverId={userId}");
+            .GetStringAsync($"Requests/All?ReceiverId={userId}");
 
         var result = Converter.FromJson<Response<List<GetAllRequestsDto>>>(response);
 
@@ -30,7 +30,7 @@ public class RequestsController(IHttpClientFactory httpClientFactory
     public async Task<IActionResult> Answer(string id, bool isAccepted)
     {
         var response = (await _httpClient
-            .PostAsync($"UserRequests/Answer?RequestId={id}&IsAccepted={isAccepted}",null)).Content;
+            .PostAsync($"Requests/Answer?RequestId={id}&IsAccepted={isAccepted}",null)).Content;
 
         var result = Converter.FromJson<Response>(await response.ReadAsStringAsync());
 

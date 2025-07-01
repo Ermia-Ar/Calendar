@@ -1,21 +1,24 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Auth.Exceptions;
-using Core.Domain.Entity.Projects;
-using Core.Domain.Entity.UserRequests;
+using Core.Application.ApplicationServices.Requests.Queries.GetAll;
+using Core.Application.Common;
+using Core.Domain.Entities.Projects;
+using Core.Domain.Entities.Requests;
 using Core.Domain.Enum;
-using Core.Domain.Interfaces;
+using Core.Domain.UnitOfWork;
+using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.Add;
 
 public class AddProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
-        : IRequestHandler<AddProjectCommandRequest>
+        : IRequestHandler<AddProjectCommandRequest, Dictionary<string, GetAllRequestQueryResponse>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
     private readonly IMapper _mapper = mapper;
 
-    public async Task Handle(AddProjectCommandRequest request, CancellationToken cancellationToken)
+    public async Task<Dictionary<string, GetAllRequestQueryResponse>> Handle(AddProjectCommandRequest request, CancellationToken cancellationToken)
     {
         var ownerId = _currentUserServices.GetUserId();
 
@@ -25,10 +28,11 @@ public class AddProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IC
             , request.StartDate
             , request.EndDate);
 
-        var userRequests = new List<UserRequest>();
 
-        // sent request for each members
-        foreach (var memberId in request.MemberIds)
+		// sent request for each members
+		var userRequests = new List<Request>();
+        var response = new Dictionary<string, GetAllRequestQueryResponse>();
+		foreach (var memberId in request.MemberIds)
         {
             var receiver = await _unitOfWork.Users.FindById(memberId);
             if (receiver == null)
@@ -38,16 +42,17 @@ public class AddProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IC
 
             var sendRequest1 = RequestFactory.CreateProjectRequest(project.Id
                , ownerId, receiver.Id
-               , request.Massage);
+               , request.Message);
 
             userRequests.Add(sendRequest1);
+            response[memberId] = sendRequest1.Adapt<GetAllRequestQueryResponse>();
         }
 
         //add the owner of project to the members 
         var sendRequest = RequestFactory.CreateProjectRequest(project.Id
-            , ownerId, ownerId, request.Massage);
+            , ownerId, ownerId, request.Message);
         sendRequest.Accept();
-        sendRequest.MakeUnActive();
+        sendRequest.MakeArchived();
 
         userRequests.Add(sendRequest);
 
@@ -58,5 +63,6 @@ public class AddProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IC
         _unitOfWork.Requests.AddRange(userRequests);
 
         await _unitOfWork.SaveChangeAsync(cancellationToken);
+        return response;
     }
 }

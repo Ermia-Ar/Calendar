@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lFcbM8lNpBg=",
+  "dgSpecHash": "TU+titU7dXA=",
   "success": true,
   "projectFilePath": "C:\\Users\\DELL\\source\\repos\\Calendar\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -16,10 +16,10 @@
     "C:\\Users\\DELL\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.0.0\\fluentvalidation.dependencyinjectionextensions.12.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\mamrp.sharedkernel\\1.3.5\\mamrp.sharedkernel.1.3.5.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\mamrp.sharedkernel\\1.3.7\\mamrp.sharedkernel.1.3.7.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\mediatr\\12.5.0\\mediatr.12.5.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.3.0\\microsoft.aspnetcore.authentication.2.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",

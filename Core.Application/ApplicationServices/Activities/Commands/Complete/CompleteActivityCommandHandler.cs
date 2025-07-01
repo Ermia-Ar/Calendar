@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Activities.Exceptions;
-using Core.Domain.Entity;
-using Core.Domain.Interfaces;
-using Mapster;
+using Core.Application.Common;
+using Core.Domain.UnitOfWork;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.Complete;

@@ -1,17 +1,20 @@
 ﻿using Core.Application.ApplicationServices.Activities.Exceptions;
-using Core.Domain.Entity.Comments;
-using Core.Domain.Interfaces;
+using Core.Application.ApplicationServices.Comments.Queries.GetAll;
+using Core.Application.Common;
+using Core.Domain.Entities.Comments;
+using Core.Domain.UnitOfWork;
+using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Comments.Commands.Add;
 
 public sealed class AddCommentCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
-        : IRequestHandler<AddCommentCommandRequest>
+        : IRequestHandler<AddCommentCommandRequest, GetAllCommentsQueryResponse>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
 
-    public async Task Handle(AddCommentCommandRequest request, CancellationToken cancellationToken)
+    public async Task<GetAllCommentsQueryResponse> Handle(AddCommentCommandRequest request, CancellationToken cancellationToken)
     {
         string userId = _currentUserServices.GetUserId();
 
@@ -23,6 +26,7 @@ public sealed class AddCommentCommandHandler(IUnitOfWork unitOfWork, ICurrentUse
         {
             throw new OnlyActivityMembersAllowedException();
         }
+
         var activity = await _unitOfWork.Activities
             .FindById(request.ActivityId, cancellationToken);
 
@@ -31,5 +35,7 @@ public sealed class AddCommentCommandHandler(IUnitOfWork unitOfWork, ICurrentUse
 
         _unitOfWork.Comments.Add(comment);
         await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+        return comment.Adapt<GetAllCommentsQueryResponse>();
     }
 }

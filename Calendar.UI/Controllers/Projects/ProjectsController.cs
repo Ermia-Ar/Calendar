@@ -106,10 +106,28 @@ public class ProjectsController(IHttpClientFactory httpClientFactory, ICurrentUs
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddActivity([FromRoute]string id, AddActivityForProjectDto model)
-    {  
-        model.ProjectId = id;
-        var response = (await _httpClient.PostAsJsonAsync("Projects/Activities", model)).Content;
+    public async Task<IActionResult> AddActivity([FromRoute]string id, AddActivityForProjectRequest model)
+    {
+		var requestModel = new AddActivityForProjectDto();
+		foreach (var userName in model.MemberNames.Split(","))
+		{
+			var uri = _httpClient.BaseAddress + $"Auth/{userName}";
+			var response1 = (await _httpClient.GetStringAsync(uri));
+
+			var result1 = Converter.FromJson<Response<GetUserByUserNameDto>>(response1);
+			requestModel.MemberIds.Add(result1.Value.Id);
+		}
+		requestModel.ProjectId = id;
+        requestModel.DurationInMinute = model.DurationInMinute;
+        requestModel.NotificationBeforeInMinute = model.NotificationBeforeInMinute;
+        requestModel.Category = model.Category;
+        requestModel.Description = model.Description;
+        requestModel.StartDate = model.StartDate;   
+        requestModel.Title = model.Title;
+        requestModel.Message = model.Message;
+
+		var response = (await _httpClient.PostAsJsonAsync("Projects/Activities", requestModel)).Content;
+        var content = await response.ReadAsStringAsync();
         var result = Converter.FromJson<Response>(await response.ReadAsStringAsync());
 
         if(result.IsSuccess)

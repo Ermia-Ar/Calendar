@@ -1,72 +1,94 @@
-﻿using Core.Application.ApplicationServices.Auth.Exceptions;
-using Core.Domain.Entity.Activities;
-using Core.Domain.Entity.UserRequests;
-using Core.Domain.Interfaces;
+﻿using Amazon.Runtime.Internal.Util;
+using Core.Application.ApplicationServices.Auth.Exceptions;
+using Core.Application.ApplicationServices.Requests.Queries.GetAll;
+using Core.Application.Common;
+using Core.Domain.Entities.Activities;
+using Core.Domain.Entities.Notifications;
+using Core.Domain.Entities.Requests;
+using Core.Domain.UnitOfWork;
+using Mapster;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.Add;
 
 public sealed class AddActivityCommandHandler(
-    IUnitOfWork unitOfWork,
-    ICurrentUserServices currentUser,
-    IConfiguration configuration
-) : IRequestHandler<AddActivityCommandRequest>
+	IUnitOfWork unitOfWork,
+	ICurrentUserServices currentUser,
+	IConfiguration configuration
+) : IRequestHandler<AddActivityCommandRequest, Dictionary<string, GetAllRequestQueryResponse>>
 {
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly ICurrentUserServices _currentUser = currentUser;
-    private readonly IConfiguration _configuration = configuration;
+	private readonly IUnitOfWork _unitOfWork = unitOfWork;
+	private readonly ICurrentUserServices _currentUser = currentUser;
+	private readonly IConfiguration _configuration = configuration;
 
-    public async Task Handle(AddActivityCommandRequest request, CancellationToken cancellationToken)
-    {
-        string projectId = "8c56ac14-ae28-4425-9a19-690d27d3a16d";
-        var ownerId = _currentUser.GetUserId();
+	public async Task<Dictionary<string, GetAllRequestQueryResponse>> Handle(AddActivityCommandRequest request, CancellationToken cancellationToken)
+	{ 
+		var ownerId = _currentUser.GetUserId();
 
-        // map to activity table
-        var activity = ActivityFactory.Create(ownerId
-            , request.Title, request.Description
-            , request.StartDate, request.Category
-            , request.DurationInMinute,request.NotificationBeforeInMinute
-            );
+		// create new activity
+		var activity = ActivityFactory.Create(ownerId
+			, request.Title, request.Description
+			, request.StartDate, request.Category
+			, request.Duration);
 
+		// for signalr
+		var response = new Dictionary<string, GetAllRequestQueryResponse>();
 
-        //create request for all members
-        var userRequests = new List<UserRequest>();
-        foreach (var memberName in request.MemberIds)
-        {
-            //check
-            var member = await _unitOfWork.Users.FindById(memberName);
-            if (member == null)
-            {
-                throw new NotFoundUserIdException(memberName);
-            }
-            var sendRequest1 = RequestFactory.CreateActivityRequest(projectId, activity.Id
-                , ownerId, member.Id, request.Message, false);
+		//create request for all membersIds
+		var userRequests = new List<Request>();
 
-            userRequests.Add(sendRequest1);
-        }
+		foreach (var memberId in request.MemberIds)
+		{
+			//check
+			var member = await _unitOfWork.Users.FindById(memberId);
+			if (member == null)
+			{
+				throw new NotFoundUserIdException(memberId);
+			}
 
-        //add owner to activity members
-        var sendRequest = RequestFactory.CreateActivityRequest(projectId
-            , activity.Id, ownerId, ownerId
-            , request.Message, false);
-        sendRequest.Accept();
-        sendRequest.MakeUnActive();
-        userRequests.Add(sendRequest);
+			//create request for memberId
+			var sendRequest = RequestFactory.CreateActivityRequest(_configuration["Public:ProjectId"], activity.Id
+				, ownerId, member.Id, request.Message, false);
 
+			userRequests.Add(sendRequest);
 
-        //add to activity table
-        _unitOfWork.Activities.Add(activity);
-        //send all requests
-        _unitOfWork.Requests.AddRange(userRequests);
+			//for signalR
+			response[memberId] = sendRequest.Adapt<GetAllRequestQueryResponse>();
+		}
 
-        try
-        {
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
-        }
-        catch (Exception ex)
-        {
-            //
-        }
-    }
+		//add owner to activity members
+		var ownerRequest = RequestFactory.CreateActivityRequest(
+			_configuration["Public:ProjectId"]
+			, activity.Id, ownerId, ownerId
+			, request.Message, false);
+
+		ownerRequest.Accept();
+		ownerRequest.MakeArchived();
+
+		// set notification for owner
+		// if NotificationBefore is null set default notification
+		var notificationBefore = request.NotificationBefore ??
+			TimeSpan.FromHours(double.Parse(_configuration["Public:DefaultNotification"]));
+		
+		var notification = NotificationFactory
+			.Create(ownerRequest.Id
+			, activity.StartDate - notificationBefore);
+
+		ownerRequest.SetNotification(notification.Id);
+
+		//add to requests list
+		userRequests.Add(ownerRequest);
+	
+		//add to activity table
+		_unitOfWork.Activities.Add(activity);
+		//add  requests
+		_unitOfWork.Requests.AddRange(userRequests);
+		//Add notification
+		_unitOfWork.Notifications.Add(notification);
+
+		await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+		return response;
+	}
 }

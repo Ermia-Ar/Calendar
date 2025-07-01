@@ -1,9 +1,4 @@
-﻿using Calendar.Api.Hubs;
-using Core.Application.ApplicationServices.Projects.Commands.Exiting;
-using Core.Domain.Entity.Users;
-using Core.Domain.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.SignalR;
+﻿
 
 namespace Calendar.Api.Controllers;
 
@@ -11,7 +6,10 @@ namespace Calendar.Api.Controllers;
 [ApiController]
 [Authorize]
 
-public class ProjectsController(ISender sender, IHubContext<CommonHub> hubContext, ICurrentUserServices currentUserServices) : ControllerBase
+public class ProjectsController(ISender sender
+    , IHubContext<CommonHub> hubContext
+    , ICurrentUserServices currentUserServices
+    ) : ControllerBase
 {
 
     private ISender _sender = sender;
@@ -22,7 +20,13 @@ public class ProjectsController(ISender sender, IHubContext<CommonHub> hubContex
     public async Task<SuccessResponse> Add([FromBody] AddProjectCommandRequest request
         , CancellationToken token = default)
     {
-        await _sender.Send(request, token);
+        var requests = await _sender.Send(request, token);
+
+        foreach(var memberId in request.MemberIds)
+        {
+            await _hubContext.Clients
+                .User(memberId).SendAsync("RequestReceive", requests[memberId], token);
+        }
 
         return Result.Ok();
     }
@@ -32,25 +36,34 @@ public class ProjectsController(ISender sender, IHubContext<CommonHub> hubContex
     public async Task<SuccessResponse> SendProjectRequest([FromBody] SubmitProjectRequestCommandRequest request
         , CancellationToken token = default)
     {
-        await _sender.Send(request, token);
+		var requests = await _sender.Send(request, token);
 
         await _hubContext.Clients
             .Users(request.MemberIds).SendAsync("RequestReceive", token);
 
-        return Result.Ok();
+		foreach (var memberId in request.MemberIds)
+		{
+			await _hubContext.Clients
+				.User(memberId).SendAsync("RequestReceive", requests[memberId], token);
+		}
+
+		return Result.Ok();
     }
 
 
     [HttpPost("Activities")]
     public async Task<SuccessResponse> AddActivity([FromBody] AddActivityForProjectCommandRequest request
-    , CancellationToken token = default)
+        , CancellationToken token = default)
     {
-        await _sender.Send(request, token);
+        var requests = await _sender.Send(request, token);
 
-        await _hubContext.Clients
-            .Users(request.MemberIds).SendAsync("AddActivityToProject", request, token);
+		foreach (var memberId in requests.Keys)
+		{
+			await _hubContext.Clients
+				.User(memberId).SendAsync("RequestReceive", requests[memberId], token);
+		}
 
-        return Result.Ok();
+		return Result.Ok();
     }
 
 
@@ -66,19 +79,8 @@ public class ProjectsController(ISender sender, IHubContext<CommonHub> hubContex
     }
 
 
-    [HttpGet("Activities/{id:guid}")]
-    public async Task<SuccessResponse<List<GetActivityOfProjectQueryResponse>>> GetActivities([FromRoute] Guid id
-        , CancellationToken token = default)
-    {
-        var request = new GetActivitiesOfProjectQueryRequest(id.ToString());
-        var result = await _sender.Send(request, token);
-
-        return Result.Ok(result);
-    }
-
-
     [HttpGet]
-    public async Task<SuccessResponse<List<GetAllProjectQueryResponse>>> GetAll([FromQuery] GetAllProjectDto model
+    public async Task<SuccessResponse<PaginationResult<List<GetAllProjectQueryResponse>>>> GetAll([FromQuery] GetAllProjectDto model
         , CancellationToken token = default)
     {
         var request = GetAllProjectsQueryRequest.Create(model);
@@ -107,6 +109,7 @@ public class ProjectsController(ISender sender, IHubContext<CommonHub> hubContex
         await _sender.Send(request, token);
 
         var userId = _currentUserServices.GetUserId();
+
         await _hubContext.Clients
             .Group(id.ToString()).SendAsync("ExitMemberProject", id, userId, token);
 

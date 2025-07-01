@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Projects.Exceptions;
-using Core.Domain.Entity.Activities;
-using Core.Domain.Entity.Comments;
-using Core.Domain.Interfaces;
+using Core.Application.Common;
+using Core.Domain.Entities.Activities;
+using Core.Domain.Entities.Comments;
+using Core.Domain.Entities.Notifications;
+using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
+using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.Remove;
 
@@ -33,13 +36,22 @@ public class DeleteProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper,
 
         // delete all request for this project 
         var requests = (await _unitOfWork.Requests
-            .Find(request.ProjectId, null, cancellationToken))
+            .Find(request.ProjectId, null, null, null, null, cancellationToken))
             .ToList();
 
         _unitOfWork.Requests.RemoveRange(requests);
 
+		var notifications = new List<Notification>();
+		foreach (var item in requests)
+		{
+			var notification =
+				await _unitOfWork.Notifications.Find(item.Id, cancellationToken);
+			notifications.Add(notification);
+		}
+        _unitOfWork.Notifications.RemoveRange(notifications);   
+		
         // delete all activity for this project 
-        var activities = (await _unitOfWork.Activities
+		var activities = (await _unitOfWork.Activities
             .Find(request.ProjectId, cancellationToken));
 
         _unitOfWork.Activities.RemoveRange(activities);

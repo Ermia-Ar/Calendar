@@ -1,26 +1,31 @@
-﻿using Core.Domain.Interfaces;
+﻿using Core.Application.Common;
+using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
+using Microsoft.Extensions.Configuration;
+using SharedKernel.QueryFilterings;
 
 namespace Core.Application.ApplicationServices.Activities.Queries.GetAll;
 
-public sealed class GetAllActivitiesQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
-            : IRequestHandler<GetAllActivitiesQueryRequest, List<GetAllActivitiesQueryResponse>>
+public sealed class GetAllActivitiesQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices, IConfiguration configuration)
+			: IRequestHandler<GetAllActivitiesQueryRequest, PaginationResult<List<GetAllActivitiesQueryResponse>>>
 {
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly ICurrentUserServices _currentUserServices = currentUserServices;
+	private readonly IUnitOfWork _unitOfWork = unitOfWork;
+	private readonly ICurrentUserServices _currentUserServices = currentUserServices;
+	private readonly IConfiguration _configuration = configuration;
 
-    public async Task<List<GetAllActivitiesQueryResponse>> Handle(GetAllActivitiesQueryRequest request, CancellationToken cancellationToken)
-    {
-        string projectId = "8c56ac14-ae28-4425-9a19-690d27d3a16d";
-        var userId = _currentUserServices.GetUserId();
+	public async Task<PaginationResult<List<GetAllActivitiesQueryResponse>>> Handle(GetAllActivitiesQueryRequest request, CancellationToken cancellationToken)
+	{
+		string projectId = _configuration["Public:ProjectId"];
+		var userId = _currentUserServices.GetUserId();
 
-        var activities = await _unitOfWork.Requests.GetActivities
-            (userId, projectId, cancellationToken
-            , request.Filtering.StartDate, request.Filtering.Category
-            , request.Filtering.IsCompleted, request.Filtering.IsHistory);
+		var activities = await _unitOfWork.Requests.GetAllActivities
+			(userId, projectId, request.Filtering
+			, request.Ordering, request.Pagination, cancellationToken);
 
-        var response = activities.Adapt<List<GetAllActivitiesQueryResponse>>();
-        return response;
-    }
+
+		var response = activities.Responses.Adapt<List<GetAllActivitiesQueryResponse>>();
+		return new PaginationResult<List<GetAllActivitiesQueryResponse>>(response, request.Pagination.PageNumber
+			, request.Pagination.PageSize, activities.Count);
+	}
 }

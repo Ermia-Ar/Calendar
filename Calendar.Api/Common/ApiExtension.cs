@@ -1,8 +1,8 @@
 ﻿using Calendar.Api.Hubs;
-using Core.Domain.Entity.Users;
+using Core.Domain.Entities.Users;
 using Core.Domain.Exceptions;
 using DotNetEnv;
-using Infrastructure.Data;
+using Infrastructure.Persistance.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -34,6 +34,18 @@ public static class ApiExtension
 	{
 		services.AddScoped<CommonHub>();
 		services.AddSignalR();
+
+		services.AddCors(options =>
+		{
+			options.AddPolicy("AllowUI", policy =>
+			{
+				policy.WithOrigins("https://localhost:7190")
+					  .AllowAnyHeader()
+					  .AllowAnyMethod()
+					  .AllowCredentials();
+			});
+		});
+
 
 		return services;
 	}
@@ -141,7 +153,7 @@ public static class ApiExtension
 					var accessToken = context.Request.Query["access_token"];
 					var path = context.HttpContext.Request.Path;
 
-					if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/NotificationHub"))
+					if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/CommonHub"))
 					{
 						context.Token = accessToken;
 					}

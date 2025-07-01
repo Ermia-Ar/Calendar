@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
-using Core.Application.ApplicationServices.UserRequests.Exceptions;
-using Core.Domain;
+using Core.Application.ApplicationServices.Requests.Exceptions;
+using Core.Application.Common;
 using Core.Domain.Enum;
-using Core.Domain.Interfaces;
-using Mapster;
+using Core.Domain.UnitOfWork;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.ExitingActivity;
 
-public class ExitingActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
+public sealed class ExitingActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
         : IRequestHandler<ExitingActivityCommandRequest>
 {
     public readonly IUnitOfWork _unitOfWork = unitOfWork;
@@ -19,15 +18,22 @@ public class ExitingActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserS
     {
         var userId = _currentUser.GetUserId();
 
-        var userRequest = await _unitOfWork.Requests.FindMember(null, request.ActivityId
-            , userId, cancellationToken);
+        var userRequest = (await _unitOfWork.Requests.Find(null, request.ActivityId
+            , userId, null, RequestStatus.Accepted, cancellationToken))
+            .FirstOrDefault();
 
         if (userRequest == null)
         {
             throw new NotFoundMemberException("You are not a member of this activity.");
         }
 
-        _unitOfWork.Requests.RemoveRange(userRequest);
+		var notification = await _unitOfWork.Notifications
+	       .Find(userRequest.Id, cancellationToken);
+
+		_unitOfWork.Notifications.Remove(notification);
+
+		_unitOfWork.Requests.Remove(userRequest);
+
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }
 }

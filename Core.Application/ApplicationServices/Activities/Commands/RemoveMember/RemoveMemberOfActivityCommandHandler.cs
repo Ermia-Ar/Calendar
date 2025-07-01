@@ -1,44 +1,50 @@
 ﻿using AutoMapper;
 using Core.Application.ApplicationServices.Activities.Exceptions;
-using Core.Application.ApplicationServices.UserRequests.Exceptions;
-using Core.Domain.Entity.UserRequests;
+using Core.Application.ApplicationServices.Requests.Exceptions;
+using Core.Application.Common;
 using Core.Domain.Enum;
-using Core.Domain.Interfaces;
-using Mapster;
+using Core.Domain.UnitOfWork;
 using MediatR;
 
-namespace Core.Application.ApplicationServices.Activities.Commands.RemoveMember
+namespace Core.Application.ApplicationServices.Activities.Commands.RemoveMember;
+
+public sealed class RemoveMemberOfActivityCommandHandler(
+	IUnitOfWork unitOfWork,
+	ICurrentUserServices currentUser)
+		: IRequestHandler<RemoveMemberOfActivityCommandRequest>
 {
-    public class RemoveMemberOfActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
-                : IRequestHandler<RemoveMemberOfActivityCommandRequest>
-    {
-        public readonly IUnitOfWork _unitOfWork = unitOfWork;
-        public readonly ICurrentUserServices _currentUser = currentUser;
-        public readonly IMapper _mapper = mapper;
+	public readonly IUnitOfWork _unitOfWork = unitOfWork;
+	public readonly ICurrentUserServices _currentUser = currentUser;
 
-        public async Task Handle(RemoveMemberOfActivityCommandRequest request, CancellationToken cancellationToken)
-        {
-            var userId = _currentUser.GetUserId();
+	public async Task Handle(RemoveMemberOfActivityCommandRequest request, CancellationToken cancellationToken)
+	{
+		var userId = _currentUser.GetUserId();
 
-            var activity = await _unitOfWork.Activities
-                .FindById(request.ActivityId, cancellationToken);
+		var activity = await _unitOfWork.Activities
+			.FindById(request.ActivityId, cancellationToken);
 
-            if (activity.UserId != userId)
-            {
-                throw new OnlyActivityCreatorAllowedException();
-            }
+		if (activity.UserId != userId)
+		{
+			throw new OnlyActivityCreatorAllowedException();
+		}
 
-            //find request
-            var userRequest = await _unitOfWork.Requests.FindMember(null, request.ActivityId
-               , request.UserId, cancellationToken);
+		//find request
+		var userRequest = (await _unitOfWork.Requests.Find(null, request.ActivityId
+		   , request.UserId, null, RequestStatus.Accepted, cancellationToken))
+		   .FirstOrDefault();
 
-            if (!userRequest.Any())
-            {
-                throw new NotFoundMemberException("No such member was found.");
-            }
+		if (userRequest == null)
+		{
+			throw new NotFoundMemberException("No such member was found.");
+		}
 
-            _unitOfWork.Requests.RemoveRange(userRequest);
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
-        }
-    }
+		var notification = await _unitOfWork.Notifications
+			.Find(userRequest.Id, cancellationToken);
+
+		_unitOfWork.Notifications.Remove(notification);
+
+		_unitOfWork.Requests.Remove(userRequest);
+
+		await _unitOfWork.SaveChangeAsync(cancellationToken);
+	}
 }

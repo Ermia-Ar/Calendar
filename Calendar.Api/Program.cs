@@ -1,12 +1,11 @@
 using Calendar.Api.Common;
-using Calendar.Api.Hubs;
 using Core.Application;
-using Infrastructure.Data;
-using Infrastructure.Dependency;
+using Infrastructure;
+using Infrastructure.Persistance.Data;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Share;
-using System.Reflection;
+using SharedKernel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,28 +28,14 @@ builder.Services.AddDbContext<ApplicationContext>(option =>
 });
 
 // add dependency 
-builder.Services.AddCoreDependencies()
-    .AddServiceDescriptors();
+builder.Services.AddApplicatinoConfig()
+    .AddInfraConfig()
+    .AddShared(builder.Configuration);
 
-builder.Services.ServicesDI()
-    .AddApiServices(builder.Configuration);
+builder.Services.RegisterSharedServices()
+        .AddApiServices(builder.Configuration);
 
 builder.Services.AddHttpContextAccessor();
-
-
-
-builder.Services.AddCors(options =>
-{
-	options.AddPolicy("AllowUI", policy =>
-	{
-		policy.WithOrigins("https://localhost:7190") 
-			  .AllowAnyHeader()
-			  .AllowAnyMethod()
-			  .AllowCredentials(); 
-	});
-});
-
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly()); 
 
 var app = builder.Build();
 
@@ -73,8 +58,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapHub<CommonHub>("/CommonHub")
-	.RequireCors("AllowUI")
-	.RequireAuthorization();
+app.MapHub<CommonHub>("/CommonHub");
 
 app.Run();

@@ -22,7 +22,8 @@ public class AuthController : Controller
     public async Task<IActionResult> Login(LoginModel model)
     {
         var response = await _httpClient.PostAsJsonAsync("Auth/Login", model);
-        var result = Converter.FromJson<Response<string>>(await response.Content.ReadAsStringAsync());
+        var content = await response.Content.ReadAsStringAsync();
+        var result = Converter.FromJson<Response<string>>(content);
 
         if (result.IsSuccess)
         {

@@ -6,7 +6,8 @@ namespace Core.Application.ApplicationServices.Auth.Commands.Login
     {
         public LoginCommandValidator()
         {
-            
+            RuleFor(x => x.UserNameOrEmail)
+                .NotEmpty();
         }
     }
 }

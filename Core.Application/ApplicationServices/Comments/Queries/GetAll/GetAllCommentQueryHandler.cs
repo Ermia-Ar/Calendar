@@ -1,30 +1,36 @@
 ﻿using AutoMapper;
-using Core.Application.Exceptions;
-using Core.Domain.Interfaces;
+using Core.Application.Common;
+using Core.Application.Common.Exceptions;
+using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
+using SharedKernel.QueryFilterings;
 
 namespace Core.Application.ApplicationServices.Comments.Queries.GetAll;
 
 public sealed class GetAllCommentQueryHandler(ICurrentUserServices currentUserServices, IUnitOfWork unitOfWork)
-        : IRequestHandler<GetAllCommentsQueryRequest, List<GetAllCommentsQueryResponse>>
+        : IRequestHandler<GetAllCommentsQueryRequest, PaginationResult<List<GetAllCommentsQueryResponse>>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
 
-    public async Task<List<GetAllCommentsQueryResponse>> Handle(GetAllCommentsQueryRequest request, CancellationToken cancellationToken)
+    public async Task<PaginationResult<List<GetAllCommentsQueryResponse>>> Handle(GetAllCommentsQueryRequest request, CancellationToken cancellationToken)
     {
         string userId = _currentUserServices.GetUserId();
 
-        if (request.Filtering.ProjectId == null && request.Filtering.ActivityId == null && !request.Filtering.UserOwner)
+        if (request.Filtering.ProjectId == null
+            && request.Filtering.ActivityId == null
+            && request.Filtering.userId == null)
         {
             throw new BadRequestExceptions("bad request");
         }
 
-        var comments = await _unitOfWork.Comments.GetAll(request.Filtering.ProjectId, request.Filtering.ActivityId
-          , request.Filtering.Search, request.Filtering.UserOwner ? userId : null, cancellationToken);
+        var comments = await _unitOfWork.Comments.GetAll(request.Filtering, request.Ordering,
+            request.Pagination, cancellationToken);
 
-        var response = comments.Adapt<List<GetAllCommentsQueryResponse>>();
-        return response;
+        var response = comments.Responses.Adapt<List<GetAllCommentsQueryResponse>>();
+
+        return new PaginationResult<List<GetAllCommentsQueryResponse>>(response, request.Pagination.PageNumber
+            , request.Pagination.PageSize, comments.Count);
     }
 }

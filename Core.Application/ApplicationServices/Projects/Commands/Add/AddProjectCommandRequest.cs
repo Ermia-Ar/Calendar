@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Core.Application.ApplicationServices.Requests.Queries.GetAll;
+using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.Add;
 
@@ -7,7 +8,7 @@ public record class AddProjectCommandRequest(
     string Description ,
     DateTime StartDate ,
     DateTime EndDate ,
-    string Massage ,
+    string Message ,
     string[] MemberIds
     
-    ): IRequest;
+    ): IRequest<Dictionary<string, GetAllRequestQueryResponse>>;

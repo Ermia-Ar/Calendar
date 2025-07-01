@@ -1,23 +1,24 @@
-﻿using AutoMapper;
-using Core.Domain.Interfaces;
+﻿using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
+using SharedKernel.QueryFilterings;
 
 namespace Core.Application.ApplicationServices.Auth.Queries.GetAll;
 
 
 public class GetAllUsersQueryHandler(IUnitOfWork unitOfWork)
-            : IRequestHandler<GetAllUsersQueryRequest, List<GetAllUserQueryResponse>>
+            : IRequestHandler<GetAllUsersQueryRequest, PaginationResult<List<GetAllUserQueryResponse>>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task<List<GetAllUserQueryResponse>> Handle(GetAllUsersQueryRequest request, CancellationToken cancellationToken)
+    public async Task<PaginationResult<List<GetAllUserQueryResponse>>> Handle(GetAllUsersQueryRequest request, CancellationToken cancellationToken)
     {
-        var users = await _unitOfWork.Users.GetAll(request.Filtering.Search
-            , request.Filtering.Category, cancellationToken);
+        var users = await _unitOfWork.Users.GetAll(request.Filtering, request.Ordering
+            , request.Pagination, cancellationToken);
 
-        var userResponse = users.Adapt<List<GetAllUserQueryResponse>>();
+        var userResponse = users.Responses.Adapt<List<GetAllUserQueryResponse>>();
 
-        return userResponse;
+        return new PaginationResult<List<GetAllUserQueryResponse>>(userResponse, request.Pagination.PageNumber
+            , request.Pagination.PageSize, users.Count);
     }
 }

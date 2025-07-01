@@ -16,10 +16,11 @@ public record class GetAllActivitiesQueryResponse
     DateTime CreatedDate,
     DateTime UpdateDate,
     TimeSpan? Duration,
-    TimeSpan? NotificationBefore,
-    ActivityCategory Category,
+    int NotificationBeforeInMinute,
+	ActivityCategory Category,
     bool IsCompleted,
     bool IsEdited
+    
 
 ) : IResponse;
 

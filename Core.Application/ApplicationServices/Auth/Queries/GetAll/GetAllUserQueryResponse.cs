@@ -9,7 +9,6 @@ public record class GetAllUserQueryResponse(
     string UserName,
     string Email,
     UserCategory Category
-
     ) : IResponse;
 
 public class GetAllUsersProfile : IRegister

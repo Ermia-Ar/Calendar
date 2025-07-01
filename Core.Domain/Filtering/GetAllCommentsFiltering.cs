@@ -4,5 +4,5 @@ public sealed record GetAllCommentsFiltering(
     string? ProjectId,
     string? ActivityId,
     string? Search,
-    bool UserOwner
+    string? userId
     );

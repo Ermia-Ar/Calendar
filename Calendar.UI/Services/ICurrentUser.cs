@@ -1,5 +1,4 @@
-﻿using Calendar.UI.Setting;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace Calendar.UI.Services;

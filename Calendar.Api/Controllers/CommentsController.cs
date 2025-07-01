@@ -1,7 +1,4 @@
 ﻿
-using Calendar.Api.Hubs;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.SignalR;
 
 namespace Calendar.Api.Controllers;
 
@@ -18,10 +15,10 @@ public class CommentsController(ISender sender, IHubContext<CommonHub> hubContex
 	public async Task<SuccessResponse> Post(AddCommentCommandRequest request,
 		CancellationToken token = default)
 	{
-		await _sender.Send(request, token);
+	   var comment = await _sender.Send(request, token);
 
 		await _hubContext.Clients
-			.Group(request.ActivityId).SendAsync("PostComment", request);
+			.Group(request.ActivityId).SendAsync("PostComment", request, token);
 
 		return Result.Ok();
 	}
@@ -32,7 +29,11 @@ public class CommentsController(ISender sender, IHubContext<CommonHub> hubContex
 		CancellationToken token = default)
 	{
 		var request = new UpdateCommentCommandRequest(id.ToString(), content);
-		await _sender.Send(request, token);
+	    var comment = await _sender.Send(request, token);
+
+		await _hubContext.Clients
+			.Group(comment.ActivityId).SendAsync("UpdateComment", comment, token);
+
 		return Result.Ok();
 	}
 
@@ -42,11 +43,11 @@ public class CommentsController(ISender sender, IHubContext<CommonHub> hubContex
 		CancellationToken token = default)
 	{
 		var request = new DeleteCommentCommandRequest(id.ToString());
-		await _sender.Send(request, token);
+		var activityId =  await _sender.Send(request, token);
 
 		//send to group of activity
-		//await _hubContext.Clients.
-		//	Group().SendAsync("RemoveComment", token);
+		await _hubContext.Clients.
+			Group(activityId).SendAsync("RemoveComment", id.ToString(), token);
 
 		return Result.Ok();
 	}
@@ -63,7 +64,7 @@ public class CommentsController(ISender sender, IHubContext<CommonHub> hubContex
 
 
 	[HttpGet]
-	public async Task<SuccessResponse<List<GetAllCommentsQueryResponse>>> GetAll([FromQuery] GetAllCommentDto model,
+	public async Task<SuccessResponse<PaginationResult<List<GetAllCommentsQueryResponse>>>> GetAll([FromQuery] GetAllCommentDto model,
 		CancellationToken token = default)
 	{
 		var request = GetAllCommentsQueryRequest.Create(model);

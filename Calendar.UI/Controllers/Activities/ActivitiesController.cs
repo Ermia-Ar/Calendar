@@ -31,10 +31,27 @@ public class ActivitiesController(IHttpClientFactory httpClientFactory, ICurrent
 	}
 
 	[HttpPost]
-	public async Task<IActionResult> Add(AddActivityDto model)
+	public async Task<IActionResult> Add(AddActivityRequest model)
 	{
-		model.MemberIds = ["6dd43389-afe2-42da-9ed8-9b9b71646eaf"];
-		var response = (await _httpClient.PostAsJsonAsync("Activities", model)).Content;
+		var requestModel = new AddActivityDto();
+		foreach (var userName in model.MemberNames.Split(","))
+		{
+			var uri = _httpClient.BaseAddress + $"Auth/{userName}";
+			var response1 = (await _httpClient.GetStringAsync(uri));
+
+			var result1 = Converter.FromJson<Response<GetUserByUserNameDto>>(response1);
+			requestModel.MemberIds.Add(result1.Value.Id);
+		}
+
+		requestModel.StartDate = model.StartDate;
+		requestModel.NotificationBefore = TimeSpan.FromMinutes(model.NotificationBeforeInMinute);
+		requestModel.Title = model.Title;
+		requestModel.Description = model.Description;
+		requestModel.Duration = TimeSpan.FromMinutes(model.DurationInMinute);
+		requestModel.Category = model.Category;
+		requestModel.Message = model.Message;
+
+		var response = (await _httpClient.PostAsJsonAsync("Activities", requestModel)).Content;
 		var content = await response.ReadAsStringAsync();
 		var result = Converter.FromJson<Response>(content);
 
@@ -64,14 +81,14 @@ public class ActivitiesController(IHttpClientFactory httpClientFactory, ICurrent
 			var result1 = Converter.FromJson<Response<GetUserByUserNameDto>>(response1);
 			requestModel.MemberIds.Add(result1.Value.Id);
 		}
+		
 		requestModel.ActivityId = id;
 		requestModel.StartDate = model.StartDate;
-		requestModel.NotificationBeforeInMinute = model.NotificationBeforeInMinute;
-		requestModel.ActivityId = model.ActivityId;
+		requestModel.NotificationBeforeInMinute = TimeSpan.FromMinutes(model.NotificationBeforeInMinute);
 		requestModel.Description = model.Description;
-		requestModel.DurationInMinute = model.DurationInMinute;
+		requestModel.DurationInMinute = TimeSpan.FromMinutes(model.DurationInMinute);
 
-		var response = (await _httpClient.PostAsJsonAsync("Activities/SubActivity", model)).Content;
+		var response = (await _httpClient.PostAsJsonAsync("Activities/SubActivity", requestModel)).Content;
 		var content = await response.ReadAsStringAsync();
 		var result = Converter.FromJson<Response>(content);
 
@@ -193,9 +210,10 @@ public class ActivitiesController(IHttpClientFactory httpClientFactory, ICurrent
 		return RedirectToAction("Index");
 	}
 
-	public async Task<IActionResult> RemoveMember(string id, string mId)
+	public async Task<IActionResult> RemoveMember(string id, string mId
+		, CancellationToken token)
 	{
-		var response = (await _httpClient.DeleteAsync($"Activities/RemoveOf/{id}/Member/{mId}")).Content;
+		var response = (await _httpClient.DeleteAsync($"Activities/RemoveOf/{id}/Member/{mId}", token)).Content;
 		var result = Converter.FromJson<Response>(await response.ReadAsStringAsync());
 
 		if (result.IsSuccess)

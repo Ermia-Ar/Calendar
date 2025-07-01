@@ -34,8 +34,8 @@ public class GetActivitiesDto
     [JsonProperty("duration")]
     public TimeSpan? Duration { get; set; }
 
-    [JsonProperty("notificationBefore")]
-    public TimeSpan? NotificationBefore { get; set; }
+    [JsonProperty("notificationBeforeInMinute")]
+    public int NotificationBeforeInMinute { get; set; }
 
     [JsonProperty("category")]
     public ActivityCategory Category { get; set; }

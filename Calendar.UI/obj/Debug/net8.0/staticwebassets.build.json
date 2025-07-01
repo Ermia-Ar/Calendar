@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bz7NOl1kqcKlae+iFs0lGghWTibvn/OiyBeH3EtpHPY=",
+  "Hash": "bMeAHHkPvAkb/zwSOPA+H7ztmjwMTGy/3vVscA8GLUk=",
   "Source": "Calendar.UI",
   "BasePath": "_content/Calendar.UI",
   "Mode": "Default",
@@ -1212,6 +1212,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\wwwroot\\lib\\microsoft-signalr\\signalr.js",
+      "SourceId": "Calendar.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\wwwroot\\",
+      "BasePath": "_content/Calendar.UI",
+      "RelativePath": "lib/microsoft-signalr/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\microsoft-signalr\\signalr.js"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\wwwroot\\lib\\microsoft-signalr\\signalr.min.js",
+      "SourceId": "Calendar.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\source\\repos\\Calendar\\Calendar.UI\\wwwroot\\",
+      "BasePath": "_content/Calendar.UI",
+      "RelativePath": "lib/microsoft-signalr/signalr.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\microsoft-signalr\\signalr.min.js"
     }
   ]
 }

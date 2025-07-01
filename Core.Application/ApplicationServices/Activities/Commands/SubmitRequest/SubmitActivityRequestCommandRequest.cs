@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Core.Application.ApplicationServices.Requests.Queries.GetAll;
+using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.SubmitRequest;
 
@@ -7,4 +8,4 @@ public record class SubmitActivityRequestCommandRequest(
     string[] MemberIds,
     string? Message
 
-    ) : IRequest;
+    ) : IRequest<Dictionary<string, GetAllRequestQueryResponse>>;

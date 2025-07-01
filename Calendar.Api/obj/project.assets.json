@@ -207,7 +207,7 @@
           }
         }
       },
-      "MamRp.SharedKernel/1.3.5": {
+      "MamRp.SharedKernel/1.3.7": {
         "type": "package",
         "dependencies": {
           "AWSSDK.S3": "3.7.309.7",
@@ -256,7 +256,7 @@
           "lib/net7.0/Mapster.Core.dll": {}
         }
       },
-      "MediatR/12.5.0": {
+      "MediatR/12.4.1": {
         "type": "package",
         "dependencies": {
           "MediatR.Contracts": "[2.0.1, 3.0.0)",
@@ -4025,9 +4025,9 @@
           "Core.Domain": "1.0.0",
           "FluentValidation": "12.0.0",
           "FluentValidation.DependencyInjectionExtensions": "12.0.0",
-          "MamRp.SharedKernel": "1.3.5",
+          "MamRp.SharedKernel": "1.3.7",
           "Mapster": "7.4.0",
-          "MediatR": "12.5.0",
+          "MediatR": "12.4.1",
           "Microsoft.EntityFrameworkCore": "8.0.0",
           "Share": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "8.8.0"
@@ -4043,8 +4043,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "MamRp.SharedKernel": "1.3.5",
+          "MamRp.SharedKernel": "1.3.7",
           "Mapster": "7.4.0",
+          "MediatR": "12.4.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0",
           "Share": "1.0.0"
         },
@@ -4062,8 +4063,9 @@
           "AutoMapper": "14.0.0",
           "Core.Application": "1.0.0",
           "Dapper": "2.1.66",
-          "MamRp.SharedKernel": "1.3.5",
+          "MamRp.SharedKernel": "1.3.7",
           "Mapster": "7.4.0",
+          "MediatR": "12.4.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
           "Microsoft.AspNetCore.Identity": "2.3.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0",
@@ -4081,8 +4083,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "MamRp.SharedKernel": "1.3.5",
+          "MamRp.SharedKernel": "1.3.7",
           "Mapster": "7.4.0",
+          "MediatR": "12.4.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.3.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.5",
@@ -4364,15 +4367,15 @@
         "logo.png"
       ]
     },
-    "MamRp.SharedKernel/1.3.5": {
-      "sha512": "2rsJUwlif+MflP+zsb4+ARQlsuz9O4fvSVjEGcsYQolqhqZi9RHFmVjW0j01lxoOhBjcX0aL6//jtLEacT2Uqg==",
+    "MamRp.SharedKernel/1.3.7": {
+      "sha512": "nntwDeStkNMA+kAUnKTwS/NvvBUWcMtXQNVpJasNQsKanpgSKfbFaiWZu68JJUEKIHEmTjlQ3HKIvb5eLwNvlQ==",
       "type": "package",
-      "path": "mamrp.sharedkernel/1.3.5",
+      "path": "mamrp.sharedkernel/1.3.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net8.0/SharedKernel.dll",
-        "mamrp.sharedkernel.1.3.5.nupkg.sha512",
+        "mamrp.sharedkernel.1.3.7.nupkg.sha512",
         "mamrp.sharedkernel.nuspec"
       ]
     },
@@ -4404,10 +4407,10 @@
         "mapster.core.nuspec"
       ]
     },
-    "MediatR/12.5.0": {
-      "sha512": "vqm2H8/nqL5NAJHPhsG1JOPwfkmbVrPyh4svdoRzu+uZh6Ex7PRoHBGsLYC0/RWCEJFqD1ohHNpteQvql9OktA==",
+    "MediatR/12.4.1": {
+      "sha512": "0tLxCgEC5+r1OCuumR3sWyiVa+BMv3AgiU4+pz8xqTc+2q1WbUEXFOr7Orm96oZ9r9FsldgUtWvB2o7b9jDOaw==",
       "type": "package",
-      "path": "mediatr/12.5.0",
+      "path": "mediatr/12.4.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4417,7 +4420,7 @@
         "lib/net6.0/MediatR.xml",
         "lib/netstandard2.0/MediatR.dll",
         "lib/netstandard2.0/MediatR.xml",
-        "mediatr.12.5.0.nupkg.sha512",
+        "mediatr.12.4.1.nupkg.sha512",
         "mediatr.nuspec"
       ]
     },
@@ -11577,9 +11580,9 @@
       "FluentValidation >= 12.0.0",
       "FluentValidation.DependencyInjectionExtensions >= 12.0.0",
       "Infrastructure >= 1.0.0",
-      "MamRp.SharedKernel >= 1.3.5",
+      "MamRp.SharedKernel >= 1.3.7",
       "Mapster >= 7.4.0",
-      "MediatR >= 12.5.0",
+      "MediatR >= 12.4.1",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
       "Microsoft.AspNetCore.Identity >= 2.3.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.0",
@@ -11665,7 +11668,7 @@
           },
           "MamRp.SharedKernel": {
             "target": "Package",
-            "version": "[1.3.5, )"
+            "version": "[1.3.7, )"
           },
           "Mapster": {
             "target": "Package",
@@ -11673,7 +11676,7 @@
           },
           "MediatR": {
             "target": "Package",
-            "version": "[12.5.0, )"
+            "version": "[12.4.1, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",

@@ -4,4 +4,4 @@ namespace Core.Application.ApplicationServices.Comments.Commands.Remove;
 
 public record class DeleteCommentCommandRequest(
     string Id
-    ) : IRequest;
+    ) : IRequest<string>;
