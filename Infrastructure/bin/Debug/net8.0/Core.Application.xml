@@ -209,7 +209,7 @@
             <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
             <param name="CategoryFiltering"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory})">
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
             <summary>
             
             </summary>
@@ -238,6 +238,18 @@
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.StartDateFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsCompletedFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsHistoryFiltering">
+            <summary>اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CategoryFiltering">
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IdOrdring">
@@ -280,18 +292,6 @@
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsEditedOrdring">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.StartDateFiltering">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsCompletedFiltering">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsHistoryFiltering">
-            <summary>اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CategoryFiltering">
             <summary></summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Auth.Commands.Login.LoginCommandRequest">
@@ -613,6 +613,121 @@
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Commands.SubmitRequest.SubmitProjectRequestCommandRequest.Message">
             <summary>پیامی که همراه درخواست ارسال میشه </summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+            <param name="ProjectId">اجباری : فعالیت های درون این پروژه رو برمیگردونه</param>
+            <param name="IsCompletedFiltering"></param>
+            <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
+            <param name="CategoryFiltering"></param>
+            <param name="IdOrdring"></param>
+            <param name="ParentIdOrdring"></param>
+            <param name="ProjectIdOrdring"></param>
+            <param name="UserIdOrdring"></param>
+            <param name="TitleOrdring"></param>
+            <param name="DescriptionOrdring"></param>
+            <param name="StartDateOrdring"></param>
+            <param name="CreatedDateOrdring"></param>
+            <param name="UpdateDateOrdring"></param>
+            <param name="DurationOrdring"></param>
+            <param name="NotificationBeforeInMinuteOrdring"></param>
+            <param name="CategoryOrdring"></param>
+            <param name="IsCompletedOrdring"></param>
+            <param name="IsEditedOrdring"></param>
+            <param name="StartDateFiltering"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.#ctor(System.Int32,System.Int32,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{System.DateTime})">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+            <param name="ProjectId">اجباری : فعالیت های درون این پروژه رو برمیگردونه</param>
+            <param name="IsCompletedFiltering"></param>
+            <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
+            <param name="CategoryFiltering"></param>
+            <param name="IdOrdring"></param>
+            <param name="ParentIdOrdring"></param>
+            <param name="ProjectIdOrdring"></param>
+            <param name="UserIdOrdring"></param>
+            <param name="TitleOrdring"></param>
+            <param name="DescriptionOrdring"></param>
+            <param name="StartDateOrdring"></param>
+            <param name="CreatedDateOrdring"></param>
+            <param name="UpdateDateOrdring"></param>
+            <param name="DurationOrdring"></param>
+            <param name="NotificationBeforeInMinuteOrdring"></param>
+            <param name="CategoryOrdring"></param>
+            <param name="IsCompletedOrdring"></param>
+            <param name="IsEditedOrdring"></param>
+            <param name="StartDateFiltering"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.PageNum">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.ProjectId">
+            <summary>اجباری : فعالیت های درون این پروژه رو برمیگردونه</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsCompletedFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsHistoryFiltering">
+            <summary>اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.CategoryFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.ParentIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.ProjectIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.UserIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.TitleOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.DescriptionOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.StartDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.CreatedDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.UpdateDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.DurationOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.NotificationBeforeInMinuteOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.CategoryOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsCompletedOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsEditedOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.StartDateFiltering">
+            <summary></summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto">
             <summary>

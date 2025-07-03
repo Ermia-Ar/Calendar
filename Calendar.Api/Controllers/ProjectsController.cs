@@ -1,4 +1,6 @@
-﻿namespace Calendar.Api.Controllers;
+﻿using Core.Application.ApplicationServices.Projects.Queries.Activities;
+
+namespace Calendar.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -86,6 +88,25 @@ public class ProjectsController(ISender sender
 		}
 
 		return Result.Ok();
+    }
+
+    /// <summary>
+    /// دریافت فعالیت های پروژه
+    /// </summary>
+    /// <remarks>
+    /// فعالیت هایی از این پروژه رو برمیگردونه که کاربر فعلی در اون عضو هست
+    /// </remarks>
+    /// <param name="model"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    [HttpGet("Activities")]
+    public async Task<SuccessResponse<PaginationResult<List<GetProjectActivitiesQueryResponse>>>> GetActivities([FromQuery] GetProjectActivitiesDto model
+        , CancellationToken token)
+    {
+        var request = GetProjectActivitiesQueryRequest.Create(model);
+        var result = await _sender.Send(request, token);
+
+        return Result.Ok(result);   
     }
 
     /// <summary>

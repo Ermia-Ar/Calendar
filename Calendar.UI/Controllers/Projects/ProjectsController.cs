@@ -84,15 +84,15 @@ public class ProjectsController(IHttpClientFactory httpClientFactory, ICurrentUs
     }
     public async Task<IActionResult> Activities(string id, [FromQuery]bool isOwner)
     {
-        var response = await _httpClient.GetStringAsync("Projects/Activities/" + id);
-        var content = Converter.FromJson<Response<List<GetActivityOfProjectDto>>>(response);
+        var response = await _httpClient.GetStringAsync($"Projects/Activities?ProjectId={id}&PageSize=10");
+        var content = Converter.FromJson<Response<PaginationResult<List<GetActivityOfProjectDto>>>>(response);
 
         ViewBag.isOwner = isOwner;
         ViewBag.ProjectId = id;
 
         if (content.IsSuccess)
         {
-            return View(content.Value);
+            return View(content.Value.Data);
         }
 
         Console.WriteLine("Error : ", content.Errors);

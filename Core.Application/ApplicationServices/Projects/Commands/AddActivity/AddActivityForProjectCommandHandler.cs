@@ -33,7 +33,7 @@ public sealed class AddActivityForProjectCommandHandler(
         var memberIds = await _unitOfWork.Requests
             .FindMemberIdsOfProject(request.ProjectId, cancellationToken);
 
-        if (memberIds.Any(x => x == ownerId))
+        if (!memberIds.Any(x => x == ownerId))
         {
             throw new OnlyProjectMembersAllowedException();
         }
@@ -58,7 +58,7 @@ public sealed class AddActivityForProjectCommandHandler(
             }
 
             //check if receiver is member of base project
-            var isGuest = memberIds.Any(x => x == receiverId); 
+            var isGuest = memberIds.Any(x => x != receiverId); 
             // create request for memberId
             var sendRequest = RequestFactory.CreateActivityRequest(activity.ProjectId
                 , activity.Id, ownerId, receiverId, request.Message, isGuest);

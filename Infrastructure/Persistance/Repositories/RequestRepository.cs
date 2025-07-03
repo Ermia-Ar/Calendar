@@ -139,6 +139,43 @@ public class RequestRepository : IRequestsRepository
 		return new ListDto(TotalCount, projects.ToImmutableList());
 	}
 
+	public async Task<ListDto> GetProjectActivies(string userId, string projectId, GetProjectActivitiesFiltering filtering
+		, GetProjectActivitiesOrdering ordering, PaginationFilter pagination
+		, CancellationToken token)
+	{
+		using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
+		await connection.OpenAsync(token);
+
+		var parameters = new DynamicParameters();
+		//
+		parameters.Add("isExpire", true);
+		parameters.Add("requestFor", (int)RequestFor.Activity);
+		parameters.Add("receiverId", userId);
+		parameters.Add("status", (int)RequestStatus.Accepted);
+		parameters.Add("projectId ", projectId);
+		//filtering
+		parameters.Add("isCompleted", filtering.IsCompleted);
+		parameters.Add("category", filtering.Category);
+		parameters.Add("History", filtering.IsHistory == true ? DateTime.Now : null);
+		parameters.Add("startDate", filtering.StartDate);
+		//ordring
+		parameters.Add("OrderDirection", ordering.GetOrderDirection(ordering));
+		parameters.Add("OrderBy", ordering.GetOrderBy(ordering));
+		//pagination
+		parameters.Add("PageNumber", pagination.PageNumber);
+		parameters.Add("PageSize", pagination.PageSize);
+
+		parameters.Add("TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+
+		var activities = await connection.QueryAsync<GetAllActivitiesQueryResponse>
+			("SP_GetActivities", parameters, commandType: CommandType.StoredProcedure);
+
+		int totalCount = parameters.Get<int>("TotalCount");
+
+		return new ListDto(totalCount, activities.ToImmutableList());
+	}
+
 	public async Task<IReadOnlyCollection<IResponse>> GetMemberOfProject(string projectId, CancellationToken token)
 	{
 		using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -294,5 +331,5 @@ public class RequestRepository : IRequestsRepository
 		return request;
 	}
 
-
+	
 }

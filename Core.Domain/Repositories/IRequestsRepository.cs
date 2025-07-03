@@ -28,10 +28,17 @@ public interface IRequestsRepository
 		, GetAllProjectsOrdring order, PaginationFilter pagination
 		, CancellationToken token);
 
+	Task<ListDto> GetProjectActivies(string userId, string projectId
+		, GetProjectActivitiesFiltering filtering
+		, GetProjectActivitiesOrdering ordering, PaginationFilter pagination
+		, CancellationToken token);
+
+
 	Task<ListDto> GetAllActivities(string userId, string projectId
 		, GetAllActivitiesFiltering filtering
-		, GetAllActivitiesOrdering order, PaginationFilter pagination
+		, GetAllActivitiesOrdering ordering, PaginationFilter pagination
 		, CancellationToken token);
+
 
 	Task<IReadOnlyCollection<IResponse>> GetMemberOfProject(string projectId, CancellationToken token);
 

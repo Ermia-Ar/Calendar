@@ -57,7 +57,7 @@ public sealed class SubmitActivityRequestCommandHandler(IUnitOfWork unitOfWork, 
 			// check if the receiver is a member of base project
 			bool isGuest = false;
 			if (activity.ProjectId != defaultProjectId)
-				isGuest = projectMemberIds.Any(x => x == receiverId);
+				isGuest = projectMemberIds.Any(x => x != receiverId);
 
 			//create request
 			var sendRequest = RequestFactory.CreateActivityRequest(activity.ProjectId, activity.Id

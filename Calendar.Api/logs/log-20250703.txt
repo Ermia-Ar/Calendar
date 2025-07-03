@@ -3535,3 +3535,896 @@ WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId
 SELECT [r].[ProjectId]
 FROM [Requests] AS [r]
 WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:12:01.493 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-03 19:12:01.716 +04:30 [INF] Now listening on: https://localhost:7107
+2025-07-03 19:12:01.718 +04:30 [INF] Now listening on: http://localhost:5150
+2025-07-03 19:12:01.721 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-03 19:12:01.723 +04:30 [INF] Hosting environment: Development
+2025-07-03 19:12:01.724 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-07-03 19:12:03.884 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:12:03.884 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-07-03 19:12:03.979 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:03.987 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 110.3325ms
+2025-07-03 19:12:04.022 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:12:04.029 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:04.081 +04:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-07-03 19:12:04.085 +04:30 [ERR] OnChallenge error Exception:{}, Description:{}
+2025-07-03 19:12:04.087 +04:30 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-03 19:12:04.105 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 401 null application/json 82.7575ms
+2025-07-03 19:12:04.138 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 262.7627ms
+2025-07-03 19:12:07.485 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-03 19:12:07.485 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-07-03 19:12:07.506 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 21.34ms
+2025-07-03 19:12:07.537 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 52.2619ms
+2025-07-03 19:12:07.568 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-07-03 19:12:07.824 +04:30 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-07-03 19:12:07.843 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 274.8692ms
+2025-07-03 19:12:12.581 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:12:12.586 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:12.587 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 6.4068ms
+2025-07-03 19:12:12.592 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:12:12.600 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:12.603 +04:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-07-03 19:12:12.605 +04:30 [ERR] OnChallenge error Exception:{}, Description:{}
+2025-07-03 19:12:12.606 +04:30 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-03 19:12:12.607 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 401 null application/json 15.2171ms
+2025-07-03 19:12:16.375 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:12:16.383 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:16.384 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 9.2834ms
+2025-07-03 19:12:16.387 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:12:16.392 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:16.395 +04:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-07-03 19:12:16.396 +04:30 [ERR] OnChallenge error Exception:{}, Description:{}
+2025-07-03 19:12:16.397 +04:30 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-03 19:12:16.399 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 401 null application/json 12.4622ms
+2025-07-03 19:12:17.151 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:12:17.155 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:17.157 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 6.553ms
+2025-07-03 19:12:17.159 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:12:17.164 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:17.166 +04:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-07-03 19:12:17.167 +04:30 [ERR] OnChallenge error Exception:{}, Description:{}
+2025-07-03 19:12:17.168 +04:30 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-03 19:12:17.171 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 401 null application/json 12.2744ms
+2025-07-03 19:12:24.810 +04:30 [INF] Request starting HTTP/1.1 POST https://localhost:7107/api/Auth/Login - application/json; charset=utf-8 null
+2025-07-03 19:12:24.816 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.AuthController.Login (Calendar.Api)'
+2025-07-03 19:12:24.835 +04:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[System.String]] Login(Core.Application.ApplicationServices.Auth.Commands.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.AuthController (Calendar.Api).
+2025-07-03 19:12:25.592 +04:30 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-03 19:12:26.290 +04:30 [INF] Executed DbCommand (52ms) [Parameters=[@__normalizedUserName_0='ERMIA' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Category], [u].[ConcurrencyStamp], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[IsActive], [u].[IsEdited], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdateDate], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-03 19:12:26.684 +04:30 [INF] Executed DbCommand (18ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2025-07-03 19:12:26.701 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-03 19:12:26.748 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-07-03 19:12:26.762 +04:30 [INF] Executed action Calendar.Api.Controllers.AuthController.Login (Calendar.Api) in 1919.2638ms
+2025-07-03 19:12:26.765 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.AuthController.Login (Calendar.Api)'
+2025-07-03 19:12:26.774 +04:30 [INF] Request finished HTTP/1.1 POST https://localhost:7107/api/Auth/Login - 200 null application/json; charset=utf-8 1965.6339ms
+2025-07-03 19:12:26.903 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:12:26.908 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:26.910 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 7.2726ms
+2025-07-03 19:12:26.913 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:12:26.918 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:26.968 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:12:26.977 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:12:26.979 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 66.0549ms
+2025-07-03 19:12:26.982 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=EH7b9YcktRYatVS7SI2paw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:12:26.986 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:26.989 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:12:27.087 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:12:27.096 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:12:28.920 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Requests?ReceiverIdFiltering=939fd8ed-96fd-491b-be19-cd06ebe2d674&SenderIdFiltering=939fd8ed-96fd-491b-be19-cd06ebe2d674&PageSize=10 - null null
+2025-07-03 19:12:28.924 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.RequestsController.GetAll (Calendar.Api)'
+2025-07-03 19:12:28.934 +04:30 [INF] Route matched with {action = "GetAll", controller = "Requests"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestQueryResponse]]]] GetAll(Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.RequestsController (Calendar.Api).
+2025-07-03 19:12:29.075 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:12:29.097 +04:30 [INF] Executed action Calendar.Api.Controllers.RequestsController.GetAll (Calendar.Api) in 160.291ms
+2025-07-03 19:12:29.099 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.RequestsController.GetAll (Calendar.Api)'
+2025-07-03 19:12:29.101 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Requests?ReceiverIdFiltering=939fd8ed-96fd-491b-be19-cd06ebe2d674&SenderIdFiltering=939fd8ed-96fd-491b-be19-cd06ebe2d674&PageSize=10 - 200 null application/json; charset=utf-8 181.5935ms
+2025-07-03 19:12:29.156 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:12:29.207 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:29.229 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 73.2097ms
+2025-07-03 19:12:29.230 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:12:29.235 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:29.236 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:12:29.237 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:12:29.238 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 8.1245ms
+2025-07-03 19:12:29.239 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:12:29.240 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=THws4GdpPBDOPsAKdk2YYw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:12:29.243 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=EH7b9YcktRYatVS7SI2paw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 2261.1852ms
+2025-07-03 19:12:29.246 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:29.251 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:12:29.279 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:12:29.283 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:12:32.180 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - null null
+2025-07-03 19:12:32.183 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:12:32.185 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - null null
+2025-07-03 19:12:32.188 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:12:32.189 +04:30 [INF] Route matched with {action = "GetAll", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse]]]] GetAll(Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:12:32.189 +04:30 [INF] Route matched with {action = "GetAll", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse]]]] GetAll(Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:12:32.273 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:12:32.273 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:12:32.280 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api) in 88.4863ms
+2025-07-03 19:12:32.280 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api) in 86.1399ms
+2025-07-03 19:12:32.282 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:12:32.284 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:12:32.286 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - 200 null application/json; charset=utf-8 106.0147ms
+2025-07-03 19:12:32.287 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - 200 null application/json; charset=utf-8 102.1529ms
+2025-07-03 19:12:32.530 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:12:32.586 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:32.588 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 58.4108ms
+2025-07-03 19:12:32.588 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:12:32.589 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:12:32.593 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=THws4GdpPBDOPsAKdk2YYw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 3352.5779ms
+2025-07-03 19:12:32.596 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:32.601 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:12:32.602 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:12:32.603 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 14.5689ms
+2025-07-03 19:12:32.605 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=F3Z4I5Wq18m7a5IvMZVVTg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:12:32.611 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:12:32.612 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:12:32.619 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:12:32.623 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:12:33.778 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects/GetActivities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - null null
+2025-07-03 19:12:33.782 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects/GetActivities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - 404 0 null 4.3805ms
+2025-07-03 19:12:33.786 +04:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7107/api/Projects/GetActivities, Response status code: 404
+2025-07-03 19:12:34.335 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:12:34.336 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=F3Z4I5Wq18m7a5IvMZVVTg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 1731.1567ms
+2025-07-03 19:13:20.518 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-03 19:13:20.730 +04:30 [INF] Now listening on: https://localhost:7107
+2025-07-03 19:13:20.732 +04:30 [INF] Now listening on: http://localhost:5150
+2025-07-03 19:13:20.736 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-03 19:13:20.737 +04:30 [INF] Hosting environment: Development
+2025-07-03 19:13:20.738 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-07-03 19:13:22.435 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-07-03 19:13:22.435 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:13:22.562 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:13:22.572 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 146.323ms
+2025-07-03 19:13:22.582 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:13:22.586 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:13:22.724 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:13:22.742 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:13:22.758 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 169.503ms
+2025-07-03 19:13:22.760 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=uGKOyTFwhR2ruswZJEHiNw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:13:22.770 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 345.3644ms
+2025-07-03 19:13:22.772 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-03 19:13:22.772 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-07-03 19:13:22.781 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:13:22.790 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 18.338ms
+2025-07-03 19:13:22.793 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:13:22.834 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 61.4664ms
+2025-07-03 19:13:22.878 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-07-03 19:13:23.209 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 331.2318ms
+2025-07-03 19:13:23.617 +04:30 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-03 19:13:24.338 +04:30 [INF] Executed DbCommand (56ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:13:24.378 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:13:57.943 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-03 19:13:58.139 +04:30 [INF] Now listening on: https://localhost:7107
+2025-07-03 19:13:58.142 +04:30 [INF] Now listening on: http://localhost:5150
+2025-07-03 19:13:58.150 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-03 19:13:58.152 +04:30 [INF] Hosting environment: Development
+2025-07-03 19:13:58.153 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-07-03 19:13:59.178 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-07-03 19:13:59.738 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 665.6502ms
+2025-07-03 19:13:59.745 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-03 19:13:59.745 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-07-03 19:13:59.840 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 94.922ms
+2025-07-03 19:13:59.887 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 142.4834ms
+2025-07-03 19:13:59.924 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-07-03 19:14:00.194 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:14:00.228 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:00.236 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 42.2203ms
+2025-07-03 19:14:00.248 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:14:00.252 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:00.510 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 586.2072ms
+2025-07-03 19:14:00.553 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:00.561 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:00.563 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 315.1316ms
+2025-07-03 19:14:00.565 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=FJ0xXh2bN0oOr1KxCCuEBQ&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:14:00.572 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:00.577 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:14:01.308 +04:30 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-03 19:14:02.004 +04:30 [INF] Executed DbCommand (46ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:02.156 +04:30 [INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:03.026 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - null null
+2025-07-03 19:14:03.034 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:14:03.061 +04:30 [INF] Route matched with {action = "GetAll", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse]]]] GetAll(Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:14:03.364 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:14:03.397 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api) in 328.6225ms
+2025-07-03 19:14:03.400 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:14:03.402 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - 200 null application/json; charset=utf-8 377.6115ms
+2025-07-03 19:14:03.807 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:14:03.853 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:03.854 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 47.2763ms
+2025-07-03 19:14:03.858 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:14:03.861 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:03.864 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:03.866 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:03.867 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 9.4522ms
+2025-07-03 19:14:03.868 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:14:03.869 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=XQ_7ZwtUH6ZVvwJqIXspgg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:14:03.871 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=FJ0xXh2bN0oOr1KxCCuEBQ&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 3306.193ms
+2025-07-03 19:14:03.874 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:03.879 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:14:03.909 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:03.914 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:05.649 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - null null
+2025-07-03 19:14:05.655 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:14:05.661 +04:30 [INF] Route matched with {action = "GetActivities", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse]]]] GetActivities(Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:14:05.760 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:14:05.770 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api) in 104.6963ms
+2025-07-03 19:14:05.773 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:14:05.774 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - 200 null application/json; charset=utf-8 124.971ms
+2025-07-03 19:14:06.067 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:14:06.131 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:06.132 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 65.4154ms
+2025-07-03 19:14:06.134 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:14:06.141 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:14:06.143 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:06.145 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=XQ_7ZwtUH6ZVvwJqIXspgg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 2275.4367ms
+2025-07-03 19:14:06.145 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:06.151 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:06.152 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 17.7601ms
+2025-07-03 19:14:06.154 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=098_6-NDR_1dxjB8i_nviw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:14:06.158 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:06.159 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:14:06.214 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:06.219 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:09.624 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:14:09.665 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:09.666 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:14:09.667 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 43.8942ms
+2025-07-03 19:14:09.668 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=098_6-NDR_1dxjB8i_nviw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 3513.8775ms
+2025-07-03 19:14:09.668 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:14:09.677 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:09.678 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:09.680 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:09.682 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 13.8948ms
+2025-07-03 19:14:09.684 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=EZgRIIgnkU7Wh5vleXeQlw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:14:09.689 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:09.690 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:14:09.700 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:09.706 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:28.188 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Auth/sara - null null
+2025-07-03 19:14:28.192 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api)'
+2025-07-03 19:14:28.196 +04:30 [INF] Route matched with {action = "GetByUserName", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[Core.Application.ApplicationServices.Auth.Queries.GetByUserName.GetUserByUserNameQueryResponse]] GetByUserName(System.String, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.AuthController (Calendar.Api).
+2025-07-03 19:14:28.303 +04:30 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='SARA' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Category], [u].[ConcurrencyStamp], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[IsActive], [u].[IsEdited], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdateDate], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-03 19:14:28.371 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[Core.Application.ApplicationServices.Auth.Queries.GetByUserName.GetUserByUserNameQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:14:28.379 +04:30 [INF] Executed action Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api) in 180.1847ms
+2025-07-03 19:14:28.381 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api)'
+2025-07-03 19:14:28.383 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Auth/sara - 200 null application/json; charset=utf-8 194.6776ms
+2025-07-03 19:14:28.420 +04:30 [INF] Request starting HTTP/1.1 POST https://localhost:7107/api/Projects/Activities - application/json; charset=utf-8 null
+2025-07-03 19:14:28.424 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api)'
+2025-07-03 19:14:28.428 +04:30 [INF] Route matched with {action = "AddActivity", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse] AddActivity(Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectCommandRequest, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:14:28.814 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api) in 382.7416ms
+2025-07-03 19:14:28.873 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api)'
+2025-07-03 19:14:28.973 +04:30 [INF] Request finished HTTP/1.1 POST https://localhost:7107/api/Projects/Activities - 400 null application/json 553.8833ms
+2025-07-03 19:14:28.991 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - null null
+2025-07-03 19:14:28.994 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:14:28.995 +04:30 [INF] Route matched with {action = "GetAll", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse]]]] GetAll(Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:14:29.012 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:14:29.015 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api) in 17.9702ms
+2025-07-03 19:14:29.017 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:14:29.019 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - 200 null application/json; charset=utf-8 27.3838ms
+2025-07-03 19:14:29.061 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:14:29.115 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:29.116 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 55.8498ms
+2025-07-03 19:14:29.117 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:14:29.118 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:14:29.122 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=EZgRIIgnkU7Wh5vleXeQlw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 19437.8027ms
+2025-07-03 19:14:29.124 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:29.129 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:29.130 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:29.131 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 13.6052ms
+2025-07-03 19:14:29.133 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=BeFSVJ_nxi0MhSAN1yALyw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:14:29.137 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:29.138 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:14:29.146 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:29.151 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:30.944 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - null null
+2025-07-03 19:14:30.949 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:14:30.950 +04:30 [INF] Route matched with {action = "GetActivities", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse]]]] GetActivities(Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:14:30.968 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:14:30.970 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api) in 17.6733ms
+2025-07-03 19:14:30.972 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:14:30.974 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - 200 null application/json; charset=utf-8 30.1754ms
+2025-07-03 19:14:31.017 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:14:31.072 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:14:31.072 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:31.073 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=BeFSVJ_nxi0MhSAN1yALyw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 1939.8423ms
+2025-07-03 19:14:31.074 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 56.821ms
+2025-07-03 19:14:31.075 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:14:31.084 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:31.085 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:31.086 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:14:31.087 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 12.337ms
+2025-07-03 19:14:31.089 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=eWLTGSaL2rGERxMOSzCAmQ&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:14:31.094 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:14:31.095 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:14:31.103 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:14:31.107 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:14.312 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:15:14.388 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:14.397 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 84.8449ms
+2025-07-03 19:15:14.397 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:15:14.399 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:15:14.404 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=eWLTGSaL2rGERxMOSzCAmQ&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 43315.0645ms
+2025-07-03 19:15:14.407 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:14.413 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:14.415 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:14.416 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 16.3621ms
+2025-07-03 19:15:14.419 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=CTnJc5xZgMnjegLE-WNUkg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:15:14.424 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:14.425 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:15:14.439 +04:30 [INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:14.445 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:16.439 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - null null
+2025-07-03 19:15:16.443 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:15:16.444 +04:30 [INF] Route matched with {action = "GetActivities", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse]]]] GetActivities(Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:15:16.470 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:15:16.472 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api) in 25.4785ms
+2025-07-03 19:15:16.474 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:15:16.476 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - 200 null application/json; charset=utf-8 36.8632ms
+2025-07-03 19:15:16.520 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:15:16.569 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:15:16.570 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:16.571 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=CTnJc5xZgMnjegLE-WNUkg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 2152.5604ms
+2025-07-03 19:15:16.573 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 58.6193ms
+2025-07-03 19:15:16.574 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:15:16.584 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:16.585 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:16.587 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:16.588 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 14.1839ms
+2025-07-03 19:15:16.591 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=CkQ0O9bIN2UjiIFXDJFSRg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:15:16.596 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:16.598 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:15:16.608 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:16.615 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:18.137 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:15:18.201 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:18.201 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:15:18.202 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 64.9096ms
+2025-07-03 19:15:18.204 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:15:18.204 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=CkQ0O9bIN2UjiIFXDJFSRg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 1612.9545ms
+2025-07-03 19:15:18.210 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:18.214 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:18.216 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:18.218 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 14.3772ms
+2025-07-03 19:15:18.220 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=yQA6ZKjqCIJQUm3VXlv-Bg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:15:18.225 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:18.226 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:15:18.234 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:18.241 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:18.716 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:15:18.771 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:15:18.773 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:18.774 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=yQA6ZKjqCIJQUm3VXlv-Bg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 554.4627ms
+2025-07-03 19:15:18.775 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 58.1929ms
+2025-07-03 19:15:18.776 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:15:18.786 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:18.787 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:18.789 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:18.790 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 14.4569ms
+2025-07-03 19:15:18.792 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=6s5-5joCgzg_fmA8m4ad5w&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:15:18.800 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:18.801 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:15:18.810 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:18.817 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:18.942 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:15:18.982 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:15:18.983 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:18.984 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=6s5-5joCgzg_fmA8m4ad5w&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 191.9081ms
+2025-07-03 19:15:18.985 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 49.3522ms
+2025-07-03 19:15:18.986 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:15:18.995 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:18.996 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:18.997 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:18.998 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 11.8044ms
+2025-07-03 19:15:19.001 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=E3euD_C3AQ74Cq6nNxkXgg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:15:19.006 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:19.008 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:15:19.017 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:19.020 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:19.186 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:15:19.239 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:19.240 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:15:19.241 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:15:19.240 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 60.4529ms
+2025-07-03 19:15:19.242 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=E3euD_C3AQ74Cq6nNxkXgg&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 240.9179ms
+2025-07-03 19:15:19.244 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:19.253 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:19.255 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:19.256 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 14.306ms
+2025-07-03 19:15:19.257 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=GC7rnP0d9mJyBjmvJ0JV_g&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:15:19.263 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:19.265 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:15:19.271 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:19.275 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:20.513 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Auth/sara - null null
+2025-07-03 19:15:20.517 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api)'
+2025-07-03 19:15:20.519 +04:30 [INF] Route matched with {action = "GetByUserName", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[Core.Application.ApplicationServices.Auth.Queries.GetByUserName.GetUserByUserNameQueryResponse]] GetByUserName(System.String, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.AuthController (Calendar.Api).
+2025-07-03 19:15:20.527 +04:30 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedUserName_0='SARA' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Category], [u].[ConcurrencyStamp], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[IsActive], [u].[IsEdited], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdateDate], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-03 19:15:20.531 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[Core.Application.ApplicationServices.Auth.Queries.GetByUserName.GetUserByUserNameQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:15:20.534 +04:30 [INF] Executed action Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api) in 12.8528ms
+2025-07-03 19:15:20.536 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api)'
+2025-07-03 19:15:20.537 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Auth/sara - 200 null application/json; charset=utf-8 24.209ms
+2025-07-03 19:15:20.542 +04:30 [INF] Request starting HTTP/1.1 POST https://localhost:7107/api/Projects/Activities - application/json; charset=utf-8 null
+2025-07-03 19:15:20.546 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api)'
+2025-07-03 19:15:20.547 +04:30 [INF] Route matched with {action = "AddActivity", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse] AddActivity(Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectCommandRequest, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:15:20.753 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api) in 202.3936ms
+2025-07-03 19:15:20.807 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api)'
+2025-07-03 19:15:20.905 +04:30 [INF] Request finished HTTP/1.1 POST https://localhost:7107/api/Projects/Activities - 400 null application/json 362.2035ms
+2025-07-03 19:15:20.920 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - null null
+2025-07-03 19:15:20.923 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:15:20.924 +04:30 [INF] Route matched with {action = "GetAll", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse]]]] GetAll(Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:15:20.939 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:15:20.941 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api) in 14.9956ms
+2025-07-03 19:15:20.943 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:15:20.944 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - 200 null application/json; charset=utf-8 24.9337ms
+2025-07-03 19:15:20.997 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:15:21.151 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:15:21.152 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:21.153 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=GC7rnP0d9mJyBjmvJ0JV_g&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 1895.8508ms
+2025-07-03 19:15:21.154 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 162.3652ms
+2025-07-03 19:15:21.156 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:15:21.165 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:21.167 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:21.169 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:15:21.171 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 15.365ms
+2025-07-03 19:15:21.173 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=_E3d_dJplzjfRN4ZhqB0zA&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:15:21.178 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:15:21.179 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:15:21.186 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:15:21.189 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:16:35.861 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:16:35.931 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:16:35.932 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 71.388ms
+2025-07-03 19:16:35.933 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:16:35.935 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:16:35.938 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=_E3d_dJplzjfRN4ZhqB0zA&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 74765.9045ms
+2025-07-03 19:16:35.941 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:16:35.946 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:16:35.947 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:16:35.948 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 13.1718ms
+2025-07-03 19:16:35.950 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=6JdiMvMsm5Nb_bpERuE7uA&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:16:35.956 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:16:35.957 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:16:35.965 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:16:35.971 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:16:36.803 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Auth/sara - null null
+2025-07-03 19:16:36.806 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api)'
+2025-07-03 19:16:36.807 +04:30 [INF] Route matched with {action = "GetByUserName", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[Core.Application.ApplicationServices.Auth.Queries.GetByUserName.GetUserByUserNameQueryResponse]] GetByUserName(System.String, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.AuthController (Calendar.Api).
+2025-07-03 19:16:36.815 +04:30 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='SARA' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Category], [u].[ConcurrencyStamp], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[IsActive], [u].[IsEdited], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdateDate], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-03 19:16:36.819 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[Core.Application.ApplicationServices.Auth.Queries.GetByUserName.GetUserByUserNameQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:16:36.821 +04:30 [INF] Executed action Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api) in 12.1069ms
+2025-07-03 19:16:36.822 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api)'
+2025-07-03 19:16:36.824 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Auth/sara - 200 null application/json; charset=utf-8 20.8398ms
+2025-07-03 19:16:36.831 +04:30 [INF] Request starting HTTP/1.1 POST https://localhost:7107/api/Projects/Activities - application/json; charset=utf-8 null
+2025-07-03 19:16:36.833 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api)'
+2025-07-03 19:16:36.834 +04:30 [INF] Route matched with {action = "AddActivity", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse] AddActivity(Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectCommandRequest, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:24:30.884 +04:30 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-03 19:24:31.091 +04:30 [INF] Now listening on: https://localhost:7107
+2025-07-03 19:24:31.093 +04:30 [INF] Now listening on: http://localhost:5150
+2025-07-03 19:24:31.142 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-03 19:24:31.189 +04:30 [INF] Hosting environment: Development
+2025-07-03 19:24:31.190 +04:30 [INF] Content root path: C:\Users\DELL\source\repos\Calendar\Calendar.Api
+2025-07-03 19:24:32.585 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/index.html - null null
+2025-07-03 19:24:32.869 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/index.html - 200 null text/html;charset=utf-8 291.1744ms
+2025-07-03 19:24:33.680 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-03 19:24:33.680 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/_vs/browserLink - null null
+2025-07-03 19:24:33.691 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 11.1958ms
+2025-07-03 19:24:33.726 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:24:33.734 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/_vs/browserLink - 200 null text/javascript; charset=UTF-8 54.6212ms
+2025-07-03 19:24:33.748 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:33.798 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:24:33.806 +04:30 [INF] Request starting HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - null null
+2025-07-03 19:24:33.754 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 27.6172ms
+2025-07-03 19:24:33.812 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:33.940 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:33.955 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:33.957 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 158.4764ms
+2025-07-03 19:24:33.959 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=g3pp_sB91TGxLgu_lfXuPA&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:24:33.965 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:33.969 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:24:34.120 +04:30 [INF] Request finished HTTP/2 GET https://localhost:7107/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 314.404ms
+2025-07-03 19:24:34.706 +04:30 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-07-03 19:24:35.399 +04:30 [INF] Executed DbCommand (60ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:35.431 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:35.453 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - null null
+2025-07-03 19:24:35.459 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:24:35.483 +04:30 [INF] Route matched with {action = "GetAll", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse]]]] GetAll(Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:24:35.770 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:24:35.799 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api) in 310.129ms
+2025-07-03 19:24:35.801 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:24:35.804 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - 200 null application/json; charset=utf-8 352.2928ms
+2025-07-03 19:24:36.120 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:24:36.167 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:36.191 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 80.3339ms
+2025-07-03 19:24:36.193 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:24:36.196 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:36.198 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:36.199 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:36.200 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 7.6358ms
+2025-07-03 19:24:36.206 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:24:36.207 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=g3pp_sB91TGxLgu_lfXuPA&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 2248.7969ms
+2025-07-03 19:24:36.209 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=DpqOD2ri41b7ZfQE7Bqc-A&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:24:36.215 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:36.216 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:24:36.249 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:36.255 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:37.146 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - null null
+2025-07-03 19:24:37.151 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:24:37.159 +04:30 [INF] Route matched with {action = "GetActivities", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse]]]] GetActivities(Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:24:37.256 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:24:37.266 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api) in 103.3106ms
+2025-07-03 19:24:37.268 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:24:37.270 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - 200 null application/json; charset=utf-8 124.1834ms
+2025-07-03 19:24:37.542 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:24:37.614 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:37.615 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 77.7458ms
+2025-07-03 19:24:37.617 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:24:37.621 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:24:37.622 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:37.623 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=DpqOD2ri41b7ZfQE7Bqc-A&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 1413.6941ms
+2025-07-03 19:24:37.624 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:37.629 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:37.630 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 13.4355ms
+2025-07-03 19:24:37.633 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=D6ohF9HX4sJR3y0I-Sez7Q&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:24:37.638 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:37.639 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:24:37.688 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:37.692 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:38.493 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:24:38.548 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:24:38.548 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:38.551 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=D6ohF9HX4sJR3y0I-Sez7Q&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 918.2465ms
+2025-07-03 19:24:38.551 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 58.6331ms
+2025-07-03 19:24:38.554 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:24:38.560 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:38.562 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:38.563 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:38.564 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 9.5183ms
+2025-07-03 19:24:38.566 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=rZgspp8acLaTLzfAb6Zbjw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:24:38.570 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:38.571 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:24:38.578 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:38.582 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:52.516 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Auth/sara - null null
+2025-07-03 19:24:52.521 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api)'
+2025-07-03 19:24:52.526 +04:30 [INF] Route matched with {action = "GetByUserName", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[Core.Application.ApplicationServices.Auth.Queries.GetByUserName.GetUserByUserNameQueryResponse]] GetByUserName(System.String, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.AuthController (Calendar.Api).
+2025-07-03 19:24:52.628 +04:30 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedUserName_0='SARA' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Category], [u].[ConcurrencyStamp], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[IsActive], [u].[IsEdited], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdateDate], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-03 19:24:52.691 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[Core.Application.ApplicationServices.Auth.Queries.GetByUserName.GetUserByUserNameQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:24:52.700 +04:30 [INF] Executed action Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api) in 171.1574ms
+2025-07-03 19:24:52.702 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.AuthController.GetByUserName (Calendar.Api)'
+2025-07-03 19:24:52.704 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Auth/sara - 200 null application/json; charset=utf-8 188.3069ms
+2025-07-03 19:24:52.741 +04:30 [INF] Request starting HTTP/1.1 POST https://localhost:7107/api/Projects/Activities - application/json; charset=utf-8 null
+2025-07-03 19:24:52.745 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api)'
+2025-07-03 19:24:52.749 +04:30 [INF] Route matched with {action = "AddActivity", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse] AddActivity(Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectCommandRequest, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:24:52.904 +04:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='6dd43389-afe2-42da-9ed8-9b9b71646eaf' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[Category], [u].[ConcurrencyStamp], [u].[CreatedDate], [u].[Email], [u].[EmailConfirmed], [u].[IsActive], [u].[IsEdited], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdateDate], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2025-07-03 19:24:53.141 +04:30 [INF] Executed DbCommand (15ms) [Parameters=[@p0='e65658d5-c976-4167-b9a0-3e75c1e78d3f' (Nullable = false) (Size = 450), @p1='1', @p2='2025-07-03T19:24:52.8761423+04:30', @p3='string' (Size = 4000), @p4=NULL (DbType = Time), @p5='True', @p6='False', @p7='False', @p8=NULL (Size = 450), @p9='d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab' (Nullable = false) (Size = 450), @p10='2025-08-08T18:24:00.0000000', @p11='string' (Nullable = false) (Size = 4000), @p12='2025-07-03T19:24:52.8761449+04:30', @p13='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Nullable = false) (Size = 450), @p14='2b537764-a20f-4232-8f6b-72b2530de81e' (Nullable = false) (Size = 450), @p15='e65658d5-c976-4167-b9a0-3e75c1e78d3f' (Size = 450), @p16='2025-07-03T19:24:52.9122724+04:30' (Nullable = true), @p17='2025-07-03T19:24:52.9121823+04:30', @p18='2025-07-03T19:24:52.9121803+04:30', @p19='True', @p20='False', @p21='True', @p22='True', @p23='False', @p24=NULL (Size = 4000), @p25='679c68eb-c9ef-40e6-a12b-56f01114e86f' (Size = 4000), @p26='d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab' (Nullable = false) (Size = 450), @p27='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Nullable = false) (Size = 450), @p28='0', @p29='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Nullable = false) (Size = 450), @p30='1', @p31='2025-07-03T19:24:52.9139200+04:30', @p32='a5880c0c-36c7-40d3-bc96-9f3f61ac206e' (Nullable = false) (Size = 450), @p33='e65658d5-c976-4167-b9a0-3e75c1e78d3f' (Size = 450), @p34=NULL (DbType = DateTime2), @p35='2025-07-03T19:24:52.9093434+04:30', @p36='2025-07-03T19:24:52.9091356+04:30', @p37='True', @p38='True', @p39='False', @p40='False', @p41='True', @p42='qwe' (Size = 4000), @p43=NULL (Size = 4000), @p44='d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab' (Nullable = false) (Size = 450), @p45='6dd43389-afe2-42da-9ed8-9b9b71646eaf' (Nullable = false) (Size = 450), @p46='0', @p47='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Nullable = false) (Size = 450), @p48='0', @p49='2025-07-03T19:24:52.9093438+04:30', @p50='679c68eb-c9ef-40e6-a12b-56f01114e86f' (Nullable = false) (Size = 450), @p51='2025-07-03T19:24:52.9137977+04:30', @p52='True', @p53='False', @p54='False', @p55='2025-08-08T17:24:00.0000000', @p56='2b537764-a20f-4232-8f6b-72b2530de81e' (Nullable = false) (Size = 450), @p57='2025-07-03T19:24:52.9137984+04:30'], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Activities] ([Id], [Category], [CreatedDate], [Description], [Duration], [IsActive], [IsCompleted], [IsEdited], [ParentId], [ProjectId], [StartDate], [Title], [UpdateDate], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+INSERT INTO [Requests] ([Id], [ActivityId], [AnsweredAt], [CreatedDate], [InvitedAt], [IsActive], [IsArchived], [IsEdited], [IsExpire], [IsGuest], [Message], [NotificationId], [ProjectId], [ReceiverId], [RequestFor], [SenderId], [Status], [UpdateDate])
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28, @p29, @p30, @p31),
+(@p32, @p33, @p34, @p35, @p36, @p37, @p38, @p39, @p40, @p41, @p42, @p43, @p44, @p45, @p46, @p47, @p48, @p49);
+INSERT INTO [Notifications] ([Id], [CreatedDate], [IsActive], [IsEdited], [IsSent], [NotificationDate], [RequestId], [UpdateDate])
+VALUES (@p50, @p51, @p52, @p53, @p54, @p55, @p56, @p57);
+2025-07-03 19:24:53.167 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse'.
+2025-07-03 19:24:53.170 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api) in 417.6102ms
+2025-07-03 19:24:53.172 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.AddActivity (Calendar.Api)'
+2025-07-03 19:24:53.174 +04:30 [INF] Request finished HTTP/1.1 POST https://localhost:7107/api/Projects/Activities - 200 null application/json; charset=utf-8 432.8693ms
+2025-07-03 19:24:53.187 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - null null
+2025-07-03 19:24:53.190 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:24:53.191 +04:30 [INF] Route matched with {action = "GetActivities", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse]]]] GetActivities(Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:24:53.200 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:24:53.204 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api) in 10.9059ms
+2025-07-03 19:24:53.207 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:24:53.209 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - 200 null application/json; charset=utf-8 21.6066ms
+2025-07-03 19:24:53.315 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:24:53.324 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:24:53.326 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:53.327 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=rZgspp8acLaTLzfAb6Zbjw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 14762.1459ms
+2025-07-03 19:24:53.336 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:24:53.328 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 13.9598ms
+2025-07-03 19:24:53.339 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:53.344 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:53.345 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:53.346 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 10.989ms
+2025-07-03 19:24:53.348 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=pgM-usch37S4HeOkh79ASA&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:24:53.353 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:53.355 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:24:53.361 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:53.365 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:58.918 +04:30 [INF] Request starting HTTP/1.1 PATCH https://localhost:7107/api/Activities/Complete/e65658d5-c976-4167-b9a0-3e75c1e78d3f - null 0
+2025-07-03 19:24:58.922 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivitiesController.Complete (Calendar.Api)'
+2025-07-03 19:24:58.926 +04:30 [INF] Route matched with {action = "Complete", controller = "Activities"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse] Complete(System.Guid, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ActivitiesController (Calendar.Api).
+2025-07-03 19:24:59.004 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='e65658d5-c976-4167-b9a0-3e75c1e78d3f' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[Category], [a].[CreatedDate], [a].[Description], [a].[Duration], [a].[IsActive], [a].[IsCompleted], [a].[IsEdited], [a].[ParentId], [a].[ProjectId], [a].[StartDate], [a].[Title], [a].[UpdateDate], [a].[UserId]
+FROM [Activities] AS [a]
+WHERE [a].[Id] = @__id_0
+2025-07-03 19:24:59.026 +04:30 [INF] Executed DbCommand (12ms) [Parameters=[@p13='e65658d5-c976-4167-b9a0-3e75c1e78d3f' (Nullable = false) (Size = 450), @p0='1', @p1='2025-07-03T19:24:52.8761423', @p2='string' (Size = 4000), @p3=NULL (DbType = Time), @p4='True', @p5='True', @p6='True', @p7=NULL (Size = 450), @p8='d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab' (Nullable = false) (Size = 450), @p9='2025-08-08T18:24:00.0000000', @p10='string' (Nullable = false) (Size = 4000), @p11='2025-07-03T19:24:59.0086843+04:30', @p12='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Nullable = false) (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Activities] SET [Category] = @p0, [CreatedDate] = @p1, [Description] = @p2, [Duration] = @p3, [IsActive] = @p4, [IsCompleted] = @p5, [IsEdited] = @p6, [ParentId] = @p7, [ProjectId] = @p8, [StartDate] = @p9, [Title] = @p10, [UpdateDate] = @p11, [UserId] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-07-03 19:24:59.037 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse'.
+2025-07-03 19:24:59.039 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivitiesController.Complete (Calendar.Api) in 110.3184ms
+2025-07-03 19:24:59.041 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivitiesController.Complete (Calendar.Api)'
+2025-07-03 19:24:59.042 +04:30 [INF] Request finished HTTP/1.1 PATCH https://localhost:7107/api/Activities/Complete/e65658d5-c976-4167-b9a0-3e75c1e78d3f - 200 null application/json; charset=utf-8 124.476ms
+2025-07-03 19:24:59.055 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Activities?PageSize=10 - null null
+2025-07-03 19:24:59.057 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api)'
+2025-07-03 19:24:59.063 +04:30 [INF] Route matched with {action = "GetAll", controller = "Activities"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesQueryResponse]]]] GetAll(Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ActivitiesController (Calendar.Api).
+2025-07-03 19:24:59.129 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:24:59.133 +04:30 [INF] Executed action Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api) in 65.7601ms
+2025-07-03 19:24:59.135 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ActivitiesController.GetAll (Calendar.Api)'
+2025-07-03 19:24:59.137 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Activities?PageSize=10 - 200 null application/json; charset=utf-8 82.2538ms
+2025-07-03 19:24:59.227 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:24:59.275 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:59.290 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 63.2989ms
+2025-07-03 19:24:59.291 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:24:59.292 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:24:59.296 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=pgM-usch37S4HeOkh79ASA&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 5948.2125ms
+2025-07-03 19:24:59.298 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:59.303 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:59.305 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:24:59.306 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 13.9093ms
+2025-07-03 19:24:59.307 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=TnOo2sKKwsoiFQEjXxLtMw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:24:59.312 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:24:59.313 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:24:59.319 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:24:59.323 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:25:01.530 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - null null
+2025-07-03 19:25:01.533 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:25:01.534 +04:30 [INF] Route matched with {action = "GetAll", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse]]]] GetAll(Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:25:01.541 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:25:01.544 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api) in 6.6847ms
+2025-07-03 19:25:01.545 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetAll (Calendar.Api)'
+2025-07-03 19:25:01.547 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects?PageSize=10 - 200 null application/json; charset=utf-8 17.383ms
+2025-07-03 19:25:01.584 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:25:01.636 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:25:01.636 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:25:01.637 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 54.0447ms
+2025-07-03 19:25:01.638 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=TnOo2sKKwsoiFQEjXxLtMw&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 2330.9976ms
+2025-07-03 19:25:01.639 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:25:01.648 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:25:01.650 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:25:01.652 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:25:01.654 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 14.2451ms
+2025-07-03 19:25:01.656 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=WA0eUWi6p1zWzjUOfrL7NQ&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:25:01.659 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:25:01.660 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:25:01.667 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:25:01.671 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:25:03.947 +04:30 [INF] Request starting HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - null null
+2025-07-03 19:25:03.950 +04:30 [INF] Executing endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:25:03.952 +04:30 [INF] Route matched with {action = "GetActivities", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[SharedKernel.ResponseResult.SuccessResponse`1[SharedKernel.QueryFilterings.PaginationResult`1[System.Collections.Generic.List`1[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse]]]] GetActivities(Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto, System.Threading.CancellationToken) on controller Calendar.Api.Controllers.ProjectsController (Calendar.Api).
+2025-07-03 19:25:03.959 +04:30 [INF] Executing ObjectResult, writing value of type 'SharedKernel.ResponseResult.SuccessResponse`1[[SharedKernel.QueryFilterings.PaginationResult`1[[System.Collections.Generic.List`1[[Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesQueryResponse, Core.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], SharedKernel, Version=1.3.7.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-03 19:25:03.961 +04:30 [INF] Executed action Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api) in 5.0491ms
+2025-07-03 19:25:03.962 +04:30 [INF] Executed endpoint 'Calendar.Api.Controllers.ProjectsController.GetActivities (Calendar.Api)'
+2025-07-03 19:25:03.964 +04:30 [INF] Request finished HTTP/1.1 GET https://localhost:7107/api/Projects/Activities?ProjectId=d0a76f04-b9fe-45b3-8f16-b5b9c1c01bab&PageSize=10 - 200 null application/json; charset=utf-8 16.9597ms
+2025-07-03 19:25:04.007 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:25:04.067 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:25:04.071 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=WA0eUWi6p1zWzjUOfrL7NQ&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 2415.2586ms
+2025-07-03 19:25:04.068 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:25:04.076 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 69.7457ms
+2025-07-03 19:25:04.078 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:25:04.083 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:25:04.084 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:25:04.085 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:25:04.087 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 8.8594ms
+2025-07-03 19:25:04.089 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=zVMNrVEiEEQnOMdGzFTPjQ&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:25:04.095 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:25:04.097 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:25:04.105 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:25:04.109 +04:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:25:09.442 +04:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null null
+2025-07-03 19:25:09.495 +04:30 [INF] Executed endpoint '/CommonHub'
+2025-07-03 19:25:09.496 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:25:09.497 +04:30 [INF] Request finished HTTP/2 CONNECT https://localhost:7107/CommonHub?id=zVMNrVEiEEQnOMdGzFTPjQ&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - 200 null null 5407.9479ms
+2025-07-03 19:25:09.497 +04:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 204 null null 55.313ms
+2025-07-03 19:25:09.499 +04:30 [INF] Request starting HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - null 0
+2025-07-03 19:25:09.508 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:25:09.509 +04:30 [INF] Executing endpoint '/CommonHub/negotiate'
+2025-07-03 19:25:09.510 +04:30 [INF] Executed endpoint '/CommonHub/negotiate'
+2025-07-03 19:25:09.511 +04:30 [INF] Request finished HTTP/2 POST https://localhost:7107/CommonHub/negotiate?negotiateVersion=1 - 200 316 application/json 12.1505ms
+2025-07-03 19:25:09.513 +04:30 [INF] Request starting HTTP/2 CONNECT https://localhost:7107/CommonHub?id=B6oYM9Zhu_bDVyxAyrDK-Q&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZXJtaWEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJyZXphemFkZWhhQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiOTM5ZmQ4ZWQtOTZmZC00OTFiLWJlMTktY2QwNmViZTJkNjc0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MTU2MDk0NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwNy8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTA3LyJ9.8MeFiMqxuSS5SKH6PiVzOg_4Z5EYaR9ThpP2OJWVpxY - null null
+2025-07-03 19:25:09.519 +04:30 [INF] CORS policy execution successful.
+2025-07-03 19:25:09.520 +04:30 [INF] Executing endpoint '/CommonHub'
+2025-07-03 19:25:09.537 +04:30 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ActivityId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 0 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0
+2025-07-03 19:25:09.544 +04:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='939fd8ed-96fd-491b-be19-cd06ebe2d674' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ProjectId]
+FROM [Requests] AS [r]
+WHERE [r].[RequestFor] = 1 AND [r].[Status] = 1 AND [r].[ReceiverId] = @__userId_0

@@ -267,6 +267,17 @@
             <param name="token"></param>
             <returns></returns>
         </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.GetActivities(Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto,System.Threading.CancellationToken)">
+            <summary>
+            دریافت فعالیت های پروژه
+            </summary>
+            <remarks>
+            فعالیت هایی از این پروژه رو برمیگردونه که کاربر فعلی در اون عضو هست
+            </remarks>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
         <member name="M:Calendar.Api.Controllers.ProjectsController.GetMembers(System.Guid,System.Threading.CancellationToken)">
             <summary>
             دربافت عضوهای یک پروژه

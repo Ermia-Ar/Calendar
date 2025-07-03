@@ -8,22 +8,30 @@ using SharedKernel.QueryFilterings;
 namespace Core.Application.ApplicationServices.Activities.Queries.GetAll;
 
 public sealed record GetAllActivitiesQueryRequest(
-    PaginationFilter Pagination,
-    GetAllActivitiesFiltering Filtering,
+	PaginationFilter Pagination,
+	GetAllActivitiesFiltering Filtering,
 	GetAllActivitiesOrdering Ordering
-   ): IRequest<PaginationResult<List<GetAllActivitiesQueryResponse>>>
+   ) : IRequest<PaginationResult<List<GetAllActivitiesQueryResponse>>>
 {
-    public static GetAllActivitiesQueryRequest Create(GetAllActivitiesDto model)
-    {
-        return new GetAllActivitiesQueryRequest(new PaginationFilter(model.PageNum, model.PageSize),
-            new GetAllActivitiesFiltering(model.StartDateFiltering
-            , model.IsCompletedFiltering, model.IsHistoryFiltering, model.CategoryFiltering),
-            new GetAllActivitiesOrdering(model.IdOrdring, model.ParentIdOrdring
+	public static GetAllActivitiesQueryRequest Create(GetAllActivitiesDto model)
+	{
+		return
+			new GetAllActivitiesQueryRequest
+			(new PaginationFilter
+			(model.PageNum, model.PageSize),
+
+			new GetAllActivitiesFiltering
+			(model.StartDateFiltering
+			, model.IsCompletedFiltering, model.IsHistoryFiltering, model.CategoryFiltering),
+
+			new GetAllActivitiesOrdering
+			(model.IdOrdring, model.ParentIdOrdring
 			, model.ProjectIdOrdring, model.UserIdOrdring, model.TitleOrdring
 			, model.DescriptionOrdring, model.StartDateOrdring, model.CreatedDateOrdring
 			, model.UpdateDateOrdring, model.DurationOrdring, model.NotificationBeforeInMinuteOrdring
-			, model.CategoryOrdring, model.IsCompletedOrdring, model.IsEditedOrdring));
-    }
+			, model.CategoryOrdring, model.IsCompletedOrdring, model.IsEditedOrdring)
+			);
+	}
 }
 
 /// <summary>
@@ -51,8 +59,12 @@ public sealed record GetAllActivitiesQueryRequest(
 /// <param name="CategoryFiltering"></param>
 public sealed record GetAllActivitiesDto
 (
-    int PageNum,
-    int PageSize,
+	int PageNum,
+	int PageSize,
+	DateTime? StartDateFiltering,
+	bool? IsCompletedFiltering,
+	bool? IsHistoryFiltering,
+	ActivityCategory? CategoryFiltering,
 	OrderingType? IdOrdring,
 	OrderingType? ParentIdOrdring,
 	OrderingType? ProjectIdOrdring,
@@ -66,9 +78,5 @@ public sealed record GetAllActivitiesDto
 	OrderingType? NotificationBeforeInMinuteOrdring,
 	OrderingType? CategoryOrdring,
 	OrderingType? IsCompletedOrdring,
-	OrderingType? IsEditedOrdring,
-	DateTime? StartDateFiltering,
-	bool? IsCompletedFiltering,
-	bool? IsHistoryFiltering,
-	ActivityCategory? CategoryFiltering
+	OrderingType? IsEditedOrdring
 );

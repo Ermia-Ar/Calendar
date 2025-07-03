@@ -3,7 +3,7 @@ using SharedKernel.Helper;
 
 namespace Core.Application.ApplicationServices.Activities.Queries.GetAll;
 
-public record class GetAllActivitiesQueryResponse
+public sealed record GetAllActivitiesQueryResponse
 (
     string Id,
     string? ParentId,
