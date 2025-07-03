@@ -6,6 +6,10 @@ public class SubmitProjectRequestCommandValidator : AbstractValidator<SubmitProj
 {
     public SubmitProjectRequestCommandValidator()
     {
-        
+        RuleFor(x => x.ProjectId)
+            .Must(x => Guid.TryParse(x, out var result));
+
+        RuleForEach(x => x.MemberIds)
+            .Must(x => Guid.TryParse(x, out var result));
     }
 }

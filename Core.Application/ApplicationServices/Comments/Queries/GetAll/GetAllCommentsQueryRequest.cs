@@ -15,20 +15,45 @@ public record class GetAllCommentsQueryRequest(
 {
     public static GetAllCommentsQueryRequest Create(GetAllCommentDto model)
     {
-       return new GetAllCommentsQueryRequest(new PaginationFilter(model.PageNumber, model.PageSize),
-                new GetAllCommentsFiltering(model.ProjectId, model.ActivityId, model.Search, model.userId),
-                new GetAllCommentOrdering()
-                );
+        return new GetAllCommentsQueryRequest(new PaginationFilter(model.PageNumber, model.PageSize),
+                 new GetAllCommentsFiltering(model.ProjectIdFiltering
+                 , model.ActivityIdFiltering, model.SearchFiltering, model.userIdFiltering),
+                 new GetAllCommentOrdering(model.IdOreing, model.ActivityIdOreing, model.UserIdOreing, model.ProjectIdOreing
+                 , model.ContentOreing, model.CreatedDateOreing, model.UpdatedDateOreing, model.IsEditedOreing)
+                 );
     }
 }
 
-
+/// <summary>
+/// 
+/// </summary>
+/// <param name="PageNumber"></param>
+/// <param name="PageSize"></param>
+/// <param name="ProjectIdFiltering">مال چه پروژه ای است</param>
+/// <param name="ActivityIdFiltering">مال چه فعالیتی است </param>
+/// <param name="SearchFiltering">روی محتوا کامنت سرچ انجام میده</param>
+/// <param name="userIdFiltering">کامنت مال چه کاربری است</param>
+/// <param name="IdOreing"></param>
+/// <param name="ActivityIdOreing"></param>
+/// <param name="UserIdOreing"></param>
+/// <param name="ProjectIdOreing"></param>
+/// <param name="ContentOreing"></param>
+/// <param name="CreatedDateOreing"></param>
+/// <param name="UpdatedDateOreing"></param>
+/// <param name="IsEditedOreing"></param>
 public sealed record GetAllCommentDto(
     int PageNumber,
     int PageSize,
-    OrderingType Type,
-    string? ProjectId,
-    string? ActivityId,
-    string? Search, 
-    string? userId
-    );
+    string? ProjectIdFiltering,
+    string? ActivityIdFiltering,
+    string? SearchFiltering, 
+    string? userIdFiltering,
+	OrderingType? IdOreing,
+	OrderingType? ActivityIdOreing,
+	OrderingType? UserIdOreing,
+	OrderingType? ProjectIdOreing,
+	OrderingType? ContentOreing,
+	OrderingType? CreatedDateOreing,
+	OrderingType? UpdatedDateOreing,
+	OrderingType? IsEditedOreing
+	);

@@ -34,10 +34,10 @@ public sealed class AddSubActivityCommandHandler(
 		}
 
 		// create sub activity
-		var subActivity = ActivityFactory.CreateSubActivity(baseActivity.Id
+		var subActivity = ActivityFactory.CreateSubActivity(baseActivity.ParentId??baseActivity.Id
 			, ownerId, baseActivity.ProjectId
-			, baseActivity.Title, request.Description
-			, request.StartDate, baseActivity.Category
+			, request.Title, request.Description
+			, request.StartDate, request.Category
 			, request.Duration);
 
 		//for signalR
@@ -55,7 +55,7 @@ public sealed class AddSubActivityCommandHandler(
 
 			var sendRequest = RequestFactory.CreateActivityRequest
 				(subActivity.ProjectId, subActivity.Id
-				, ownerId, memberId, null, false);
+				, ownerId, memberId, request.Message, false);
 
 			userRequests.Add(sendRequest);
 			//for signalR 

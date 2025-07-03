@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Core.Application.ApplicationServices.Auth.Exceptions;
+﻿using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.ApplicationServices.Requests.Exceptions;
 using Core.Application.ApplicationServices.Requests.Queries.GetAll;
@@ -9,7 +8,6 @@ using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
-using System.Security.Policy;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.SubmitRequest;
 
@@ -33,9 +31,11 @@ public sealed class SubmitProjectRequestCommandHandler
 			throw new OnlyProjectCreatorAllowedException();
 		}
 
+		//for signalr
+		var response = new Dictionary<string, GetAllRequestQueryResponse>();
+
 		//send for each Receivers
 		var userRequests = new List<Request>();
-		var response = new Dictionary<string, GetAllRequestQueryResponse>();
 		foreach (var memberId in request.MemberIds)
 		{
 			var receiver = await _unitOfWork.Users.FindById(memberId);
@@ -59,6 +59,7 @@ public sealed class SubmitProjectRequestCommandHandler
 				);
 
 			userRequests.Add(sendRequest);
+			//for signalR
 			response[memberId] = sendRequest.Adapt<GetAllRequestQueryResponse>();
 		}
 

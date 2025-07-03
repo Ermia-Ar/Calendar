@@ -1,4 +1,5 @@
-﻿using Core.Application.ApplicationServices.Requests.Exceptions;
+﻿using Core.Application.ApplicationServices.Activities.Exceptions;
+using Core.Application.ApplicationServices.Requests.Exceptions;
 using Core.Application.Common;
 using Core.Domain.UnitOfWork;
 using MediatR;
@@ -31,8 +32,22 @@ public sealed class UpdateNotificationCommandHandler(ICurrentUserServices curren
 		var notification = await _unitOfWork.Notifications
 						.Find(userRequest.Id, cancellationToken);
 
+		// if notification is null remove notificaiton for this user activity
 
-		notification.UpdateNotification(activity.StartDate - request.NotificationBefore);
+		if (request.NotificationBefore == null)
+		{
+			userRequest.RemoveNotificaiton();	
+		}
+		else
+		{
+			var newNotificaitonDate = activity.StartDate - (request.NotificationBefore ?? TimeSpan.Zero);
+
+			if (newNotificaitonDate <= DateTime.Now)
+				throw new InvalidNotificationException();
+
+			notification.UpdateNotification(newNotificaitonDate);
+		}
+
 
 		await _unitOfWork.SaveChangeAsync(cancellationToken);
 	}

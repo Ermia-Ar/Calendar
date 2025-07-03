@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Core.Application.ApplicationServices.Auth.Exceptions;
+﻿using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.ExternalServices.Jwt;
 using Core.Domain.Entities.Users;
 using Core.Domain.UnitOfWork;
@@ -7,20 +6,13 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Auth.Commands.Register;
 
-public class RegisterCommandHandler
-    : IRequestHandler<RegisterCommandRequest>
+public class RegisterCommandHandler(IUnitOfWork unitOfWork, ITokenServices tokenServices)
+		: IRequestHandler<RegisterCommandRequest>
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly ITokenServices _tokenServices;
-    private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly ITokenServices _tokenServices = tokenServices;
 
-    public RegisterCommandHandler(IMapper mapper, IUnitOfWork unitOfWork, ITokenServices tokenServices)
-    {
-        _mapper = mapper;
-        _unitOfWork = unitOfWork;
-        _tokenServices = tokenServices;
-    }
-    public async Task Handle(RegisterCommandRequest request, CancellationToken cancellationToken)
+	public async Task Handle(RegisterCommandRequest request, CancellationToken cancellationToken)
     {
         //map to User
         var user = UserFactory.Create(request.UserName

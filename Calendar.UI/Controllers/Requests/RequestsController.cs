@@ -13,15 +13,15 @@ public class RequestsController(IHttpClientFactory httpClientFactory
     public async Task<IActionResult> Index()
     {
         var userId = _currentUser.GetUserId();
-
+		//PageSize=10&SenderIdFiltering=asd&ReceiverIdFiltering=asd
 		var response = await _httpClient
-            .GetStringAsync($"Requests/All?ReceiverId={userId}");
+            .GetStringAsync($"Requests?ReceiverIdFiltering={userId}&SenderIdFiltering={userId}&PageSize=10");
 
-        var result = Converter.FromJson<Response<List<GetAllRequestsDto>>>(response);
+        var result = Converter.FromJson<Response<PaginationResult<List<GetAllRequestsDto>>>>(response);
 
         if (result.IsSuccess)
         {
-            return View(result.Value);
+            return View(result.Value.Data);
         }
         Console.WriteLine("Error" + result.Errors);
         return RedirectToAction("Index");

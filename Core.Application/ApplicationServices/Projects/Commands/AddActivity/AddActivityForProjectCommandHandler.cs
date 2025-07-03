@@ -48,21 +48,25 @@ public sealed class AddActivityForProjectCommandHandler(
         var response = new Dictionary<string, GetAllRequestQueryResponse>();
         //
         var userRequests = new List<Request>();
-        foreach (var memberId in request.MemberIds)
+        foreach (var receiverId in request.MemberIds)
         {
             //check
-            var member = await _unitOfWork.Users.FindById(memberId);
-            if (member == null)
+            var receiver = await _unitOfWork.Users.FindById(receiverId);
+            if (receiver == null)
             {
-                throw new NotFoundUserIdException(memberId);
+                throw new NotFoundUserIdException(receiverId);
             }
+
+            //check if receiver is member of base project
+            var isGuest = memberIds.Any(x => x == receiverId); 
             // create request for memberId
             var sendRequest = RequestFactory.CreateActivityRequest(activity.ProjectId
-                , activity.Id, ownerId, memberId, null, false);
+                , activity.Id, ownerId, receiverId, request.Message, isGuest);
 
             userRequests.Add(sendRequest);
+
             //for signalR
-            response[memberId] = sendRequest.Adapt<GetAllRequestQueryResponse>();
+            response[receiverId] = sendRequest.Adapt<GetAllRequestQueryResponse>();
         }
 
         //add owner to activity members

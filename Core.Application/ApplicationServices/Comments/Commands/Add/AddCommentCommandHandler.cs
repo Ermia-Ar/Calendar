@@ -9,33 +9,33 @@ using MediatR;
 namespace Core.Application.ApplicationServices.Comments.Commands.Add;
 
 public sealed class AddCommentCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
-        : IRequestHandler<AddCommentCommandRequest, GetAllCommentsQueryResponse>
+		: IRequestHandler<AddCommentCommandRequest, GetAllCommentsQueryResponse>
 {
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly ICurrentUserServices _currentUserServices = currentUserServices;
+	private readonly IUnitOfWork _unitOfWork = unitOfWork;
+	private readonly ICurrentUserServices _currentUserServices = currentUserServices;
 
-    public async Task<GetAllCommentsQueryResponse> Handle(AddCommentCommandRequest request, CancellationToken cancellationToken)
-    {
-        string userId = _currentUserServices.GetUserId();
+	public async Task<GetAllCommentsQueryResponse> Handle(AddCommentCommandRequest request, CancellationToken cancellationToken)
+	{
+		string userId = _currentUserServices.GetUserId();
 
-        var isMember = (await _unitOfWork.Requests.FindMemberIdsOfActivity
-            (request.ActivityId, cancellationToken))
-            .Any(Id => Id == userId);
+		var members = await _unitOfWork.Requests.FindMemberIdsOfActivity
+			(request.ActivityId, cancellationToken);
 
-        if (!isMember)
-        {
-            throw new OnlyActivityMembersAllowedException();
-        }
 
-        var activity = await _unitOfWork.Activities
-            .FindById(request.ActivityId, cancellationToken);
+		if (!members.Any(x => x == userId))
+		{
+			throw new OnlyActivityMembersAllowedException();
+		}
 
-        var comment = CommentFactory.Create(userId, request.ActivityId
-            , activity.ProjectId, request.Content);
+		var activity = await _unitOfWork.Activities
+			.FindById(request.ActivityId, cancellationToken);
 
-        _unitOfWork.Comments.Add(comment);
-        await _unitOfWork.SaveChangeAsync(cancellationToken);
+		var comment = CommentFactory.Create(userId, request.ActivityId
+			, activity.ProjectId, request.Content);
 
-        return comment.Adapt<GetAllCommentsQueryResponse>();
-    }
+		_unitOfWork.Comments.Add(comment);
+		await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+		return comment.Adapt<GetAllCommentsQueryResponse>();
+	}
 }

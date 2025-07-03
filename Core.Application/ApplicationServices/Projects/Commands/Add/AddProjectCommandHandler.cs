@@ -1,22 +1,19 @@
-﻿using AutoMapper;
-using Core.Application.ApplicationServices.Auth.Exceptions;
+﻿using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.ApplicationServices.Requests.Queries.GetAll;
 using Core.Application.Common;
 using Core.Domain.Entities.Projects;
 using Core.Domain.Entities.Requests;
-using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.Add;
 
-public class AddProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+public class AddProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
         : IRequestHandler<AddProjectCommandRequest, Dictionary<string, GetAllRequestQueryResponse>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
-    private readonly IMapper _mapper = mapper;
 
     public async Task<Dictionary<string, GetAllRequestQueryResponse>> Handle(AddProjectCommandRequest request, CancellationToken cancellationToken)
     {

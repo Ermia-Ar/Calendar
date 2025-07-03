@@ -12,13 +12,13 @@ public class ActivitiesController(IHttpClientFactory httpClientFactory, ICurrent
 	[HttpGet]
 	public async Task<IActionResult> Index()
 	{
-		var response = await _httpClient.GetStringAsync("Activities");
-		var result = Converter.FromJson<Response<List<GetActivitiesDto>>>(response);
+		var response = await _httpClient.GetStringAsync("Activities?PageSize=10");
+		var result = Converter.FromJson<Response<PaginationResult<List<GetActivitiesDto>>>>(response);
 
 		ViewBag.userId = _currentUser.GetUserId();
 		if (result.IsSuccess)
 		{
-			return View(result.Value);
+			return View(result.Value.Data);
 		}
 		Console.WriteLine("Error" + result.Errors);
 		return RedirectToAction("Index");
@@ -180,7 +180,7 @@ public class ActivitiesController(IHttpClientFactory httpClientFactory, ICurrent
 
 	public async Task<IActionResult> Members(string id, bool isOwner)
 	{
-		var response = await _httpClient.GetStringAsync($"Activities/Member/{id}");
+		var response = await _httpClient.GetStringAsync($"Activities/Members/{id}");
 		var result = Converter.FromJson<Response<List<GetMemberOfActivityDto>>>(response);
 
 		ViewBag.isOwner = isOwner;
@@ -196,15 +196,15 @@ public class ActivitiesController(IHttpClientFactory httpClientFactory, ICurrent
 
 	public async Task<IActionResult> Comments(string id, bool isOwner)
 	{
-		var response = await _httpClient.GetStringAsync($"Comments?ActivityId={id}");
-		var result = Converter.FromJson<Response<List<GetAllCommentsDto>>>(response);
+		var response = await _httpClient.GetStringAsync($"Comments?ActivityIdFiltering={id}&PageSize=10");
+		var result = Converter.FromJson<Response<PaginationResult<List<GetAllCommentsDto>>>>(response);
 
 		ViewBag.isOwner = isOwner;
 		ViewBag.activityId = id;
 
 		if (result.IsSuccess)
 		{
-			return View(result.Value);
+			return View(result.Value.Data);
 		}
 		Console.WriteLine("Error : ", result.Errors);
 		return RedirectToAction("Index");

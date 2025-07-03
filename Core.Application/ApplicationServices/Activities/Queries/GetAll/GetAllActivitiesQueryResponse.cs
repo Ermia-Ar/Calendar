@@ -1,5 +1,4 @@
 ﻿using Core.Domain.Enum;
-using Mapster;
 using SharedKernel.Helper;
 
 namespace Core.Application.ApplicationServices.Activities.Queries.GetAll;
@@ -24,10 +23,4 @@ public record class GetAllActivitiesQueryResponse
 
 ) : IResponse;
 
-public class GetAllActivitiesProfile : IRegister
-{
-    public void Register(TypeAdapterConfig config)
-    {
-          config.ForType<IResponse, GetAllActivitiesQueryResponse>();
-    }
-}
+

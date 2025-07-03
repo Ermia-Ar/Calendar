@@ -1,12 +1,13 @@
-﻿using Calendar.Api.Hubs;
-using Core.Domain.Entities.Users;
+﻿using Core.Domain.Entities.Users;
 using Core.Domain.Exceptions;
 using DotNetEnv;
 using Infrastructure.Persistance.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 
 namespace Calendar.Api.Common;
@@ -79,6 +80,20 @@ public static class ApiExtension
 					Array.Empty<string>()
 				}
 			});
+
+			//
+			options.MapType<TimeSpan>(() => new OpenApiSchema
+			{
+				Type = "String",
+				Example = new OpenApiString("00:00:00")
+			});
+
+			//for doc
+			var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+			var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+			var ymalPath = "C:\\Users\\DELL\\source\\repos\\Calendar\\Core.Application\\bin\\Debug\\net8.0\\Core.Application.xml";
+			options.IncludeXmlComments(xmlPath, true);
+			options.IncludeXmlComments(ymalPath, true);
 		});
 #endif
 		return services;

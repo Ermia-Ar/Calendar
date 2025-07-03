@@ -4,7 +4,6 @@ using Infrastructure;
 using Infrastructure.Persistance.Data;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using Share;
 using SharedKernel;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,8 +31,8 @@ builder.Services.AddApplicatinoConfig()
     .AddInfraConfig()
     .AddShared(builder.Configuration);
 
-builder.Services.RegisterSharedServices()
-        .AddApiServices(builder.Configuration);
+builder.Services
+    .AddApiServices(builder.Configuration);
 
 builder.Services.AddHttpContextAccessor();
 
@@ -45,8 +44,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseShared();
+app.UseExceptionHandling();
 
 app.UseCors("AllowUI");
 

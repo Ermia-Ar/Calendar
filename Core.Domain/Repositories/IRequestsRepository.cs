@@ -18,7 +18,7 @@ public interface IRequestsRepository
 	void Update(Request request);
 
 	//Queries
-	Task<ListDto> GetAll(string userId, GetAllRequestFiltering filtering
+	Task<ListDto> GetAll(GetAllRequestFiltering filtering
 		, GetAllRequestsOrdring order, PaginationFilter pagination
 		, CancellationToken token);
 
@@ -47,7 +47,7 @@ public interface IRequestsRepository
 
 	Task<IReadOnlyCollection<Request>> Find(string? projectId
 		  , string? activityId, string? receiverId, string? senderId
-		  , RequestStatus? status, CancellationToken token);
+		  , RequestStatus? status, CancellationToken token, bool? isGeust = null);
 
 	Task<Request?> FindOne(string activityId, string receiverId, CancellationToken token);
 

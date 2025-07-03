@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Core.Application.ApplicationServices.Requests.Exceptions;
+﻿using Core.Application.ApplicationServices.Requests.Exceptions;
 using Core.Application.Common;
 using Core.Domain.Entities.Notifications;
 using Core.Domain.Enum;
@@ -11,7 +10,6 @@ namespace Core.Application.ApplicationServices.Projects.Commands.Exiting;
 public sealed class ExitingProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
 		: IRequestHandler<ExitingProjectCommandRequest>
 {
-
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
 
@@ -19,10 +17,10 @@ public sealed class ExitingProjectCommandHandler(IUnitOfWork unitOfWork, ICurren
     {
         var userId = _currentUserServices.GetUserId();
 
-		//get all requests for this project and its activities
-		var requests = (await _unitOfWork.Requests.Find(request.ProjectId, null
-             , userId, null, RequestStatus.Accepted, cancellationToken))
-            .ToList();
+        //get all requests for this project and its activities
+        var requests = (await _unitOfWork.Requests.Find(request.ProjectId, null
+             , userId, null, RequestStatus.Accepted, cancellationToken, false))
+             .ToList();
 
         if (!requests.Any())
         {

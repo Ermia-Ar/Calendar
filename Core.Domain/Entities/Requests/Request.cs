@@ -74,4 +74,11 @@ public class Request : BaseEntity
         UpdateDate = DateTime.Now;
         IsEdited = true;
     }
+
+    public void RemoveNotificaiton()
+    {
+        NotificationId = null;
+        UpdateDate = DateTime.Now;
+        IsEdited = true;
+    }
 }

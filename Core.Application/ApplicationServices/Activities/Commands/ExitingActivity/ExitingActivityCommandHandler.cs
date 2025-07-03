@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Core.Application.ApplicationServices.Requests.Exceptions;
+﻿using Core.Application.ApplicationServices.Requests.Exceptions;
 using Core.Application.Common;
 using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
@@ -7,12 +6,11 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.ExitingActivity;
 
-public sealed class ExitingActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
+public sealed class ExitingActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser)
         : IRequestHandler<ExitingActivityCommandRequest>
 {
     public readonly IUnitOfWork _unitOfWork = unitOfWork;
     public readonly ICurrentUserServices _currentUser = currentUser;
-    public readonly IMapper _mapper = mapper;
 
     public async Task Handle(ExitingActivityCommandRequest request, CancellationToken cancellationToken)
     {

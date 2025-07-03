@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Core.Application.ApplicationServices.Activities.Exceptions;
+﻿using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Application.Common;
 using Core.Domain.Entities.Activities;
 using Core.Domain.UnitOfWork;

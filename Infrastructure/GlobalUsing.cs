@@ -1,5 +1,4 @@
-﻿global using AutoMapper;
-global using Core.Application.ApplicationServices.Activities.Queries.GetAll;
+﻿global using Core.Application.ApplicationServices.Activities.Queries.GetAll;
 global using Core.Application.ApplicationServices.Activities.Queries.GetById;
 global using Core.Application.ApplicationServices.Activities.Queries.GetMembers;
 global using Core.Application.ApplicationServices.Auth.Queries.GetAll;
@@ -13,6 +12,7 @@ global using Core.Application.ApplicationServices.Requests.Queries.GetAll;
 global using Core.Application.ApplicationServices.Requests.Queries.GetById;
 global using Core.Application.Common;
 global using Core.Application.ExternalServices.Jwt;
+
 global using Core.Domain.Entities.Activities;
 global using Core.Domain.Entities.Comments;
 global using Core.Domain.Entities.Notifications;
@@ -23,11 +23,13 @@ global using Core.Domain.Enum;
 global using Core.Domain.Filtering;
 global using Core.Domain.Odering;
 global using Core.Domain.Repositories;
+
 global using Dapper;
 global using Infrastructure.ExternalServices.CurrentUserServices;
 global using Infrastructure.ExternalServices.Jwt;
 global using Infrastructure.ExternalServices.SignalR;
 global using Infrastructure.Persistance.Data;
+
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.Data.SqlClient;

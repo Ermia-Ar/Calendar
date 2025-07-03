@@ -6,6 +6,7 @@ public class ExitingActivityCommandValidator : AbstractValidator<ExitingActivity
 {
     public ExitingActivityCommandValidator()
     {
-        
-    }
+		RuleFor(x => x.ActivityId)
+		   .Must(x => Guid.TryParse(x, out var result));
+	}
 }

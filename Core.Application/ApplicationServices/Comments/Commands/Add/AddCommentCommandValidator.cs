@@ -6,6 +6,10 @@ public class AddCommentCommandValidator : AbstractValidator<AddCommentCommandReq
 {
     public AddCommentCommandValidator()
     {
-        
+        RuleFor(x => x.ActivityId)
+            .Must(x => Guid.TryParse(x, out var result));
+
+        RuleFor(x => x.Content)
+            .NotEmpty();
     }
 }

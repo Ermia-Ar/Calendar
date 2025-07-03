@@ -7,7 +7,6 @@ public class AddActivityCommandValidator : AbstractValidator<AddActivityCommandR
     public AddActivityCommandValidator()
     {
         RuleFor(x => x.Title)
-            .NotNull()
             .NotEmpty()
             .MinimumLength(3);
 
@@ -21,7 +20,7 @@ public class AddActivityCommandValidator : AbstractValidator<AddActivityCommandR
             .Custom((notification, context) =>
             {
                 var startDate = context.InstanceToValidate.StartDate;
-                if(startDate - notification <= DateTime.Now)
+                if(startDate - notification < DateTime.Now)
                 {
 					context.AddFailure("NotificationBefore"
                         , "Notification time must be set before the activity starts and must be in the future.");

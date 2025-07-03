@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Core.Application.ApplicationServices.Projects.Exceptions;
+﻿using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.ApplicationServices.Requests.Exceptions;
 using Core.Application.Common;
 using Core.Domain.Entities.Notifications;
@@ -9,11 +8,9 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.RemoveMember;
 
-public sealed class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+public sealed class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
         : IRequestHandler<RemoveMemberOfProjectCommandRequest>
 {
-
-    private readonly IMapper _mapper = mapper;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
 
@@ -32,7 +29,7 @@ public sealed class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, 
         }
         // find requests for this projcet the userId is in RequestCommand
         var requests = (await _unitOfWork.Requests.Find(request.ProjectId, null
-            , request.UserId, null, RequestStatus.Accepted, cancellationToken))
+            , request.UserId, null, RequestStatus.Accepted, cancellationToken, false))
             .ToList();
 
         if (!requests.Any())

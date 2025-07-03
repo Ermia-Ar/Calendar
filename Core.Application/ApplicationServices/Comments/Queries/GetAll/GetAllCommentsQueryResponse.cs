@@ -10,14 +10,6 @@ public record class GetAllCommentsQueryResponse
     string ProjectId,
     string Content,
     DateTime CreatedDate,
-    DateTime UpdatedDate,
+    DateTime UpdateDate,
     bool IsEdited) 
     : IResponse;
-
-public class GetCommentsProfile : IRegister
-{
-    public void Register(TypeAdapterConfig config)
-    {
-        config.ForType<IResponse, GetAllCommentsQueryResponse>();
-    }
-}

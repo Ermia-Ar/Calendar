@@ -1,5 +1,4 @@
-﻿
-namespace Infrastructure.Persistance.Repositories;
+﻿namespace Infrastructure.Persistance.Repositories;
 
 public class RequestRepository : IRequestsRepository
 {
@@ -41,20 +40,21 @@ public class RequestRepository : IRequestsRepository
 	//Queries
 	public async Task<IReadOnlyCollection<Request>> Find(string? projectId
 		, string? activityId, string? receiverId, string? senderId
-		, RequestStatus? status, CancellationToken token)
+		, RequestStatus? status, CancellationToken token, bool? isGuest = null)
 	{
 		return await _context.Requests.Where
 			(x => (projectId != null ? x.ProjectId == projectId : true)
 			&& (activityId != null ? x.ActivityId == activityId : true)
 			&& (receiverId != null ? x.ReceiverId == receiverId : true)
 			&& (senderId != null ? x.SenderId == senderId : true)
+			&& (isGuest.HasValue ? x.IsGuest == isGuest : true)
 			&& (status.HasValue ? x.Status == status : true)
 			)
 			.ToListAsync();
 	}
 
-	public async Task<ListDto> GetAll(string userId, GetAllRequestFiltering filtering,
-		GetAllRequestsOrdring order, PaginationFilter pagination,
+	public async Task<ListDto> GetAll(GetAllRequestFiltering filtering,
+		GetAllRequestsOrdring ordering, PaginationFilter pagination,
 		CancellationToken token)
 	{
 		using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -63,13 +63,18 @@ public class RequestRepository : IRequestsRepository
 		var parameters = new DynamicParameters();
 		//
 		parameters.Add("IsArchived", true);
+
+		// TODO : for senderId , receiverId filtering
 		//filtring
-		parameters.Add("SenderId", filtering.SenderId?? userId);
-		parameters.Add("ReceiverId", filtering.ReceiverId?? userId);
+		parameters.Add("SenderId", filtering.SenderId);
+		parameters.Add("ReceiverId", filtering.ReceiverId);
 		parameters.Add("RequestFor", filtering.RequestFor);
+		parameters.Add("Status", filtering.Status);
+		parameters.Add("ProjectId", filtering.ProjectId);
+		parameters.Add("ActivityId", filtering.ActivityId);
 		//ordring
-		parameters.Add("OrderDirection", order.GetOrderDirection(order));
-		parameters.Add("OrderBy", order.GetOrderBy(order));
+		parameters.Add("OrderDirection", ordering.GetOrderDirection(ordering));
+		parameters.Add("OrderBy", ordering.GetOrderBy(ordering));
 		//pagination
 		parameters.Add("PageNumber", pagination.PageNumber);
 		parameters.Add("PageSize", pagination.PageSize);
@@ -77,11 +82,12 @@ public class RequestRepository : IRequestsRepository
 		parameters.Add("TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
 		var userRequests = await connection.QueryAsync<GetAllRequestQueryResponse>
-			("SP_GetRequests", parameters, commandType: CommandType.StoredProcedure);
+		("SP_GetRequests", parameters, commandType: CommandType.StoredProcedure);
 
-		var totalCount = parameters.Get<int>("TotalCount");	
+		var totalCount = parameters.Get<int>("TotalCount");
 
 		return new ListDto(totalCount, userRequests.ToImmutableList());
+
 	}
 
 	public async Task<IResponse?> GetById(string id, CancellationToken token)
@@ -99,7 +105,7 @@ public class RequestRepository : IRequestsRepository
 	}
 
 	public async Task<ListDto> GetAllProjects(string userId, GetAllProjectsFiltering filtering
-		, GetAllProjectsOrdring order, PaginationFilter pagination
+		, GetAllProjectsOrdring ordering, PaginationFilter pagination
 		, CancellationToken token)
 	{
 		using var connection = new SqlConnection(_configuration.GetConnectionString("Connection"));
@@ -116,8 +122,8 @@ public class RequestRepository : IRequestsRepository
 		parameters.Add("ownerId", filtering.UserIsOwner ? userId : null);
 		parameters.Add("History", filtering.IsHistory == true ? DateTime.Now : null);
 		//ordring
-		parameters.Add("OrderDirection", order.GetOrderDirection(order));
-		parameters.Add("OrderBy", order.GetOrderBy(order));
+		parameters.Add("OrderDirection", ordering.GetOrderDirection(ordering));
+		parameters.Add("OrderBy", ordering.GetOrderBy(ordering));
 		//pagination
 		parameters.Add("PageNumber", pagination.PageNumber);
 		parameters.Add("PageSize", pagination.PageSize);
@@ -176,8 +182,8 @@ public class RequestRepository : IRequestsRepository
 		//pagination
 		parameters.Add("PageNumber", pagination.PageNumber);
 		parameters.Add("PageSize", pagination.PageSize);
-		parameters.Add("TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
+		parameters.Add("TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
 
 		var activities = await connection.QueryAsync<GetAllActivitiesQueryResponse>

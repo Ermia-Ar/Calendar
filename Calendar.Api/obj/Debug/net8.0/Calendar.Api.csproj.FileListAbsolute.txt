@@ -5,7 +5,6 @@ C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Calendar.Api.d
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Calendar.Api.runtimeconfig.json
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Calendar.Api.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Calendar.Api.pdb
-C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\AWSSDK.Core.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\AWSSDK.S3.dll
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Azure.Core.dll
@@ -202,3 +201,6 @@ C:\Users\DELL\source\repos\Calendar\Calendar.Api\obj\Debug\net8.0\refint\Calenda
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\obj\Debug\net8.0\Calendar.Api.pdb
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\obj\Debug\net8.0\Calendar.Api.genruntimeconfig.cache
 C:\Users\DELL\source\repos\Calendar\Calendar.Api\obj\Debug\net8.0\ref\Calendar.Api.dll
+C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Calendar.Api.xml
+C:\Users\DELL\source\repos\Calendar\Calendar.Api\obj\Debug\net8.0\Calendar.Api.xml
+C:\Users\DELL\source\repos\Calendar\Calendar.Api\bin\Debug\net8.0\Core.Application.xml

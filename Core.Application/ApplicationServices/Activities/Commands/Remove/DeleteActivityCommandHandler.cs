@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Core.Application.ApplicationServices.Activities.Exceptions;
+﻿using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Application.Common;
 using Core.Domain.Entities.Notifications;
 using Core.Domain.UnitOfWork;
@@ -7,12 +6,11 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.Remove;
 
-public sealed class DeleteActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser, IMapper mapper)
+public sealed class DeleteActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser)
             : IRequestHandler<DeleteActivityCommandRequest>
 {
     public readonly IUnitOfWork _unitOfWork = unitOfWork;
     public readonly ICurrentUserServices _currentUser = currentUser;
-    public readonly IMapper _mapper = mapper;
 
     public async Task Handle(DeleteActivityCommandRequest request, CancellationToken cancellationToken)
     {

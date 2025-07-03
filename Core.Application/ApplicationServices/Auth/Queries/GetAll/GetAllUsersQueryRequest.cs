@@ -17,18 +17,28 @@ public sealed record GetAllUsersQueryRequest(
     public static GetAllUsersQueryRequest Create(GetAllUsersDto model)
     {
         return new GetAllUsersQueryRequest(new PaginationFilter(model.PageNum, model.PageSize),
-            new GetAllUsersFiltering(model.Search, model.Category)
-            , new GetAllUsersOrdering(model.IdOrdering, model.UserNameOrdering, model.EmailOrdering, model.CategoryOrdering));
+            new GetAllUsersFiltering(model.SearchFiltering, model.CategoryFiltering)
+            , new GetAllUsersOrdering(model.IdOrdering, model.UserNameOrdering
+            , model.EmailOrdering, model.CategoryOrdering));
     }
 }
 
-
+/// <summary>
+/// 
+/// </summary>
+/// <param name="PageSize"></param>
+/// <param name="PageNum"></param>
+/// <param name="SearchFiltering">بر روی نام های کاربری سرچ انجام میده</param>
+/// <param name="CategoryFiltering"></param>
+/// <param name="IdOrdering"></param>
+/// <param name="UserNameOrdering"></param>
+/// <param name="EmailOrdering"></param>
+/// <param name="CategoryOrdering"></param>
 public sealed record GetAllUsersDto(
     int PageSize,
     int PageNum,
-    OrderingType Type,
-    string? Search,
-    UserCategory? Category,
+    string? SearchFiltering,
+    UserCategory? CategoryFiltering,
 	OrderingType? IdOrdering = null,
 	OrderingType? UserNameOrdering = null,
 	OrderingType? EmailOrdering = null,

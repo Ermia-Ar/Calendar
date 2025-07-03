@@ -6,6 +6,11 @@ public class RemoveMemberOfActivityCommandValidator : AbstractValidator<RemoveMe
 {
     public RemoveMemberOfActivityCommandValidator()
     {
-        
-    }
+		RuleFor(x => x.ActivityId)
+		   .Must(x => Guid.TryParse(x, out var result));
+
+
+		RuleFor(x => x.UserId)
+		   .Must(x => Guid.TryParse(x, out var result));
+	}
 }

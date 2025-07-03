@@ -1,6 +1,4 @@
-﻿
-
-namespace Calendar.Api.Controllers;
+﻿namespace Calendar.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -16,6 +14,13 @@ public class ProjectsController(ISender sender
     private readonly IHubContext<CommonHub> _hubContext = hubContext;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
 
+
+    /// <summary>
+    /// ساخت پروژه
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<SuccessResponse> Add([FromBody] AddProjectCommandRequest request
         , CancellationToken token = default)
@@ -31,7 +36,15 @@ public class ProjectsController(ISender sender
         return Result.Ok();
     }
 
-
+    /// <summary>
+    /// ارسال درخواست عضویت در پروژه
+    /// </summary>
+    /// <remarks>
+    /// کاربر فرستنده درخواست باید سازنده پروژه باشد
+    /// </remarks>
+    /// <param name="request"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
     [HttpPost("SubmitRequest")]
     public async Task<SuccessResponse> SendProjectRequest([FromBody] SubmitProjectRequestCommandRequest request
         , CancellationToken token = default)
@@ -50,8 +63,17 @@ public class ProjectsController(ISender sender
 		return Result.Ok();
     }
 
-
-    [HttpPost("Activities")]
+	/// <summary>
+	/// اضافه کردن یک فعالیت به پروژه
+	/// </summary>
+	/// <remarks>
+	/// کاربر فرستده درخواست باید عضوی از پروژه باشه
+	/// اگر فیلد نوتیفیکیشن نال ارسال شود اعلان پیش فرض برای کاربر ثبت میشود
+	/// </remarks>
+	/// <param name="request"></param>
+	/// <param name="token"></param>
+	/// <returns></returns>
+	[HttpPost("Activities")]
     public async Task<SuccessResponse> AddActivity([FromBody] AddActivityForProjectCommandRequest request
         , CancellationToken token = default)
     {
@@ -66,7 +88,15 @@ public class ProjectsController(ISender sender
 		return Result.Ok();
     }
 
-
+    /// <summary>
+    /// دربافت عضوهای یک پروژه
+    /// </summary>
+    /// <remarks>
+    /// کاربر فرستنده درخواست باید عضوی از پروژه باشه
+    /// </remarks>
+    /// <param name="id"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
     [HttpGet("Members/{id:guid}")]
     public async Task<SuccessResponse<List<GetMemberOfProjectQueryResponse>>> GetMembers([FromRoute] Guid id
         , CancellationToken token = default)
@@ -78,7 +108,12 @@ public class ProjectsController(ISender sender
         return Result.Ok(result);
     }
 
-
+    /// <summary>
+    /// دریافت تمام پروژه مربوط به کاربر
+    /// </summary>
+    /// <param name="model"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
     [HttpGet]
     public async Task<SuccessResponse<PaginationResult<List<GetAllProjectQueryResponse>>>> GetAll([FromQuery] GetAllProjectDto model
         , CancellationToken token = default)
@@ -89,7 +124,12 @@ public class ProjectsController(ISender sender
         return Result.Ok(result);
     }
 
-
+    /// <summary>
+    /// دریافت پروژه با ایدی
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
     [HttpGet("{id:guid:required}")]
     public async Task<SuccessResponse<GetProjectByIdQueryResponse>> GetById(Guid id
         , CancellationToken token = default)
@@ -100,7 +140,14 @@ public class ProjectsController(ISender sender
         return Result.Ok(result);
     }
 
-
+    /// <summary>
+    /// حارج شدن از یک پروژه
+    /// </summary>
+    /// کاربر باید غضو پروژه باشه 
+    /// با ارسال این درخواست علاوه بر این پروژه از تمام فعالیت های مربوط  به این پروژه نیز خارج می شوید
+    /// <param name="id"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
     [HttpDelete("Exiting/{id:guid:required}")]
     public async Task<SuccessResponse> Exiting(Guid id
       , CancellationToken token)
@@ -116,8 +163,18 @@ public class ProjectsController(ISender sender
         return Result.Ok();
     }
 
-
-    [HttpDelete("RemoveOf/{id:guid:required}/Member/{memberId:guid:required}")]
+	/// <summary>
+	/// بیرون کردن یک عضو
+	/// </summary>
+	/// <remarks>
+	/// کاربر فرستده درخواست باید سازنده پروژه باشد
+	/// با ارسال این درخواست علاوه بر این پروژه از تمام فعالیت های مربوط  به این پروژه نیز بیرون می شود
+	/// </remarks>
+	/// <param name="id"></param>
+	/// <param name="memberId"></param>
+	/// <param name="token"></param>
+	/// <returns></returns>
+	[HttpDelete("RemoveOf/{id:guid:required}/Member/{memberId:guid:required}")]
     public async Task<SuccessResponse> RemoveMember(Guid id, Guid memberId,
         CancellationToken token = default)
     {
@@ -130,7 +187,16 @@ public class ProjectsController(ISender sender
         return Result.Ok();
     }
 
-
+    /// <summary>
+    /// حذف یک پروژه
+    /// </summary>
+    /// <remarks>
+    /// کاربر فرستنده درخواست باید سازنده پروژه باشد
+    /// علاوه بر پروژه تمام فعالیت ها درخواست ها و کامنت های مربوط به این پروژه نیز خذف می شوند
+    /// </remarks>
+    /// <param name="id"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
     [HttpDelete("{id:guid:required}")]
     public async Task<SuccessResponse> Remove(Guid id
         , CancellationToken token = default)

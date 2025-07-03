@@ -7,7 +7,10 @@ namespace Core.Application.ApplicationServices.Auth.Commands.Login
         public LoginCommandValidator()
         {
             RuleFor(x => x.UserNameOrEmail)
-                .NotEmpty();
+                .MinimumLength(3);
+
+            RuleFor(x => x.Password)
+                .MinimumLength(8);
         }
     }
 }

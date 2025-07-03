@@ -11,7 +11,6 @@ public static class CoreConfig
 {
 	public static IServiceCollection AddApplicatinoConfig(this IServiceCollection services)
 	{
-		services.AddAutoMapper(Assembly.GetExecutingAssembly());
 		// Get Validators
 		services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

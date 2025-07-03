@@ -16,3 +16,5 @@ C:\Users\DELL\source\repos\Calendar\Core.Application\obj\Debug\net8.0\Core.Appli
 C:\Users\DELL\source\repos\Calendar\Core.Application\obj\Debug\net8.0\refint\Core.Application.dll
 C:\Users\DELL\source\repos\Calendar\Core.Application\obj\Debug\net8.0\Core.Application.pdb
 C:\Users\DELL\source\repos\Calendar\Core.Application\obj\Debug\net8.0\ref\Core.Application.dll
+C:\Users\DELL\source\repos\Calendar\Core.Application\bin\Debug\net8.0\Core.Application.xml
+C:\Users\DELL\source\repos\Calendar\Core.Application\obj\Debug\net8.0\Core.Application.xml

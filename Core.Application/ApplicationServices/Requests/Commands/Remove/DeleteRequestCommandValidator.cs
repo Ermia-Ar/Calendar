@@ -6,6 +6,8 @@ public class DeleteRequestCommandValidator : AbstractValidator<DeleteRequestComm
 {
     public DeleteRequestCommandValidator()
     {
-        
+        RuleFor(x => x.Id)
+            .Must(x => Guid.TryParse(x, out var result));
+
     }
 }

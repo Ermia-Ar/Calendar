@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Core.Domain.UnitOfWork;
+﻿using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
 

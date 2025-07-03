@@ -13,12 +13,12 @@ public class ProjectsController(IHttpClientFactory httpClientFactory, ICurrentUs
     public async Task<IActionResult> Index()
     {
         ViewBag.userId = _currentUser.GetUserId();
-        var response = await _httpClient.GetStringAsync("Projects");
-        var result = Converter.FromJson<Response<List<GetAllProjects>>>(response);
+        var response = await _httpClient.GetStringAsync("Projects?PageSize=10");
+        var result = Converter.FromJson<Response<PaginationResult<List<GetAllProjects>>>>(response);
 
         if (result.IsSuccess)
         {
-            return View(result.Value);
+            return View(result.Value.Data);
         }
         Console.WriteLine("Error" + result.Errors);
         return RedirectToAction("Index");
@@ -185,13 +185,13 @@ public class ProjectsController(IHttpClientFactory httpClientFactory, ICurrentUs
 
     public async Task<IActionResult> Comments(string id, bool isOwner)
     {
-        var response = await _httpClient.GetStringAsync($"Comments?ProjectId={id}");
-        var result = Converter.FromJson<Response<List<GetAllCommentsDto>>>(response);
+        var response = await _httpClient.GetStringAsync($"Comments?ProjectIdFiltering={id}&PageSize=10");
+        var result = Converter.FromJson<Response<PaginationResult<List<GetAllCommentsDto>>>>(response);
         ViewBag.isOwner = isOwner;
 
         if (result.IsSuccess)
         {
-            return View(result.Value);
+            return View(result.Value.Data);
         }
         Console.WriteLine("Error : ", result.Errors);
         return RedirectToAction("Index");

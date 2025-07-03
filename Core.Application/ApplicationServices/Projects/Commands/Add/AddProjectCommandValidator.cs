@@ -9,7 +9,6 @@ public class AddProjectCommandValidator : AbstractValidator<AddProjectCommandReq
     {
 		RuleFor(x => x.Title)
 			.NotNull()
-			.NotEmpty()
 			.MinimumLength(3);
 
 		RuleFor(x => x.Description);

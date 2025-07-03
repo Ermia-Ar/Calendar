@@ -1,4 +1,6 @@
-﻿namespace Infrastructure.ExternalServices.Jwt;
+﻿using Mapster;
+
+namespace Infrastructure.ExternalServices.Jwt;
 
 public class TokenServices : ITokenServices
 {
@@ -6,20 +8,18 @@ public class TokenServices : ITokenServices
     private readonly UserManager<User> _userManager;
     private readonly ICurrentUserServices _currentUserServices;
     private readonly IConfiguration _configuration;
-    private readonly IMapper _mapper;
 
     public TokenServices(UserManager<User> userManager,
-        IMapper mapper, ICurrentUserServices currentUserServices, IConfiguration configuration)
+        ICurrentUserServices currentUserServices, IConfiguration configuration)
     {
         _userManager = userManager;
-        _mapper = mapper;
         _currentUserServices = currentUserServices;
         _configuration = configuration;
     }
 
     public async Task<string> GetJWTToken(User user)
     {
-        var domainUser = _mapper.Map<User>(user);
+        var domainUser = user.Adapt<User>();
         var (JwtToken, AccessToken) = await GenerateJwtToken(domainUser);
 
         return AccessToken;

@@ -1,22 +1,16 @@
-﻿using AutoMapper;
-using Core.Application.ApplicationServices.Projects.Exceptions;
+﻿using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.Common;
-using Core.Domain.Entities.Activities;
-using Core.Domain.Entities.Comments;
 using Core.Domain.Entities.Notifications;
 using Core.Domain.UnitOfWork;
-using Mapster;
 using MediatR;
-using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.Remove;
 
-public class DeleteProjectCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ICurrentUserServices currentUserServices)
+public class DeleteProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
         : IRequestHandler<DeleteProjectCommandRequest>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
-    private readonly IMapper _mapper = mapper;
 
     public async Task Handle(DeleteProjectCommandRequest request, CancellationToken cancellationToken)
     {

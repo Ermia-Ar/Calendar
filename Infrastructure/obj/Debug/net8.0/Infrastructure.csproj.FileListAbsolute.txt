@@ -20,3 +20,4 @@ C:\Users\DELL\source\repos\Calendar\Infrastructure\obj\Debug\net8.0\refint\Infra
 C:\Users\DELL\source\repos\Calendar\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 C:\Users\DELL\source\repos\Calendar\Infrastructure\obj\Debug\net8.0\Infrastructure.genruntimeconfig.cache
 C:\Users\DELL\source\repos\Calendar\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+C:\Users\DELL\source\repos\Calendar\Infrastructure\bin\Debug\net8.0\Core.Application.xml
