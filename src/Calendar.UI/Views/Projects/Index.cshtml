@@ -1,0 +1,64 @@
+﻿@model List<Calendar.UI.Models.GetAllProjects>
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<div style="position: relative; min-height: 80vh;">
+
+    <div style="position: absolute; top: 10px; right: 10px;">
+        <a href="/Projects/Add" class="btn btn-primary">➕ Add New Project</a>
+    </div>
+
+    <h2>Project List</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model)
+                {
+                    <tr id="project-row-@project.Id">
+                        <td>@project.Title</td>
+                        <td>@project.Description</td>
+                        <td>@project.StartDate.ToString("yyyy-MM-dd")</td>
+                        <td>@project.EndDate.ToString("yyyy-MM-dd")</td>
+                        <td>@project.CreatedDate.ToString("g")</td>
+                        <td>@project.UpdateDate.ToString("g")</td>
+                        <td>
+                            @if(project.OwnerId == ViewBag.userId)
+                            {
+                                <a href="/Projects/Activities?id=@project.Id&isOwner=true" class="btn btn-sm btn-info">Activities</a>
+                                <a href="/Projects/Members?id=@project.Id&isOwner=true" class="btn btn-sm btn-info">Members</a>
+                                <a href="/Projects/Comments?id=@project.Id&isOwner=true" class="btn btn-sm btn-info">Comments</a>
+                                <a href="/Projects/Remove/@project.Id" class="btn btn-sm btn-danger">Delete</a>
+                            }
+                            else
+                            {
+                                <a href="/Projects/Activities?id=@project.Id&isOwner=false" class="btn btn-sm btn-info">Activities</a>
+                                <a href="/Projects/Members?id=@project.Id&isOwner=false" class="btn btn-sm btn-info">Members</a>
+                                <a href="/Projects/Comments?id=@project.Id&isOwner=false" class="btn btn-sm btn-info">Comments</a>
+                                <a href="/Projects/Leave/@project.Id" class="btn btn-sm btn-danger">Leave</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">No projects found.</div>
+    }
+
+</div>

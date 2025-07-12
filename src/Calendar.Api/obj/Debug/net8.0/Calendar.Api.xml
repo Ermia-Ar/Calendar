@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Calendar.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.Post(Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest,System.Threading.CancellationToken)">
+            <summary>
+            ساخت فعالیت با پروژه ایدی پیش فرض
+            </summary>
+            <remarks>
+            اگر فیلد نوتیفیکیشن نال ارسال شود اعلان پیش فرض برای کاربر ثبت میشود
+            </remarks>
+            <param name="request">request for new activity</param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.PostRecurring(Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommnadRequest,System.Threading.CancellationToken)">
+            <summary>
+            ساخت فعالیت دوره ای
+            </summary>
+            <param name="request"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.PostSubActivity(System.Int64,Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto,System.Threading.CancellationToken)">
+            <summary>
+            ساخت دنباله برای فعالیت 
+            </summary>
+            <remarks>
+            فقط سازده فعالیت اجازه ساخت دنباله برای آن را دارد 
+            اگر فیلد نوتیفیکیشن نال ارسال شود اعلان پیش فرض برای کاربر ثبت میشود
+            </remarks>
+            <param name="id"></param>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.SendRequest(System.Int64,Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto,System.Threading.CancellationToken)">
+            <summary>
+            ارسال درخواست برای عضویت
+            </summary>
+            <remarks>
+            .فقط سازده فعالیت اجازه ارسال درخواست برای آن را دارد 
+            نباید از قبل برای دربافت کننده چنین درخواستی ثیت شده باشد
+            </remarks>
+            <param name="id"></param>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.GetAll(Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto,System.Threading.CancellationToken)">
+            <summary>
+            دریافت تمام فعالیت های کاربر فعلی
+            </summary>
+            <remarks>
+            دارای صفحه بندی
+            </remarks>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.GetMember(System.Int64,Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto,System.Threading.CancellationToken)">
+            <summary>
+            دریافت تمام عضو های که یک فعالیت
+            </summary>
+            <remarks>
+            کاربری که این درخواست رو می فرستده باید عضویی از این فعالیت باشه
+            </remarks>
+            <param name="id">ایدی فعالیت</param>
+            <param name="token"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.GetById(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            دریافت یک فعالیت با ایدی آن 
+            </summary>
+            <param name="id">ایدی فعالیت</param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.Put(System.Int64,Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto,System.Threading.CancellationToken)">
+            <summary>
+            به روزرسانی کلی یک فعالیت
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.Complete(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            تکمیل یک فعالیت
+            </summary>
+            <remarks>
+            کاربری که این درخواست رو ارسال میکنه باید سازنده فعالیت باشه
+            </remarks>
+            <param name="id"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.Notification(System.Int64,Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationDto,System.Threading.CancellationToken)">
+            <summary>
+            تغییر در زمان ارسال اعلان
+            </summary>
+            <remarks>
+            کاربر باید عضوی از فعالیت باشد
+            اگر فیلد نوتیفیکیشن نال ارسال شود دیگر اعلانی برای کاربر فعلی ارسال نمی شود
+            </remarks>
+            <param name="id"></param>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.ChangeStartDate(System.Int64,Core.Application.ApplicationServices.Activities.Commands.UpdateStartDate.UpdateActivityStartDateDto,System.Threading.CancellationToken)">
+            <summary>
+            تغییر در زمان شروع یک فعالیت
+            </summary>
+            <remarks>
+            کاربری که این درخواست رو ارسال میکنه باید سازنده فعالیت باشه
+            </remarks>
+            <param name="id"></param>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.Remove(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            حذف فعالیت
+            </summary>
+            <remarks>
+            کاربری که این درخواست رو ارسال میکنه باید سازنده فعالیت باشه
+            تمام کامنت ها و درخواست های مربوط به این فعالیت نیز حذف میشوند
+            </remarks>
+            <param name="id"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.Exiting(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            خارج شدن از یک فعالیت
+            </summary>
+            <remarks>
+            کاربر باید عضوی از فعالیت باشد
+            </remarks>
+            <param name="id">ایدی فعالیت</param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ActivitiesController.RemoveMember(System.Int64,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            بیرون کردن یک عضو از فعالیت
+            </summary>
+            <remarks>
+            کاربری که این درخواست رو ارسال میکنه باید سازنده فعالیت باشه
+            </remarks>
+            <param name="id">ایدی فعالیت</param>
+            <param name="memberId">ایدی عضو</param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.AuthController.Login(Core.Application.ApplicationServices.Auth.Commands.Login.LoginCommandRequest,System.Threading.CancellationToken)">
+            <summary>
+            ورودی کاربر
+            </summary>
+            <param name="request"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.AuthController.GetAll(Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto,System.Threading.CancellationToken)">
+            <summary>
+            دریافت تمام کاربر های برنامه 
+            </summary>
+            <remarks>
+            دارای صفحه بندی
+            </remarks>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.CommentsController.Post(Core.Application.ApplicationServices.Comments.Commands.Add.AddCommentCommandRequest,System.Threading.CancellationToken)">
+            <summary>
+            کامنت گذاری برای فعالیت
+            </summary>
+            <param name="request"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.CommentsController.Put(System.Int64,System.String,System.Threading.CancellationToken)">
+            <summary>
+            به روزرسانی کامنت
+            </summary>
+            <remarks>
+            کاربر فرستنده درخواست باید سازنده کامنت باشد
+            </remarks>
+            <param name="id">ایدی کامنت</param>
+            <param name="content">متن کامنت</param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.CommentsController.Remove(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            حذف کامنت
+            </summary>	
+            <remarks>
+            کاربر فرستنده درخواست باید سازنده کامنت باشد
+            </remarks>
+            <param name="id">ایدی کامنت مورد نظر</param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.CommentsController.GetById(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            دریافت کامنت با ایدی
+            </summary>
+            <param name="id"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.CommentsController.GetAll(Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto,System.Threading.CancellationToken)">
+            <summary>
+            دریافت تمامی کامنت های برنامه
+            </summary>
+            <remarks>
+            انجام شود در غیر این صورت برنامه ارور می دهد userId, projectId, ActivityId حتما باید یکی از فیلتر ها 
+            </remarks>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.Post(Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest,System.Threading.CancellationToken)">
+            <summary>
+            ساخت پروژه
+            </summary>
+            <param name="request"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.AddMember(System.Int64,Core.Application.ApplicationServices.Projects.Commands.AddMembers.AddMembersToProjectDto,System.Threading.CancellationToken)">
+            <summary>
+            افزودن عضو به پروژه 
+            </summary>
+            <remarks>
+            کاربر فرستنده درخواست باید سازنده پروژه باشد
+            </remarks>
+            <param name="id"></param>
+            <param name="model"></param>
+            <param name="token"></param>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.AddActivity(System.Int64,Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto,System.Threading.CancellationToken)">
+            <summary>
+            اضافه کردن یک فعالیت به پروژه
+            </summary>
+            <remarks>
+            کاربر فرستده درخواست باید عضوی از پروژه باشه
+            اگر فیلد نوتیفیکیشن نال ارسال شود اعلان پیش فرض برای کاربر ثبت میشود
+            </remarks>
+            <param name="model"></param>
+            <param name="token"></param>
+            <param name="id"></param>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.PostRecurring(System.Int64,Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto,System.Threading.CancellationToken)">
+            <summary>
+            اضافه کردن فعالیت دوره ای
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.GetActivities(System.Int64,Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto,System.Threading.CancellationToken)">
+            <summary>
+            دریافت فعالیت های پروژه
+            </summary>
+            <remarks>
+            فعالیت هایی از این پروژه رو برمیگردونه که کاربر فعلی در اون عضو هست
+            دارای صفحه بندی
+            </remarks>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.GetMembers(System.Int64,Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectDto,System.Threading.CancellationToken)">
+            <summary>
+            دربافت عضوهای یک پروژه
+            </summary>
+            <remarks>
+            کاربر فرستنده درخواست باید عضوی از پروژه باشه
+            </remarks>
+            <param name="id"></param>
+            <param name="model"></param>
+            <param name="token"></param>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.GetAll(Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto,System.Threading.CancellationToken)">
+            <summary>
+            دریافت تمام پروژه مربوط به کاربر
+            </summary>
+            <remarks>
+            دارای صفحه بندی
+            </remarks>
+            <param name="model"></param>
+            <param name="token"></param>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.GetById(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            دریافت پروژه با ایدی
+            </summary>
+            <param name="id"></param>
+            <param name="token"></param>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.Exiting(System.Int64,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            خارج شدن از یک پروژه
+            </summary>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.RemoveMember(System.Int64,System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            بیرون کردن یک عضو
+            </summary>
+            <remarks>
+            کاربر فرستده درخواست باید سازنده پروژه باشد
+            با ارسال این درخواست علاوه بر این پروژه از تمام فعالیت های مربوط  به این پروژه نیز بیرون می شود
+            </remarks>
+        </member>
+        <member name="M:Calendar.Api.Controllers.ProjectsController.Remove(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            حذف یک پروژه
+            </summary>
+            <remarks>
+            کاربر فرستنده درخواست باید سازنده پروژه باشد
+            علاوه بر پروژه تمام فعالیت ها درخواست ها و کامنت های مربوط به این پروژه نیز خذف می شوند
+            </remarks>
+        </member>
+        <member name="M:Calendar.Api.Controllers.RequestsController.Answer(System.Int64,Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestDto,System.Threading.CancellationToken)">
+            <summary>
+            جواب دادن به درخواست
+            </summary>
+            <remarks>
+            کاربر فرستنده درخواست باید دربافت کننده درخواست باشه
+            </remarks>
+            <param name="id"></param>
+            <param name="model"></param>
+        </member>
+        <member name="M:Calendar.Api.Controllers.RequestsController.Remove(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            حذف درخواست 
+            </summary>
+            <remarks>
+            کاربر فرستنده درخواست باید یا دریافت کننده یا فرستنده درخواست باشه
+            </remarks>
+        </member>
+        <member name="M:Calendar.Api.Controllers.RequestsController.GetById(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            دریافت درخواست با ایدی 
+            </summary>
+        </member>
+        <member name="M:Calendar.Api.Controllers.RequestsController.GetAll(Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto,System.Threading.CancellationToken)">
+            <summary>
+            دریافت تمام درخواست های برنامه 
+            </summary>
+            <remarks>دارای صفحه بندی</remarks>
+            <param name="model"></param>
+        </member>
+    </members>
+</doc>

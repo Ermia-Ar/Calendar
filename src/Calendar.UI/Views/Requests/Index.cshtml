@@ -1,0 +1,48 @@
+﻿@model List<GetAllRequestsDto>
+
+@{
+    ViewData["Title"] = "Requests";
+}
+
+<h2>Requests</h2>
+
+<table id="requestsTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Sender</th>
+            <th>Receiver</th>
+            <th>For</th>
+            <th>Status</th>
+            <th>Invited At</th>
+            <th>Answered At</th>
+            <th>Message</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.SenderId</td>
+                <td>@request.ReceiverId</td>
+                <td>@request.RequestFor</td>
+                <td>@request.Status</td>
+                <td>@request.InvitedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@(request.AnsweredAt?.ToString("yyyy-MM-dd HH:mm") ?? "-")</td>
+                <td>@request.Message</td>
+                <td>
+                    @if (request.Status == Calendar.UI.Models.RequestStatus.Pending)
+                    {
+                        <a href="/Requests/Answer?id=@request.Id&isAccepted=true" class="btn btn-warning">Accept</a>
+                        <a href="/Requests/Answer?id=@request.Id&isAccepted=false" class="btn btn-danger">Reject</a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">@request.Status</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

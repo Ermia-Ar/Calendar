@@ -1,0 +1,54 @@
+﻿@model AddActivityRequest
+
+<h2>Add New Activity</h2>
+
+<form method="post" asp-controller="Activities" asp-action="Add">
+
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartDate">Start Date</label>
+        <input asp-for="StartDate" class="form-control" type="datetime-local" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DurationInMinute">Duration (minutes)</label>
+        <input asp-for="DurationInMinute" class="form-control" type="number" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NotificationBeforeInMinute">Notify Before (minutes)</label>
+        <input asp-for="NotificationBeforeInMinute" class="form-control" type="number" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category">Category</label>
+        <select asp-for="Category" class="form-control">
+            <option value="0">Task</option>
+            <option value="1">Event</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="MemberNames" class="form-label">Member to Invite</label>
+        <input type="text" name="MemberNames" class="form-control"
+               placeholder="Enter comma-separated user names">
+        <small class="form-text text-muted">e.g. user1@example.com, user2@example.com</small>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Message" class="form-label"></label>
+        <textarea asp-for="Message" class="form-control" rows="3" placeholder="Optional message..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Save Activity</button>
+    <a href="/Projects" class="btn btn-secondary mt-2">Cancel</a>
+</form>

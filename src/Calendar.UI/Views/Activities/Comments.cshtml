@@ -1,0 +1,36 @@
+﻿@model List<GetAllCommentsDto>
+
+@{
+    ViewData["Title"] = "Comments";
+    var activityId = ViewBag.activityId as string;
+}
+
+<h2>Comments</h2>
+
+<div>
+    @foreach (var comment in Model)
+    {
+        <div class="border p-2 mb-2">
+            <p><strong>Content:</strong> @comment.Content</p>
+            <p><strong>Created:</strong> @comment.CreatedDate</p>
+            @if (comment.IsEdited)
+            {
+                <p><em>(Edited)</em></p>
+            }
+        </div>
+    }
+</div>
+
+<hr />
+
+<h3>Add a new comment</h3>
+
+<form asp-action="Add" asp-controller="Comments"  method="post">
+    <input type="hidden" name="ActivityId" value="@activityId" />
+
+    <div class="mb-2">
+        <input name="Content" class="form-control" type="text" placeholder="comment" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
