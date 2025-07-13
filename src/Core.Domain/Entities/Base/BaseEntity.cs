@@ -8,12 +8,11 @@ public class BaseEntity
 
 	public DateTime? UpdateDate { get; set; }
 
-	public bool IsEdited { get; set; }
-
 	public bool IsActive { get; set; }
 
 	public void MakeUnActive()
 	{
 		IsActive = false;
 	}
+
 }

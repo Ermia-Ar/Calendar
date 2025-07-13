@@ -1,5 +1,5 @@
 ﻿using Core.Domain.UnitOfWork;
-using Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Persistence.UnitOfWork;
 
@@ -31,7 +31,9 @@ public class UnitOfWorks(
 
     public IUsersRepository Users {  get; private set; } = usersRepository;
 
-    public void Dispose()
+	private IDbContextTransaction? _transaction;
+
+	public void Dispose()
     {
         context.Dispose();
     }
@@ -40,4 +42,22 @@ public class UnitOfWorks(
     {
         await context.SaveChangesAsync(token);
     }
+
+    public async Task<IDbContextTransaction> BeginTransaction(CancellationToken token = default)
+    {
+		_transaction =  await context.Database.BeginTransactionAsync(token);
+        return _transaction;
+    }
+
+	public async Task Commit(CancellationToken token = default)
+	{
+		if (_transaction != null)
+			await _transaction.CommitAsync(token);
+	}
+
+	public async Task Rollback(CancellationToken token = default)
+	{
+		if (_transaction != null)
+			await _transaction.RollbackAsync(token);
+	}
 }

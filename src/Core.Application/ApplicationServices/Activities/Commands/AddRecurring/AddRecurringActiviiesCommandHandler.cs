@@ -32,69 +32,81 @@ public class AddRecurringActivityCommandHandler
 
 	public async Task Handle(AddRecurringActivityCommnadRequest request, CancellationToken cancellationToken)
 	{
-		var ownerId = _currentUser.GetUserId();
-		var defaultProjectId = long.Parse(_configuration["PUBLIC:PROJECTID"]);
+		await using var transaction = await _unitOfWork.BeginTransaction(cancellationToken);
 
-		//Generate Recurring Activities
-		var activities = GenerateRecurringActivities(ownerId, defaultProjectId, request);
-		//add to activity table
-		activities = _unitOfWork.Activities.AddRange(activities);
-		await _unitOfWork.SaveChangeAsync(cancellationToken);
-
-		//create request for all membersIds
-		var userRequests = new List<Request>();
-		foreach (var receiverId in request.MemberIds)
+		try
 		{
-			//check
-			var receiver = (await _unitOfWork
-				.Users.GetById(receiverId, cancellationToken))
-				.Adapt<GetUserByIdResponse>();
+			var ownerId = _currentUser.GetUserId();
+			var defaultProjectId = long.Parse(_configuration["PUBLIC:PROJECTID"]);
 
-			if (receiver == null)
-				throw new NotFoundUserIdException(receiverId);
+			//Generate Recurring Activities
+			var activities = GenerateRecurringActivities(ownerId, defaultProjectId, request);
+			//add to activity table
+			activities = _unitOfWork.Activities.AddRange(activities);
+			await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-			foreach(var activity in activities)
+			//create request for all membersIds
+			var userRequests = new List<Request>();
+			foreach (var receiverId in request.MemberIds)
 			{
-				//create request for memberId
-				var sendRequest = RequestFactory.Create(activity.Id
-					, ownerId, receiverId, request.Message, false);
+				////check
+				var receiver = (await _unitOfWork
+					.Users.GetById(receiverId, cancellationToken))
+					.Adapt<GetUserByIdResponse>();
 
-				userRequests.Add(sendRequest);
+				if (receiver == null)
+					throw new NotFoundUserIdException(receiverId);
+
+				foreach (var activity in activities)
+				{
+					//create request for memberId
+					var sendRequest = RequestFactory.Create(activity.Id
+						, ownerId, /*receiverId*/ Guid.NewGuid(), request.Message, false);
+
+					userRequests.Add(sendRequest);
+				}
 			}
-		}
 
-		//add requests table
-		_unitOfWork.Requests.AddRange(userRequests);
+			//add requests table
+			_unitOfWork.Requests.AddRange(userRequests);
 
-		foreach (var activity in activities)
-		{
-			//add owner to activity members
-			var activityOwner = ActivityMember
-				.CreateOwner(ownerId, activity.Id);
+			foreach (var activity in activities)
+			{
+				//add owner to activity members
+				var activityOwner = ActivityMember
+					.CreateOwner(ownerId, activity.Id);
 
-			// add to activityMembers table
-			activityOwner = _unitOfWork.
-				ActivityMembers.Add(activityOwner);
+				// add to activityMembers table
+				activityOwner = _unitOfWork.
+					ActivityMembers.Add(activityOwner);
+
+				await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+				// set notification for owner
+				// if NotificationBefore is null set default notification
+				var notificationBefore = request.NotificationBefore ??
+					TimeSpan.FromHours(NotificationSetting.DefaultNotificaiton);
+
+				var notification = NotificationFactory
+					.Create(activityOwner.Id
+					, activity.StartDate - notificationBefore);
+
+				//Add notifications table
+				notification = _unitOfWork.Notifications.Add(notification);
+
+				//set notification
+				activityOwner.SetNotification(notification.Id);
+			}
 
 			await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-			// set notification for owner
-			// if NotificationBefore is null set default notification
-			var notificationBefore = request.NotificationBefore ??
-				TimeSpan.FromHours(NotificationSetting.DefaultNotificaiton);
-
-			var notification = NotificationFactory
-				.Create(activityOwner.Id
-				, activity.StartDate - notificationBefore);
-
-			//Add notifications table
-			notification = _unitOfWork.Notifications.Add(notification);
-
-			//set notification
-			activityOwner.SetNotification(notification.Id);
-		} 
-
-		await _unitOfWork.SaveChangeAsync(cancellationToken);
+			await _unitOfWork.Commit(cancellationToken);
+		}
+		catch
+		{
+			await _unitOfWork.Rollback(cancellationToken);
+			throw;
+		}
 	}
 
 	private List<Activity> GenerateRecurringActivities(Guid ownerId, long projectId,
@@ -110,7 +122,7 @@ public class AddRecurringActivityCommandHandler
 			// create new activity
 			var activity = ActivityFactory.Create(ownerId, projectId
 				, request.Title, request.Description
-				, request.StartDate, request.Category
+				, currentStart, request.Category
 				, request.Duration);
 
 			activities.Add(activity);
@@ -128,6 +140,8 @@ public class AddRecurringActivityCommandHandler
 
 		return activities;
 	}
+
+
 }
 
 

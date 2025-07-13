@@ -1,7 +1,6 @@
 ﻿using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.ProjectMembers;
 using Infrastructure.Persistence.Interceptors;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Reflection;
 using Infrastructure.Persistence.Configurations;
 

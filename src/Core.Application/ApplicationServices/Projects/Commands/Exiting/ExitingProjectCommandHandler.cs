@@ -1,7 +1,6 @@
 ﻿using Core.Application.ApplicationServices.Requests.Exceptions;
 using Core.Application.Common;
 using Core.Domain.Entities.Notifications;
-using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
 using MediatR;
 

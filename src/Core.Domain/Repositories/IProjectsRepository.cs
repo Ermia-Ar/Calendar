@@ -5,10 +5,12 @@ namespace Core.Domain.Repositories;
 
 public interface IProjectsRepository
 {
-    void Remove(Project project);
-    void Update(Project project);
+
+    Task RemoveById(long projectId, CancellationToken token);
+
     Task<IResponse?> GetById(long id, CancellationToken token);
+
     Task<Project?> FindById(long id, CancellationToken token);
-    void RemoveRange(ICollection<Project> projects);
+
     Project Add(Project project);
 }

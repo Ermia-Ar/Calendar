@@ -9,8 +9,7 @@ public sealed record GetCommentByIdQueryResponse
     long ActivityId,
     string Content,
     DateTime CreatedDate,
-    DateTime UpdatedDate,
-    bool IsEdited
+    DateTime UpdatedDate
 ) : IResponse;
 
 public class GetCommentByIdProfile : IRegister

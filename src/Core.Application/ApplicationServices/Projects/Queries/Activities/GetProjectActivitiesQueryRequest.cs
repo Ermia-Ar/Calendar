@@ -32,7 +32,7 @@ public sealed record GetProjectActivitiesQueryRequest(
             , model.ProjectIdOrdring, model.UserIdOrdring, model.TitleOrdring
             , model.DescriptionOrdring, model.StartDateOrdring, model.CreatedDateOrdring
             , model.UpdateDateOrdring, model.DurationOrdring, model.NotificationBeforeInMinuteOrdring
-            , model.CategoryOrdring, model.IsCompletedOrdring, model.IsEditedOrdring)
+            , model.CategoryOrdring, model.IsCompletedOrdring)
             );
     }
 }
@@ -42,7 +42,6 @@ public sealed record GetProjectActivitiesQueryRequest(
 /// </summary>
 /// <param name="PageNum"></param>
 /// <param name="PageSize"></param>
-/// <param name="ProjectId">اجباری : فعالیت های درون این پروژه رو برمیگردونه</param>
 /// <param name="IsCompletedFiltering"></param>
 /// <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
 /// <param name="CategoryFiltering"></param>
@@ -59,7 +58,6 @@ public sealed record GetProjectActivitiesQueryRequest(
 /// <param name="NotificationBeforeInMinuteOrdring"></param>
 /// <param name="CategoryOrdring"></param>
 /// <param name="IsCompletedOrdring"></param>
-/// <param name="IsEditedOrdring"></param>
 /// <param name="StartDateFiltering"></param>
 public sealed record GetProjectActivitiesDto
 (
@@ -81,6 +79,5 @@ public sealed record GetProjectActivitiesDto
     OrderingType? NotificationBeforeInMinuteOrdring,
     OrderingType? CategoryOrdring,
     OrderingType? IsCompletedOrdring,
-    OrderingType? IsEditedOrdring,
     DateTime? StartDateFiltering
 );

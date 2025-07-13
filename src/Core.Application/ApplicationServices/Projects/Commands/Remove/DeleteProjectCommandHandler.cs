@@ -23,22 +23,7 @@ public class DeleteProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserSer
         if (project.OwnerId != _currentUserServices.GetUserId())
             throw new OnlyProjectCreatorAllowedException();
 
-        //delete all project members 
-        var projectMembers = await _unitOfWork.ProjectMembers
-            .FindByProjectId(request.ProjectId, cancellationToken);
-
-        //delete from projectMembers table
-        _unitOfWork.ProjectMembers.RemoveRange(projectMembers.ToList());
-
-        // delete all activity for this project 
-        var activities = await _unitOfWork.Activities
-            .Find(request.ProjectId, cancellationToken);
-
-        //delete from actvity table
-        _unitOfWork.Activities.RemoveRange(activities);
-
-        // delete from projects table
-        _unitOfWork.Projects.Remove(project);
+        await _unitOfWork.Projects.RemoveById(project.Id, cancellationToken);
 
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }

@@ -19,7 +19,6 @@ public static class ActivityFactory
 			CreatedDate = DateTime.UtcNow,
 			StartDate = startDate,
 			IsCompleted = false,
-			IsEdited = false,
 			IsActive = true,
 		};
 	}
@@ -39,7 +38,6 @@ public static class ActivityFactory
 			CreatedDate = DateTime.UtcNow,
 			StartDate = startDate,
 			IsCompleted = false,
-			IsEdited = false,
 			IsActive = true,
 		};
 	}

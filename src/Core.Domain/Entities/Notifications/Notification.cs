@@ -17,14 +17,12 @@ public class Notification : BaseEntity
 	public void sent()
 	{
 		IsSent = true;
-		IsEdited = true;
 		UpdateDate = DateTime.UtcNow;
 	}
 
 	public void UpdateNotification(DateTime NewNotification)
 	{
 		NotificationDate = NewNotification;
-		IsEdited = true;
 		UpdateDate = DateTime.UtcNow;
 	}
 

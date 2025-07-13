@@ -1,9 +1,7 @@
 ﻿using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Application.ApplicationServices.Auth.Exceptions;
-using Core.Application.ApplicationServices.Requests.Queries.GetAll;
 using Core.Application.Common;
 using Core.Application.InternalServices.Auth.Dto;
-using Core.Application.InternalServices.Auth.Services;
 using Core.Domain.Entities.Activities;
 using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.Notifications;
@@ -13,7 +11,6 @@ using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using System.Diagnostics;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.AddSubActivity;
 
@@ -29,85 +26,97 @@ public sealed class AddSubActivityCommandHandler(
 
 	public async Task Handle(AddSubActivityCommandRequest request, CancellationToken cancellationToken)
 	{
-		var ownerId = _currentUser.GetUserId();
+		await using var transaction = await _unitOfWork.BeginTransaction(cancellationToken);
 
-		//get base activity
-		var baseActivity = await _unitOfWork.Activities
-			.FindById(request.ActivityId, cancellationToken);
-
-		if (baseActivity == null)
-			throw new InvalidActivityIdException();
-
-		if (baseActivity.UserId != ownerId)
-			throw new OnlyActivityCreatorAllowedException();
-
-		long? parentId = baseActivity.ParentId != null ? baseActivity.ParentId : baseActivity.Id;
-
-		// create sub activity
-		var subActivity = ActivityFactory.CreateSubActivity(parentId
-			, ownerId, baseActivity.ProjectId
-			, request.Title, request.Description
-			, request.StartDate, request.Category
-			, request.Duration);
-
-		//add to table activity
-		subActivity = _unitOfWork.Activities.Add(subActivity);
-
-		await _unitOfWork.SaveChangeAsync(cancellationToken);
-
-		//get memberIds of base project of activity
-		var projectMemberIds = (await _unitOfWork.ProjectMembers
-			.FindMemberIdsOfProject(subActivity.ProjectId, cancellationToken))
-			.ToList();
-
-		//send request for all memberIds
-		var userRequests = new List<Request>();
-		foreach (var receiverId in request.MemberIds)
+		try
 		{
-			//check
-			var receiver = (await _unitOfWork
-				.Users.GetById(receiverId, cancellationToken))
-				.Adapt<GetUserByIdResponse>();
+			var ownerId = _currentUser.GetUserId();
 
-			if (receiver == null)
-				throw new NotFoundUserIdException(receiverId);
+			//get base activity
+			var baseActivity = await _unitOfWork.Activities
+				.FindById(request.ActivityId, cancellationToken);
 
-			// check if the receiver is a member of base project
-			var isGuest = projectMemberIds.Any(x => x != receiver.Id);
+			if (baseActivity == null)
+				throw new InvalidActivityIdException();
 
-			var sendRequest = RequestFactory.Create
-				(subActivity.Id, ownerId, receiver.Id, 
-					request.Message, isGuest);
+			if (baseActivity.UserId != ownerId)
+				throw new OnlyActivityCreatorAllowedException();
 
-			userRequests.Add(sendRequest);
+			long? parentId = baseActivity.ParentId != null ? baseActivity.ParentId : baseActivity.Id;
+
+			// create sub activity
+			var subActivity = ActivityFactory.CreateSubActivity(parentId
+				, ownerId, baseActivity.ProjectId
+				, request.Title, request.Description
+				, request.StartDate, request.Category
+				, request.Duration);
+
+			//add to table activity
+			subActivity = _unitOfWork.Activities.Add(subActivity);
+
+			await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+			//get memberIds of base project of activity
+			var projectMemberIds = (await _unitOfWork.ProjectMembers
+				.FindMemberIdsOfProject(subActivity.ProjectId, cancellationToken))
+				.ToList();
+
+			//send request for all memberIds
+			var userRequests = new List<Request>();
+			foreach (var receiverId in request.MemberIds)
+			{
+				//check
+				var receiver = (await _unitOfWork
+					.Users.GetById(receiverId, cancellationToken))
+					.Adapt<GetUserByIdResponse>();
+
+				if (receiver == null)
+					throw new NotFoundUserIdException(receiverId);
+
+				// check if the receiver is a member of base project
+				var isGuest = projectMemberIds.Any(x => x != receiver.Id);
+
+				var sendRequest = RequestFactory.Create
+					(subActivity.Id, ownerId, receiver.Id,
+						request.Message, isGuest);
+
+				userRequests.Add(sendRequest);
+			}
+
+			//add requests table
+			_unitOfWork.Requests.AddRange(userRequests);
+
+			//add owner to activity members
+			var activityOwner = ActivityMember
+				.CreateOwner(ownerId, subActivity.Id);
+
+			// add to activityMembers table
+			activityOwner = _unitOfWork.
+				ActivityMembers.Add(activityOwner);
+
+			// set notification for owner
+			// if NotificationBefore is null set default notification
+			var notificationBefore = request.NotificationBefore ??
+				TimeSpan.FromHours(NotificationSetting.DefaultNotificaiton);
+
+			var notification = NotificationFactory
+				.Create(activityOwner.Id
+				, subActivity.StartDate - notificationBefore);
+
+			activityOwner.SetNotification(notification.Id);
+
+			//Add to Notifications table
+			_unitOfWork.Notifications.Add(notification);
+
+			await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+			await _unitOfWork.Commit(cancellationToken);
 		}
-
-		//add requests table
-		_unitOfWork.Requests.AddRange(userRequests);
-
-		//add owner to activity members
-		var activityOwner = ActivityMember
-			.CreateOwner(ownerId, subActivity.Id);
-
-		// add to activityMembers table
-		activityOwner = _unitOfWork.
-			ActivityMembers.Add(activityOwner);
-
-		// set notification for owner
-		// if NotificationBefore is null set default notification
-		var notificationBefore = request.NotificationBefore ??
-			TimeSpan.FromHours(NotificationSetting.DefaultNotificaiton);
-
-		var notification = NotificationFactory
-			.Create(activityOwner.Id
-			, subActivity.StartDate - notificationBefore);
-
-		activityOwner.SetNotification(notification.Id);
-
-		//Add to Notifications table
-		_unitOfWork.Notifications.Add(notification);
-
-		await _unitOfWork.SaveChangeAsync(cancellationToken);
+		catch 
+		{
+			await _unitOfWork.Rollback(cancellationToken);
+			throw;
+		}
 
 	}
 }

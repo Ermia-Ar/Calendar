@@ -38,17 +38,25 @@ public class Activity : BaseEntity
 
     public List<Activity> SubActivities = [];
 
+
+    public void Update(string title, string? description,
+        TimeSpan? duration, ActivityCategory category)
+    {
+        Title = title;
+        Description = description;
+        Duration = duration;
+        Category = category;
+        UpdateDate = DateTime.UtcNow;
+    }
     public void MakeComplete()
     {
         IsCompleted = true;
-        IsEdited = true;
         UpdateDate = DateTime.UtcNow;
     }
 
     public void ChangeStartDate(DateTime newDate)
     {
         StartDate = newDate;
-        IsEdited = true;
         UpdateDate = DateTime.UtcNow;
     }
 }

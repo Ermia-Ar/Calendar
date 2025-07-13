@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IeY75MSTMoo=",
+  "dgSpecHash": "1WxzKb+MolM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Calendar.UI\\Calendar.UI.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Calendar.UI\\Calendar.UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\awssdk.core\\3.7.304.19\\awssdk.core.3.7.304.19.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\awssdk.s3\\3.7.309.7\\awssdk.s3.3.7.309.7.nupkg.sha512",

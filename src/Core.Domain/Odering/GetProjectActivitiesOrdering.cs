@@ -15,8 +15,7 @@ public sealed record GetProjectActivitiesOrdering(
 	OrderingType? Duration = null,
 	OrderingType? NotificationBeforeInMinute = null,
 	OrderingType? Category = null,
-	OrderingType? IsCompleted = null,
-	OrderingType? IsEdited = null
+	OrderingType? IsCompleted = null
 	)
 {
 	public string GetOrderBy(GetProjectActivitiesOrdering o)
@@ -36,7 +35,6 @@ public sealed record GetProjectActivitiesOrdering(
 			{ NotificationBeforeInMinute: OrderingType.Asc or OrderingType.Desc } => "NotificationBeforeInMinute",
 			{ Category: OrderingType.Asc or OrderingType.Desc } => "Category",
 			{ IsCompleted: OrderingType.Asc or OrderingType.Desc } => "IsCompleted",
-			{ IsEdited: OrderingType.Asc or OrderingType.Desc } => "IsEdited",
 			_ => "StartDate"
 		};
 	}
@@ -51,7 +49,7 @@ public sealed record GetProjectActivitiesOrdering(
 			  or { StartDate: OrderingType.Asc } or { CreatedDate: OrderingType.Asc }
 			  or { UpdateDate: OrderingType.Asc } or { Duration: OrderingType.Asc }
 			  or { NotificationBeforeInMinute: OrderingType.Asc } or { Category: OrderingType.Asc }
-			  or { IsCompleted: OrderingType.Asc } or { IsEdited: OrderingType.Asc } => "ASC",
+			  or { IsCompleted: OrderingType.Asc } => "ASC",
 			_ => "DESC"
 		};
 	}

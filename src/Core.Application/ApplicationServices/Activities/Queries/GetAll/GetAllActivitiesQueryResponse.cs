@@ -15,8 +15,7 @@ public sealed record GetAllActivitiesQueryResponse(
     TimeSpan? Duration,
     int NotificationBeforeInMinute,
 	ActivityCategory Category,
-    bool IsCompleted,
-    bool IsEdited
+    bool IsCompleted
 ) : IResponse;
 
 

@@ -12,7 +12,6 @@ public static class CommentFactory
             UserId = userId,
             Content = content,
 			CreatedDate = DateTime.UtcNow,
-			IsEdited = false,
 			IsActive = true,
         };
 	}

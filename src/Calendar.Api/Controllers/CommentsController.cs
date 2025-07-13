@@ -89,10 +89,10 @@ public class CommentsController(ISender sender) : ControllerBase
 	/// <returns></returns>
 	[HttpGet]
 	[Authorize(CalendarClaimsServiceDeclaration.GetAllComments)]
-	public async Task<SuccessResponse<PaginationResult<List<GetAllCommentsQueryResponse>>>> GetAll([FromQuery] GetAllCommentDto model,
+	public async Task<SuccessResponse<PaginationResult<List<GetUserCommentsQueryResponse>>>> GetAll([FromQuery] GetAllCommentDto model,
 		CancellationToken token = default)
 	{
-		var request = GetAllCommentsQueryRequest.Create(model);
+		var request = GetUserCommentsQueryRequest.Create(model);
 		var result = await _sender.Send(request, token);
 		return Result.Ok(result);
 	}

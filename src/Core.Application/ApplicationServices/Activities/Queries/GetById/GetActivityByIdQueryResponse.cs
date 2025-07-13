@@ -15,14 +15,5 @@ public record class GetActivityByIdQueryResponse(
     DateTime UpdateDate,
     TimeSpan? Duration,
     ActivityCategory Category,
-    bool IsCompleted,
-    bool IsEdited
+    bool IsCompleted
 ) : IResponse;
-
-public class GetActivityByIdProfile : IRegister
-{
-    public void Register(TypeAdapterConfig config)
-    {
-        config.ForType<IResponse, GetActivityByIdProfile>();
-    }
-}

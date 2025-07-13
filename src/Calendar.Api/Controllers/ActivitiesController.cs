@@ -1,7 +1,10 @@
-﻿using Core.Application.ApplicationServices.Activities.Commands.AddRecurring;
+﻿using Amazon.Runtime.Internal.Auth;
+using Core.Activities.ApplicationServices.Activities.Queries.GetComments;
+using Core.Application.ApplicationServices.Activities.Commands.AddRecurring;
 using Core.Application.ApplicationServices.Activities.Commands.ExitingActivity;
 using Core.Application.ApplicationServices.Activities.Commands.UpdateNotification;
 using Core.Application.ApplicationServices.Activities.Commands.UpdateStartDate;
+using Core.Application.ApplicationServices.Activities.Queries.GetComments;
 using Core.Domain.Exceptions;
 
 namespace Calendar.Api.Controllers;
@@ -132,6 +135,24 @@ public class ActivitiesController(ISender sender
 		var result = await _sender.Send(request, token);
 
 		return Result.Ok(result);
+	}
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="model"></param>
+	/// <param name="token"></param>
+	/// <returns></returns>
+	[HttpGet("{id:long:required}/Comments")]
+	public async Task<SuccessResponse<PaginationResult<List<GetActivityCommentsQueryResponse>>>> GetCommnets(long id,
+		[FromQuery] GetActivityCommentsDto model,
+		CancellationToken token)
+	{
+		var request = GetActivityCommentsQueryRequest.Create(id, model);
+		var response = await _sender.Send(request, token);
+
+		return	Result.Ok(response);
 	}
 
 	/// <summary>

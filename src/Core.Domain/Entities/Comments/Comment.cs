@@ -6,7 +6,7 @@ namespace Core.Domain.Entities.Comments;
 
 public class Comment : BaseEntity
 {
-    public Comment()
+    internal Comment()
     {
         
     }
@@ -24,7 +24,6 @@ public class Comment : BaseEntity
     public void UpdateContent(string content)
     {
         Content = content;
-        IsEdited = true;
         UpdateDate = DateTime.UtcNow;
     }
 

@@ -23,3 +23,16 @@ C:\Users\DELL\Documents\Projects\Calendar\src\Share\obj\Debug\net8.0\Share.dll
 C:\Users\DELL\Documents\Projects\Calendar\src\Share\obj\Debug\net8.0\refint\Share.dll
 C:\Users\DELL\Documents\Projects\Calendar\src\Share\obj\Debug\net8.0\Share.pdb
 C:\Users\DELL\Documents\Projects\Calendar\src\Share\obj\Debug\net8.0\ref\Share.dll
+C:\Users\DELL\Desktop\Calendar\src\Share\bin\Debug\net8.0\Share.deps.json
+C:\Users\DELL\Desktop\Calendar\src\Share\bin\Debug\net8.0\Share.dll
+C:\Users\DELL\Desktop\Calendar\src\Share\bin\Debug\net8.0\Share.pdb
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\Share.csproj.AssemblyReference.cache
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\Share.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\Share.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\Share.AssemblyInfo.cs
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\Share.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\Share.sourcelink.json
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\Share.dll
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\refint\Share.dll
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\Share.pdb
+C:\Users\DELL\Desktop\Calendar\src\Share\obj\Debug\net8.0\ref\Share.dll

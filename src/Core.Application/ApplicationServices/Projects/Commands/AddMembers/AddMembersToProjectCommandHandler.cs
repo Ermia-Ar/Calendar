@@ -35,7 +35,7 @@ public sealed class AddMembersToProjectCommandHandler
 
         //Add Receivers to projectMembers
         var projectMembers = new List<ProjectMember>();
-        // sned reuqests
+        // for send request
         var sendRequests = new List<Request>();
 
         foreach (var memberId in request.MemberIds)

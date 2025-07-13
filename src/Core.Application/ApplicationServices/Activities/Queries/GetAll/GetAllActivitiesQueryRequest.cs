@@ -29,7 +29,7 @@ public sealed record GetAllActivitiesQueryRequest(
 			, model.ProjectIdOrdring, model.UserIdOrdring, model.TitleOrdring
 			, model.DescriptionOrdring, model.StartDateOrdring, model.CreatedDateOrdring
 			, model.UpdateDateOrdring, model.DurationOrdring, model.NotificationBeforeInMinuteOrdring
-			, model.CategoryOrdring, model.IsCompletedOrdring, model.IsEditedOrdring)
+			, model.CategoryOrdring, model.IsCompletedOrdring)
 			);
 	}
 }
@@ -52,7 +52,6 @@ public sealed record GetAllActivitiesQueryRequest(
 /// <param name="NotificationBeforeInMinuteOrdring"></param>
 /// <param name="CategoryOrdring"></param>
 /// <param name="IsCompletedOrdring"></param>
-/// <param name="IsEditedOrdring"></param>
 /// <param name="StartDateFiltering"></param>
 /// <param name="IsCompletedFiltering"></param>
 /// <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
@@ -77,6 +76,5 @@ public sealed record GetAllActivitiesDto
 	OrderingType? DurationOrdring,
 	OrderingType? NotificationBeforeInMinuteOrdring,
 	OrderingType? CategoryOrdring,
-	OrderingType? IsCompletedOrdring,
-	OrderingType? IsEditedOrdring
+	OrderingType? IsCompletedOrdring
 );

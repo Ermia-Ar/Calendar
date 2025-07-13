@@ -1,5 +1,9 @@
 ﻿using Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity;
+using Core.Application.ApplicationServices.Projects.Commands.ChangeColor;
+using Core.Application.ApplicationServices.Projects.Commands.ChangeIcon;
+using Core.Application.ApplicationServices.Projects.Commands.Update;
 using Core.Application.ApplicationServices.Projects.Queries.Activities;
+using Core.Application.ApplicationServices.Projects.Queries.GetComments;
 using Core.Domain.Exceptions;
 
 namespace Calendar.Api.Controllers;
@@ -56,7 +60,7 @@ public class ProjectsController(ISender sender) : ControllerBase
 	/// <param name="id"></param>
 	[HttpPost("{id:long:required}/Activities")]
 	[Authorize(CalendarClaimsServiceDeclaration.AddActivityToProject)]
-	public async Task<SuccessResponse> AddActivity(long id, [FromBody] AddActivityForProjectDto model, 
+	public async Task<SuccessResponse> AddActivity(long id, [FromBody] AddActivityForProjectDto model,
 		CancellationToken token = default)
 	{
 		var request = AddActivityForProjectCommandRequest.Create(id, model);
@@ -92,11 +96,11 @@ public class ProjectsController(ISender sender) : ControllerBase
 	/// </remarks>
 	[HttpGet("{id:long:required}/Activities")]
 	[Authorize(CalendarClaimsServiceDeclaration.GetProjectActivities)]
-	public async Task<SuccessResponse<PaginationResult<List<GetProjectActivitiesQueryResponse>>>> GetActivities(long id ,
+	public async Task<SuccessResponse<PaginationResult<List<GetProjectActivitiesQueryResponse>>>> GetActivities(long id,
 		[FromQuery] GetProjectActivitiesDto model,
 		CancellationToken token)
 	{
-		var request = GetProjectActivitiesQueryRequest.Create(id ,model);
+		var request = GetProjectActivitiesQueryRequest.Create(id, model);
 		var result = await _sender.Send(request, token);
 		return Result.Ok(result);
 	}
@@ -119,6 +123,24 @@ public class ProjectsController(ISender sender) : ControllerBase
 		var request = GetMemberOfProjectQueryRequest.Create(id, model);
 		var result = await _sender.Send(request, token);
 		return Result.Ok(result);
+	}
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="model"></param>
+	/// <param name="token"></param>
+	/// <returns></returns>
+	[HttpGet("{id:long:required}/Comments")]
+	public async Task<SuccessResponse<PaginationResult<List<GetProjectCommentsQueryResponse>>>> GetComments(long id,
+		[FromQuery] GetProjectCommentsDto model,
+		CancellationToken token = default)
+	{
+		var request = GetProjectCommentsQueryRequest.Create(id, model);
+		var response = await _sender.Send(request, token);
+
+		return Result.Ok(response);
 	}
 
 	/// <summary>
@@ -152,6 +174,54 @@ public class ProjectsController(ISender sender) : ControllerBase
 		var request = new GetProjectByIdQueryRequest(id);
 		var result = await _sender.Send(request, token);
 		return Result.Ok(result);
+	}
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	[HttpPut("{id:long:required}")]
+	public async Task<SuccessResponse> Update(long id, UpdateProjectDto model,
+		CancellationToken token = default)
+	{
+		var request = UpdateProjectCommandRequest.Create(id, model);
+		await _sender.Send(request, token);
+		
+		return Result.Ok();
+	}
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="model"></param>
+	/// <param name="token"></param>
+	/// <returns></returns>
+	[HttpPatch("{id:long:required}/Color")]
+	public async Task<SuccessResponse> ChangeColor(long id, ChangeColorDto model,
+		CancellationToken token = default)
+	{
+		var request = ChangeColorCommandRequest.Create(id, model);
+		await _sender.Send(request, token);
+		
+		return Result.Ok();
+	}
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="model"></param>
+	/// <param name="token"></param>
+	/// <returns></returns>
+	[HttpPatch("{id:long:required}/Icon")]
+	public async Task<SuccessResponse> ChangeIcon(long id, ChangeIconDto model,
+		CancellationToken token = default)
+	{
+		var request = ChangeIconCommandRequest.Create(id, model);	
+		await _sender.Send(request, token);
+		
+		return Result.Ok();
 	}
 
 	/// <summary>

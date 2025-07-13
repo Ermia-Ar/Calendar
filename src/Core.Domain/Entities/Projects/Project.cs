@@ -29,4 +29,27 @@ public class Project : BaseEntity
     
     public ICollection<ProjectMember> Members { get; internal set; } = [];
 
+
+    public void Update(string title, string description,
+        DateTime startDate, DateTime endDate)
+    {
+        Title = title;
+        Description = description;
+        StartDate = startDate;
+        EndDate = endDate;
+        UpdateDate = DateTime.UtcNow;
+    }
+
+    public void ChangeColor(string color)
+    {
+        Color = color;
+        UpdateDate = DateTime.UtcNow;
+    }
+
+    public void ChangeIcon(string icon)
+    {
+        Icon = icon;
+        UpdateDate = DateTime.UtcNow;
+    }
+
 }

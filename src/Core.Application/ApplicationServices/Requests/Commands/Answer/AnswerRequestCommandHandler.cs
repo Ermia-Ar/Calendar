@@ -1,27 +1,21 @@
-﻿using Amazon.Auth.AccessControlPolicy.ActionIdentifiers;
+﻿using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Application.ApplicationServices.Requests.Exceptions;
-using Core.Application.ApplicationServices.Requests.Queries.GetAll;
 using Core.Application.Common;
 using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.Notifications;
-using Core.Domain.Enum;
 using Core.Domain.Helper;
 using Core.Domain.UnitOfWork;
-using Mapster;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 
 namespace Core.Application.ApplicationServices.Requests.Commands.Answer;
 
 public sealed class AnswerRequestCommandHandler(
 	IUnitOfWork unitOfWork,
-	ICurrentUserServices currentUserServices,
-	IConfiguration configuration)
+	ICurrentUserServices currentUserServices)
 		: IRequestHandler<AnswerRequestCommandRequest>
 {
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly IConfiguration _configuration = configuration;
 
 	public async Task Handle(AnswerRequestCommandRequest request, CancellationToken cancellationToken)
     {
@@ -30,20 +24,23 @@ public sealed class AnswerRequestCommandHandler(
         var userRequest = await _unitOfWork.Requests
             .FindById(request.RequestId, cancellationToken);
 
+        if (userRequest is null)
+            throw new InvalidRequestIdException();
+
         if (userRequest.ReceiverId != userId)
-        {
             throw new NotFoundRequestException();
-        }
+        
         if (userRequest.IsExpire == true)
-        {
             throw new ExpireRequestException();
-        }
 
     
         if (request.IsAccepted == true)
         {
             var activity = await _unitOfWork.Activities
                 .FindById(userRequest.ActivityId, cancellationToken);
+            
+            if (activity == null)
+                throw new InvalidActivityIdException();
 
             //Accept request
 			userRequest.Accept();
@@ -75,9 +72,7 @@ public sealed class AnswerRequestCommandHandler(
 				notification = _unitOfWork.Notifications.Add(notification);
 
 				activityMember.SetNotification(notification.Id);
-
 			}
-
         }
         else
         {

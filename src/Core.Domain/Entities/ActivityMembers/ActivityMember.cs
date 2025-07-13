@@ -26,7 +26,6 @@ public class ActivityMember : BaseEntity
 			ActivityId = activityId,
 			CreatedDate = DateTime.UtcNow,
 			NotificationId = null,
-			IsEdited = false,
 			IsActive = true,
 			IsGuest = isGuest,
 			IsOwner = false, 
@@ -41,7 +40,6 @@ public class ActivityMember : BaseEntity
 			ActivityId = activityId,
 			CreatedDate = DateTime.UtcNow,
 			NotificationId = null,
-			IsEdited = false,
 			IsActive = true,
 			IsGuest = false,
 			IsOwner = true,
@@ -57,14 +55,12 @@ public class ActivityMember : BaseEntity
 	{
 		NotificationId = null;
 		UpdateDate = DateTime.UtcNow;
-		IsEdited = true;
 	}
 
 	public void MakeGuest()
 	{
 		IsGuest = true;
 		UpdateDate = DateTime.UtcNow;
-		IsEdited = true;
 	}
 
 }

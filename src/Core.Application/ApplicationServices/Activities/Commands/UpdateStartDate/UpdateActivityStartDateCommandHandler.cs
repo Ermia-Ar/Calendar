@@ -41,6 +41,6 @@ public sealed class UpdateActivityStartDateCommandHandler(ICurrentUserServices c
 
 		activity.ChangeStartDate(request.NewStartDate);
 
-		await _unitOfWork.SaveChangeAsync();
+		await _unitOfWork.SaveChangeAsync(cancellationToken);
 	}
 }

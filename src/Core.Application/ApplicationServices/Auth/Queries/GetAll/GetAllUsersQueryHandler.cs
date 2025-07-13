@@ -20,7 +20,7 @@ public class GetAllUsersQueryHandler(IUnitOfWork unitOfWork)
 
         //return new PaginationResult<List<GetAllUserQueryResponse>>(userResponse, request.Pagination.PageNumber
         //    , request.Pagination.PageSize, users.Count);
-
+        await Task.CompletedTask;
         throw new NotImplementedException();
     }
 }

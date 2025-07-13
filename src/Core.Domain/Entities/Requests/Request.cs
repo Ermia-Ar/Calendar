@@ -38,7 +38,6 @@ public class Request : BaseEntity
         IsExpire = true;
         AnsweredAt = DateTime.UtcNow;
         UpdateDate = DateTime.UtcNow;
-        IsEdited = true;
 	}
 
 	public void Reject()
@@ -47,6 +46,5 @@ public class Request : BaseEntity
         IsExpire = true;
         AnsweredAt = DateTime.UtcNow;
         UpdateDate = DateTime.UtcNow;
-        IsEdited = true;
 	}
 }

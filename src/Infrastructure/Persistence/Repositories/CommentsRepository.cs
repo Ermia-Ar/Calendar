@@ -1,4 +1,9 @@
-﻿namespace Infrastructure.Persistence.Repositories;
+﻿
+using Core.Activities.ApplicationServices.Activities.Queries.GetComments;
+using Core.Application.ApplicationServices.Projects.Queries.GetComments;
+using Core.Domain.Entities.Projects;
+
+namespace Infrastructure.Persistence.Repositories;
 
 public class CommentsRepository(ApplicationContext context
 							  , IConfiguration configuration) : ICommentsRepository
@@ -39,8 +44,8 @@ public class CommentsRepository(ApplicationContext context
 		return activity.FirstOrDefault();
 	}
 
-	public async Task<ListDto> GetAll(GetAllCommentsFiltering filtering
-		, GetAllCommentOrdering ordering, PaginationFilter pagination
+	public async Task<ListDto> GetByActivityId(long activityId, GetActivityCommentsFiltering filtering
+		, GetActivityCommentsOrdering ordering, PaginationFilter pagination
 		, CancellationToken token)
 	{
 
@@ -48,9 +53,9 @@ public class CommentsRepository(ApplicationContext context
 		await connection.OpenAsync(token);
 
 		var parameters = new DynamicParameters();
+
+		parameters.Add("activityId", activityId);
 		//filtering 
-		parameters.Add("projectId", filtering.ProjectId);
-		parameters.Add("activityId", filtering.ActivityId);
 		parameters.Add("search", filtering.Search);
 		parameters.Add("userId", filtering.userId);
 		//ordering
@@ -63,27 +68,79 @@ public class CommentsRepository(ApplicationContext context
 		parameters.Add("TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
 
-		var comments = await connection.QueryAsync<GetAllCommentsQueryResponse>
-		("SP_GetComments", parameters, commandType: CommandType.StoredProcedure);
+		var comments = await connection.QueryAsync<GetActivityCommentsQueryResponse>
+		("SP_GetCommentsByActivityId", parameters, commandType: CommandType.StoredProcedure);
 
 		var totalCount = parameters.Get<int>("TotalCount");
 
 		return new ListDto(totalCount, comments.ToImmutableList());
 	}
 
+	public async Task<ListDto> GetByProjectId(long projectId,
+		GetProjectCommentsFiltering filtering, GetProjectCommentsOrdering ordering, 
+		PaginationFilter pagination, CancellationToken token)
+	{
+		await using var connection = new SqlConnection(_connectionString);
+		await connection.OpenAsync(token);
+
+		var parameters = new DynamicParameters();
+		parameters.Add("projectId", projectId);
+		//filtering 
+		parameters.Add("activityId", filtering.ActivityId);
+		parameters.Add("search", filtering.Search);
+		parameters.Add("userId", filtering.UserId);
+		//ordering
+		parameters.Add("OrderDirection", ordering.GetOrderDirection(ordering));
+		parameters.Add("OrderBy", ordering.GetOrderBy(ordering));
+		//pagination
+		parameters.Add("PageNumber", pagination.PageNumber);
+		parameters.Add("PageSize", pagination.PageSize);
+
+		parameters.Add("TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+
+		var comments = await connection.QueryAsync<GetProjectCommentsQueryResponse>
+		("SP_GetCommentsByProjectId", parameters, commandType: CommandType.StoredProcedure);
+
+		var totalCount = parameters.Get<int>("TotalCount");
+
+		return new ListDto(totalCount, comments.ToImmutableList());
+	}
+
+	public async Task<ListDto> GetByUserId(Guid userId, GetUserCommentsFiltering filtering,
+		GetUserCommentsOrdering ordering, PaginationFilter pagination,
+		CancellationToken token)
+	{
+		await using var connection = new SqlConnection(_connectionString);
+		await connection.OpenAsync(token);
+
+		var parameters = new DynamicParameters();
+		parameters.Add("userId", userId);
+		//filtering 
+		parameters.Add("activityId", filtering.ActivityId);
+		parameters.Add("projectId", filtering.ProjectId);
+		parameters.Add("search", filtering.Search);
+		//ordering
+		parameters.Add("OrderDirection", ordering.GetOrderDirection(ordering));
+		parameters.Add("OrderBy", ordering.GetOrderBy(ordering));
+		//pagination
+		parameters.Add("PageNumber", pagination.PageNumber);
+		parameters.Add("PageSize", pagination.PageSize);
+
+		parameters.Add("TotalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+
+		var comments = await connection.QueryAsync<GetProjectCommentsQueryResponse>
+		("SP_GetCommentsByUserId", parameters, commandType: CommandType.StoredProcedure);
+
+		var totalCount = parameters.Get<int>("TotalCount");
+
+		return new ListDto(totalCount, comments.ToImmutableList());
+	}
 
 	public async Task<Comment?> FindById(long id, CancellationToken token)
 	{
 		return await _context.Comments
 			.FirstOrDefaultAsync(x => x.Id == id, token);
-	}
-
-	public async Task<List<Comment>> Find(long? projectId, 
-		long? activityId, CancellationToken token)
-	{
-		return await _context.Comments
-			.Where(x => (projectId != null ? x.ProjectId == projectId : true)
-			&& (activityId != null ? x.ActivityId == activityId : true))
-			.ToListAsync(token);
 	}
 }

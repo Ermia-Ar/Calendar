@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Application\\Core.Application.csproj": {}
+    "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\Core.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Application\\Core.Application.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\Core.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Application\\Core.Application.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\Core.Application.csproj",
         "projectName": "Core.Application",
-        "projectPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Application\\Core.Application.csproj",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\Core.Application.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Application\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,11 +29,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Domain\\Core.Domain.csproj": {
-                "projectPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Domain\\Core.Domain.csproj"
+              "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Domain\\Core.Domain.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Domain\\Core.Domain.csproj"
               },
-              "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Share\\Share.csproj": {
-                "projectPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Share\\Share.csproj"
+              "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Share\\Share.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Share\\Share.csproj"
               }
             }
           }
@@ -76,10 +76,6 @@
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
-            },
-            "System.IdentityModel.Tokens.Jwt": {
-              "target": "Package",
-              "version": "[8.8.0, )"
             }
           },
           "imports": [
@@ -102,14 +98,14 @@
         }
       }
     },
-    "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Domain\\Core.Domain.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Domain\\Core.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Domain\\Core.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Domain\\Core.Domain.csproj",
         "projectName": "Core.Domain",
-        "projectPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Domain\\Core.Domain.csproj",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Domain\\Core.Domain.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Core.Domain\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -127,8 +123,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Share\\Share.csproj": {
-                "projectPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Share\\Share.csproj"
+              "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Share\\Share.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Share\\Share.csproj"
               }
             }
           }
@@ -152,7 +148,7 @@
               "target": "Package",
               "version": "[1.4.2, )"
             },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
             }
@@ -177,14 +173,14 @@
         }
       }
     },
-    "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Share\\Share.csproj": {
+    "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Share\\Share.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Share\\Share.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Share\\Share.csproj",
         "projectName": "Share",
-        "projectPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Share\\Share.csproj",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Share\\Share.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Share\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Share\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -227,29 +223,9 @@
               "target": "Package",
               "version": "[7.4.0, )"
             },
-            "MediatR": {
-              "target": "Package",
-              "version": "[12.4.1, )"
-            },
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.AspNetCore.Http.Abstractions": {
-              "target": "Package",
-              "version": "[2.3.0, )"
-            },
-            "Microsoft.Extensions.DependencyInjection.Abstractions": {
-              "target": "Package",
-              "version": "[9.0.5, )"
-            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.4.0, )"
             }
           },
           "imports": [

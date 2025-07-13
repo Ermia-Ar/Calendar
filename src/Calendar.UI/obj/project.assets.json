@@ -8868,11 +8868,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Calendar.UI\\Calendar.UI.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Calendar.UI\\Calendar.UI.csproj",
       "projectName": "Calendar.UI",
-      "projectPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Calendar.UI\\Calendar.UI.csproj",
+      "projectPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Calendar.UI\\Calendar.UI.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Documents\\Projects\\Calendar\\src\\Calendar.UI\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Calendar.UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",

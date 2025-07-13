@@ -14,10 +14,17 @@ public interface ICommentsRepository
     void RemoveRange(ICollection<Comment> comments);
     void Add(Comment comment);
     Task<Comment?> FindById(long id, CancellationToken token);
-    Task<List<Comment>> Find(long? projectId, long? activityId
+
+    Task<ListDto> GetByActivityId(long activityId, GetActivityCommentsFiltering filtering
+        , GetActivityCommentsOrdering order, PaginationFilter pagination
         , CancellationToken token);
-    Task<ListDto> GetAll(GetAllCommentsFiltering filtering
-        , GetAllCommentOrdering order, PaginationFilter pagination
+
+    Task<ListDto> GetByProjectId(long projectId, GetProjectCommentsFiltering filtering
+        , GetProjectCommentsOrdering ordering, PaginationFilter pagination
+        , CancellationToken token);
+
+    Task<ListDto> GetByUserId(Guid userId, GetUserCommentsFiltering filtering
+        , GetUserCommentsOrdering ordering, PaginationFilter pagination
         , CancellationToken token);
 }
 

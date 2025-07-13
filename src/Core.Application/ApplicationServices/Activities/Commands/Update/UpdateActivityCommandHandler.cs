@@ -1,8 +1,6 @@
 ﻿using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Application.Common;
-using Core.Domain.Entities.Activities;
 using Core.Domain.UnitOfWork;
-using Mapster;
 using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.UpdateActivity;
@@ -26,11 +24,9 @@ public sealed class UpdateActivityCommandHandler
         }
 
         // update activity
-        var updateActivity = request.Adapt<Activity>();
+        activity.Update(request.Title, request.Description,
+            request.Duration, request.Category);
 
-        _unitOfWork.Activities.Update(updateActivity);
-
-        //map to activityResponse
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }
 }

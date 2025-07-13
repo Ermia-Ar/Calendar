@@ -3,7 +3,7 @@
 namespace Infrastructure.Persistence.Repositories;
 
 public class ActivitiesRepository(ApplicationContext context, IConfiguration configuration)
-    : IActivitiesRepository
+	: IActivitiesRepository
 {
     private readonly ApplicationContext _context = context;
 	private readonly string _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
@@ -29,16 +29,6 @@ public class ActivitiesRepository(ApplicationContext context, IConfiguration con
             list.Add(_context.Add(activity).Entity);
         }
         return list;
-    }
-
-    public void Remove(Activity activity)
-    {
-        _context.Activities.Remove(activity);
-    }
-
-    public void RemoveRange(ICollection<Activity> activities)
-    {
-        _context.Activities.RemoveRange(activities);
     }
 
     //Queries
@@ -80,11 +70,15 @@ public class ActivitiesRepository(ApplicationContext context, IConfiguration con
 
     }
 
-    public async Task<List<Activity>> Find(long? projectId, CancellationToken token)
-    {
-        return await _context.Activities.Where(x => x.ProjectId == projectId)
-            .ToListAsync(token);
-    }
+	public async Task RemoveById(long id, CancellationToken token)
+	{
+        await using var connection = new SqlConnection(_connectionString);
+        await connection.OpenAsync(token);
 
+        var parameters = new DynamicParameters();
+        parameters.Add("activityId", id);
 
+        await connection.QueryAsync("SP_SoftDeleteActivityAndCommentsAndActivityMembersAndNotificaitons",
+            parameters, commandType: CommandType.StoredProcedure);
+	}
 }

@@ -19,7 +19,6 @@ public class ProjectMember : BaseEntity
 			MemberId = memberId,
 			ProjectId = projectId,
 			CreatedDate = DateTime.UtcNow,
-			IsEdited = false,
 			IsActive = true,
 			IsOwner = false
 		};
@@ -32,7 +31,6 @@ public class ProjectMember : BaseEntity
 			MemberId = memberId,
 			ProjectId = projectId,
 			CreatedDate = DateTime.UtcNow,
-			IsEdited = false,
 			IsActive = true,
 			IsOwner = true,
 		};
