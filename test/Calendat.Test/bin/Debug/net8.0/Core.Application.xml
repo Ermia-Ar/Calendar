@@ -1,0 +1,1260 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core.Application</name>
+    </assembly>
+    <members>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.Title">
+            <summary>حداقل 3 کاراکتر </summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.Description">
+            <summary>توضیح فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.StartDate">
+            <summary>از زمان حال بزرگتر باشد</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.Duration">
+            <summary>مدت زمان در نظر گرفته شده برای فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.NotificationBefore">
+            <summary> چه مدت مانده به فعالیت به کاربر اعلان داده شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.Category">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.MemberIds">
+            <summary>درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.Message">
+            <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Title">
+            <summary>حداقل 3 کاراکتر </summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Description">
+            <summary>توضیح فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.StartDate">
+            <summary>از زمان حال بزرگتر باشد</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Duration">
+            <summary>مدت زمان در نظر گرفته شده برای فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.NotificationBefore">
+            <summary> چه مدت مانده به فعالیت به کاربر اعلان داده شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Category">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.MemberIds">
+            <summary>درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Message">
+            <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest">
+            <summary>
+            
+            </summary>
+            <param name="ActivityId">ایدی فعالیت</param>
+            <param name="MemberIds">ایدی دریافت کننده های درخواست عضویت</param>
+            <param name="Message">پبامی که همراه با درخواست ارسال میشود</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest.#ctor(System.Int64,System.Guid[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ActivityId">ایدی فعالیت</param>
+            <param name="MemberIds">ایدی دریافت کننده های درخواست عضویت</param>
+            <param name="Message">پبامی که همراه با درخواست ارسال میشود</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest.ActivityId">
+            <summary>ایدی فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest.MemberIds">
+            <summary>ایدی دریافت کننده های درخواست عضویت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest.Message">
+            <summary>پبامی که همراه با درخواست ارسال میشود</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto">
+            <summary>
+            
+            </summary>
+            <param name="MemberIds">ایدی دریافت کننده های درخواست عضویت</param>
+            <param name="Message">پبامی که همراه با درخواست ارسال میشود</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto.#ctor(System.Guid[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="MemberIds">ایدی دریافت کننده های درخواست عضویت</param>
+            <param name="Message">پبامی که همراه با درخواست ارسال میشود</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto.MemberIds">
+            <summary>ایدی دریافت کننده های درخواست عضویت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto.Message">
+            <summary>پبامی که همراه با درخواست ارسال میشود</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationCommandRequest">
+            <summary>
+            
+            </summary>
+            <param name="ActivityId">ایدی فعالیت</param>
+            <param name="NotificationBefore"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationCommandRequest.#ctor(System.Int64,System.Nullable{System.TimeSpan})">
+            <summary>
+            
+            </summary>
+            <param name="ActivityId">ایدی فعالیت</param>
+            <param name="NotificationBefore"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationCommandRequest.ActivityId">
+            <summary>ایدی فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationCommandRequest.NotificationBefore">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationDto">
+            <summary>
+            
+            </summary>
+            <param name="NotificationBefore"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationDto.#ctor(System.Nullable{System.TimeSpan})">
+            <summary>
+            
+            </summary>
+            <param name="NotificationBefore"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationDto.NotificationBefore">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.UpdateStartDate.UpdateActivityStartDateDto">
+            <summary>
+            
+            </summary>
+            <param name="NewStartDate">تاریخ شروع جدید</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateStartDate.UpdateActivityStartDateDto.#ctor(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="NewStartDate">تاریخ شروع جدید</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateStartDate.UpdateActivityStartDateDto.NewStartDate">
+            <summary>تاریخ شروع جدید</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest">
+            <summary>
+            
+            </summary>
+            <param name="Id">ایدی فعالیت که میخواهید به روزرسانی کنید</param>
+            <param name="Title"></param>
+            <param name="Description"></param>
+            <param name="Duration">TimeSpan</param>
+            <param name="Category"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.#ctor(System.Int64,System.String,System.String,System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory)">
+            <summary>
+            
+            </summary>
+            <param name="Id">ایدی فعالیت که میخواهید به روزرسانی کنید</param>
+            <param name="Title"></param>
+            <param name="Description"></param>
+            <param name="Duration">TimeSpan</param>
+            <param name="Category"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.Id">
+            <summary>ایدی فعالیت که میخواهید به روزرسانی کنید</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.Title">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.Description">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.Duration">
+            <summary>TimeSpan</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.Category">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto">
+            <summary>
+            
+            </summary>
+            <param name="Title"></param>
+            <param name="Description"></param>
+            <param name="Duration">TimeSpan</param>
+            <param name="Category"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.#ctor(System.String,System.String,System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory)">
+            <summary>
+            
+            </summary>
+            <param name="Title"></param>
+            <param name="Description"></param>
+            <param name="Duration">TimeSpan</param>
+            <param name="Category"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.Title">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.Description">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.Duration">
+            <summary>TimeSpan</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.Category">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+            <param name="IdOrdring"></param>
+            <param name="ParentIdOrdring"></param>
+            <param name="ProjectIdOrdring"></param>
+            <param name="UserIdOrdring"></param>
+            <param name="TitleOrdring"></param>
+            <param name="DescriptionOrdring"></param>
+            <param name="StartDateOrdring"></param>
+            <param name="CreatedDateOrdring"></param>
+            <param name="UpdateDateOrdring"></param>
+            <param name="DurationOrdring"></param>
+            <param name="NotificationBeforeInMinuteOrdring"></param>
+            <param name="CategoryOrdring"></param>
+            <param name="IsCompletedOrdring"></param>
+            <param name="IsEditedOrdring"></param>
+            <param name="StartDateFiltering"></param>
+            <param name="IsCompletedFiltering"></param>
+            <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
+            <param name="CategoryFiltering"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+            <param name="IdOrdring"></param>
+            <param name="ParentIdOrdring"></param>
+            <param name="ProjectIdOrdring"></param>
+            <param name="UserIdOrdring"></param>
+            <param name="TitleOrdring"></param>
+            <param name="DescriptionOrdring"></param>
+            <param name="StartDateOrdring"></param>
+            <param name="CreatedDateOrdring"></param>
+            <param name="UpdateDateOrdring"></param>
+            <param name="DurationOrdring"></param>
+            <param name="NotificationBeforeInMinuteOrdring"></param>
+            <param name="CategoryOrdring"></param>
+            <param name="IsCompletedOrdring"></param>
+            <param name="IsEditedOrdring"></param>
+            <param name="StartDateFiltering"></param>
+            <param name="IsCompletedFiltering"></param>
+            <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
+            <param name="CategoryFiltering"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.PageNum">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.StartDateFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsCompletedFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsHistoryFiltering">
+            <summary>اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CategoryFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.ParentIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.ProjectIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.UserIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.TitleOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.DescriptionOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.StartDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CreatedDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.UpdateDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.DurationOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.NotificationBeforeInMinuteOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CategoryOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsCompletedOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsEditedOrdring">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto">
+            <summary>
+            
+            </summary>
+            <param name="PageNumber"></param>
+            <param name="PageSize"></param>
+            <param name="SearchFiltering">روی محتوا کامنت سرچ انجام میده</param>
+            <param name="userIdFiltering">کامنت مال چه کاربری است</param>
+            <param name="IdOreing"></param>
+            <param name="ActivityIdOreing"></param>
+            <param name="UserIdOreing"></param>
+            <param name="ContentOreing"></param>
+            <param name="CreatedDateOreing"></param>
+            <param name="UpdatedDateOreing"></param>
+            <param name="IsEditedOreing"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.#ctor(System.Int32,System.Int32,System.String,System.Nullable{System.Guid},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+            <summary>
+            
+            </summary>
+            <param name="PageNumber"></param>
+            <param name="PageSize"></param>
+            <param name="SearchFiltering">روی محتوا کامنت سرچ انجام میده</param>
+            <param name="userIdFiltering">کامنت مال چه کاربری است</param>
+            <param name="IdOreing"></param>
+            <param name="ActivityIdOreing"></param>
+            <param name="UserIdOreing"></param>
+            <param name="ContentOreing"></param>
+            <param name="CreatedDateOreing"></param>
+            <param name="UpdatedDateOreing"></param>
+            <param name="IsEditedOreing"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.PageNumber">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.SearchFiltering">
+            <summary>روی محتوا کامنت سرچ انجام میده</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.userIdFiltering">
+            <summary>کامنت مال چه کاربری است</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.IdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.ActivityIdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.UserIdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.ContentOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.CreatedDateOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.UpdatedDateOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.IsEditedOreing">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto.#ctor(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto.PageNum">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse">
+            <summary>
+            
+            </summary>
+            <param name="MemberId"></param>
+            <param name="IsOwner"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.#ctor(System.Guid,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="MemberId"></param>
+            <param name="IsOwner"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.MemberId">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.IsOwner">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Auth.Commands.Login.LoginCommandRequest">
+            <summary>
+            
+            </summary>
+            <param name="UserName">نام کاربری وارد شود</param>
+            <param name="Password">حداقل 8 کاراکتر</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Auth.Commands.Login.LoginCommandRequest.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="UserName">نام کاربری وارد شود</param>
+            <param name="Password">حداقل 8 کاراکتر</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Auth.Commands.Login.LoginCommandRequest.UserName">
+            <summary>نام کاربری وارد شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Auth.Commands.Login.LoginCommandRequest.Password">
+            <summary>حداقل 8 کاراکتر</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto">
+            <summary>
+            
+            </summary>
+            <param name="PageSize"></param>
+            <param name="PageNum"></param>
+            <param name="SearchFiltering">بر روی نام های کاربری سرچ انجام میده</param>
+            <param name="IdOrdering"></param>
+            <param name="UserNameOrdering"></param>
+            <param name="EmailOrdering"></param>
+            <param name="CategoryOrdering"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto.#ctor(System.Int32,System.Int32,System.String,System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+            <summary>
+            
+            </summary>
+            <param name="PageSize"></param>
+            <param name="PageNum"></param>
+            <param name="SearchFiltering">بر روی نام های کاربری سرچ انجام میده</param>
+            <param name="IdOrdering"></param>
+            <param name="UserNameOrdering"></param>
+            <param name="EmailOrdering"></param>
+            <param name="CategoryOrdering"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto.PageNum">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto.SearchFiltering">
+            <summary>بر روی نام های کاربری سرچ انجام میده</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto.IdOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto.UserNameOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto.EmailOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Auth.Queries.GetAll.GetAllUsersDto.CategoryOrdering">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Comments.Commands.Add.AddCommentCommandRequest">
+            <summary>
+            
+            </summary>
+            <param name="ActivityId"></param>
+            <param name="Content">متن کامنت</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Comments.Commands.Add.AddCommentCommandRequest.#ctor(System.Int64,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ActivityId"></param>
+            <param name="Content">متن کامنت</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Commands.Add.AddCommentCommandRequest.ActivityId">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Commands.Add.AddCommentCommandRequest.Content">
+            <summary>متن کامنت</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto">
+            <summary>
+            
+            </summary>
+            <param name="UserId"></param>
+            <param name="PageNumber"></param>
+            <param name="PageSize"></param>
+            <param name="ProjectIdFiltering">مال چه پروژه ای است</param>
+            <param name="ActivityIdFiltering">مال چه فعالیتی است </param>
+            <param name="SearchFiltering">روی محتوا کامنت سرچ انجام میده</param>
+            <param name="IdOreing"></param>
+            <param name="ActivityIdOreing"></param>
+            <param name="UserIdOreing"></param>
+            <param name="ProjectIdOreing"></param>
+            <param name="ContentOreing"></param>
+            <param name="CreatedDateOreing"></param>
+            <param name="UpdatedDateOreing"></param>
+            <param name="IsEditedOreing"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.#ctor(System.Guid,System.Int32,System.Int32,System.Nullable{System.Int64},System.Nullable{System.Int64},System.String,System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+            <summary>
+            
+            </summary>
+            <param name="UserId"></param>
+            <param name="PageNumber"></param>
+            <param name="PageSize"></param>
+            <param name="ProjectIdFiltering">مال چه پروژه ای است</param>
+            <param name="ActivityIdFiltering">مال چه فعالیتی است </param>
+            <param name="SearchFiltering">روی محتوا کامنت سرچ انجام میده</param>
+            <param name="IdOreing"></param>
+            <param name="ActivityIdOreing"></param>
+            <param name="UserIdOreing"></param>
+            <param name="ProjectIdOreing"></param>
+            <param name="ContentOreing"></param>
+            <param name="CreatedDateOreing"></param>
+            <param name="UpdatedDateOreing"></param>
+            <param name="IsEditedOreing"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.UserId">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.PageNumber">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.ProjectIdFiltering">
+            <summary>مال چه پروژه ای است</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.ActivityIdFiltering">
+            <summary>مال چه فعالیتی است </summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.SearchFiltering">
+            <summary>روی محتوا کامنت سرچ انجام میده</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.IdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.ActivityIdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.UserIdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.ProjectIdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.ContentOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.CreatedDateOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.UpdatedDateOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.IsEditedOreing">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.Title">
+            <summary>حداقل 3 کاراکتر </summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.Description">
+            <summary>توضیح فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.StartDate">
+            <summary>از زمان حال بزرگتر باشد</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.Duration">
+            <summary>مدت زمان در نظر گرفته شده برای فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.NotificationBefore">
+            <summary> چه مدت مانده به فعالیت به کاربر اعلان داده شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.Category">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.MemberIds">
+            <summary>درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.Message">
+            <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Commands.AddMembers.AddMembersToProjectDto">
+            <summary>
+            
+            </summary>
+            <param name="MemberIds">افرادی که به پروژه اضافه می شوند و به ان های درخواست عضویت در فعالیت ها ارسال می شود</param>
+            <param name="ActivityIds">ارسال می شود memberIds فعالیت هایی که درخواست عضویت در ان برای</param>
+            <param name="Message">ارسال میشود memberIds پیامی که همراه با درخواست برای</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Commands.AddMembers.AddMembersToProjectDto.#ctor(System.Guid[],System.Int64[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="MemberIds">افرادی که به پروژه اضافه می شوند و به ان های درخواست عضویت در فعالیت ها ارسال می شود</param>
+            <param name="ActivityIds">ارسال می شود memberIds فعالیت هایی که درخواست عضویت در ان برای</param>
+            <param name="Message">ارسال میشود memberIds پیامی که همراه با درخواست برای</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddMembers.AddMembersToProjectDto.MemberIds">
+            <summary>افرادی که به پروژه اضافه می شوند و به ان های درخواست عضویت در فعالیت ها ارسال می شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddMembers.AddMembersToProjectDto.ActivityIds">
+            <summary>ارسال می شود memberIds فعالیت هایی که درخواست عضویت در ان برای</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddMembers.AddMembersToProjectDto.Message">
+            <summary>ارسال میشود memberIds پیامی که همراه با درخواست برای</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+            <param name="Interval"></param>
+            <param name="Recurrence"></param>
+            <param name="EndDate"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String,System.Int32,Core.Domain.Enum.RecurrenceType,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+            <param name="Interval"></param>
+            <param name="Recurrence"></param>
+            <param name="EndDate"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Title">
+            <summary>حداقل 3 کاراکتر </summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Description">
+            <summary>توضیح فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.StartDate">
+            <summary>از زمان حال بزرگتر باشد</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Duration">
+            <summary>مدت زمان در نظر گرفته شده برای فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.NotificationBefore">
+            <summary> چه مدت مانده به فعالیت به کاربر اعلان داده شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Category">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.MemberIds">
+            <summary>درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Message">
+            <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Interval">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Recurrence">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.EndDate">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر</param>
+            <param name="Description"></param>
+            <param name="StartDate">زمان شروع</param>
+            <param name="EndDate">زمان پایان</param>
+            <param name="MemberIds">این افراد عضو این پروژه می شوند</param>
+            <param name="Color"></param>
+            <param name="Icon"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest.#ctor(System.String,System.String,System.DateTime,System.DateTime,System.String,System.String,System.Guid[])">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر</param>
+            <param name="Description"></param>
+            <param name="StartDate">زمان شروع</param>
+            <param name="EndDate">زمان پایان</param>
+            <param name="MemberIds">این افراد عضو این پروژه می شوند</param>
+            <param name="Color"></param>
+            <param name="Icon"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest.Title">
+            <summary>حداقل 3 کاراکتر</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest.Description">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest.StartDate">
+            <summary>زمان شروع</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest.EndDate">
+            <summary>زمان پایان</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest.Icon">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest.Color">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest.MemberIds">
+            <summary>این افراد عضو این پروژه می شوند</summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+            <param name="ProjectId">اجباری : فعالیت های درون این پروژه رو برمیگردونه</param>
+            <param name="IsCompletedFiltering"></param>
+            <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
+            <param name="CategoryFiltering"></param>
+            <param name="IdOrdring"></param>
+            <param name="ParentIdOrdring"></param>
+            <param name="ProjectIdOrdring"></param>
+            <param name="UserIdOrdring"></param>
+            <param name="TitleOrdring"></param>
+            <param name="DescriptionOrdring"></param>
+            <param name="StartDateOrdring"></param>
+            <param name="CreatedDateOrdring"></param>
+            <param name="UpdateDateOrdring"></param>
+            <param name="DurationOrdring"></param>
+            <param name="NotificationBeforeInMinuteOrdring"></param>
+            <param name="CategoryOrdring"></param>
+            <param name="IsCompletedOrdring"></param>
+            <param name="IsEditedOrdring"></param>
+            <param name="StartDateFiltering"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{System.DateTime})">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+            <param name="ProjectId">اجباری : فعالیت های درون این پروژه رو برمیگردونه</param>
+            <param name="IsCompletedFiltering"></param>
+            <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
+            <param name="CategoryFiltering"></param>
+            <param name="IdOrdring"></param>
+            <param name="ParentIdOrdring"></param>
+            <param name="ProjectIdOrdring"></param>
+            <param name="UserIdOrdring"></param>
+            <param name="TitleOrdring"></param>
+            <param name="DescriptionOrdring"></param>
+            <param name="StartDateOrdring"></param>
+            <param name="CreatedDateOrdring"></param>
+            <param name="UpdateDateOrdring"></param>
+            <param name="DurationOrdring"></param>
+            <param name="NotificationBeforeInMinuteOrdring"></param>
+            <param name="CategoryOrdring"></param>
+            <param name="IsCompletedOrdring"></param>
+            <param name="IsEditedOrdring"></param>
+            <param name="StartDateFiltering"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.PageNum">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsCompletedFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsHistoryFiltering">
+            <summary>اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.CategoryFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.ParentIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.ProjectIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.UserIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.TitleOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.DescriptionOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.StartDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.CreatedDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.UpdateDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.DurationOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.NotificationBeforeInMinuteOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.CategoryOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsCompletedOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsEditedOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.StartDateFiltering">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto">
+            <summary>
+            
+            </summary>
+            <param name="PageSize"></param>
+            <param name="PageNum"></param>
+            <param name="StartDateFiltering">بر اساس تاریخ شروع پروژه فیلتر می کنه</param>
+            <param name="EndDateFiltering"></param>
+            <param name="UserIsOwnerFiltering">فقط پروژه هایی رو کاربر سازنده ان باشه برمی گردونه</param>
+            <param name="IsHistoryFiltering">پروژه هایی رو که از تاریخ پایانشون گذشته باشه رو بر می گردونه</param>
+            <param name="IdOrdring"></param>
+            <param name="OwnerIdOrdring"></param>
+            <param name="TitleOrdring"></param>
+            <param name="DescriptionOrdring"></param>
+            <param name="CreatedDateOrdring"></param>
+            <param name="UpdateDateOrdring"></param>
+            <param name="StartDateOrdring"></param>
+            <param name="EndDateOrdring"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.#ctor(System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+            <summary>
+            
+            </summary>
+            <param name="PageSize"></param>
+            <param name="PageNum"></param>
+            <param name="StartDateFiltering">بر اساس تاریخ شروع پروژه فیلتر می کنه</param>
+            <param name="EndDateFiltering"></param>
+            <param name="UserIsOwnerFiltering">فقط پروژه هایی رو کاربر سازنده ان باشه برمی گردونه</param>
+            <param name="IsHistoryFiltering">پروژه هایی رو که از تاریخ پایانشون گذشته باشه رو بر می گردونه</param>
+            <param name="IdOrdring"></param>
+            <param name="OwnerIdOrdring"></param>
+            <param name="TitleOrdring"></param>
+            <param name="DescriptionOrdring"></param>
+            <param name="CreatedDateOrdring"></param>
+            <param name="UpdateDateOrdring"></param>
+            <param name="StartDateOrdring"></param>
+            <param name="EndDateOrdring"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.PageNum">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.StartDateFiltering">
+            <summary>بر اساس تاریخ شروع پروژه فیلتر می کنه</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.EndDateFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.UserIsOwnerFiltering">
+            <summary>فقط پروژه هایی رو کاربر سازنده ان باشه برمی گردونه</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.IsHistoryFiltering">
+            <summary>پروژه هایی رو که از تاریخ پایانشون گذشته باشه رو بر می گردونه</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.IdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.OwnerIdOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.TitleOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.DescriptionOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.CreatedDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.UpdateDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.StartDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetAll.GetAllProjectDto.EndDateOrdring">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto">
+            <summary>
+            
+            </summary>
+            <param name="PageNumber"></param>
+            <param name="PageSize"></param>
+            <param name="ActivityIdFiltering">مال چه فعالیتی است </param>
+            <param name="SearchFiltering">روی محتوا کامنت سرچ انجام میده</param>
+            <param name="userIdFiltering">کامنت مال چه کاربری است</param>
+            <param name="IdOreing"></param>
+            <param name="ActivityIdOreing"></param>
+            <param name="UserIdOreing"></param>
+            <param name="ProjectIdOreing"></param>
+            <param name="ContentOreing"></param>
+            <param name="CreatedDateOreing"></param>
+            <param name="UpdatedDateOreing"></param>
+            <param name="IsEditedOreing"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.#ctor(System.Int32,System.Int32,System.Nullable{System.Int64},System.String,System.Nullable{System.Guid},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+            <summary>
+            
+            </summary>
+            <param name="PageNumber"></param>
+            <param name="PageSize"></param>
+            <param name="ActivityIdFiltering">مال چه فعالیتی است </param>
+            <param name="SearchFiltering">روی محتوا کامنت سرچ انجام میده</param>
+            <param name="userIdFiltering">کامنت مال چه کاربری است</param>
+            <param name="IdOreing"></param>
+            <param name="ActivityIdOreing"></param>
+            <param name="UserIdOreing"></param>
+            <param name="ProjectIdOreing"></param>
+            <param name="ContentOreing"></param>
+            <param name="CreatedDateOreing"></param>
+            <param name="UpdatedDateOreing"></param>
+            <param name="IsEditedOreing"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.PageNumber">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.ActivityIdFiltering">
+            <summary>مال چه فعالیتی است </summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.SearchFiltering">
+            <summary>روی محتوا کامنت سرچ انجام میده</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.userIdFiltering">
+            <summary>کامنت مال چه کاربری است</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.IdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.ActivityIdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.UserIdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.ProjectIdOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.ContentOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.CreatedDateOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.UpdatedDateOreing">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.IsEditedOreing">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectQueryResponse">
+            <summary>
+            
+            </summary>
+            <param name="MemberId"></param>
+            <param name="IsOwner"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectQueryResponse.#ctor(System.Guid,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="MemberId"></param>
+            <param name="IsOwner"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectQueryResponse.MemberId">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectQueryResponse.IsOwner">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestCommandRequest">
+            <summary>
+            
+            </summary>
+            <param name="RequestId"></param>
+            <param name="IsAccepted"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestCommandRequest.#ctor(System.Int64,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="RequestId"></param>
+            <param name="IsAccepted"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestCommandRequest.RequestId">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestCommandRequest.IsAccepted">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestDto">
+            <summary>
+            
+            </summary>
+            <param name="IsAccepted"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestDto.#ctor(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="IsAccepted"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestDto.IsAccepted">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+            <param name="ActivityIdFiltering">در خواست برای چه فعالیتی است</param>
+            <param name="SenderIdFiltering">فرستنده درخواست کیه</param>
+            <param name="ReceiverIdFiltering">دریافت کننده درخواست کیه </param>
+            <param name="StatusFiltering">وضعیت درخواست مثلا قبول شده یا رد شده</param>
+            <param name="AnswerAtFiltering"></param>
+            <param name="InviteAtFiltering"></param>
+            <param name="IsGuestFiltering"></param>
+            <param name="IdOrdering"></param>
+            <param name="ProjectIdOrdering"></param>
+            <param name="ActivityIdOrdering"></param>
+            <param name="SenderIdOrdering"></param>
+            <param name="ReceiverIdOrdering"></param>
+            <param name="RequestForOrdering"></param>
+            <param name="StatusOrdering"></param>
+            <param name="InvitedAtOrdering"></param>
+            <param name="AnsweredAtOrdering"></param>
+            <param name="MessageOrdering"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.#ctor(System.Int32,System.Int32,System.Nullable{System.Int64},System.Nullable{System.Guid},System.Nullable{System.Guid},System.Nullable{Core.Domain.Enum.RequestStatus},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+            <summary>
+            
+            </summary>
+            <param name="PageNum"></param>
+            <param name="PageSize"></param>
+            <param name="ActivityIdFiltering">در خواست برای چه فعالیتی است</param>
+            <param name="SenderIdFiltering">فرستنده درخواست کیه</param>
+            <param name="ReceiverIdFiltering">دریافت کننده درخواست کیه </param>
+            <param name="StatusFiltering">وضعیت درخواست مثلا قبول شده یا رد شده</param>
+            <param name="AnswerAtFiltering"></param>
+            <param name="InviteAtFiltering"></param>
+            <param name="IsGuestFiltering"></param>
+            <param name="IdOrdering"></param>
+            <param name="ProjectIdOrdering"></param>
+            <param name="ActivityIdOrdering"></param>
+            <param name="SenderIdOrdering"></param>
+            <param name="ReceiverIdOrdering"></param>
+            <param name="RequestForOrdering"></param>
+            <param name="StatusOrdering"></param>
+            <param name="InvitedAtOrdering"></param>
+            <param name="AnsweredAtOrdering"></param>
+            <param name="MessageOrdering"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.PageNum">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.PageSize">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.ActivityIdFiltering">
+            <summary>در خواست برای چه فعالیتی است</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.SenderIdFiltering">
+            <summary>فرستنده درخواست کیه</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.ReceiverIdFiltering">
+            <summary>دریافت کننده درخواست کیه </summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.StatusFiltering">
+            <summary>وضعیت درخواست مثلا قبول شده یا رد شده</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.AnswerAtFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.InviteAtFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.IsGuestFiltering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.IdOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.ProjectIdOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.ActivityIdOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.SenderIdOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.ReceiverIdOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.RequestForOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.StatusOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.InvitedAtOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.AnsweredAtOrdering">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto.MessageOrdering">
+            <summary></summary>
+        </member>
+    </members>
+</doc>
