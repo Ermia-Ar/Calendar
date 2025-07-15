@@ -16,7 +16,7 @@ public sealed class GetAllProjectsQueryHandler(IUnitOfWork unitOfWork, ICurrentU
 
     public async Task<PaginationResult<List<GetAllProjectQueryResponse>>> Handle(GetAllProjectsQueryRequest request, CancellationToken cancellationToken)
     {
-        var userId = Guid.Parse("1e13a389-3308-4918-8a6f-71496557190c");//_currentUserServices.GetUserId();
+        var userId = _currentUserServices.GetUserId();
 
         var projects = await _unitOfWork.ProjectMembers
             .GetProjectOfUserId(userId, request.Filtering, request.Ordring,

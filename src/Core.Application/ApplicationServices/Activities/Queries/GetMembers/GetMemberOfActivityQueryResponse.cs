@@ -1,5 +1,4 @@
-﻿using Mapster;
-using SharedKernel.Helper;
+﻿using SharedKernel.Helper;
 
 namespace Core.Application.ApplicationServices.Activities.Queries.GetMembers;
 
@@ -8,10 +7,13 @@ namespace Core.Application.ApplicationServices.Activities.Queries.GetMembers;
 /// </summary>
 /// <param name="MemberId"></param>
 /// <param name="IsOwner"></param>
+/// <param name="IsGuest"></param>
 public record class GetMemberOfActivityQueryResponse(
+	long Id,
     Guid MemberId,
 	//string UserName, 
 	//string Email
-	bool IsOwner
+	bool IsOwner,
+	bool IsGuest
     ) : IResponse;
 

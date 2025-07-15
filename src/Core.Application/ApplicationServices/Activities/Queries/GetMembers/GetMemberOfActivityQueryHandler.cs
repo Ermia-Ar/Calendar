@@ -16,7 +16,7 @@ public class GetMemberOfActivityQueryHandler(IUnitOfWork unitOfWork, ICurrentUse
 
     public async Task<PaginationResult<List<GetMemberOfActivityQueryResponse>>> Handle(GetMemberOfActivityQueryRequest request, CancellationToken cancellationToken)
     {
-        //var userId = _currentUser.GetUserId();
+        var userId = _currentUser.GetUserId();
 
         var members = await _unitOfWork.ActivityMembers
             .GetMemberOfActivity(request.ActivityId, request.Pagination,
@@ -24,8 +24,8 @@ public class GetMemberOfActivityQueryHandler(IUnitOfWork unitOfWork, ICurrentUse
         
         var response = members.Responses.Adapt<List<GetMemberOfActivityQueryResponse>>();
 
-        // if (!response.Any(x => x.Id == userId))
-        //     throw new OnlyActivityMembersAllowedException();
+         if (!response.Any(x => x.MemberId == userId))
+             throw new OnlyActivityMembersAllowedException();
 
 
         return new PaginationResult<List<GetMemberOfActivityQueryResponse>>(response, 

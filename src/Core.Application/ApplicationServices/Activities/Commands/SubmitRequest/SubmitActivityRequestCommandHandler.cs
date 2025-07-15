@@ -43,30 +43,30 @@ public sealed class SubmitActivityRequestCommandHandler(
 			.FindMemberIdsOfProject(activity.ProjectId, cancellationToken))
 			.ToList();
 
-		//send for each Receivers
+		//send for each receivers
 		var userRequests = new List<Request>();
 		foreach (var receiverId in request.MemberIds)
 		{
-			//check
+			////check
 			var receiver = (await _unitOfWork
 					.Users.GetById(receiverId, cancellationToken))
 					.Adapt<GetUserByIdResponse>();
 
 			if (receiver == null)
 				throw new NotFoundUserIdException(receiverId);
-
+			// receiverId
 			var isMember = await _unitOfWork.ActivityMembers
-				.IsMemberOfActivity(receiver.Id, activity.Id, cancellationToken);
+				.IsMemberOfActivity(receiverId, activity.Id, cancellationToken);
 
 			if (isMember)
-				throw new TheUserAlreadyIsMemberActivity(receiver.Id);
+				throw new TheUserAlreadyIsMemberActivity(receiverId);
 
 			// check if the receiver is a member of base project
-			var	isGuest = projectMemberIds.Any(x => x != receiver.Id);
+			var	isGuest = projectMemberIds.Any(x => x != receiverId);
 
 			//create request
 			var sendRequest = RequestFactory.Create(activity.Id,
-				senderId, receiver.Id, request.Message,
+				senderId, receiverId, request.Message,
 				isGuest);
 
 			userRequests.Add(sendRequest);

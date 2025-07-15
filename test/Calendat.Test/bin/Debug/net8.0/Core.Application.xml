@@ -283,13 +283,12 @@
             <param name="NotificationBeforeInMinuteOrdring"></param>
             <param name="CategoryOrdring"></param>
             <param name="IsCompletedOrdring"></param>
-            <param name="IsEditedOrdring"></param>
             <param name="StartDateFiltering"></param>
             <param name="IsCompletedFiltering"></param>
             <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
             <param name="CategoryFiltering"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
             <summary>
             
             </summary>
@@ -308,7 +307,6 @@
             <param name="NotificationBeforeInMinuteOrdring"></param>
             <param name="CategoryOrdring"></param>
             <param name="IsCompletedOrdring"></param>
-            <param name="IsEditedOrdring"></param>
             <param name="StartDateFiltering"></param>
             <param name="IsCompletedFiltering"></param>
             <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
@@ -371,9 +369,6 @@
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsCompletedOrdring">
             <summary></summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsEditedOrdring">
-            <summary></summary>
-        </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto">
             <summary>
             
@@ -388,9 +383,8 @@
             <param name="ContentOreing"></param>
             <param name="CreatedDateOreing"></param>
             <param name="UpdatedDateOreing"></param>
-            <param name="IsEditedOreing"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.#ctor(System.Int32,System.Int32,System.String,System.Nullable{System.Guid},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.#ctor(System.Int32,System.Int32,System.String,System.Nullable{System.Guid},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
             <summary>
             
             </summary>
@@ -404,7 +398,6 @@
             <param name="ContentOreing"></param>
             <param name="CreatedDateOreing"></param>
             <param name="UpdatedDateOreing"></param>
-            <param name="IsEditedOreing"></param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.PageNumber">
             <summary></summary>
@@ -434,9 +427,6 @@
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.UpdatedDateOreing">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.IsEditedOreing">
             <summary></summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto">
@@ -581,9 +571,8 @@
             <param name="ContentOreing"></param>
             <param name="CreatedDateOreing"></param>
             <param name="UpdatedDateOreing"></param>
-            <param name="IsEditedOreing"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.#ctor(System.Guid,System.Int32,System.Int32,System.Nullable{System.Int64},System.Nullable{System.Int64},System.String,System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+        <member name="M:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.#ctor(System.Guid,System.Int32,System.Int32,System.Nullable{System.Int64},System.Nullable{System.Int64},System.String,System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
             <summary>
             
             </summary>
@@ -600,7 +589,6 @@
             <param name="ContentOreing"></param>
             <param name="CreatedDateOreing"></param>
             <param name="UpdatedDateOreing"></param>
-            <param name="IsEditedOreing"></param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.UserId">
             <summary></summary>
@@ -639,9 +627,6 @@
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.UpdatedDateOreing">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Comments.Queries.GetAll.GetAllCommentDto.IsEditedOreing">
             <summary></summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto">
@@ -829,13 +814,42 @@
         <member name="P:Core.Application.ApplicationServices.Projects.Commands.Add.AddProjectCommandRequest.MemberIds">
             <summary>این افراد عضو این پروژه می شوند</summary>
         </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Commands.ChangeColor.ChangeColorDto">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Commands.ChangeColor.ChangeColorDto.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Color"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.ChangeColor.ChangeColorDto.Color">
+            <summary></summary>
+        </member>
+        <member name="T:Core.Application.ApplicationServices.Projects.Commands.ChangeIcon.ChangeIconDto">
+            <summary>
+            
+            </summary>
+            <param name="Icon"></param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Projects.Commands.ChangeIcon.ChangeIconDto.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Icon"></param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.ChangeIcon.ChangeIconDto.Icon">
+            <summary></summary>
+        </member>
         <member name="T:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto">
             <summary>
             
             </summary>
             <param name="PageNum"></param>
             <param name="PageSize"></param>
-            <param name="ProjectId">اجباری : فعالیت های درون این پروژه رو برمیگردونه</param>
             <param name="IsCompletedFiltering"></param>
             <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
             <param name="CategoryFiltering"></param>
@@ -852,16 +866,14 @@
             <param name="NotificationBeforeInMinuteOrdring"></param>
             <param name="CategoryOrdring"></param>
             <param name="IsCompletedOrdring"></param>
-            <param name="IsEditedOrdring"></param>
             <param name="StartDateFiltering"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{System.DateTime})">
+        <member name="M:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
             <param name="PageNum"></param>
             <param name="PageSize"></param>
-            <param name="ProjectId">اجباری : فعالیت های درون این پروژه رو برمیگردونه</param>
             <param name="IsCompletedFiltering"></param>
             <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
             <param name="CategoryFiltering"></param>
@@ -878,7 +890,6 @@
             <param name="NotificationBeforeInMinuteOrdring"></param>
             <param name="CategoryOrdring"></param>
             <param name="IsCompletedOrdring"></param>
-            <param name="IsEditedOrdring"></param>
             <param name="StartDateFiltering"></param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.PageNum">
@@ -933,9 +944,6 @@
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsCompletedOrdring">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.IsEditedOrdring">
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.StartDateFiltering">
@@ -1037,9 +1045,8 @@
             <param name="ContentOreing"></param>
             <param name="CreatedDateOreing"></param>
             <param name="UpdatedDateOreing"></param>
-            <param name="IsEditedOreing"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.#ctor(System.Int32,System.Int32,System.Nullable{System.Int64},System.String,System.Nullable{System.Guid},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+        <member name="M:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.#ctor(System.Int32,System.Int32,System.Nullable{System.Int64},System.String,System.Nullable{System.Guid},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
             <summary>
             
             </summary>
@@ -1055,7 +1062,6 @@
             <param name="ContentOreing"></param>
             <param name="CreatedDateOreing"></param>
             <param name="UpdatedDateOreing"></param>
-            <param name="IsEditedOreing"></param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.PageNumber">
             <summary></summary>
@@ -1091,9 +1097,6 @@
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.UpdatedDateOreing">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetComments.GetProjectCommentsDto.IsEditedOreing">
             <summary></summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectQueryResponse">

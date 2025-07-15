@@ -7,7 +7,7 @@ namespace Calendar.Api.Controllers;
 [ApiController]
 public class AuthController(ISender sender) : ControllerBase
 {
-	private ISender _sender = sender;
+	private readonly ISender _sender = sender;
 
 	/// <summary>
 	/// ورودی کاربر

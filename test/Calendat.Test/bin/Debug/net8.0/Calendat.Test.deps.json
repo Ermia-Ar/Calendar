@@ -2363,6 +2363,7 @@
       "Core.Domain/1.0.0": {
         "dependencies": {
           "MamRp.SharedKernel": "1.4.2",
+          "Microsoft.EntityFrameworkCore": "8.0.0",
           "Share": "1.0.0"
         },
         "runtime": {

@@ -30,11 +30,11 @@ public sealed class AnswerRequestCommandHandler(
         if (userRequest.ReceiverId != userId)
             throw new NotFoundRequestException();
         
-        if (userRequest.IsExpire == true)
+        if (userRequest.IsExpire)
             throw new ExpireRequestException();
 
     
-        if (request.IsAccepted == true)
+        if (request.IsAccepted)
         {
             var activity = await _unitOfWork.Activities
                 .FindById(userRequest.ActivityId, cancellationToken);
@@ -45,33 +45,45 @@ public sealed class AnswerRequestCommandHandler(
             //Accept request
 			userRequest.Accept();
 
-            //Check if the user is already is member of Activitiy or not
+            //Check if the user is already is member of Activity or not
             var isAlreadyMember = await _unitOfWork.ActivityMembers
                 .IsMemberOfActivity(userRequest.ReceiverId, userRequest.ActivityId,
                 cancellationToken);
 
             if (!isAlreadyMember)
             {
-                //create
-				var activityMember = ActivityMember
-					.Create(userRequest.ReceiverId, userRequest.ActivityId, userRequest.IsGuest);
+				await using var transaction = await _unitOfWork.BeginTransaction(cancellationToken);
 
-				//add to ActivityMember Table
-				activityMember = _unitOfWork.ActivityMembers.Add(activityMember);
-				await _unitOfWork.SaveChangeAsync(cancellationToken);
+                try
+                {
+					//create
+					var activityMember = ActivityMember
+						.Create(userRequest.ReceiverId, userRequest.ActivityId, userRequest.IsGuest);
 
-				//set default notification 
-				var notificationBefore
-                    = TimeSpan.FromHours(NotificationSetting.DefaultNotificaiton);
+					//add to ActivityMember Table
+					activityMember = _unitOfWork.ActivityMembers.Add(activityMember);
+					await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-                var defaultNotification = activity.StartDate - notificationBefore;
+					//set default notification 
+					var notificationBefore
+						= TimeSpan.FromHours(NotificationSetting.DefaultNotificaiton);
 
-                var notification = NotificationFactory
-                    .Create(activityMember.Id, defaultNotification);
+					var defaultNotification = activity.StartDate - notificationBefore;
 
-				notification = _unitOfWork.Notifications.Add(notification);
+					var notification = NotificationFactory
+						.Create(activityMember.Id, defaultNotification);
 
-				activityMember.SetNotification(notification.Id);
+					notification = _unitOfWork.Notifications.Add(notification);
+
+					activityMember.SetNotification(notification.Id);
+
+                    await _unitOfWork.Commit(cancellationToken);
+				}
+                catch
+                {
+                    await _unitOfWork.Rollback(cancellationToken);
+                    throw;
+                }
 			}
         }
         else

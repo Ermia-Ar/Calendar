@@ -1,9 +1,7 @@
 ﻿using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.ApplicationServices.Requests.Exceptions;
 using Core.Application.Common;
-using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.Notifications;
-using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
 using MediatR;
 
@@ -64,8 +62,10 @@ public sealed class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, 
             {
                 activityMember.MakeGuest();
             }
-        }
 
-        await _unitOfWork.SaveChangeAsync(cancellationToken);
+		}
+		_unitOfWork.ProjectMembers.Remove(projectMember);
+
+		await _unitOfWork.SaveChangeAsync(cancellationToken);
     }
 }

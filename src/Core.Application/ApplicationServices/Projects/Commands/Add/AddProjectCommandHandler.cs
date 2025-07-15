@@ -12,13 +12,11 @@ namespace Core.Application.ApplicationServices.Projects.Commands.Add;
 
 public class AddProjectCommandHandler(
     IUnitOfWork unitOfWork,
-    ICurrentUserServices currentUserServices,
-    IUserSrevices userServices)
+    ICurrentUserServices currentUserServices)
         : IRequestHandler<AddProjectCommandRequest>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUserServices _currentUserServices = currentUserServices;
-    private readonly IUserSrevices _userServices = userServices;
 
     public async Task Handle(AddProjectCommandRequest request, CancellationToken cancellationToken)
     {

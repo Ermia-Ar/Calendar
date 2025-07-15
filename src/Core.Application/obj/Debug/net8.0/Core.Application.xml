@@ -455,18 +455,23 @@
             </summary>
             <param name="MemberId"></param>
             <param name="IsOwner"></param>
+            <param name="IsGuest"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.#ctor(System.Guid,System.Boolean)">
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.#ctor(System.Guid,System.Boolean,System.Boolean)">
             <summary>
             
             </summary>
             <param name="MemberId"></param>
             <param name="IsOwner"></param>
+            <param name="IsGuest"></param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.MemberId">
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.IsOwner">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.IsGuest">
             <summary></summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Auth.Commands.Login.LoginCommandRequest">

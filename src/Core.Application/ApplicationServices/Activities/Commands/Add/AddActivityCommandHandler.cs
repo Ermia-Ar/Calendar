@@ -1,5 +1,4 @@
-﻿using Amazon.Runtime.Internal.Auth;
-using Core.Application.ApplicationServices.Auth.Exceptions;
+﻿using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.Common;
 using Core.Application.InternalServices.Auth.Dto;
 using Core.Domain.Entities.Activities;
@@ -11,7 +10,7 @@ using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Serialization;
+
 
 namespace Core.Application.ApplicationServices.Activities.Commands.Add;
 
@@ -32,7 +31,7 @@ public sealed class AddActivityCommandHandler(
 		try
 		{
 			var ownerId = _currentUser.GetUserId();
-			var defaultProjectId = long.Parse(configuration["PUBLIC:PROJECTID"]);
+			var defaultProjectId = long.Parse(_configuration["PUBLIC:PROJECTID"]);
 
 			// create new activity
 			var activity = ActivityFactory.Create(ownerId, defaultProjectId

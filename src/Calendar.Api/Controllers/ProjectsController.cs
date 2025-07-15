@@ -38,7 +38,7 @@ public class ProjectsController(ISender sender) : ControllerBase
 	/// <param name="id"></param>
 	/// <param name="model"></param>
 	/// <param name="token"></param>
-	[HttpPost("{id:long:required}/AddMember")]
+	[HttpPost("{id:long:required}/Member")]
 	[Authorize(CalendarClaimsServiceDeclaration.AddMemberToProject)]
 	public async Task<SuccessResponse> AddMember(long id, [FromBody] AddMembersToProjectDto model,
 		CancellationToken token = default)
@@ -115,7 +115,7 @@ public class ProjectsController(ISender sender) : ControllerBase
 	/// <param name="model"></param>
 	/// <param name="token"></param>
 	[HttpGet("{id:long:required}/Members")]
-	//[Authorize(CalendarClaimsServiceDeclaration.GetProjectMembers)]
+	[Authorize(CalendarClaimsServiceDeclaration.GetProjectMembers)]
 	public async Task<SuccessResponse<PaginationResult<List<GetMemberOfProjectQueryResponse>>>> GetMembers([FromRoute] long id,
 		[FromQuery] GetMemberOfProjectDto model,
 		CancellationToken token = default)

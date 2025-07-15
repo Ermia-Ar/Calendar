@@ -7,7 +7,9 @@ using SharedKernel.QueryFilterings;
 
 namespace Core.Application.ApplicationServices.Projects.Queries.GetMembers;
 
-public class GetMemberOfProjectQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
+public class GetMemberOfProjectQueryHandler(
+    IUnitOfWork unitOfWork,
+    ICurrentUserServices currentUserServices)
             : IRequestHandler<GetMemberOfProjectQueryRequest, PaginationResult<List<GetMemberOfProjectQueryResponse>>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
@@ -20,7 +22,7 @@ public class GetMemberOfProjectQueryHandler(IUnitOfWork unitOfWork, ICurrentUser
         //check if user is the owner of project or not 
         var members = await _unitOfWork.ProjectMembers
                 .GetMemberOfProject(request.ProjectId,
-                request.Pagination, cancellationToken);
+                    request.Pagination, cancellationToken);
 
         var response = members.Responses.Adapt<List<GetMemberOfProjectQueryResponse>>();
 

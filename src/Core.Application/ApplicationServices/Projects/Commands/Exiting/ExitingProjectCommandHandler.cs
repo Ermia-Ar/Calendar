@@ -14,7 +14,7 @@ public sealed class ExitingProjectCommandHandler(IUnitOfWork unitOfWork, ICurren
 
     public async Task Handle(ExitingProjectCommandRequest request, CancellationToken cancellationToken)
     {
-        var userId = _currentUserServices.GetUserId();
+        var userId = Guid.Parse("fefb09a0-c76d-40df-b149-f90a5fe189c7");// _currentUserServices.GetUserId();
 
         var projectMember = await _unitOfWork.ProjectMembers
              .GetByUserIdAndProjectId(userId, request.ProjectId, cancellationToken);
@@ -23,8 +23,8 @@ public sealed class ExitingProjectCommandHandler(IUnitOfWork unitOfWork, ICurren
             throw new NotFoundMemberException("You are not a member of this project.");
 
         var activityMembers = await _unitOfWork.ActivityMembers
-                .FindActivityMemberOfActivitiesForProjectForUserId(
-                 userId, request.ProjectId, cancellationToken);
+            .FindActivityMemberOfActivitiesForProjectForUserId
+                (userId, request.ProjectId, cancellationToken);
 
         //////
         if (request.Activities)
@@ -49,8 +49,10 @@ public sealed class ExitingProjectCommandHandler(IUnitOfWork unitOfWork, ICurren
             {
                 activityMember.MakeGuest();
             }
-        }
 
-        await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+		_unitOfWork.ProjectMembers.Remove(projectMember);
+
+		await _unitOfWork.SaveChangeAsync(cancellationToken);
     }
 }

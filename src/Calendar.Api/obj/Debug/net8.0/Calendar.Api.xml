@@ -380,6 +380,7 @@
             </remarks>
             <param name="id"></param>
             <param name="model"></param>
+            <param name="token"></param>
         </member>
         <member name="M:Calendar.Api.Controllers.RequestsController.Remove(System.Int64,System.Threading.CancellationToken)">
             <summary>
@@ -400,6 +401,7 @@
             </summary>
             <remarks>دارای صفحه بندی</remarks>
             <param name="model"></param>
+            <param name="token"></param>
         </member>
     </members>
 </doc>

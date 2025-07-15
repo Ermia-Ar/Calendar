@@ -1,6 +1,4 @@
-﻿using Core.Domain.Enum;
-using Mapster;
-using SharedKernel.Helper;
+﻿using SharedKernel.Helper;
 
 namespace Core.Application.ApplicationServices.Projects.Queries.GetMembers;
 

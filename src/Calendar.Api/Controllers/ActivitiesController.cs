@@ -126,7 +126,7 @@ public class ActivitiesController(ISender sender
 	/// <param name="model"></param>
 	/// <returns></returns>
 	[HttpGet("{id:long}/Members")]
-	[Authorize(CalendarClaimsServiceDeclaration.GetActivityMembers)]
+	//[Authorize(CalendarClaimsServiceDeclaration.GetActivityMembers)]
 	public async Task<SuccessResponse<PaginationResult<List<GetMemberOfActivityQueryResponse>>>> GetMember(long id,
 		 [FromQuery] GetMemberOfActivityDto model
 		, CancellationToken token = default)
@@ -266,7 +266,7 @@ public class ActivitiesController(ISender sender
 	/// <param name="token"></param>
 	/// <returns></returns>
 	[HttpDelete("{id:long:required}")]
-	//[Authorize(CalendarClaimsServiceDeclaration.DeleteActivity)]
+	[Authorize(CalendarClaimsServiceDeclaration.DeleteActivity)]
 	public async Task<SuccessResponse> Remove([FromRoute] long id
 		, CancellationToken token = default)
 	{

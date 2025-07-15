@@ -13,7 +13,7 @@ public sealed record GetAllRequestQueryResponse (
     DateTime InvitedAt ,
     DateTime? AnsweredAt ,
     string? Message,
-    bool IsGuset
+    bool IsGuest
     ) : IResponse;
 
 public sealed class GetAllRequestProfile : IRegister

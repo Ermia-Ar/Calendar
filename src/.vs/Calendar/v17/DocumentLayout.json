@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\desktop\\calendar\\src\\core.application\\applicationservices\\activities\\commands\\submitrequest\\submitactivityrequestcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\applicationservices\\activities\\commands\\submitrequest\\submitactivityrequestcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\desktop\\calendar\\src\\core.application\\applicationservices\\activities\\commands\\addsubactivity\\addsubactivitycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\applicationservices\\activities\\commands\\addsubactivity\\addsubactivitycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\desktop\\calendar\\src\\core.application\\applicationservices\\activities\\commands\\addrecurring\\addrecurringactiviiescommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\applicationservices\\activities\\commands\\addrecurring\\addrecurringactiviiescommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|c:\\users\\dell\\desktop\\calendar\\src\\core.application\\applicationservices\\activities\\commands\\add\\addactivitycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BBC66AA-FE6A-4883-BBEC-C6AD29BB2A25}|Core.Application\\Core.Application.csproj|solutionrelative:core.application\\applicationservices\\activities\\commands\\add\\addactivitycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|c:\\users\\dell\\desktop\\calendar\\src\\infrastructure\\globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7622FDBD-65DA-424B-AA0E-AC01A5ED4A89}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -43,75 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SubmitActivityRequestCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\ApplicationServices\\Activities\\Commands\\SubmitRequest\\SubmitActivityRequestCommandHandler.cs",
-              "RelativeDocumentMoniker": "Core.Application\\ApplicationServices\\Activities\\Commands\\SubmitRequest\\SubmitActivityRequestCommandHandler.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\ApplicationServices\\Activities\\Commands\\SubmitRequest\\SubmitActivityRequestCommandHandler.cs",
-              "RelativeToolTip": "Core.Application\\ApplicationServices\\Activities\\Commands\\SubmitRequest\\SubmitActivityRequestCommandHandler.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAAwCwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T22:32:26.57Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddSubActivityCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\ApplicationServices\\Activities\\Commands\\AddSubActivity\\AddSubActivityCommandHandler.cs",
-              "RelativeDocumentMoniker": "Core.Application\\ApplicationServices\\Activities\\Commands\\AddSubActivity\\AddSubActivityCommandHandler.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\ApplicationServices\\Activities\\Commands\\AddSubActivity\\AddSubActivityCommandHandler.cs",
-              "RelativeToolTip": "Core.Application\\ApplicationServices\\Activities\\Commands\\AddSubActivity\\AddSubActivityCommandHandler.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAQwEwAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T22:05:10.294Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddRecurringActiviiesCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\ApplicationServices\\Activities\\Commands\\AddRecurring\\AddRecurringActiviiesCommandHandler.cs",
-              "RelativeDocumentMoniker": "Core.Application\\ApplicationServices\\Activities\\Commands\\AddRecurring\\AddRecurringActiviiesCommandHandler.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\ApplicationServices\\Activities\\Commands\\AddRecurring\\AddRecurringActiviiesCommandHandler.cs",
-              "RelativeToolTip": "Core.Application\\ApplicationServices\\Activities\\Commands\\AddRecurring\\AddRecurringActiviiesCommandHandler.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAYwCIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T22:03:14.758Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AddActivityCommandHandler.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\ApplicationServices\\Activities\\Commands\\Add\\AddActivityCommandHandler.cs",
-              "RelativeDocumentMoniker": "Core.Application\\ApplicationServices\\Activities\\Commands\\Add\\AddActivityCommandHandler.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Core.Application\\ApplicationServices\\Activities\\Commands\\Add\\AddActivityCommandHandler.cs",
-              "RelativeToolTip": "Core.Application\\ApplicationServices\\Activities\\Commands\\Add\\AddActivityCommandHandler.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAowB0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T21:57:03.574Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GlobalUsing.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Infrastructure\\GlobalUsing.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\GlobalUsing.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\Calendar\\src\\Infrastructure\\GlobalUsing.cs",
-              "RelativeToolTip": "Infrastructure\\GlobalUsing.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T21:50:20.455Z",
-              "EditorCaption": ""
             }
           ]
         },

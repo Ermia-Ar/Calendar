@@ -1,6 +1,5 @@
 ﻿using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.Common;
-using Core.Domain.Entities.Notifications;
 using Core.Domain.UnitOfWork;
 using MediatR;
 
@@ -14,13 +13,15 @@ public class DeleteProjectCommandHandler(IUnitOfWork unitOfWork, ICurrentUserSer
 
     public async Task Handle(DeleteProjectCommandRequest request, CancellationToken cancellationToken)
     {
-        var project = await _unitOfWork.Projects
+        var userId = _currentUserServices.GetUserId();
+
+		var project = await _unitOfWork.Projects
             .FindById(request.ProjectId, cancellationToken);
 
         if (project == null)
             throw new InvalidProjectIdException();
 
-        if (project.OwnerId != _currentUserServices.GetUserId())
+        if (project.OwnerId != userId)
             throw new OnlyProjectCreatorAllowedException();
 
         await _unitOfWork.Projects.RemoveById(project.Id, cancellationToken);

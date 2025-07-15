@@ -54,7 +54,7 @@ public class RequestsRepository(
 		parameters.Add("Status", filtering.Status);
 		parameters.Add("ActivityId", filtering.ActivityId);
 		parameters.Add("AnswerAt", filtering.AnswerAt);
-		parameters.Add("InvaitAt", filtering.InviteAt);
+		parameters.Add("InvitedAt", filtering.InviteAt);
 		parameters.Add("IsGuset", filtering.IsGuest);
 		//ordering
 		parameters.Add("OrderDirection", ordering.GetOrderDirection(ordering));

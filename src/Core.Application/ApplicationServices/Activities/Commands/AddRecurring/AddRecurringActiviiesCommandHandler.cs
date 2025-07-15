@@ -14,43 +14,33 @@ using Microsoft.Extensions.Configuration;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.AddRecurring;
 
-public class AddRecurringActivityCommandHandler
+public class AddRecurringActivityCommandHandler(
+	ICurrentUserServices currentUserServices,
+	IUnitOfWork unitOfWork,
+	IConfiguration configuration)
 	: IRequestHandler<AddRecurringActivityCommnadRequest>
 {
-
-	private readonly IUnitOfWork _unitOfWork;
-	private readonly IConfiguration _configuration;
-	private readonly ICurrentUserServices _currentUser;
-
-	public AddRecurringActivityCommandHandler(ICurrentUserServices currentUserServices,
-		IUnitOfWork unitOfWork, IConfiguration configuration)
-	{
-		_currentUser = currentUserServices;
-		_unitOfWork = unitOfWork;
-		_configuration = configuration;
-	}
-
 	public async Task Handle(AddRecurringActivityCommnadRequest request, CancellationToken cancellationToken)
 	{
-		await using var transaction = await _unitOfWork.BeginTransaction(cancellationToken);
+		await using var transaction = await unitOfWork.BeginTransaction(cancellationToken);
 
 		try
 		{
-			var ownerId = _currentUser.GetUserId();
-			var defaultProjectId = long.Parse(_configuration["PUBLIC:PROJECTID"]);
+			var ownerId = currentUserServices.GetUserId();
+			var defaultProjectId = long.Parse(configuration["PUBLIC:PROJECTID"]);
 
 			//Generate Recurring Activities
 			var activities = GenerateRecurringActivities(ownerId, defaultProjectId, request);
 			//add to activity table
-			activities = _unitOfWork.Activities.AddRange(activities);
-			await _unitOfWork.SaveChangeAsync(cancellationToken);
+			activities = unitOfWork.Activities.AddRange(activities);
+			await unitOfWork.SaveChangeAsync(cancellationToken);
 
 			//create request for all membersIds
 			var userRequests = new List<Request>();
 			foreach (var receiverId in request.MemberIds)
 			{
 				////check
-				var receiver = (await _unitOfWork
+				var receiver = (await unitOfWork
 					.Users.GetById(receiverId, cancellationToken))
 					.Adapt<GetUserByIdResponse>();
 
@@ -68,7 +58,7 @@ public class AddRecurringActivityCommandHandler
 			}
 
 			//add requests table
-			_unitOfWork.Requests.AddRange(userRequests);
+			unitOfWork.Requests.AddRange(userRequests);
 
 			foreach (var activity in activities)
 			{
@@ -77,10 +67,10 @@ public class AddRecurringActivityCommandHandler
 					.CreateOwner(ownerId, activity.Id);
 
 				// add to activityMembers table
-				activityOwner = _unitOfWork.
+				activityOwner = unitOfWork.
 					ActivityMembers.Add(activityOwner);
 
-				await _unitOfWork.SaveChangeAsync(cancellationToken);
+				await unitOfWork.SaveChangeAsync(cancellationToken);
 
 				// set notification for owner
 				// if NotificationBefore is null set default notification
@@ -92,19 +82,19 @@ public class AddRecurringActivityCommandHandler
 					, activity.StartDate - notificationBefore);
 
 				//Add notifications table
-				notification = _unitOfWork.Notifications.Add(notification);
+				notification = unitOfWork.Notifications.Add(notification);
 
 				//set notification
 				activityOwner.SetNotification(notification.Id);
 			}
 
-			await _unitOfWork.SaveChangeAsync(cancellationToken);
+			await unitOfWork.SaveChangeAsync(cancellationToken);
 
-			await _unitOfWork.Commit(cancellationToken);
+			await unitOfWork.Commit(cancellationToken);
 		}
 		catch
 		{
-			await _unitOfWork.Rollback(cancellationToken);
+			await unitOfWork.Rollback(cancellationToken);
 			throw;
 		}
 	}

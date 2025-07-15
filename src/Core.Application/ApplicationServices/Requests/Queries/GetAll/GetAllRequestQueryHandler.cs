@@ -6,7 +6,9 @@ using SharedKernel.QueryFilterings;
 
 namespace Core.Application.ApplicationServices.Requests.Queries.GetAll;
 
-public sealed class GetAllRequestQueryHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUserServices)
+public sealed class GetAllRequestQueryHandler(
+	IUnitOfWork unitOfWork, 
+	ICurrentUserServices currentUserServices)
 			: IRequestHandler<GetAllRequestsQueryRequest, PaginationResult<List<GetAllRequestQueryResponse>>>
 {
 	private readonly IUnitOfWork _unitOfWork = unitOfWork;

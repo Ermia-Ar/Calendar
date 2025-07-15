@@ -16,7 +16,8 @@ public class RequestsController(ISender sender) : ControllerBase
 	/// </remarks>
 	/// <param name="id"></param>
 	/// <param name="model"></param>
-	[HttpPost("Answer")]
+	/// <param name="token"></param>
+	[HttpPost("{id:long:required}/Answer")]
 	[Authorize(CalendarClaimsServiceDeclaration.AnswerRequest)]
 	public async Task<SuccessResponse> Answer(long id ,[FromQuery] AnswerRequestDto model,
 		CancellationToken token = default)
@@ -58,9 +59,11 @@ public class RequestsController(ISender sender) : ControllerBase
 	/// </summary>
 	/// <remarks>دارای صفحه بندی</remarks>
 	/// <param name="model"></param>
+	/// <param name="token"></param>
 	[HttpGet]
 	[Authorize(CalendarClaimsServiceDeclaration.GetAllRequests)]
-	public async Task<SuccessResponse<PaginationResult<List<GetAllRequestQueryResponse>>>> GetAll([FromQuery] GetAllRequestDto model, CancellationToken token)
+	public async Task<SuccessResponse<PaginationResult<List<GetAllRequestQueryResponse>>>> GetAll([FromQuery] GetAllRequestDto model,
+		CancellationToken token)
 	{
 		var request = GetAllRequestsQueryRequest.Create(model);
 		var result = await _sender.Send(request, token);

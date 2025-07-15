@@ -49,12 +49,12 @@ public sealed class AddMembersToProjectCommandHandler
                 throw new NotFoundUserIdException(memberId);
 
             var isAlreadyMember = await _unitOfWork.ProjectMembers
-                .IsMemberOfProject(project.Id, member.Id, cancellationToken);
+                .IsMemberOfProject(project.Id, memberId, cancellationToken);
 
             if (isAlreadyMember)
-                throw new TheUserAlreadyIsMemberProject(member.Id);
+                throw new TheUserAlreadyIsMemberProject(memberId);
 
-            var projectMember = ProjectMember.Create(userId, project.Id);
+            var projectMember = ProjectMember.Create(memberId, project.Id);
 
             projectMembers.Add(projectMember);
 
@@ -65,7 +65,7 @@ public sealed class AddMembersToProjectCommandHandler
             foreach (var activityId in request.ActivityIds)
             {
                 if (activeActivityIds.Any(x => x == activityId))
-                    throw new Exception("invalid Activity id");
+                    throw new Exception("invalid Activity");
 
                 var sendRequest = RequestFactory
                     .Create(activityId, userId, memberId, request.Message, false);
