@@ -23,7 +23,7 @@ public sealed class AddActivityForProjectCommandHandler(
 
 	public async Task Handle(AddActivityForProjectCommandRequest request, CancellationToken cancellationToken)
 	{
-		await using var transaction = await _unitOfWork.BeginTransaction(cancellationToken);
+		await using var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken);
 		try
 		{
 			var ownerId =_currentUser.GetUserId();

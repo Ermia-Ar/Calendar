@@ -1,7 +1,6 @@
 ﻿using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.Common;
 using Core.Application.InternalServices.Auth.Dto;
-using Core.Application.InternalServices.Auth.Services;
 using Core.Domain.Entities.ProjectMembers;
 using Core.Domain.Entities.Projects;
 using Core.Domain.UnitOfWork;
@@ -20,7 +19,7 @@ public class AddProjectCommandHandler(
 
     public async Task Handle(AddProjectCommandRequest request, CancellationToken cancellationToken)
     {
-        await using var transaction = await _unitOfWork.BeginTransaction(cancellationToken);
+        await using var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken);
         try
         {
             var ownerId = _currentUserServices.GetUserId();
@@ -65,7 +64,7 @@ public class AddProjectCommandHandler(
         }
         catch
         {
-            await _unitOfWork.Rollback(cancellationToken);
+            await _unitOfWork.RoleBackTransactionAsync(cancellationToken);
             throw;
         }
     }

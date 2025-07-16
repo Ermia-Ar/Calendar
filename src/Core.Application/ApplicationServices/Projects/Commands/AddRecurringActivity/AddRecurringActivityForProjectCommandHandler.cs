@@ -1,5 +1,4 @@
-﻿using Amazon.Runtime.SharedInterfaces;
-using Core.Application.ApplicationServices.Auth.Exceptions;
+﻿using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.Common;
 using Core.Application.InternalServices.Auth.Dto;
@@ -12,7 +11,6 @@ using Core.Domain.Helper;
 using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity;
 
@@ -26,7 +24,7 @@ public class AddRecurringActivityForProjectCommandHandler(
 
     public async Task Handle(AddRecurringActivityForProjectCommnadRequest request, CancellationToken cancellationToken)
     {
-        await using var transaction = await _unitOfWork.BeginTransaction(cancellationToken);
+        await using var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken);
         try
         {
             var ownerId = _currentUserServices.GetUserId();
@@ -66,7 +64,7 @@ public class AddRecurringActivityForProjectCommandHandler(
 
                     //create request for memberId
                     var sendRequest = RequestFactory.Create(activity.Id
-                        , ownerId, receiverId, request.Message, false);
+                        , ownerId, receiverId, request.Message, isGuest);
 
                     userRequests.Add(sendRequest);
                 }
@@ -105,11 +103,11 @@ public class AddRecurringActivityForProjectCommandHandler(
             }
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-            await _unitOfWork.Commit(cancellationToken);
+            await _unitOfWork.CommitTransactionAsync(cancellationToken);
         }
         catch
         {
-            await _unitOfWork.Rollback(cancellationToken);
+            await _unitOfWork.RoleBackTransactionAsync(cancellationToken);
             throw;
         }
     }
@@ -133,10 +131,10 @@ public class AddRecurringActivityForProjectCommandHandler(
             // قدم بعدی بر اساس نوع recurrence
             currentStart = request.Recurrence switch
             {
-                RecurrenceType.Daily => currentStart.AddDays(request.Interval),
-                RecurrenceType.Weekly => currentStart.AddDays(7 * request.Interval),
-                RecurrenceType.Monthly => currentStart.AddMonths(request.Interval),
-                RecurrenceType.Yearly => currentStart.AddYears(request.Interval),
+                RecurrenceType.Day => currentStart.AddDays(request.Interval),
+                RecurrenceType.Week => currentStart.AddDays(7 * request.Interval),
+                RecurrenceType.Month => currentStart.AddMonths(request.Interval),
+                RecurrenceType.Year => currentStart.AddYears(request.Interval),
                 _ => throw new NotSupportedException($"Recurrence type {request.Recurrence} is not supported.")
             };
         }

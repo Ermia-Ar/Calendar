@@ -2,7 +2,6 @@
 using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.Common;
 using Core.Application.InternalServices.Auth.Dto;
-using Core.Application.InternalServices.Auth.Services;
 using Core.Domain.Entities.ProjectMembers;
 using Core.Domain.Entities.Requests;
 using Core.Domain.UnitOfWork;
@@ -50,7 +49,6 @@ public sealed class AddMembersToProjectCommandHandler
 
             var isAlreadyMember = await _unitOfWork.ProjectMembers
                 .IsMemberOfProject(project.Id, memberId, cancellationToken);
-
             if (isAlreadyMember)
                 throw new TheUserAlreadyIsMemberProject(memberId);
 
@@ -58,19 +56,32 @@ public sealed class AddMembersToProjectCommandHandler
 
             projectMembers.Add(projectMember);
 
-            //send request
             var activeActivityIds = await _unitOfWork.Activities
-                .GetActiveActivitiesIds(request.ProjectId, cancellationToken);
-
+                .FindActiveActivityIds(request.ProjectId, cancellationToken);
+            
+            //send request
             foreach (var activityId in request.ActivityIds)
             {
-                if (activeActivityIds.Any(x => x == activityId))
+                if (activeActivityIds.Any(x => x != activityId))
                     throw new Exception("invalid Activity");
+                
+                var activityMember = await _unitOfWork.ActivityMembers
+                    .FindByActivityIdAndMemberId(memberId, activityId, cancellationToken);
+                
+                // if is already is member as guest make it un guest else send request to join
+                if (activityMember != null)
+                {
+                    activityMember.MakeUnGuest();
+                }
+                else
+                {
+                    var sendRequest = RequestFactory
+                        .Create(activityId, userId, memberId,
+                            request.Message, false);
+                    
+                    sendRequests.Add(sendRequest);
+                }
 
-                var sendRequest = RequestFactory
-                    .Create(activityId, userId, memberId, request.Message, false);
-
-                sendRequests.Add(sendRequest);
             }
         }
 

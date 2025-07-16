@@ -11,6 +11,7 @@ public class Comment : BaseEntity
         
     }
     public long ProjectId { get; internal set; }
+    
     public Project Project { get; internal set; }
 
     public long ActivityId { get; internal set; }

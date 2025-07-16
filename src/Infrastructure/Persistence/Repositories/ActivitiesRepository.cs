@@ -1,12 +1,12 @@
-﻿using Infrastructure.Persistence.Context;
+﻿namespace Infrastructure.Persistence.Repositories;
 
-namespace Infrastructure.Persistence.Repositories;
-
-public class ActivitiesRepository(ApplicationContext context, IConfiguration configuration)
+public class ActivitiesRepository(
+	ApplicationContext context,
+	IConfiguration configuration)
 	: IActivitiesRepository
 {
     private readonly ApplicationContext _context = context;
-	private readonly string _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
+	private readonly string? _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
 
 
 
@@ -33,7 +33,7 @@ public class ActivitiesRepository(ApplicationContext context, IConfiguration con
 
     //Queries
 
-    public async Task<long[]> GetActiveActivitiesIds(long projectId, CancellationToken token)
+    public async Task<IReadOnlyCollection<long>> FindActiveActivityIds(long projectId, CancellationToken token)
     {
 		await using var connection = new SqlConnection(_connectionString);
 		await connection.OpenAsync(token);
@@ -43,16 +43,16 @@ public class ActivitiesRepository(ApplicationContext context, IConfiguration con
 		parameters.Add("startDate", DateTime.UtcNow);
 		parameters.Add("isCompleted", true);
 
-		var ids = await connection.QueryAsync<long>
+		var activityIds = await connection.QueryAsync<long>
 			("Sp_GetProjectActiveActivityIds", parameters, commandType: CommandType.StoredProcedure);
 
-		return ids.ToArray();
+		return activityIds.ToImmutableList();
 	}
 
     public async Task<IResponse?> GetById(long id, CancellationToken token)
     {
 	    await using var connection = new SqlConnection(_connectionString);
-		await connection.OpenAsync(token);
+	    await connection.OpenAsync(token);
 
 		var parameters = new DynamicParameters();
 		parameters.Add("activityId", id);
@@ -78,7 +78,7 @@ public class ActivitiesRepository(ApplicationContext context, IConfiguration con
         var parameters = new DynamicParameters();
         parameters.Add("activityId", id);
 
-        await connection.QueryAsync("SP_SoftDeleteActivityAndCommentsAndActivityMembersAndNotificaitons",
+        await connection.QueryAsync("SP_SoftDeleteActivityAndCommentsAndActivityMembersAndNotifications",
             parameters, commandType: CommandType.StoredProcedure);
 	}
 }

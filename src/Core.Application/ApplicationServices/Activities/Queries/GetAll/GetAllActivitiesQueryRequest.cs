@@ -25,11 +25,11 @@ public sealed record GetAllActivitiesQueryRequest(
 			, model.IsCompletedFiltering, model.IsHistoryFiltering, model.CategoryFiltering),
 
 			new GetAllActivitiesOrdering
-			(model.IdOrdring, model.ParentIdOrdring
-			, model.ProjectIdOrdring, model.UserIdOrdring, model.TitleOrdring
-			, model.DescriptionOrdring, model.StartDateOrdring, model.CreatedDateOrdring
-			, model.UpdateDateOrdring, model.DurationOrdring, model.NotificationBeforeInMinuteOrdring
-			, model.CategoryOrdring, model.IsCompletedOrdring)
+			(model.IdOrdering, model.ParentIdOrdering
+			, model.ProjectIdOrdering, model.UserIdOrdering, model.TitleOrdering
+			, model.DescriptionOrdering, model.StartDateOrdering, model.CreatedDateOrdering
+			, model.UpdateDateOrdering, model.DurationOrdering, model.NotificationBeforeInMinuteOrdering
+			, model.CategoryOrdering, model.IsCompletedOrdering)
 			);
 	}
 }
@@ -37,25 +37,25 @@ public sealed record GetAllActivitiesQueryRequest(
 /// <summary>
 /// 
 /// </summary>
-/// <param name="PageNum"></param>
-/// <param name="PageSize"></param>
-/// <param name="IdOrdring"></param>
-/// <param name="ParentIdOrdring"></param>
-/// <param name="ProjectIdOrdring"></param>
-/// <param name="UserIdOrdring"></param>
-/// <param name="TitleOrdring"></param>
-/// <param name="DescriptionOrdring"></param>
-/// <param name="StartDateOrdring"></param>
-/// <param name="CreatedDateOrdring"></param>
-/// <param name="UpdateDateOrdring"></param>
-/// <param name="DurationOrdring"></param>
-/// <param name="NotificationBeforeInMinuteOrdring"></param>
-/// <param name="CategoryOrdring"></param>
-/// <param name="IsCompletedOrdring"></param>
-/// <param name="StartDateFiltering"></param>
-/// <param name="IsCompletedFiltering"></param>
+/// <param name="PageNum">شماره صفحه</param>
+/// <param name="PageSize">تعداد رکورد ها</param>
+/// <param name="IdOrdering"> مرتب سازی بر اساس شناسه</param>
+/// <param name="ParentIdOrdering">مرتب سازی بر اساس شناسه فعالیت والد</param>
+/// <param name="ProjectIdOrdering">مرتب سازی بر اساس شناسه پروژه</param>
+/// <param name="UserIdOrdering">مرتب سازی بر اساس شناسه کاربر</param>
+/// <param name="TitleOrdering">مرتب سازی بر اساس تیتر</param>
+/// <param name="DescriptionOrdering">مرتب سازی بر اساس توضیحات</param>
+/// <param name="StartDateOrdering">مرتب سازی بر اساس تاریخ شروع</param>
+/// <param name="CreatedDateOrdering">مرتب سازی بر اساس تاریخ ساخت</param>
+/// <param name="UpdateDateOrdering">مرتب سازی بر اساس تاریخ به روزرسانی</param>
+/// <param name="DurationOrdering">مرتب سازی بر اساس طول زمان فعالیت</param>
+/// <param name="NotificationBeforeInMinuteOrdering">مرتب سازی بر اساس اعلان</param>
+/// <param name="CategoryOrdering">مرتب سازی بر اساس دسته بندی</param>
+/// <param name="IsCompletedOrdering">مرتب سازی بر اساس وضعیت تکمیل فعالیت</param>
+/// <param name="StartDateFiltering">فیلتر بر اساس تاریخ شروع</param>
+/// <param name="IsCompletedFiltering">فیلتر کردن بر اساس وضعیت کامل بودن</param>
 /// <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
-/// <param name="CategoryFiltering"></param>
+/// <param name="CategoryFiltering">فیلتر کردن بر اساس </param>
 public sealed record GetAllActivitiesDto
 (
 	int PageNum,
@@ -64,17 +64,17 @@ public sealed record GetAllActivitiesDto
 	bool? IsCompletedFiltering,
 	bool? IsHistoryFiltering,
 	ActivityCategory? CategoryFiltering,
-	OrderingType? IdOrdring,
-	OrderingType? ParentIdOrdring,
-	OrderingType? ProjectIdOrdring,
-	OrderingType? UserIdOrdring,
-	OrderingType? TitleOrdring,
-	OrderingType? DescriptionOrdring,
-	OrderingType? StartDateOrdring,
-	OrderingType? CreatedDateOrdring,
-	OrderingType? UpdateDateOrdring,
-	OrderingType? DurationOrdring,
-	OrderingType? NotificationBeforeInMinuteOrdring,
-	OrderingType? CategoryOrdring,
-	OrderingType? IsCompletedOrdring
+	OrderingType? IdOrdering,
+	OrderingType? ParentIdOrdering,
+	OrderingType? ProjectIdOrdering,
+	OrderingType? UserIdOrdering,
+	OrderingType? TitleOrdering,
+	OrderingType? DescriptionOrdering,
+	OrderingType? StartDateOrdering,
+	OrderingType? CreatedDateOrdering,
+	OrderingType? UpdateDateOrdering,
+	OrderingType? DurationOrdering,
+	OrderingType? NotificationBeforeInMinuteOrdering,
+	OrderingType? CategoryOrdering,
+	OrderingType? IsCompletedOrdering
 );

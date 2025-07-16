@@ -1,9 +1,7 @@
-﻿using Core.Application.ApplicationServices.Requests.Queries.GetAll;
-using Core.Domain.Enum;
+﻿using Core.Domain.Enum;
 using MediatR;
 
-namespace Core.Application.ApplicationServices.Activities.Commands.Add;
-
+namespace Core.Application.ApplicationServices.Activities.Commands.AddRecurring;
 
 /// <summary>
 /// 
@@ -16,14 +14,17 @@ namespace Core.Application.ApplicationServices.Activities.Commands.Add;
 /// <param name="Category"></param>
 /// <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
 /// <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
-public sealed record AddActivityCommandRequest(
-     string Title ,
-     string? Description ,
-     DateTime StartDate,
-     TimeSpan? Duration ,
-     TimeSpan? NotificationBefore ,
-     ActivityCategory Category ,
-	 Guid[] MemberIds ,
-     string? Message
-) : IRequest;
-
+/// <param name="Interval">تعداد روز های فاصله بین فعالیت ها</param>
+/// <param name="ToDate">تا پایان این تاریخ</param>
+public sealed record AddRecurringActivityCommandRequest(
+	 string Title,
+	 string? Description,
+	 DateTime StartDate,
+	 TimeSpan? Duration,
+	 TimeSpan? NotificationBefore,
+	 ActivityCategory Category,
+	 Guid[] MemberIds,
+	 string? Message,
+	 int Interval,
+	 DateTime ToDate
+	) : IRequest;

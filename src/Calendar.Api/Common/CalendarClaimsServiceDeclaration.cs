@@ -1,4 +1,4 @@
-﻿namespace Core.Domain.Exceptions
+﻿namespace Calendar.Api.Common
 {
     public static class CalendarClaimsServiceDeclaration
     {

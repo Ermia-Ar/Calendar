@@ -2,9 +2,9 @@
 
 namespace Core.Application.ApplicationServices.Activities.Commands.AddRecurring;
 
-public sealed class AddRecurringActivityCommnadValidation : AbstractValidator<AddRecurringActivityCommnadRequest>
+public sealed class AddRecurringActivityCommandValidation : AbstractValidator<AddRecurringActivityCommandRequest>
 {
-    public AddRecurringActivityCommnadValidation()
+    public AddRecurringActivityCommandValidation()
     {
 		RuleFor(x => x.Title)
 			.NotEmpty().WithMessage("Title is required.")
@@ -15,9 +15,9 @@ public sealed class AddRecurringActivityCommnadValidation : AbstractValidator<Ad
 
 		RuleFor(x => x.StartDate)
 			.GreaterThan(DateTime.MinValue).WithMessage("StartDate must be a valid date.")
-			.LessThan(x => x.EndDate).WithMessage("StartDate must be before EndDate.");
+			.LessThan(x => x.ToDate).WithMessage("StartDate must be before EndDate.");
 
-		RuleFor(x => x.EndDate)
+		RuleFor(x => x.ToDate)
 			.GreaterThan(x => x.StartDate)
 			.WithMessage("EndDate must be after StartDate.");
 
@@ -45,9 +45,5 @@ public sealed class AddRecurringActivityCommnadValidation : AbstractValidator<Ad
 		RuleFor(x => x.Category)
 			.IsInEnum()
 			.WithMessage("Invalid activity category.");
-
-		RuleFor(x => x.Recurrence)
-			.IsInEnum().
-			WithMessage("Invalid recurrence type.");
 	}
 }

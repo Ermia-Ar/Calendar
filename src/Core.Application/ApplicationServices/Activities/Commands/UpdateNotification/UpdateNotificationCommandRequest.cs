@@ -1,5 +1,4 @@
-﻿using Amazon.Runtime.Internal.Auth;
-using MediatR;
+﻿using MediatR;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.UpdateNotification;
 
@@ -23,7 +22,7 @@ public sealed record UpdateNotificationCommandRequest
 /// <summary>
 /// 
 /// </summary>
-/// <param name="NotificationBefore"></param>
+/// <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
 public sealed record UpdateNotificationDto (
 	TimeSpan? NotificationBefore
 	);

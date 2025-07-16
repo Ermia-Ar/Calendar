@@ -1,10 +1,12 @@
-﻿namespace Core.Domain.Enum
+﻿using System.ComponentModel;
+
+namespace Core.Domain.Enum;
+
+public enum RecurrenceType
 {
-    public enum RecurrenceType
-    {
-        Daily, 
-        Weekly, 
-        Monthly,
-		Yearly,
-    }
+	[Description("روز")]
+	Day,
+	Week,
+	Month,
+	Year,
 }

@@ -52,7 +52,7 @@ public sealed class AnswerRequestCommandHandler(
 
             if (!isAlreadyMember)
             {
-				await using var transaction = await _unitOfWork.BeginTransaction(cancellationToken);
+				await using var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken);
 
                 try
                 {
@@ -77,11 +77,11 @@ public sealed class AnswerRequestCommandHandler(
 
 					activityMember.SetNotification(notification.Id);
 
-                    await _unitOfWork.Commit(cancellationToken);
+                    await _unitOfWork.CommitTransactionAsync(cancellationToken);
 				}
                 catch
                 {
-                    await _unitOfWork.Rollback(cancellationToken);
+                    await _unitOfWork.RoleBackTransactionAsync(cancellationToken);
                     throw;
                 }
 			}

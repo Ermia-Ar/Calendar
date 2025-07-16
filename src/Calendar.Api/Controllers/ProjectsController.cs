@@ -1,10 +1,10 @@
-﻿using Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity;
+﻿using Calendar.Api.Common;
+using Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity;
 using Core.Application.ApplicationServices.Projects.Commands.ChangeColor;
 using Core.Application.ApplicationServices.Projects.Commands.ChangeIcon;
 using Core.Application.ApplicationServices.Projects.Commands.Update;
 using Core.Application.ApplicationServices.Projects.Queries.Activities;
 using Core.Application.ApplicationServices.Projects.Queries.GetComments;
-using Core.Domain.Exceptions;
 
 namespace Calendar.Api.Controllers;
 

@@ -1,11 +1,10 @@
-﻿using Amazon.Runtime.Internal.Auth;
+﻿using Calendar.Api.Common;
 using Core.Activities.ApplicationServices.Activities.Queries.GetComments;
 using Core.Application.ApplicationServices.Activities.Commands.AddRecurring;
 using Core.Application.ApplicationServices.Activities.Commands.ExitingActivity;
 using Core.Application.ApplicationServices.Activities.Commands.UpdateNotification;
 using Core.Application.ApplicationServices.Activities.Commands.UpdateStartDate;
 using Core.Application.ApplicationServices.Activities.Queries.GetComments;
-using Core.Domain.Exceptions;
 
 namespace Calendar.Api.Controllers;
 
@@ -16,9 +15,8 @@ public class ActivitiesController(ISender sender
 {
 	private readonly ISender _sender = sender;
 
-
 	/// <summary>
-	/// ساخت فعالیت با پروژه ایدی پیش فرض
+	/// ساخت فعالیت با پروژه شناسه پیش فرض
 	/// </summary>
 	/// <remarks>
 	/// اگر فیلد نوتیفیکیشن نال ارسال شود اعلان پیش فرض برای کاربر ثبت میشود
@@ -43,7 +41,7 @@ public class ActivitiesController(ISender sender
 	/// <param name="token"></param>
 	/// <returns></returns>
 	[HttpPost("Recurring")]
-	public async Task<SuccessResponse> PostRecurring(AddRecurringActivityCommnadRequest request,
+	public async Task<SuccessResponse> PostRecurring(AddRecurringActivityCommandRequest request,
 		CancellationToken token)
 	{
 		await _sender.Send(request, token);
@@ -58,7 +56,7 @@ public class ActivitiesController(ISender sender
 	/// فقط سازده فعالیت اجازه ساخت دنباله برای آن را دارد 
 	/// اگر فیلد نوتیفیکیشن نال ارسال شود اعلان پیش فرض برای کاربر ثبت میشود
 	/// </remarks>
-	/// <param name="id"></param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="model"></param>
 	/// <param name="token"></param>
 	/// <returns></returns>
@@ -77,10 +75,10 @@ public class ActivitiesController(ISender sender
 	/// ارسال درخواست برای عضویت
 	/// </summary>
 	/// <remarks>
-	/// .فقط سازده فعالیت اجازه ارسال درخواست برای آن را دارد 
-	/// نباید از قبل برای دربافت کننده چنین درخواستی ثیت شده باشد
+	/// .فقط سازده فعالیت اجازه ارسال درخواست برای آن را دارد
+	/// نباید دریافت کننده از قبل عضو فعالیت باشا
 	/// </remarks>
-	/// <param name="id"></param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="model"></param>
 	/// <param name="token"></param>
 	/// <returns></returns>
@@ -121,12 +119,12 @@ public class ActivitiesController(ISender sender
 	/// <remarks>
 	/// کاربری که این درخواست رو می فرستده باید عضویی از این فعالیت باشه
 	/// </remarks>
-	/// <param name="id">ایدی فعالیت</param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="token"></param>
 	/// <param name="model"></param>
 	/// <returns></returns>
 	[HttpGet("{id:long}/Members")]
-	//[Authorize(CalendarClaimsServiceDeclaration.GetActivityMembers)]
+	[Authorize(CalendarClaimsServiceDeclaration.GetActivityMembers)]
 	public async Task<SuccessResponse<PaginationResult<List<GetMemberOfActivityQueryResponse>>>> GetMember(long id,
 		 [FromQuery] GetMemberOfActivityDto model
 		, CancellationToken token = default)
@@ -140,12 +138,12 @@ public class ActivitiesController(ISender sender
 	/// <summary>
 	/// 
 	/// </summary>
-	/// <param name="id"></param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="model"></param>
 	/// <param name="token"></param>
 	/// <returns></returns>
 	[HttpGet("{id:long:required}/Comments")]
-	public async Task<SuccessResponse<PaginationResult<List<GetActivityCommentsQueryResponse>>>> GetCommnets(long id,
+	public async Task<SuccessResponse<PaginationResult<List<GetActivityCommentsQueryResponse>>>> GetComments(long id,
 		[FromQuery] GetActivityCommentsDto model,
 		CancellationToken token)
 	{
@@ -158,7 +156,7 @@ public class ActivitiesController(ISender sender
 	/// <summary>
 	/// دریافت یک فعالیت با ایدی آن 
 	/// </summary>
-	/// <param name="id">ایدی فعالیت</param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="token"></param>
 	/// <returns></returns>
 	[HttpGet("{id:long:required}")]
@@ -175,7 +173,7 @@ public class ActivitiesController(ISender sender
 	/// <summary>
 	/// به روزرسانی کلی یک فعالیت
 	/// </summary>
-	/// <param name="id"></param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="model"></param>
 	/// <param name="token"></param>
 	/// <returns></returns>
@@ -196,7 +194,7 @@ public class ActivitiesController(ISender sender
 	/// <remarks>
 	/// کاربری که این درخواست رو ارسال میکنه باید سازنده فعالیت باشه
 	/// </remarks>
-	/// <param name="id"></param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="token"></param>
 	/// <returns></returns>
 	[HttpPatch("{id:long:required}/Complete")]
@@ -218,7 +216,7 @@ public class ActivitiesController(ISender sender
 	/// کاربر باید عضوی از فعالیت باشد
 	/// اگر فیلد نوتیفیکیشن نال ارسال شود دیگر اعلانی برای کاربر فعلی ارسال نمی شود
 	/// </remarks>
-	/// <param name="id"></param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="model"></param>
 	/// <param name="token"></param>
 	/// <returns></returns>
@@ -239,7 +237,7 @@ public class ActivitiesController(ISender sender
 	/// <remarks>
 	/// کاربری که این درخواست رو ارسال میکنه باید سازنده فعالیت باشه
 	/// </remarks>
-	/// <param name="id"></param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="model"></param>
 	/// <param name="token"></param>
 	/// <returns></returns>
@@ -262,7 +260,7 @@ public class ActivitiesController(ISender sender
 	/// کاربری که این درخواست رو ارسال میکنه باید سازنده فعالیت باشه
 	/// تمام کامنت ها و درخواست های مربوط به این فعالیت نیز حذف میشوند
 	/// </remarks>
-	/// <param name="id"></param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="token"></param>
 	/// <returns></returns>
 	[HttpDelete("{id:long:required}")]
@@ -283,7 +281,7 @@ public class ActivitiesController(ISender sender
 	/// <remarks>
 	/// کاربر باید عضوی از فعالیت باشد
 	/// </remarks>
-	/// <param name="id">ایدی فعالیت</param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="token"></param>
 	/// <returns></returns>
 	[HttpDelete("{id:long:required}/Exiting")]
@@ -303,7 +301,7 @@ public class ActivitiesController(ISender sender
 	/// <remarks>
 	/// کاربری که این درخواست رو ارسال میکنه باید سازنده فعالیت باشه
 	/// </remarks>
-	/// <param name="id">ایدی فعالیت</param>
+	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="memberId">ایدی عضو</param>
 	/// <param name="token"></param>
 	/// <returns></returns>

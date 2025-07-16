@@ -17,5 +17,5 @@ public interface IActivitiesRepository
 
     Task<Activity?> FindById(long id, CancellationToken token);
     
-    Task<long[]> GetActiveActivitiesIds(long projectId, CancellationToken token);
+    Task<IReadOnlyCollection<long>> FindActiveActivityIds(long projectId, CancellationToken token);
 }

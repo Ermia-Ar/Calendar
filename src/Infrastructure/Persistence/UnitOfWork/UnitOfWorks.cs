@@ -5,6 +5,7 @@ namespace Infrastructure.Persistence.UnitOfWork;
 
 public class UnitOfWorks(
     ApplicationContext context,
+    IConfiguration configuration,
     IActivitiesRepository activities,
     IRequestsRepository requests,
     IProjectsRepository projects,
@@ -32,32 +33,77 @@ public class UnitOfWorks(
     public IUsersRepository Users {  get; private set; } = usersRepository;
 
 	private IDbContextTransaction? _transaction;
+	private readonly string? _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
 
-	public void Dispose()
-    {
-        context.Dispose();
-    }
+	
 
     public async Task SaveChangeAsync(CancellationToken token = default)
     {
         await context.SaveChangesAsync(token);
     }
 
-    public async Task<IDbContextTransaction> BeginTransaction(CancellationToken token = default)
+    public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken token = default)
     {
+	    if (_transaction is not null)
+		    throw new InvalidOperationException("An EF Core transaction is already in progress.");
+
 		_transaction =  await context.Database.BeginTransactionAsync(token);
         return _transaction;
     }
 
-	public async Task Commit(CancellationToken token = default)
+    public async Task<DbSession> BeginTransaction(CancellationToken token)
+    {
+	    var connection = new SqlConnection(_connectionString);
+	    await connection.OpenAsync(token);
+	    return new DbSession(connection.BeginTransaction(), connection);
+    }
+
+	public async Task CommitTransactionAsync(CancellationToken token = default)
 	{
-		if (_transaction != null)
+		if (_transaction is null)
+		{
+			throw new InvalidOperationException("No EF Core transaction is in progress to commit.");
+		}
+
+		try
+		{
 			await _transaction.CommitAsync(token);
+		}
+		finally
+		{
+			await DisposeEfTransactionAsync();
+		}
 	}
 
-	public async Task Rollback(CancellationToken token = default)
+	public async Task RoleBackTransactionAsync(CancellationToken token = default)
 	{
-		if (_transaction != null)
+		if (_transaction == null)
+		{
+			throw new InvalidOperationException("No EF Core transaction is in progress to rollback.");
+		}
+
+		try
+		{
 			await _transaction.RollbackAsync(token);
+		}
+		finally
+		{
+			await DisposeEfTransactionAsync();
+		}
+	}
+
+	private async Task DisposeEfTransactionAsync()
+	{
+		if (_transaction is not null)
+		{
+			await _transaction.DisposeAsync();
+			_transaction = null;
+		}
+	}
+	
+	public void Dispose()
+	{
+		DisposeEfTransactionAsync().GetAwaiter().GetResult();
+		context.Dispose();
 	}
 }

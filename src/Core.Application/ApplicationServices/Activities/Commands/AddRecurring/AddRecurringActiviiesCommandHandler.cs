@@ -5,7 +5,6 @@ using Core.Domain.Entities.Activities;
 using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.Notifications;
 using Core.Domain.Entities.Requests;
-using Core.Domain.Enum;
 using Core.Domain.Helper;
 using Core.Domain.UnitOfWork;
 using Mapster;
@@ -18,11 +17,11 @@ public class AddRecurringActivityCommandHandler(
 	ICurrentUserServices currentUserServices,
 	IUnitOfWork unitOfWork,
 	IConfiguration configuration)
-	: IRequestHandler<AddRecurringActivityCommnadRequest>
+	: IRequestHandler<AddRecurringActivityCommandRequest>
 {
-	public async Task Handle(AddRecurringActivityCommnadRequest request, CancellationToken cancellationToken)
+	public async Task Handle(AddRecurringActivityCommandRequest request, CancellationToken cancellationToken)
 	{
-		await using var transaction = await unitOfWork.BeginTransaction(cancellationToken);
+		await using var transaction = await unitOfWork.BeginTransactionAsync(cancellationToken);
 
 		try
 		{
@@ -90,24 +89,24 @@ public class AddRecurringActivityCommandHandler(
 
 			await unitOfWork.SaveChangeAsync(cancellationToken);
 
-			await unitOfWork.Commit(cancellationToken);
+			await unitOfWork.CommitTransactionAsync(cancellationToken);
 		}
 		catch
 		{
-			await unitOfWork.Rollback(cancellationToken);
+			await unitOfWork.RoleBackTransactionAsync(cancellationToken);
 			throw;
 		}
 	}
 
 	private List<Activity> GenerateRecurringActivities(Guid ownerId, long projectId,
-		AddRecurringActivityCommnadRequest request)
+		AddRecurringActivityCommandRequest request)
 	{
 		
 
 		var activities = new List<Activity>();
 		var currentStart = request.StartDate;
 
-		while (currentStart <= request.EndDate)
+		while (currentStart <= request.ToDate)
 		{
 			// create new activity
 			var activity = ActivityFactory.Create(ownerId, projectId
@@ -116,16 +115,8 @@ public class AddRecurringActivityCommandHandler(
 				, request.Duration);
 
 			activities.Add(activity);
-
-			// قدم بعدی بر اساس نوع recurrence
-			currentStart = request.Recurrence switch
-			{
-				RecurrenceType.Daily => currentStart.AddDays(request.Interval),
-				RecurrenceType.Weekly => currentStart.AddDays(7 * request.Interval),
-				RecurrenceType.Monthly => currentStart.AddMonths(request.Interval),
-				RecurrenceType.Yearly => currentStart.AddYears(request.Interval),
-				_ => throw new NotSupportedException($"Recurrence type {request.Recurrence} is not supported.")
-			};
+			//add interval
+			currentStart = currentStart.AddDays(request.Interval);
 		}
 
 		return activities;

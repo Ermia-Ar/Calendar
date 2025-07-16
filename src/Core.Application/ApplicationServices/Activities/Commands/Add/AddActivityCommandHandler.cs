@@ -26,7 +26,7 @@ public sealed class AddActivityCommandHandler(
 
 	public async Task Handle(AddActivityCommandRequest request, CancellationToken cancellationToken)
 	{
-		await using var transaction = await _unitOfWork.BeginTransaction(cancellationToken);
+		await using var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken);
 
 		try
 		{
@@ -93,11 +93,11 @@ public sealed class AddActivityCommandHandler(
 
 			await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-			await _unitOfWork.Commit(cancellationToken);
+			await _unitOfWork.CommitTransactionAsync(cancellationToken);
 		}
 		catch 
 		{
-			await _unitOfWork.Rollback(cancellationToken);
+			await _unitOfWork.RoleBackTransactionAsync(cancellationToken);
 			throw;
 		}
 	}

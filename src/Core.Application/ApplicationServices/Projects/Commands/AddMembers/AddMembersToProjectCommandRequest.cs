@@ -12,8 +12,8 @@ public sealed record AddMembersToProjectCommandRequest(
 
     ) : IRequest
 {
-    public static AddMembersToProjectCommandRequest Create(long ProjectId, AddMembersToProjectDto model)
-        => new AddMembersToProjectCommandRequest(ProjectId, model.MemberIds, model.ActivityIds, model.Message);
+    public static AddMembersToProjectCommandRequest Create(long projectId, AddMembersToProjectDto model)
+        => new AddMembersToProjectCommandRequest(projectId, model.MemberIds, model.ActivityIds, model.Message);
 }
 
 

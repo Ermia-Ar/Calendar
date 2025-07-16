@@ -1,4 +1,5 @@
-﻿using Core.Domain.Exceptions;
+﻿
+using Calendar.Api.Common;
 
 namespace Calendar.Api.Controllers;	
 

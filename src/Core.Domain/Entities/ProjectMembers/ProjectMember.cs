@@ -6,7 +6,6 @@ namespace Core.Domain.Entities.ProjectMembers;
 public class ProjectMember : BaseEntity
 {
 	public Guid MemberId { get; set; }
-
 	public long ProjectId { get; set; }
 	public Project Project { get; set; }	
 

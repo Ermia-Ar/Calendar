@@ -17,8 +17,8 @@ public sealed record GetMemberOfActivityQueryRequest(
 /// <summary>
 /// 
 /// </summary>
-/// <param name="PageNum"></param>
-/// <param name="PageSize"></param>
+/// <param name="PageNum">شماره صفحه</param>
+/// <param name="PageSize">تعداد رکورد</param>
 public sealed record GetMemberOfActivityDto(
     int PageNum,
     int PageSize

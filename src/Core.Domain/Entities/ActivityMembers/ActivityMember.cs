@@ -63,4 +63,10 @@ public class ActivityMember : BaseEntity
 		UpdateDate = DateTime.UtcNow;
 	}
 
+	public void MakeUnGuest()
+	{
+		IsGuest = false;
+		UpdateDate = DateTime.UtcNow;
+	}
+
 }

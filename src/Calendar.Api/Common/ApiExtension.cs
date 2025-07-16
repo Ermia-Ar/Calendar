@@ -1,5 +1,4 @@
-﻿using Core.Domain.Exceptions;
-using DotNetEnv;
+﻿using DotNetEnv;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using SharedKernel;

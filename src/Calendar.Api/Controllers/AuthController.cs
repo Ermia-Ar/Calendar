@@ -1,5 +1,5 @@
-﻿using Core.Application.InternalServices.Auth.Dtos;
-using Core.Domain.Exceptions;
+﻿using Calendar.Api.Common;
+using Core.Application.InternalServices.Auth.Dtos;
 
 namespace Calendar.Api.Controllers;
 

@@ -130,9 +130,17 @@ public class ActivityMembersRepository(
 
 	public async Task<ActivityMember?> FindByActivityIdAndMemberId(Guid userId, long activityId, CancellationToken token)
 	{
-		return await _context.ActivityMembers
-			.FirstOrDefaultAsync(x => x.MemberId == userId && 
-				x.ActivityId == activityId, token); 
+		await using var connection = new SqlConnection(_connectionString);
+		await connection.OpenAsync(token);
+
+		var parameters = new DynamicParameters();
+		parameters.Add("activityId", activityId, DbType.Int64);
+		parameters.Add("memberId", userId, DbType.Guid);
+
+		var activityMember = await connection.QueryFirstOrDefaultAsync<ActivityMember>
+			("SP_FindActivityMemberByMemberIdAndActivityId", parameters, commandType: CommandType.StoredProcedure);
+
+		return activityMember;
 	}
 
 	public async Task<IReadOnlyCollection<Guid>> FindMemberIdsOfActivity(long activityId, CancellationToken token)

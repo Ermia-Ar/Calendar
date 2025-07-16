@@ -4,6 +4,66 @@
         <name>Core.Application</name>
     </assembly>
     <members>
+        <member name="T:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+            <param name="Interval">تعداد روز های فاصله بین فعالیت ها</param>
+            <param name="ToDate">تا پایان این تاریخ</param>
+        </member>
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String,System.Int32,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="Title">حداقل 3 کاراکتر </param>
+            <param name="Description">توضیح فعالیت</param>
+            <param name="StartDate">از زمان حال بزرگتر باشد</param>
+            <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
+            <param name="Category"></param>
+            <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
+            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
+            <param name="Interval">تعداد روز های فاصله بین فعالیت ها</param>
+            <param name="ToDate">تا پایان این تاریخ</param>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Title">
+            <summary>حداقل 3 کاراکتر </summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Description">
+            <summary>توضیح فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.StartDate">
+            <summary>از زمان حال بزرگتر باشد</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Duration">
+            <summary>مدت زمان در نظر گرفته شده برای فعالیت</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.NotificationBefore">
+            <summary> چه مدت مانده به فعالیت اعلان داده شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Category">
+            <summary></summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.MemberIds">
+            <summary>درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Message">
+            <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Interval">
+            <summary>تعداد روز های فاصله بین فعالیت ها</summary>
+        </member>
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.ToDate">
+            <summary>تا پایان این تاریخ</summary>
+        </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto">
             <summary>
             
@@ -62,7 +122,7 @@
             <param name="Description">توضیح فعالیت</param>
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
-            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
             <param name="Category"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
             <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
@@ -75,7 +135,7 @@
             <param name="Description">توضیح فعالیت</param>
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
-            <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
             <param name="Category"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
             <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
@@ -93,7 +153,7 @@
             <summary>مدت زمان در نظر گرفته شده برای فعالیت</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.NotificationBefore">
-            <summary> چه مدت مانده به فعالیت به کاربر اعلان داده شود</summary>
+            <summary> چه مدت مانده به فعالیت اعلان داده شود</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Category">
             <summary></summary>
@@ -103,31 +163,6 @@
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Message">
             <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
-        </member>
-        <member name="T:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest">
-            <summary>
-            
-            </summary>
-            <param name="ActivityId">ایدی فعالیت</param>
-            <param name="MemberIds">ایدی دریافت کننده های درخواست عضویت</param>
-            <param name="Message">پبامی که همراه با درخواست ارسال میشود</param>
-        </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest.#ctor(System.Int64,System.Guid[],System.String)">
-            <summary>
-            
-            </summary>
-            <param name="ActivityId">ایدی فعالیت</param>
-            <param name="MemberIds">ایدی دریافت کننده های درخواست عضویت</param>
-            <param name="Message">پبامی که همراه با درخواست ارسال میشود</param>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest.ActivityId">
-            <summary>ایدی فعالیت</summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest.MemberIds">
-            <summary>ایدی دریافت کننده های درخواست عضویت</summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestCommandRequest.Message">
-            <summary>پبامی که همراه با درخواست ارسال میشود</summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto">
             <summary>
@@ -173,16 +208,16 @@
             <summary>
             
             </summary>
-            <param name="NotificationBefore"></param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
         </member>
         <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationDto.#ctor(System.Nullable{System.TimeSpan})">
             <summary>
             
             </summary>
-            <param name="NotificationBefore"></param>
+            <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationDto.NotificationBefore">
-            <summary></summary>
+            <summary> چه مدت مانده به فعالیت اعلان داده شود</summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Commands.UpdateStartDate.UpdateActivityStartDateDto">
             <summary>
@@ -268,186 +303,186 @@
             <summary>
             
             </summary>
-            <param name="PageNum"></param>
-            <param name="PageSize"></param>
-            <param name="IdOrdring"></param>
-            <param name="ParentIdOrdring"></param>
-            <param name="ProjectIdOrdring"></param>
-            <param name="UserIdOrdring"></param>
-            <param name="TitleOrdring"></param>
-            <param name="DescriptionOrdring"></param>
-            <param name="StartDateOrdring"></param>
-            <param name="CreatedDateOrdring"></param>
-            <param name="UpdateDateOrdring"></param>
-            <param name="DurationOrdring"></param>
-            <param name="NotificationBeforeInMinuteOrdring"></param>
-            <param name="CategoryOrdring"></param>
-            <param name="IsCompletedOrdring"></param>
-            <param name="StartDateFiltering"></param>
-            <param name="IsCompletedFiltering"></param>
+            <param name="PageNum">شماره صفحه</param>
+            <param name="PageSize">تعداد رکورد ها</param>
+            <param name="IdOrdering"> مرتب سازی بر اساس شناسه</param>
+            <param name="ParentIdOrdering">مرتب سازی بر اساس شناسه فعالیت والد</param>
+            <param name="ProjectIdOrdering">مرتب سازی بر اساس شناسه پروژه</param>
+            <param name="UserIdOrdering">مرتب سازی بر اساس شناسه کاربر</param>
+            <param name="TitleOrdering">مرتب سازی بر اساس تیتر</param>
+            <param name="DescriptionOrdering">مرتب سازی بر اساس توضیحات</param>
+            <param name="StartDateOrdering">مرتب سازی بر اساس تاریخ شروع</param>
+            <param name="CreatedDateOrdering">مرتب سازی بر اساس تاریخ ساخت</param>
+            <param name="UpdateDateOrdering">مرتب سازی بر اساس تاریخ به روزرسانی</param>
+            <param name="DurationOrdering">مرتب سازی بر اساس طول زمان فعالیت</param>
+            <param name="NotificationBeforeInMinuteOrdering">مرتب سازی بر اساس اعلان</param>
+            <param name="CategoryOrdering">مرتب سازی بر اساس دسته بندی</param>
+            <param name="IsCompletedOrdering">مرتب سازی بر اساس وضعیت تکمیل فعالیت</param>
+            <param name="StartDateFiltering">فیلتر بر اساس تاریخ شروع</param>
+            <param name="IsCompletedFiltering">فیلتر کردن بر اساس وضعیت کامل بودن</param>
             <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
-            <param name="CategoryFiltering"></param>
+            <param name="CategoryFiltering">فیلتر کردن بر اساس </param>
         </member>
         <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
             <summary>
             
             </summary>
-            <param name="PageNum"></param>
-            <param name="PageSize"></param>
-            <param name="IdOrdring"></param>
-            <param name="ParentIdOrdring"></param>
-            <param name="ProjectIdOrdring"></param>
-            <param name="UserIdOrdring"></param>
-            <param name="TitleOrdring"></param>
-            <param name="DescriptionOrdring"></param>
-            <param name="StartDateOrdring"></param>
-            <param name="CreatedDateOrdring"></param>
-            <param name="UpdateDateOrdring"></param>
-            <param name="DurationOrdring"></param>
-            <param name="NotificationBeforeInMinuteOrdring"></param>
-            <param name="CategoryOrdring"></param>
-            <param name="IsCompletedOrdring"></param>
-            <param name="StartDateFiltering"></param>
-            <param name="IsCompletedFiltering"></param>
+            <param name="PageNum">شماره صفحه</param>
+            <param name="PageSize">تعداد رکورد ها</param>
+            <param name="IdOrdering"> مرتب سازی بر اساس شناسه</param>
+            <param name="ParentIdOrdering">مرتب سازی بر اساس شناسه فعالیت والد</param>
+            <param name="ProjectIdOrdering">مرتب سازی بر اساس شناسه پروژه</param>
+            <param name="UserIdOrdering">مرتب سازی بر اساس شناسه کاربر</param>
+            <param name="TitleOrdering">مرتب سازی بر اساس تیتر</param>
+            <param name="DescriptionOrdering">مرتب سازی بر اساس توضیحات</param>
+            <param name="StartDateOrdering">مرتب سازی بر اساس تاریخ شروع</param>
+            <param name="CreatedDateOrdering">مرتب سازی بر اساس تاریخ ساخت</param>
+            <param name="UpdateDateOrdering">مرتب سازی بر اساس تاریخ به روزرسانی</param>
+            <param name="DurationOrdering">مرتب سازی بر اساس طول زمان فعالیت</param>
+            <param name="NotificationBeforeInMinuteOrdering">مرتب سازی بر اساس اعلان</param>
+            <param name="CategoryOrdering">مرتب سازی بر اساس دسته بندی</param>
+            <param name="IsCompletedOrdering">مرتب سازی بر اساس وضعیت تکمیل فعالیت</param>
+            <param name="StartDateFiltering">فیلتر بر اساس تاریخ شروع</param>
+            <param name="IsCompletedFiltering">فیلتر کردن بر اساس وضعیت کامل بودن</param>
             <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
-            <param name="CategoryFiltering"></param>
+            <param name="CategoryFiltering">فیلتر کردن بر اساس </param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.PageNum">
-            <summary></summary>
+            <summary>شماره صفحه</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.PageSize">
-            <summary></summary>
+            <summary>تعداد رکورد ها</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.StartDateFiltering">
-            <summary></summary>
+            <summary>فیلتر بر اساس تاریخ شروع</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsCompletedFiltering">
-            <summary></summary>
+            <summary>فیلتر کردن بر اساس وضعیت کامل بودن</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsHistoryFiltering">
             <summary>اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CategoryFiltering">
-            <summary></summary>
+            <summary>فیلتر کردن بر اساس </summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IdOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IdOrdering">
+            <summary> مرتب سازی بر اساس شناسه</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.ParentIdOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.ParentIdOrdering">
+            <summary>مرتب سازی بر اساس شناسه فعالیت والد</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.ProjectIdOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.ProjectIdOrdering">
+            <summary>مرتب سازی بر اساس شناسه پروژه</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.UserIdOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.UserIdOrdering">
+            <summary>مرتب سازی بر اساس شناسه کاربر</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.TitleOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.TitleOrdering">
+            <summary>مرتب سازی بر اساس تیتر</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.DescriptionOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.DescriptionOrdering">
+            <summary>مرتب سازی بر اساس توضیحات</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.StartDateOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.StartDateOrdering">
+            <summary>مرتب سازی بر اساس تاریخ شروع</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CreatedDateOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CreatedDateOrdering">
+            <summary>مرتب سازی بر اساس تاریخ ساخت</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.UpdateDateOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.UpdateDateOrdering">
+            <summary>مرتب سازی بر اساس تاریخ به روزرسانی</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.DurationOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.DurationOrdering">
+            <summary>مرتب سازی بر اساس طول زمان فعالیت</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.NotificationBeforeInMinuteOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.NotificationBeforeInMinuteOrdering">
+            <summary>مرتب سازی بر اساس اعلان</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CategoryOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.CategoryOrdering">
+            <summary>مرتب سازی بر اساس دسته بندی</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsCompletedOrdring">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.IsCompletedOrdering">
+            <summary>مرتب سازی بر اساس وضعیت تکمیل فعالیت</summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto">
             <summary>
             
             </summary>
-            <param name="PageNumber"></param>
-            <param name="PageSize"></param>
+            <param name="PageNum">شماره صفحه</param>
+            <param name="PageSize">تعداد رکورد</param>
             <param name="SearchFiltering">روی محتوا کامنت سرچ انجام میده</param>
-            <param name="userIdFiltering">کامنت مال چه کاربری است</param>
-            <param name="IdOreing"></param>
-            <param name="ActivityIdOreing"></param>
-            <param name="UserIdOreing"></param>
-            <param name="ContentOreing"></param>
-            <param name="CreatedDateOreing"></param>
-            <param name="UpdatedDateOreing"></param>
+            <param name="UserIdFiltering">کامنت مال چه کاربری است</param>
+            <param name="IdOrdering"> مرتب سازی بر اساس شناسه</param>
+            <param name="ActivityIdOrdering">مرتب سازی بر اساس شناسه فعالیت</param>
+            <param name="UserIdOrdering">مرتب سازی بر اساس شناسه کاربر</param>
+            <param name="ContentOrdering">مرتب سازی بر اساس محتوا</param>
+            <param name="CreatedDateOrdering">مرتب سازی بر اساس زمان ساخت</param>
+            <param name="UpdatedDateOrdering">مرتب سازی بر اساس زمان به روزرسانی</param>
         </member>
         <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.#ctor(System.Int32,System.Int32,System.String,System.Nullable{System.Guid},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
             <summary>
             
             </summary>
-            <param name="PageNumber"></param>
-            <param name="PageSize"></param>
+            <param name="PageNum">شماره صفحه</param>
+            <param name="PageSize">تعداد رکورد</param>
             <param name="SearchFiltering">روی محتوا کامنت سرچ انجام میده</param>
-            <param name="userIdFiltering">کامنت مال چه کاربری است</param>
-            <param name="IdOreing"></param>
-            <param name="ActivityIdOreing"></param>
-            <param name="UserIdOreing"></param>
-            <param name="ContentOreing"></param>
-            <param name="CreatedDateOreing"></param>
-            <param name="UpdatedDateOreing"></param>
+            <param name="UserIdFiltering">کامنت مال چه کاربری است</param>
+            <param name="IdOrdering"> مرتب سازی بر اساس شناسه</param>
+            <param name="ActivityIdOrdering">مرتب سازی بر اساس شناسه فعالیت</param>
+            <param name="UserIdOrdering">مرتب سازی بر اساس شناسه کاربر</param>
+            <param name="ContentOrdering">مرتب سازی بر اساس محتوا</param>
+            <param name="CreatedDateOrdering">مرتب سازی بر اساس زمان ساخت</param>
+            <param name="UpdatedDateOrdering">مرتب سازی بر اساس زمان به روزرسانی</param>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.PageNumber">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.PageNum">
+            <summary>شماره صفحه</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.PageSize">
-            <summary></summary>
+            <summary>تعداد رکورد</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.SearchFiltering">
             <summary>روی محتوا کامنت سرچ انجام میده</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.userIdFiltering">
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.UserIdFiltering">
             <summary>کامنت مال چه کاربری است</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.IdOreing">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.IdOrdering">
+            <summary> مرتب سازی بر اساس شناسه</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.ActivityIdOreing">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.ActivityIdOrdering">
+            <summary>مرتب سازی بر اساس شناسه فعالیت</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.UserIdOreing">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.UserIdOrdering">
+            <summary>مرتب سازی بر اساس شناسه کاربر</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.ContentOreing">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.ContentOrdering">
+            <summary>مرتب سازی بر اساس محتوا</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.CreatedDateOreing">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.CreatedDateOrdering">
+            <summary>مرتب سازی بر اساس زمان ساخت</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.UpdatedDateOreing">
-            <summary></summary>
+        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetComments.GetActivityCommentsDto.UpdatedDateOrdering">
+            <summary>مرتب سازی بر اساس زمان به روزرسانی</summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto">
             <summary>
             
             </summary>
-            <param name="PageNum"></param>
-            <param name="PageSize"></param>
+            <param name="PageNum">شماره صفحه</param>
+            <param name="PageSize">تعداد رکورد</param>
         </member>
         <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto.#ctor(System.Int32,System.Int32)">
             <summary>
             
             </summary>
-            <param name="PageNum"></param>
-            <param name="PageSize"></param>
+            <param name="PageNum">شماره صفحه</param>
+            <param name="PageSize">تعداد رکورد</param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto.PageNum">
-            <summary></summary>
+            <summary>شماره صفحه</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityDto.PageSize">
-            <summary></summary>
+            <summary>تعداد رکورد</summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse">
             <summary>
@@ -457,7 +492,7 @@
             <param name="IsOwner"></param>
             <param name="IsGuest"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.#ctor(System.Guid,System.Boolean,System.Boolean)">
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.#ctor(System.Int64,System.Guid,System.Boolean,System.Boolean)">
             <summary>
             
             </summary>

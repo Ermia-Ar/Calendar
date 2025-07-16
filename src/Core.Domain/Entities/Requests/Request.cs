@@ -8,12 +8,13 @@ namespace Core.Domain.Entities.Requests;
 
 public class Request : BaseEntity
 {
-    public Request()
+    internal Request()
     {
         
     }
 
     public long ActivityId { get; internal set; }
+    
     public Activity Activity { get; internal set; }
 
     public Guid SenderId { get; internal set; }

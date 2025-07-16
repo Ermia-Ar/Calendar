@@ -1,6 +1,7 @@
 ﻿using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
+using SharedKernel.Helper;
 
 namespace Core.Domain.UnitOfWork;
 
@@ -16,7 +17,8 @@ public interface IUnitOfWork : IDisposable
 	IUsersRepository Users { get; }
 
 	Task SaveChangeAsync(CancellationToken token = default);
-	Task<IDbContextTransaction> BeginTransaction(CancellationToken token = default);
-	Task Commit(CancellationToken token = default);
-	Task Rollback(CancellationToken token = default);
+	Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken token = default);
+	Task CommitTransactionAsync(CancellationToken token = default);
+	Task RoleBackTransactionAsync(CancellationToken token = default);
+	Task<DbSession> BeginTransaction(CancellationToken token);
 }
