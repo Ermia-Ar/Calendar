@@ -6,7 +6,7 @@ public class ProjectsRepository(
     : IProjectsRepository
 {
     private readonly ApplicationContext _context = context;
-	private readonly string _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
+	private readonly string? _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
 
 	//Commands
 	public Project Add(Project project)

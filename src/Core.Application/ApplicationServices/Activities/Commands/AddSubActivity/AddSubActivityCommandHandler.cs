@@ -6,23 +6,20 @@ using Core.Domain.Entities.Activities;
 using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.Notifications;
 using Core.Domain.Entities.Requests;
-using Core.Domain.Helper;
+using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 
 namespace Core.Application.ApplicationServices.Activities.Commands.AddSubActivity;
 
 public sealed class AddSubActivityCommandHandler(
 	IUnitOfWork unitOfWork,
-	ICurrentUserServices currentUser,
-	IConfiguration configuration)
+	ICurrentUserServices currentUser)
 	: IRequestHandler<AddSubActivityCommandRequest>
 {
 	private readonly IUnitOfWork _unitOfWork = unitOfWork;
 	private readonly ICurrentUserServices _currentUser = currentUser;
-	private readonly IConfiguration _configuration = configuration;
 
 	public async Task Handle(AddSubActivityCommandRequest request, CancellationToken cancellationToken)
 	{
@@ -30,7 +27,9 @@ public sealed class AddSubActivityCommandHandler(
 
 		try
 		{
-			var ownerId = _currentUser.GetUserId();
+			var owner = (await _unitOfWork.Users
+					.GetById(_currentUser.GetUserId(), cancellationToken))
+				.Adapt<GetUserByIdDto>();
 
 			//get base activity
 			var baseActivity = await _unitOfWork.Activities
@@ -39,71 +38,75 @@ public sealed class AddSubActivityCommandHandler(
 			if (baseActivity == null)
 				throw new InvalidActivityIdException();
 
-			if (baseActivity.UserId != ownerId)
+			if (baseActivity.OwnerId != owner.Id)
 				throw new OnlyActivityCreatorAllowedException();
 
-			long? parentId = baseActivity.ParentId != null ? baseActivity.ParentId : baseActivity.Id;
+			long parentId = baseActivity.ParentId?? baseActivity.Id;
 
 			// create sub activity
 			var subActivity = ActivityFactory.CreateSubActivity(parentId
-				, ownerId, baseActivity.ProjectId
+				, owner.Id, baseActivity.ProjectId
 				, request.Title, request.Description
-				, request.StartDate, request.Category
+				, request.StartDate, request.Type
 				, request.Duration);
 
 			//add to table activity
 			subActivity = _unitOfWork.Activities.Add(subActivity);
-
 			await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-			//get memberIds of base project of activity
+			//get memberIds of base project of baseActivity
 			var projectMemberIds = (await _unitOfWork.ProjectMembers
-				.FindMemberIdsOfProject(subActivity.ProjectId, cancellationToken))
+				.FindMemberIdsOfProject(baseActivity.ProjectId, cancellationToken))
 				.ToList();
 
-			//send request for all memberIds
-			var userRequests = new List<Request>();
+			// all memberIds
+			var activityRequests = new List<ActivityRequest>();
+			var activityMembers = new List<ActivityMember>();
 			foreach (var receiverId in request.MemberIds)
 			{
 				//check
 				var receiver = (await _unitOfWork
 					.Users.GetById(receiverId, cancellationToken))
-					.Adapt<GetUserByIdResponse>();
+					.Adapt<GetUserByIdDto>();
 
 				if (receiver == null)
 					throw new NotFoundUserIdException(receiverId);
 
+				
+				// create activityRequest
+				var activityRequest = ActivityRequestFactory.Create(receiver.Id, subActivity.Id,
+						"Please Join !!");
+				activityRequests.Add(activityRequest);
+					
 				// check if the receiver is a member of base project
 				var isGuest = projectMemberIds.Any(x => x != receiver.Id);
-
-				var sendRequest = RequestFactory.Create
-					(subActivity.Id, ownerId, receiver.Id,
-						request.Message, isGuest);
-
-				userRequests.Add(sendRequest);
+				
+				//create ActivityMember
+				var activityMember = ActivityMember.Create(receiver.Id,
+					subActivity.Id, isGuest, ParticipationStatus.Pending);
+				activityMembers.Add(activityMember);
 			}
-
-			//add requests table
-			_unitOfWork.Requests.AddRange(userRequests);
+			// add to activityMembers Table	
+			_unitOfWork.ActivityMembers.AddRange(activityMembers);	
+			//add ActivityRequests table
+			_unitOfWork.ActivityRequests.AddRange(activityRequests);
 
 			//add owner to activity members
 			var activityOwner = ActivityMember
-				.CreateOwner(ownerId, subActivity.Id);
+				.Create(owner.Id, subActivity.Id,
+					false, ParticipationStatus.Participating);
 
 			// add to activityMembers table
-			activityOwner = _unitOfWork.
-				ActivityMembers.Add(activityOwner);
+			 _unitOfWork.ActivityMembers.Add(activityOwner);
 
-			// set notification for owner
+			//create notification for owner
 			// if NotificationBefore is null set default notification
-			var notificationBefore = request.NotificationBefore ??
-				TimeSpan.FromHours(NotificationSetting.DefaultNotificaiton);
+			var notificationBefore = request.NotificationBefore??
+			                         owner.DefaultNotificationBefore;
 
 			var notification = NotificationFactory
-				.Create(activityOwner.Id
-				, subActivity.StartDate - notificationBefore);
-
-			activityOwner.SetNotification(notification.Id);
+				.Create(owner.Id, subActivity.Id,
+					 subActivity.StartDate - notificationBefore);
 
 			//Add to Notifications table
 			_unitOfWork.Notifications.Add(notification);

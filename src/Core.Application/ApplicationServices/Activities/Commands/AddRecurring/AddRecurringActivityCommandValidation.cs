@@ -42,7 +42,7 @@ public sealed class AddRecurringActivityCommandValidation : AbstractValidator<Ad
 
 		RuleFor(x => x.MemberIds);
 
-		RuleFor(x => x.Category)
+		RuleFor(x => x.Type)
 			.IsInEnum()
 			.WithMessage("Invalid activity category.");
 	}

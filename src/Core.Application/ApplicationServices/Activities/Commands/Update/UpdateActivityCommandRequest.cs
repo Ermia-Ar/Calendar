@@ -12,20 +12,20 @@ namespace Core.Application.ApplicationServices.Activities.Commands.UpdateActivit
 /// <param name="Title"></param>
 /// <param name="Description"></param>
 /// <param name="Duration">TimeSpan</param>
-/// <param name="Category"></param>
+/// <param name="Type"></param>
 public record class UpdateActivityCommandRequest(
     long Id ,
     string Title,
     string? Description,
 	TimeSpan? Duration,
-    ActivityCategory Category
+    ActivityType Type
         ): IRequest
 {
 	public static UpdateActivityCommandRequest Create(long Id, UpdateActivityDto model)
 		=> new UpdateActivityCommandRequest
 		(
 			Id, model.Title,model.Description
-			, model.Duration, model.Category
+			, model.Duration, model.Type
 		);
 }
 
@@ -36,12 +36,12 @@ public record class UpdateActivityCommandRequest(
 /// <param name="Title"></param>
 /// <param name="Description"></param>
 /// <param name="Duration">TimeSpan</param>
-/// <param name="Category"></param>
+/// <param name="Type"></param>
 public record class UpdateActivityDto(
 	string Title,
 	string? Description,
 	TimeSpan? Duration,
-	ActivityCategory Category
+	ActivityType Type
 
 	);
 

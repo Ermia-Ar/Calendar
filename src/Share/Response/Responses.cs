@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Globalization;
+using SharedKernel.Helper;
 
 public class Responses<T> : Responses
 {
 	[JsonProperty("value")]
 	public T Value { get; set; }
-
-	
 }
 public class Responses
 {

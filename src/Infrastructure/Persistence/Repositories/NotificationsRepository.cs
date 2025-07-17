@@ -26,25 +26,31 @@ public class NotificationsRepository(ApplicationContext context) : INotification
         _context.RemoveRange(notifications);
     }
 
-    public void Update(Notification notification)
-    {
-        _context.Update(notification);
-    }
-
-
     //Queries
     public async Task<Notification?> Find(long activityMemberId, CancellationToken token)
     {
         return await _context.Notifications
              .FirstOrDefaultAsync(x => 
-             x.ActivityMemberId == activityMemberId && 
-             x.IsSent == false, token);
+             x.ActivityId == activityMemberId, token);
     }
 
     public async Task<Notification?> FindById(long id, CancellationToken token)
     {
         return await _context.Notifications
-             .FirstOrDefaultAsync(x => x.Id == id &&
-             x.IsSent == false, token);
+             .FirstOrDefaultAsync(x => x.Id == id, token);
+    }
+
+    public async Task<IReadOnlyCollection<Notification>> FindByActivityId(long activityId, CancellationToken token)
+    {
+        return await _context.Notifications
+            .Where(x => x.ActivityId == activityId)
+            .ToListAsync(token);
+    }
+
+    public async Task<Notification?> FindByActivityIdAndUserId(Guid userId, long activityId, CancellationToken token)
+    {
+        var notification = await _context.Notifications
+            .FirstOrDefaultAsync(x => x.ActivityId == activityId && x.UserId == userId, token);
+        return notification;
     }
 }

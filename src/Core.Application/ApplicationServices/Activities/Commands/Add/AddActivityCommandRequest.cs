@@ -13,17 +13,15 @@ namespace Core.Application.ApplicationServices.Activities.Commands.Add;
 /// <param name="StartDate">از زمان حال بزرگتر باشد</param>
 /// <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
 /// <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
-/// <param name="Category"></param>
+/// <param name="Type"></param>
 /// <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-/// <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
 public sealed record AddActivityCommandRequest(
      string Title ,
      string? Description ,
      DateTime StartDate,
      TimeSpan? Duration ,
      TimeSpan? NotificationBefore ,
-     ActivityCategory Category ,
-	 Guid[] MemberIds ,
-     string? Message
+     ActivityType Type ,
+	 List<Guid> MemberIds 
 ) : IRequest;
 

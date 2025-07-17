@@ -3,14 +3,14 @@ namespace Core.Domain.Entities.Notifications;
 
 public static class NotificationFactory
 {
-	public static Notification Create(long ActivityMemberId, DateTime NotificationDate)
+	public static Notification Create(Guid userId, long activityId, DateTime notificationDate)
 	{
 		return new Notification
 		{
-			ActivityMemberId = ActivityMemberId,
-			NotificationDate = NotificationDate,
+			UserId = userId,
+			ActivityId = activityId,
+			NotificationDate = notificationDate,
 			CreatedDate = DateTime.UtcNow,
-			IsSent = false,
 			IsActive = true,
 		};
 	}

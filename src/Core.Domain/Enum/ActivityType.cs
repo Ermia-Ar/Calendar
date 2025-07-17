@@ -2,10 +2,12 @@
 
 namespace Core.Domain.Enum;
 
-public enum ActivityCategory
+public enum ActivityType
 {
     [Description("تسک")]
     Task,
     [Description("رویداد")]
     Event,
+    [Description("جلسه")]
+    Meet
 }

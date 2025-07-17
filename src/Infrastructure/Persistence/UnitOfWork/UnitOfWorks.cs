@@ -18,7 +18,7 @@ public class UnitOfWorks(
 {
     public IActivitiesRepository Activities { get; private set; } = activities;
 
-    public IRequestsRepository Requests { get; private set; } = requests;
+    public IRequestsRepository ActivityRequests { get; private set; } = requests;
 
     public IProjectsRepository Projects { get; private set; } = projects;
 

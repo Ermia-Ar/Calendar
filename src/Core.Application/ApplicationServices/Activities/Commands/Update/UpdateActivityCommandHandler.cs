@@ -18,14 +18,14 @@ public sealed class UpdateActivityCommandHandler
         var activity = await _unitOfWork.Activities
             .FindById(request.Id, cancellationToken);
 
-        if (activity.UserId != _currentUser.GetUserId())
+        if (activity.OwnerId != _currentUser.GetUserId())
         {
             throw new OnlyActivityCreatorAllowedException();
         }
 
         // update activity
         activity.Update(request.Title, request.Description,
-            request.Duration, request.Category);
+            request.Duration, request.Type);
 
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }

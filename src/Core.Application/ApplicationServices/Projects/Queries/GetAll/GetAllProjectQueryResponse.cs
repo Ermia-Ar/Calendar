@@ -16,10 +16,3 @@ public record class GetAllProjectQueryResponse(
     string Icon
     ) : IResponse;
 
-public class GetUserProjectsProfile : IRegister
-{
-    public void Register(TypeAdapterConfig config)
-    {
-        config.ForType<IResponse, GetAllProjectQueryResponse>();
-    }
-}

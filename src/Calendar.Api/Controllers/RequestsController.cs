@@ -1,5 +1,7 @@
 ﻿
 using Calendar.Api.Common;
+using Core.Application.ApplicationServices.Requests.Commands.NotParticipating;
+using Core.Application.ApplicationServices.Requests.Commands.Participating;
 
 namespace Calendar.Api.Controllers;	
 
@@ -18,12 +20,22 @@ public class RequestsController(ISender sender) : ControllerBase
 	/// <param name="id"></param>
 	/// <param name="model"></param>
 	/// <param name="token"></param>
-	[HttpPost("{id:long:required}/Answer")]
+	[HttpPatch("{id:long:required}/Participating")]
 	[Authorize(CalendarClaimsServiceDeclaration.AnswerRequest)]
-	public async Task<SuccessResponse> Answer(long id ,[FromQuery] AnswerRequestDto model,
+	public async Task<SuccessResponse> Answer(long id,
 		CancellationToken token = default)
 	{
-		var request = AnswerRequestCommandRequest.Create(id, model);
+		var request = new MakeParticipatingActivityMemberCommandRequest(id);
+		await _sender.Send(request, token);
+		return Result.Ok();
+	}
+	
+	[HttpPatch("{id:long:required}/NotParticipating")]
+	[Authorize(CalendarClaimsServiceDeclaration.AnswerRequest)]
+	public async Task<SuccessResponse> Answer(long id, string reason,
+		CancellationToken token = default)
+	{
+		var request = new MakeNotParticipatingActivityMemberCommandRequest(id, reason);
 		await _sender.Send(request, token);
 		return Result.Ok();
 	}

@@ -13,7 +13,7 @@ public class ProjectMemberConfiguration : IEntityTypeConfiguration<ProjectMember
         builder.Property(x => x.Id)
             .UseIdentityColumn(1000, 1);
 
-		builder.HasOne(a => a.Project)
+		builder.HasOne<Project>()
             .WithMany(x => x.Members)
             .HasForeignKey(a => a.ProjectId)
             .OnDelete(DeleteBehavior.NoAction);

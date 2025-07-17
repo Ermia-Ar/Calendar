@@ -17,17 +17,17 @@ public sealed class DeleteRequestCommandHandler(IUnitOfWork unitOfWork, ICurrent
     {
         var userId = _currentUserServices.GetUserId();
 
-        var userRequest = await _unitOfWork.Requests
+        var activityRequest = await _unitOfWork.ActivityRequests
                 .FindById(request.Id, cancellationToken);
-
-        if (userRequest.ReceiverId != userId || userRequest.SenderId != userId)
-        {
-            _unitOfWork.Requests.Remove(userRequest);   
-        }
+        
+        if (activityRequest == null)
+            throw new InvalidRequestIdException();
+        
+        if (activityRequest.ReceiverId != userId)
+            _unitOfWork.ActivityRequests.Remove(activityRequest);   
         else
-        {
             throw new NotFoundRequestException();
-        }
+        
         await _unitOfWork.SaveChangeAsync(cancellationToken);
 
     }

@@ -2,7 +2,7 @@
 
 namespace Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity;
 
-public sealed class AddRecurringActivityForProjectCommnadValidation : AbstractValidator<AddRecurringActivityForProjectCommnadRequest>
+public sealed class AddRecurringActivityForProjectCommnadValidation : AbstractValidator<AddRecurringActivityForProjectCommandRequest>
 {
     public AddRecurringActivityForProjectCommnadValidation()
     {
@@ -42,12 +42,8 @@ public sealed class AddRecurringActivityForProjectCommnadValidation : AbstractVa
 
         RuleFor(x => x.MemberIds);
 
-        RuleFor(x => x.Category)
+        RuleFor(x => x.Type)
             .IsInEnum()
             .WithMessage("Invalid activity category.");
-
-        RuleFor(x => x.Recurrence)
-            .IsInEnum().
-            WithMessage("Invalid recurrence type.");
     }
 }

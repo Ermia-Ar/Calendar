@@ -2,8 +2,10 @@
 using Core.Application.ApplicationServices.Projects.Exceptions;
 using Core.Application.Common;
 using Core.Application.InternalServices.Auth.Dto;
+using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.ProjectMembers;
 using Core.Domain.Entities.Requests;
+using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
@@ -34,26 +36,27 @@ public sealed class AddMembersToProjectCommandHandler
 
         //Add Receivers to projectMembers
         var projectMembers = new List<ProjectMember>();
-        // for send request
-        var sendRequests = new List<Request>();
-
+        // for send activityRequest
+        var activityRequests = new List<ActivityRequest>();
+        // for ActivityMembers
+        var activityMembers = new List<ActivityMember>();
+        
         foreach (var memberId in request.MemberIds)
         {
             //check
             var member = (await _unitOfWork
                     .Users.GetById(memberId, cancellationToken))
-                    .Adapt<GetUserByIdResponse>();
+                    .Adapt<GetUserByIdDto>();
 
             if (member == null)
                 throw new NotFoundUserIdException(memberId);
 
-            var isAlreadyMember = await _unitOfWork.ProjectMembers
+            var isMemberOfProject = await _unitOfWork.ProjectMembers
                 .IsMemberOfProject(project.Id, memberId, cancellationToken);
-            if (isAlreadyMember)
+            if (isMemberOfProject)
                 throw new TheUserAlreadyIsMemberProject(memberId);
 
             var projectMember = ProjectMember.Create(memberId, project.Id);
-
             projectMembers.Add(projectMember);
 
             var activeActivityIds = await _unitOfWork.Activities
@@ -62,33 +65,35 @@ public sealed class AddMembersToProjectCommandHandler
             //send request
             foreach (var activityId in request.ActivityIds)
             {
+                //TODO : EXCEPTION
                 if (activeActivityIds.Any(x => x != activityId))
                     throw new Exception("invalid Activity");
+                //TODO : ASK
+                // var activityMember = await _unitOfWork.ActivityMembers
+                //     .FindByActivityIdAndMemberId(memberId, activityId, cancellationToken);
+                // if is already is member as guest make it unGuest else send request
+                // if (activityMember != null) 
+                //     activityMember.MakeUnGuest();
                 
-                var activityMember = await _unitOfWork.ActivityMembers
-                    .FindByActivityIdAndMemberId(memberId, activityId, cancellationToken);
+                // create activity request
+                var activityRequest = ActivityRequestFactory
+                    .Create(memberId, activityId, "Please Join");
+                activityRequests.Add(activityRequest);
                 
-                // if is already is member as guest make it un guest else send request to join
-                if (activityMember != null)
-                {
-                    activityMember.MakeUnGuest();
-                }
-                else
-                {
-                    var sendRequest = RequestFactory
-                        .Create(activityId, userId, memberId,
-                            request.Message, false);
-                    
-                    sendRequests.Add(sendRequest);
-                }
+                // create activity member
+                var activityMember = ActivityMember.Create(memberId, activityId
+                    , false, ParticipationStatus.Pending);
+                activityMembers.Add(activityMember);
 
             }
         }
-
+        // add to projectMembers table
         _unitOfWork.ProjectMembers.AddRange(projectMembers);
-
-        _unitOfWork.Requests.AddRange(sendRequests);
-
+        // add to activityRequests table
+        _unitOfWork.ActivityRequests.AddRange(activityRequests);
+        // add to activityMembers table
+        _unitOfWork.ActivityMembers.AddRange(activityMembers);
+        
         await _unitOfWork.SaveChangeAsync(cancellationToken);
     }
 

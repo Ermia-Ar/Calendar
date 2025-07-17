@@ -13,14 +13,9 @@ public class ActivityMemberConfiguration : IEntityTypeConfiguration<ActivityMemb
         builder.Property(x => x.Id)
             .UseIdentityColumn(1000, 1);
 
-		builder.HasOne(a => a.Activity)
+		builder.HasOne<Activity>()
             .WithMany(x => x.Members)
             .HasForeignKey(a => a.ActivityId)
-            .OnDelete(DeleteBehavior.NoAction);
-
-        builder.HasOne(x => x.Notification)
-            .WithOne(x => x.ActivityMember)
-            .HasForeignKey<ActivityMember>(a => a.NotificationId)
             .OnDelete(DeleteBehavior.NoAction);
     }
 }

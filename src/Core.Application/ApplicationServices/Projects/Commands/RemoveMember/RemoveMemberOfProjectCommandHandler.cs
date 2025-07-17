@@ -47,21 +47,19 @@ public sealed class RemoveMemberOfProjectCommandHandler(IUnitOfWork unitOfWork, 
             foreach (var activityMember in activityMembers)
             {
                 var notification = await _unitOfWork.Notifications
-                       .Find(activityMember.Id, cancellationToken);
+                       .FindByActivityIdAndUserId(request.UserId,
+                        activityMember.ActivityId, cancellationToken);
 
                 if (notification != null)
                     notifications.Add(notification);
             }
             _unitOfWork.Notifications.RemoveRange(notifications);
-
             _unitOfWork.ActivityMembers.RemoveRange(activityMembers.ToList());
         }
         else
         {
-            foreach (var activityMember in activityMembers)
-            {
+            foreach (var activityMember in activityMembers) 
                 activityMember.MakeGuest();
-            }
 
 		}
 		_unitOfWork.ProjectMembers.Remove(projectMember);

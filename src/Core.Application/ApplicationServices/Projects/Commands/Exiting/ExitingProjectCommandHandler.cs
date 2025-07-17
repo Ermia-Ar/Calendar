@@ -14,7 +14,7 @@ public sealed class ExitingProjectCommandHandler(IUnitOfWork unitOfWork, ICurren
 
     public async Task Handle(ExitingProjectCommandRequest request, CancellationToken cancellationToken)
     {
-        var userId = Guid.Parse("fefb09a0-c76d-40df-b149-f90a5fe189c7");// _currentUserServices.GetUserId();
+        var userId = _currentUserServices.GetUserId();
 
         var projectMember = await _unitOfWork.ProjectMembers
              .GetByUserIdAndProjectId(userId, request.ProjectId, cancellationToken);
@@ -34,25 +34,22 @@ public sealed class ExitingProjectCommandHandler(IUnitOfWork unitOfWork, ICurren
             foreach (var activityMember in activityMembers)
             {
                 var notification = await _unitOfWork.Notifications
-                       .Find(activityMember.Id, cancellationToken);
+                       .FindByActivityIdAndUserId(userId, 
+                        activityMember.ActivityId, cancellationToken);
 
                 if (notification != null)
                     notifications.Add(notification);
             }
             _unitOfWork.Notifications.RemoveRange(notifications);
-
             _unitOfWork.ActivityMembers.RemoveRange(activityMembers.ToList());
         }
         else
         {
             foreach (var activityMember in activityMembers)
-            {
                 activityMember.MakeGuest();
-            }
-
         }
 		_unitOfWork.ProjectMembers.Remove(projectMember);
-
+        
 		await _unitOfWork.SaveChangeAsync(cancellationToken);
     }
 }

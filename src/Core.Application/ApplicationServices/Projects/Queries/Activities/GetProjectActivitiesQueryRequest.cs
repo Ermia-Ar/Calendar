@@ -65,7 +65,7 @@ public sealed record GetProjectActivitiesDto
     int PageSize,
     bool? IsCompletedFiltering,
     bool? IsHistoryFiltering,
-    ActivityCategory? CategoryFiltering,
+    ActivityType? CategoryFiltering,
     OrderingType? IdOrdring,
     OrderingType? ParentIdOrdring,
     OrderingType? ProjectIdOrdring,

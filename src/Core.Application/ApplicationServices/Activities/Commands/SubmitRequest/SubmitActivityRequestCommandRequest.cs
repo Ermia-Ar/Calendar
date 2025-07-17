@@ -5,21 +5,17 @@ namespace Core.Application.ApplicationServices.Activities.Commands.SubmitRequest
 
 public record class SubmitActivityRequestCommandRequest(
     long ActivityId,
-    Guid[] MemberIds,
-    string? Message
-
+    Guid[] MemberIds
     ) : IRequest
 {
     public static SubmitActivityRequestCommandRequest Create(long activityId, SubmitActivityRequestDto model)
-        => new SubmitActivityRequestCommandRequest(activityId, model.MemberIds, model.Message);
+        => new SubmitActivityRequestCommandRequest(activityId, model.MemberIds);
 }
 
 /// <summary>
 /// 
 /// </summary>
 /// <param name="MemberIds">ایدی دریافت کننده های درخواست عضویت</param>
-/// <param name="Message">پبامی که همراه با درخواست ارسال میشود</param>
 public sealed record SubmitActivityRequestDto(
-	Guid[] MemberIds,
-	string? Message
+	Guid[] MemberIds
 	);

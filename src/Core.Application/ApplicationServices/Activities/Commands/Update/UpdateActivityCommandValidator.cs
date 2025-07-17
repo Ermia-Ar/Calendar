@@ -14,7 +14,7 @@ public class UpdateActivityCommandValidator : AbstractValidator<UpdateActivityCo
 
 		RuleFor(x => x.Duration);
 
-		RuleFor(x => x.Category)
+		RuleFor(x => x.Type)
 			.Must(x => (int)x >= 0 && (int)x <= 1);
 	}
 }

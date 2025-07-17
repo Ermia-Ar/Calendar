@@ -36,7 +36,7 @@ public class AddProjectCommandHandler(
 
             //add the owner of project to the members 
             var projectOwner = ProjectMember
-                .CreateOwner(ownerId, project.Id);
+                .Create(ownerId, project.Id);
 
             projectMembers.Add(projectOwner);
 
@@ -45,7 +45,7 @@ public class AddProjectCommandHandler(
                 //check
                 var member = (await _unitOfWork
                         .Users.GetById(memberId, cancellationToken))
-                    .Adapt<GetUserByIdResponse>();
+                    .Adapt<GetUserByIdDto>();
 
                 if (member == null)
                     throw new NotFoundUserIdException(memberId);

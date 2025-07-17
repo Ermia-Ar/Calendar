@@ -18,10 +18,10 @@ public class UserServices : IUserSrevices
 		_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 	}
 
-	public async Task<Responses<GetUserByIdResponse?>> GetUserById(Guid id)
+	public async Task<Responses<GetUserByIdDto?>> GetUserById(Guid id)
 	{
 		var content = await _httpClient.GetStringAsync($"{id}");
-		var result = Converter.FromJson<Responses<GetUserByIdResponse>>(content);
+		var result = Converter.FromJson<Responses<GetUserByIdDto>>(content);
 
 		return result; 
 	}

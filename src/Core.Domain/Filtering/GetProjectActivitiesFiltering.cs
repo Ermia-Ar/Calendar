@@ -6,5 +6,5 @@ public sealed record GetProjectActivitiesFiltering(
 	DateTime? StartDate,
 	bool? IsCompleted,
 	bool? IsHistory,
-	ActivityCategory? Category
+	ActivityType? Category
 );

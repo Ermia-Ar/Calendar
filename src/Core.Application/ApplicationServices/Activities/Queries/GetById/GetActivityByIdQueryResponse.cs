@@ -14,6 +14,6 @@ public record class GetActivityByIdQueryResponse(
     DateTime CreatedDate,
     DateTime UpdateDate,
     TimeSpan? Duration,
-    ActivityCategory Category,
+    ActivityType Type,
     bool IsCompleted
 ) : IResponse;

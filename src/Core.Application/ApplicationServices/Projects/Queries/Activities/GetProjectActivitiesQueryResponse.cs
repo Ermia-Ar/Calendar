@@ -7,7 +7,7 @@ public sealed record GetProjectActivitiesQueryResponse(
     long Id,
     long? ParentId,
     long ProjectId,
-    Guid UserId,
+    Guid OwnerId,
     string Title,
     string? Description,
     DateTime StartDate,
@@ -15,7 +15,7 @@ public sealed record GetProjectActivitiesQueryResponse(
     DateTime UpdateDate,
     TimeSpan? Duration,
     TimeSpan? NotificationBeforeInMinute,
-    ActivityCategory Category,
+    ActivityType Type,
     bool IsCompleted
 
 

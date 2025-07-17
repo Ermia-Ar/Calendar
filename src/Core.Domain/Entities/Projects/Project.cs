@@ -6,16 +6,11 @@ namespace Core.Domain.Entities.Projects;
 
 public class Project : BaseEntity
 {
-    internal Project()
-    {
-        
-    }
-
     public Guid OwnerId { get; internal set; }
 
     public string Title { get; internal set; }
 
-    public string Description { get; internal set; }
+    public string? Description { get; internal set; }
 
     public DateTime StartDate { get; internal set; }
 
@@ -26,9 +21,7 @@ public class Project : BaseEntity
     public string Icon { get; internal set; }
 
     public ICollection<Activity> Activities { get; internal set; } = [];
-    
     public ICollection<ProjectMember> Members { get; internal set; } = [];
-
 
     public void Update(string title, string description,
         DateTime startDate, DateTime endDate)

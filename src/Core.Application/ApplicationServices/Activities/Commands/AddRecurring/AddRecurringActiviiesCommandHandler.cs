@@ -5,9 +5,11 @@ using Core.Domain.Entities.Activities;
 using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.Notifications;
 using Core.Domain.Entities.Requests;
+using Core.Domain.Enum;
 using Core.Domain.Helper;
 using Core.Domain.UnitOfWork;
 using Mapster;
+using MapsterMapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 
@@ -19,29 +21,35 @@ public class AddRecurringActivityCommandHandler(
 	IConfiguration configuration)
 	: IRequestHandler<AddRecurringActivityCommandRequest>
 {
+	private readonly ICurrentUserServices _currentUserServices = currentUserServices;
+	private readonly IUnitOfWork _unitOfWork = unitOfWork;
+	private readonly IConfiguration _configuration = configuration;
 	public async Task Handle(AddRecurringActivityCommandRequest request, CancellationToken cancellationToken)
 	{
-		await using var transaction = await unitOfWork.BeginTransactionAsync(cancellationToken);
+		await using var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken);
 
 		try
 		{
-			var ownerId = currentUserServices.GetUserId();
-			var defaultProjectId = long.Parse(configuration["PUBLIC:PROJECTID"]);
+			var owner = (await _unitOfWork.Users
+					.GetById(_currentUserServices.GetUserId(), cancellationToken))
+				.Adapt<GetUserByIdDto>();
+			long defaultProjectId = long.Parse(_configuration["PUBLIC:PROJECTID"]);
 
 			//Generate Recurring Activities
-			var activities = GenerateRecurringActivities(ownerId, defaultProjectId, request);
+			var activities = GenerateRecurringActivities(owner.Id, defaultProjectId, request);
 			//add to activity table
-			activities = unitOfWork.Activities.AddRange(activities);
-			await unitOfWork.SaveChangeAsync(cancellationToken);
+			activities = _unitOfWork.Activities.AddRange(activities);
+			await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-			//create request for all membersIds
-			var userRequests = new List<Request>();
+			// for all membersIds
+			var activityMembers = new List<ActivityMember>(); 
+			var activityRequests = new List<ActivityRequest>();
 			foreach (var receiverId in request.MemberIds)
 			{
 				////check
-				var receiver = (await unitOfWork
+				var receiver = (await _unitOfWork
 					.Users.GetById(receiverId, cancellationToken))
-					.Adapt<GetUserByIdResponse>();
+					.Adapt<GetUserByIdDto>();
 
 				if (receiver == null)
 					throw new NotFoundUserIdException(receiverId);
@@ -49,51 +57,56 @@ public class AddRecurringActivityCommandHandler(
 				foreach (var activity in activities)
 				{
 					//create request for memberId
-					var sendRequest = RequestFactory.Create(activity.Id
-						, ownerId, /*receiverId*/ Guid.NewGuid(), request.Message, false);
+					var activityRequest = ActivityRequestFactory.Create( receiverId,
+						activity.Id, "please join !");
+					activityRequests.Add(activityRequest);
 
-					userRequests.Add(sendRequest);
+					var activityMember = ActivityMember
+						.Create(receiverId, activity.Id,
+							false, ParticipationStatus.Pending);
+					activityMembers.Add(activityMember);
 				}
 			}
-
-			//add requests table
-			unitOfWork.Requests.AddRange(userRequests);
+			//add To ActivityMembers Table
+			_unitOfWork.ActivityMembers.AddRange(activityMembers);
+			//add To activityRequests table
+			_unitOfWork.ActivityRequests.AddRange(activityRequests);
 
 			foreach (var activity in activities)
 			{
 				//add owner to activity members
 				var activityOwner = ActivityMember
-					.CreateOwner(ownerId, activity.Id);
+						.Create(owner.Id, activity.Id, 
+							false, ParticipationStatus.Participating);
 
 				// add to activityMembers table
-				activityOwner = unitOfWork.
+				activityOwner = _unitOfWork.
 					ActivityMembers.Add(activityOwner);
 
-				await unitOfWork.SaveChangeAsync(cancellationToken);
+				await _unitOfWork.SaveChangeAsync(cancellationToken);
 
 				// set notification for owner
 				// if NotificationBefore is null set default notification
 				var notificationBefore = request.NotificationBefore ??
-					TimeSpan.FromHours(NotificationSetting.DefaultNotificaiton);
+					owner.DefaultNotificationBefore;
 
 				var notification = NotificationFactory
-					.Create(activityOwner.Id
+					.Create(owner.Id, activity.Id
 					, activity.StartDate - notificationBefore);
 
 				//Add notifications table
-				notification = unitOfWork.Notifications.Add(notification);
+				notification = _unitOfWork.Notifications.Add(notification);
 
-				//set notification
-				activityOwner.SetNotification(notification.Id);
+				
 			}
 
-			await unitOfWork.SaveChangeAsync(cancellationToken);
+			await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-			await unitOfWork.CommitTransactionAsync(cancellationToken);
+			await _unitOfWork.CommitTransactionAsync(cancellationToken);
 		}
 		catch
 		{
-			await unitOfWork.RoleBackTransactionAsync(cancellationToken);
+			await _unitOfWork.RoleBackTransactionAsync(cancellationToken);
 			throw;
 		}
 	}
@@ -111,7 +124,7 @@ public class AddRecurringActivityCommandHandler(
 			// create new activity
 			var activity = ActivityFactory.Create(ownerId, projectId
 				, request.Title, request.Description
-				, currentStart, request.Category
+				, currentStart, request.Type
 				, request.Duration);
 
 			activities.Add(activity);

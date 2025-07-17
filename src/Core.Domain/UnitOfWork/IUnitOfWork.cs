@@ -8,7 +8,7 @@ namespace Core.Domain.UnitOfWork;
 public interface IUnitOfWork : IDisposable
 {
     IActivitiesRepository Activities { get; }
-    IRequestsRepository Requests { get; }
+    IRequestsRepository ActivityRequests { get; }
     ICommentsRepository Comments { get; }
     IProjectsRepository Projects { get; }
     INotificationRepository Notifications { get; }

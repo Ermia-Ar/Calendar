@@ -2,6 +2,8 @@
 using Core.Activities.ApplicationServices.Activities.Queries.GetComments;
 using Core.Application.ApplicationServices.Activities.Commands.AddRecurring;
 using Core.Application.ApplicationServices.Activities.Commands.ExitingActivity;
+using Core.Application.ApplicationServices.Activities.Commands.RemoveNotification;
+using Core.Application.ApplicationServices.Activities.Commands.SetNotification;
 using Core.Application.ApplicationServices.Activities.Commands.UpdateNotification;
 using Core.Application.ApplicationServices.Activities.Commands.UpdateStartDate;
 using Core.Application.ApplicationServices.Activities.Queries.GetComments;
@@ -82,7 +84,7 @@ public class ActivitiesController(ISender sender
 	/// <param name="model"></param>
 	/// <param name="token"></param>
 	/// <returns></returns>
-	[HttpPost("Request")]
+	[HttpPost("{id:long:required}/Request")]
 	[Authorize(CalendarClaimsServiceDeclaration.SendJoinRequest)]
 	public async Task<SuccessResponse> SendRequest(long id, [FromBody] SubmitActivityRequestDto model
 		, CancellationToken token = default)
@@ -90,6 +92,23 @@ public class ActivitiesController(ISender sender
 		var request = SubmitActivityRequestCommandRequest.Create(id, model);
 		await _sender.Send(request, token);
 
+		return Result.Ok();
+	}
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="notificationBefore"></param>
+	/// <param name="token"></param>
+	/// <returns></returns>
+	[HttpPost("{id:long:required}/Notifications")]
+	public async Task<SuccessResponse> SetNotification(long id, TimeSpan notificationBefore,
+		CancellationToken token = default)
+	{
+		var request = new SetNotificationCommandRequest(id, notificationBefore);
+		await _sender.Send(request, token);
+		
 		return Result.Ok();
 	}
 
@@ -208,19 +227,18 @@ public class ActivitiesController(ISender sender
 
 		return Result.Ok();
 	}
-
+	
 	/// <summary>
 	/// تغییر در زمان ارسال اعلان
 	/// </summary>
 	/// <remarks>
 	/// کاربر باید عضوی از فعالیت باشد
-	/// اگر فیلد نوتیفیکیشن نال ارسال شود دیگر اعلانی برای کاربر فعلی ارسال نمی شود
 	/// </remarks>
 	/// <param name="id">شناسه فعالیت</param>
 	/// <param name="model"></param>
 	/// <param name="token"></param>
 	/// <returns></returns>
-	[HttpPatch("{id:long:required}/Notification")]
+	[HttpPatch("{id:long:required}")]
 	[Authorize(CalendarClaimsServiceDeclaration.ChangeNotificationTime)]
 	public async Task<SuccessResponse> Notification(long id, UpdateNotificationDto model
 		, CancellationToken token = default)
@@ -228,7 +246,7 @@ public class ActivitiesController(ISender sender
 		var request = UpdateNotificationCommandRequest.Create(id, model);
 		await _sender.Send(request, token);
 
-	 	return Result.Ok();
+		return Result.Ok();
 	}
 
 	/// <summary>
@@ -252,7 +270,7 @@ public class ActivitiesController(ISender sender
 
 		return Result.Ok();
 	}
-
+	
 	/// <summary>
 	/// حذف فعالیت
 	/// </summary>
@@ -313,6 +331,22 @@ public class ActivitiesController(ISender sender
 		var request = new RemoveMemberOfActivityCommandRequest(id, memberId);
 		await _sender.Send(request, token);
 
+		return Result.Ok();
+	}
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="token"></param>
+	/// <returns></returns>
+	[HttpDelete("{id:long:required}/Notification")]
+	public async Task<SuccessResponse> DeleteNotification(long id,
+		CancellationToken token = default)
+	{
+		var request = new RemoveNotificationCommandRequest(id);
+		await _sender.Send(request, token);
+		
 		return Result.Ok();
 	}
 }

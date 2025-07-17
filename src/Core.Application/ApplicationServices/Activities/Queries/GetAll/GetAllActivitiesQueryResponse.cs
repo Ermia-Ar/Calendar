@@ -6,7 +6,7 @@ namespace Core.Application.ApplicationServices.Activities.Queries.GetAll;
 public sealed record GetAllActivitiesQueryResponse(
     long Id,
 	long? ParentId,
-    Guid UserId,
+    Guid OwnerId,
     string Title,
     string? Description,
     DateTime StartDate,
@@ -14,7 +14,7 @@ public sealed record GetAllActivitiesQueryResponse(
     DateTime UpdateDate,
     TimeSpan? Duration,
     int NotificationBeforeInMinute,
-	ActivityCategory Category,
+	ActivityType Type,
     bool IsCompleted
 ) : IResponse;
 

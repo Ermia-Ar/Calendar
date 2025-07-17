@@ -21,7 +21,7 @@ public sealed class ApplicationContext(
 
 
 	public DbSet<Activity> Activities { get; set; }
-	public DbSet<Request> Requests { get; set; }
+	public DbSet<ActivityRequest> Requests { get; set; }
 	public DbSet<Project> Projects { get; set; }
 	public DbSet<Comment> Comments { get; set; }
 	public DbSet<Notification> Notifications { get; set; }

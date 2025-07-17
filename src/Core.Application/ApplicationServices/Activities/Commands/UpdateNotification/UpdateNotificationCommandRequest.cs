@@ -12,7 +12,7 @@ namespace Core.Application.ApplicationServices.Activities.Commands.UpdateNotific
 public sealed record UpdateNotificationCommandRequest
 (
 	long ActivityId,
-	TimeSpan? NotificationBefore
+	TimeSpan NotificationBefore
 ) : IRequest
 {
 	public static UpdateNotificationCommandRequest Create(long id, UpdateNotificationDto model) 
@@ -24,6 +24,6 @@ public sealed record UpdateNotificationCommandRequest
 /// </summary>
 /// <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
 public sealed record UpdateNotificationDto (
-	TimeSpan? NotificationBefore
+	TimeSpan NotificationBefore
 	);
 

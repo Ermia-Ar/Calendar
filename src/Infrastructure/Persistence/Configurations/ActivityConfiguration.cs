@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Persistence.Configurations;
 
-public class ActivityConfigucation : IEntityTypeConfiguration<Activity>
+public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
 {
 	public void Configure(EntityTypeBuilder<Activity> builder)
 	{
@@ -12,13 +12,13 @@ public class ActivityConfigucation : IEntityTypeConfiguration<Activity>
 			.UseIdentityColumn(1000, 1);
 
 		// Project - Activity
-		builder.HasOne(a => a.Project)
+		builder.HasOne<Project>()
 			.WithMany(p => p.Activities)
 			.HasForeignKey(a => a.ProjectId)
 			.OnDelete(DeleteBehavior.NoAction);
 
 		// Activity - SubActivities (Self-referencing)
-		builder.HasOne(a => a.Parent)
+		builder.HasOne<Activity>()
 			.WithMany(a => a.SubActivities)
 			.HasForeignKey(a => a.ParentId)
 			.OnDelete(DeleteBehavior.NoAction);

@@ -18,7 +18,7 @@ public sealed class GetAllRequestQueryHandler(
 	{
 		var userId = _currentUserServices.GetUserId();
 
-		var requests = await _unitOfWork.Requests.GetAll
+		var requests = await _unitOfWork.ActivityRequests.GetAll
 			(request.Filtering, request.Ordring
 			, request.Pagination, cancellationToken);
 

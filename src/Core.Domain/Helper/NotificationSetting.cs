@@ -2,5 +2,5 @@
 
 public static class NotificationSetting
 {
-	public const double DefaultNotificaiton = 1.0;	
+	public const double DefaultNotification = 1.0;	
 }

@@ -6,16 +6,9 @@ namespace Core.Domain.Entities.Comments;
 
 public class Comment : BaseEntity
 {
-    internal Comment()
-    {
-        
-    }
     public long ProjectId { get; internal set; }
     
-    public Project Project { get; internal set; }
-
     public long ActivityId { get; internal set; }
-    public Activity Activity { get; internal set; }
 
     public Guid UserId { get; internal set; }
 

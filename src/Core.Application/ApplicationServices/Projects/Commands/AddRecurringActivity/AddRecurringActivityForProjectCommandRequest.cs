@@ -3,30 +3,27 @@ using MediatR;
 
 namespace Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity;
 
-public sealed record AddRecurringActivityForProjectCommnadRequest(
+public sealed record AddRecurringActivityForProjectCommandRequest(
      long ProjectId,
      string Title,
      string? Description,
      DateTime StartDate,
      TimeSpan? Duration,
      TimeSpan? NotificationBefore,
-     ActivityCategory Category,
-     Guid[] MemberIds,
-     string? Message,
+     ActivityType Type,
+     List<Guid> MemberIds,
      int Interval,
-     RecurrenceType Recurrence,
      DateTime EndDate
     ) : IRequest
 {
 
-    public static AddRecurringActivityForProjectCommnadRequest Create(long projectId, AddRecurringActivityForProjectDto model)
-        => new AddRecurringActivityForProjectCommnadRequest(
+    public static AddRecurringActivityForProjectCommandRequest Create(long projectId, AddRecurringActivityForProjectDto model)
+        => new AddRecurringActivityForProjectCommandRequest(
             projectId, model.Title,
             model.Description, model.StartDate,
             model.Duration, model.NotificationBefore,
-            model.Category, model.MemberIds,
-            model.Message, model.Interval,
-            model.Recurrence, model.EndDate
+            model.Type, model.MemberIds,
+             model.Interval, model.EndDate
             );
 }
 /// <summary>
@@ -37,11 +34,9 @@ public sealed record AddRecurringActivityForProjectCommnadRequest(
 /// <param name="StartDate">از زمان حال بزرگتر باشد</param>
 /// <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
 /// <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
-/// <param name="Category"></param>
+/// <param name="Type"></param>
 /// <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-/// <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
 /// <param name="Interval"></param>
-/// <param name="Recurrence"></param>
 /// <param name="EndDate"></param>
 public sealed record AddRecurringActivityForProjectDto(
      string Title,
@@ -49,11 +44,9 @@ public sealed record AddRecurringActivityForProjectDto(
      DateTime StartDate,
      TimeSpan? Duration,
      TimeSpan? NotificationBefore,
-     ActivityCategory Category,
-     Guid[] MemberIds,
-     string? Message,
+     ActivityType Type,
+     List<Guid> MemberIds,
      int Interval,
-     RecurrenceType Recurrence,
      DateTime EndDate
     );
 

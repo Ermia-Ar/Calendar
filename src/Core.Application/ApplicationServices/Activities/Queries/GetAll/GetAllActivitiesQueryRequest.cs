@@ -63,7 +63,7 @@ public sealed record GetAllActivitiesDto
 	DateTime? StartDateFiltering,
 	bool? IsCompletedFiltering,
 	bool? IsHistoryFiltering,
-	ActivityCategory? CategoryFiltering,
+	ActivityType? CategoryFiltering,
 	OrderingType? IdOrdering,
 	OrderingType? ParentIdOrdering,
 	OrderingType? ProjectIdOrdering,

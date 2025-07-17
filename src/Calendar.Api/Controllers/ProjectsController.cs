@@ -80,7 +80,7 @@ public class ProjectsController(ISender sender) : ControllerBase
 	public async Task<SuccessResponse> PostRecurring(long id, AddRecurringActivityForProjectDto model,
 			CancellationToken token)
 	{
-		var request = AddRecurringActivityForProjectCommnadRequest.Create(id, model);
+		var request = AddRecurringActivityForProjectCommandRequest.Create(id, model);
 		await _sender.Send(request, token);
 
 		return Result.Ok();

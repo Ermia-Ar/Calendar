@@ -1,7 +1,7 @@
 ﻿using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Application.ApplicationServices.Requests.Exceptions;
 using Core.Application.Common;
-using Core.Domain.Enum;
+using Core.Domain.Entities.Notifications;
 using Core.Domain.UnitOfWork;
 using MediatR;
 
@@ -16,37 +16,34 @@ public sealed class UpdateNotificationCommandHandler(ICurrentUserServices curren
 	public async Task Handle(UpdateNotificationCommandRequest request, CancellationToken cancellationToken)
 	{
 		var userId = _currentUserServices.GetUserId();
-		// get
+		// get Members
 		var activityMember = await _unitOfWork.ActivityMembers
 			.FindByActivityIdAndMemberId(userId, request.ActivityId,
 				cancellationToken);
 
 		if (activityMember == null)
-		{
 			throw new NotFoundMemberException("not found member");
-		}
 
 		var notification = await _unitOfWork.Notifications
-			.Find(activityMember.Id, cancellationToken);
-
-		// if notification is null remove notificaiton for this user activity
-		if (request.NotificationBefore == null)
+			.FindByActivityIdAndUserId(userId, activityMember.ActivityId, cancellationToken);
+		
+		var activity = await _unitOfWork.Activities
+			.FindById(request.ActivityId, cancellationToken);
+			
+		if (activity is null)
+			throw new InvalidActivityIdException();
+		
+		// if notification is null remove notification for this user activity
+		if (notification != null)
 		{
-			activityMember.RemoveNotification();	
-			_unitOfWork.Notifications.Remove(notification);
-		}
-		else
-		{
-			var activity = await _unitOfWork.Activities
-				.FindById(request.ActivityId, cancellationToken);
-
-			var newNotificaitonDate = activity.StartDate - (request.NotificationBefore ?? TimeSpan.Zero);
-
-			if (newNotificaitonDate <= DateTime.UtcNow)
+			var newNotification = activity.StartDate - request.NotificationBefore;
+		
+			if (newNotification <= DateTime.UtcNow)
 				throw new InvalidNotificationException();
 
-			notification.UpdateNotification(newNotificaitonDate);
+			notification.UpdateNotification(newNotification);
 		}
+		
 
 		await _unitOfWork.SaveChangeAsync(cancellationToken);
 	}

@@ -10,7 +10,7 @@ public sealed record AddActivityForProjectCommandRequest(
      DateTime StartDate,
      TimeSpan? Duration,
      TimeSpan? NotificationBefore,
-     ActivityCategory Category,
+     ActivityType Type,
      Guid[] MemberIds,
      string? Message
     ) : IRequest
@@ -19,7 +19,7 @@ public sealed record AddActivityForProjectCommandRequest(
     public static AddActivityForProjectCommandRequest Create(long projectId, AddActivityForProjectDto model)
         => new AddActivityForProjectCommandRequest(projectId, model.Title, model.Description, model.StartDate,
             model.Duration, model.NotificationBefore,
-            model.Category, model.MemberIds, model.Message);
+            model.Type, model.MemberIds, model.Message);
 }
 /// <summary>
 /// 
@@ -29,7 +29,7 @@ public sealed record AddActivityForProjectCommandRequest(
 /// <param name="StartDate">از زمان حال بزرگتر باشد</param>
 /// <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
 /// <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
-/// <param name="Category"></param>
+/// <param name="Type"></param>
 /// <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
 /// <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
 public sealed record AddActivityForProjectDto(
@@ -38,7 +38,7 @@ public sealed record AddActivityForProjectDto(
      DateTime StartDate,
      TimeSpan? Duration,
      TimeSpan? NotificationBefore,
-     ActivityCategory Category,
+     ActivityType Type,
      Guid[] MemberIds,
      string? Message
 

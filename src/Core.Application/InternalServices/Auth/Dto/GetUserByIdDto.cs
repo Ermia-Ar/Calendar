@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
-using SharedKernel.Helper;
+﻿using SharedKernel.Helper;
 
 namespace Core.Application.InternalServices.Auth.Dto;
 
-public class GetUserByIdResponse : IResponse
+public class GetUserByIdDto : IResponse
 {
 	public Guid Id { get; set; }
 
@@ -12,4 +11,6 @@ public class GetUserByIdResponse : IResponse
 	public string FirstName { get; set; }
 
 	public string FamilyName { get; set; }
+	
+	public TimeSpan DefaultNotificationBefore { set; get; }
 }

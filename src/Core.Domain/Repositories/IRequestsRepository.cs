@@ -10,11 +10,11 @@ namespace Core.Domain.Repositories;
 public interface IRequestsRepository
 {
 	//Commands
-	void Remove(Request request);
-	void RemoveRange(ICollection<Request> requests);
-	void Add(Request request);
-	void AddRange(ICollection<Request> requests);
-	void Update(Request request);
+	void Remove(ActivityRequest activityRequest);
+	void RemoveRange(ICollection<ActivityRequest> requests);
+	void Add(ActivityRequest activityRequest);
+	void AddRange(ICollection<ActivityRequest> requests);
+	void Update(ActivityRequest activityRequest);
 
 	//Queries
 	Task<ListDto> GetAll(GetAllRequestFiltering filtering
@@ -23,6 +23,6 @@ public interface IRequestsRepository
 
 	Task<IResponse?> GetById(long id, CancellationToken token);
 
-	Task<Request?> FindById(long id, CancellationToken token);
+	Task<ActivityRequest?> FindById(long id, CancellationToken token);
 
 }

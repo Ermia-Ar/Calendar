@@ -7,32 +7,32 @@ public class RequestsRepository(
 {
 
 	private readonly ApplicationContext _context = context;
-	private readonly string _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
+	private readonly string? _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
 
 	//Commands
-	public void Remove(Request request)
+	public void Remove(ActivityRequest activityRequest)
 	{
-		_context.Requests.Remove(request);
+		_context.Requests.Remove(activityRequest);
 	}
 
-	public void RemoveRange(ICollection<Request> requests)
+	public void RemoveRange(ICollection<ActivityRequest> requests)
 	{
 		_context.Requests.RemoveRange(requests);
 	}
 
-	public void Add(Request request)
+	public void Add(ActivityRequest activityRequest)
 	{
-		_context.Requests.Add(request);
+		_context.Requests.Add(activityRequest);
 	}
 
-	public void AddRange(ICollection<Request> requests)
+	public void AddRange(ICollection<ActivityRequest> requests)
 	{
 		_context.Requests.AddRange(requests);
 	}
 
-	public void Update(Request request)
+	public void Update(ActivityRequest activityRequest)
 	{
-		_context.Requests.Update(request);
+		_context.Requests.Update(activityRequest);
 	}
 
 
@@ -49,13 +49,9 @@ public class RequestsRepository(
 
 		// TODO : for senderId , receiverId filtering
 		//filtering
-		parameters.Add("SenderId", filtering.SenderId);
 		parameters.Add("ReceiverId", filtering.ReceiverId);
-		parameters.Add("Status", filtering.Status);
 		parameters.Add("ActivityId", filtering.ActivityId);
-		parameters.Add("AnswerAt", filtering.AnswerAt);
 		parameters.Add("InvitedAt", filtering.InviteAt);
-		parameters.Add("IsGuset", filtering.IsGuest);
 		//ordering
 		parameters.Add("OrderDirection", ordering.GetOrderDirection(ordering));
 		parameters.Add("OrderBy", ordering.GetOrderBy(ordering));
@@ -88,7 +84,7 @@ public class RequestsRepository(
 		return userRequests.FirstOrDefault();
 	}
 
-	public async Task<Request?> FindById(long id, CancellationToken token)
+	public async Task<ActivityRequest?> FindById(long id, CancellationToken token)
 	{
 		return await _context.Requests
 			.FirstOrDefaultAsync(x => x.Id == id, token);

@@ -10,9 +10,9 @@ public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
 		builder.Property(x => x.Id)
 			.UseIdentityColumn(1000, 1);
 
-		builder.HasOne(x => x.ActivityMember)
-			.WithOne(x => x.Notification)
-			.HasForeignKey<Notification>(x => x.ActivityMemberId)
+		builder.HasOne<Activity>()
+			.WithMany(x => x.Notifications)
+			.HasForeignKey(x => x.ActivityId)
 			.OnDelete(DeleteBehavior.NoAction);
 	}
 }

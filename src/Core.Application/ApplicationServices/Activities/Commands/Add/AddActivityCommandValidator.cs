@@ -12,7 +12,6 @@ public class AddActivityCommandValidator : AbstractValidator<AddActivityCommandR
 
         RuleFor(x => x.Description);
 
-        RuleFor(x => x.Message);
 
         RuleFor(x => x.Duration);
 
@@ -27,7 +26,7 @@ public class AddActivityCommandValidator : AbstractValidator<AddActivityCommandR
 				}
 			});
 
-		RuleFor(x => x.Category)
+		RuleFor(x => x.Type)
             .Must(x => (int)x >= 0 && (int)x <= 1);
 
         RuleFor(x => x.StartDate)

@@ -1,6 +1,6 @@
 ﻿namespace Core.Domain.Entities.Base;
 
-public class BaseEntity
+public abstract class BaseEntity
 {
 	public long Id { get; set; }
 

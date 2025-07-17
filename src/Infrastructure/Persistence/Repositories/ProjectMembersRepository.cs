@@ -9,7 +9,7 @@ public class ProjectMembersRepository(ApplicationContext context,
 	) : IProjectMembersRepository
 {
 	private readonly ApplicationContext _context = context;
-	private readonly string _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
+	private readonly string? _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
 
 	//Commands
 	public ProjectMember Add(ProjectMember projectMember)

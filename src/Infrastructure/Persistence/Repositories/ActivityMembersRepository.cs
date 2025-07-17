@@ -11,7 +11,7 @@ public class ActivityMembersRepository(
 	: IActivityMembersRepository
 {
 	private readonly ApplicationContext _context = context;
-	private readonly string _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
+	private readonly string? _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
 
 
 	//Commands
@@ -58,7 +58,7 @@ public class ActivityMembersRepository(
 		parameters.Add("isActive", true);
 		//filtering
 		parameters.Add("startDate", filtering.StartDate);
-		parameters.Add("category", filtering.Category);
+		parameters.Add("type", filtering.Category);
 		parameters.Add("isCompleted", filtering.IsCompleted);
 		//ordering
 		parameters.Add("OrderDirection", ordering.GetOrderDirection(ordering));
@@ -93,7 +93,7 @@ public class ActivityMembersRepository(
 		parameters.Add("isActive", true);
 		//filtering
 		parameters.Add("startDate", filtering.StartDate);
-		parameters.Add("category", filtering.Category);
+		parameters.Add("type", filtering.Category);
 		parameters.Add("isCompleted", filtering.IsCompleted);
 		//ordering
 		parameters.Add("OrderDirection", ordering.GetOrderDirection(ordering));
@@ -113,19 +113,18 @@ public class ActivityMembersRepository(
 
 	}
 
-	public async Task<IReadOnlyCollection<long>> FindActivityMemberIdsOfActivity(long activityId, CancellationToken token)
+	public async Task<IReadOnlyCollection<ActivityMember>> FindActivityMembersByActivityId(long activityId, CancellationToken token)
 	{
-		//FindActivityMemberIdsOfActivity
 		await using var connection = new SqlConnection(_connectionString);
 		await connection.OpenAsync(token);
 
 		var parameters = new DynamicParameters();
 		parameters.Add("activityId", activityId, DbType.Int64);
 
-		var ids = await connection.QueryAsync<long>
-			("SP_FindActivityMemberIdsOfActivity", parameters, commandType: CommandType.StoredProcedure);
+		var activityMembers = await connection.QueryAsync<ActivityMember>
+			("SP_FindActivityMemberByActivityId", parameters, commandType: CommandType.StoredProcedure);
 
-		return ids.ToImmutableList();
+		return activityMembers.ToImmutableList();
 	}
 
 	public async Task<ActivityMember?> FindByActivityIdAndMemberId(Guid userId, long activityId, CancellationToken token)
@@ -189,12 +188,13 @@ public class ActivityMembersRepository(
 	public async Task<IReadOnlyCollection<ActivityMember>> FindActivityMemberOfActivitiesForProjectForUserId(Guid userId,
 		long projectId, CancellationToken token)
 	{
-		var activities = await _context.ActivityMembers
-			.Include(x => x.Activity)
-			.Where(x => x.Activity.ProjectId == projectId && x.MemberId == userId)
-			.ToListAsync(token);
-
-		return activities.ToImmutableList();
+		// var activities = await _context.ActivityMembers
+		// 	.Include(x => x.Activity)
+		// 	.Where(x => x.Activity.ProjectId == projectId && x.MemberId == userId)
+		// 	.ToListAsync(token);
+		//
+		// return activities.ToImmutableList();
+		throw new NotImplementedException();
 	}
 
 	public async Task<ListDto> GetMemberOfActivity(long activityId,

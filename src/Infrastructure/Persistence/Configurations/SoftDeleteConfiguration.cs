@@ -10,7 +10,7 @@ public static class SoftDeleteConfiguration
 		modelBuilder.Entity<Activity>().HasQueryFilter(f => f.IsActive);
 		modelBuilder.Entity<Project>().HasQueryFilter(f => f.IsActive);
 		modelBuilder.Entity<Notification>().HasQueryFilter(f => f.IsActive);
-		modelBuilder.Entity<Request>().HasQueryFilter(f => f.IsActive);
+		modelBuilder.Entity<ActivityRequest>().HasQueryFilter(f => f.IsActive);
 		modelBuilder.Entity<Comment>().HasQueryFilter(f => f.IsActive);
 		modelBuilder.Entity<ActivityMember>().HasQueryFilter(x => x.IsActive);
 		modelBuilder.Entity<ProjectMember>().HasQueryFilter(x => x.IsActive);

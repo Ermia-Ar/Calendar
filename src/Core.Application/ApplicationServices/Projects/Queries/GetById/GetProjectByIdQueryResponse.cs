@@ -11,5 +11,7 @@ public record class GetProjectByIdQueryResponse(
     DateTime CreatedDate,
     DateTime UpdateDate,
     DateTime StartDate,
-    DateTime EndDate
+    DateTime EndDate,
+    string Color,
+    string Icon
     ) : IResponse;

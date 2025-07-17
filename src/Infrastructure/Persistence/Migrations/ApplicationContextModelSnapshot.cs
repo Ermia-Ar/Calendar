@@ -31,9 +31,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1000L);
 
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -49,6 +46,9 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
 
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<long?>("ParentId")
                         .HasColumnType("bigint");
 
@@ -62,11 +62,11 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -97,14 +97,14 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsGuest")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsOwner")
-                        .HasColumnType("bit");
-
                     b.Property<Guid>("MemberId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long?>("NotificationId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("NonAttendanceReason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -150,8 +150,6 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.HasIndex("ProjectId");
-
                     b.ToTable("Comments", "Calendar");
                 });
 
@@ -163,7 +161,7 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1000L);
 
-                    b.Property<long>("ActivityMemberId")
+                    b.Property<long>("ActivityId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
@@ -172,19 +170,18 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsSent")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("NotificationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ActivityMemberId")
-                        .IsUnique();
+                    b.HasIndex("ActivityId");
 
                     b.ToTable("Notifications", "Calendar");
                 });
@@ -201,9 +198,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsOwner")
                         .HasColumnType("bit");
 
                     b.Property<Guid>("MemberId")
@@ -238,7 +232,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDate")
@@ -269,7 +262,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Projects", "Calendar");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entities.Requests.Request", b =>
+            modelBuilder.Entity("Core.Domain.Entities.Requests.ActivityRequest", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -280,9 +273,6 @@ namespace Infrastructure.Migrations
                     b.Property<long>("ActivityId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("AnsweredAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -292,23 +282,12 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsExpire")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsGuest")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Message")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ReceiverId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SenderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -317,88 +296,94 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ActivityId");
 
-                    b.ToTable("Requests", "Calendar");
+                    b.ToTable("ActivityRequests", "Calendar");
+                });
+
+            modelBuilder.Entity("Core.Domain.Entities.UserSettings.UserSetting", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1000L);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("DefaultNotificationBefore")
+                        .HasColumnType("time");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserSettings", "Calendar");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Activities.Activity", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Activities.Activity", "Parent")
+                    b.HasOne("Core.Domain.Entities.Activities.Activity", null)
                         .WithMany("SubActivities")
                         .HasForeignKey("ParentId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Core.Domain.Entities.Projects.Project", "Project")
+                    b.HasOne("Core.Domain.Entities.Projects.Project", null)
                         .WithMany("Activities")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Parent");
-
-                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.ActivityMembers.ActivityMember", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Activities.Activity", "Activity")
+                    b.HasOne("Core.Domain.Entities.Activities.Activity", null)
                         .WithMany("Members")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Activity");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Comments.Comment", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Activities.Activity", "Activity")
+                    b.HasOne("Core.Domain.Entities.Activities.Activity", null)
                         .WithMany("Comments")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.HasOne("Core.Domain.Entities.Projects.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Activity");
-
-                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Notifications.Notification", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.ActivityMembers.ActivityMember", "ActivityMember")
-                        .WithOne("Notification")
-                        .HasForeignKey("Core.Domain.Entities.Notifications.Notification", "ActivityMemberId")
+                    b.HasOne("Core.Domain.Entities.Activities.Activity", null)
+                        .WithMany("Notifications")
+                        .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("ActivityMember");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.ProjectMembers.ProjectMember", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Projects.Project", "Project")
+                    b.HasOne("Core.Domain.Entities.Projects.Project", null)
                         .WithMany("Members")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("Core.Domain.Entities.Requests.Request", b =>
+            modelBuilder.Entity("Core.Domain.Entities.Requests.ActivityRequest", b =>
                 {
-                    b.HasOne("Core.Domain.Entities.Activities.Activity", "Activity")
+                    b.HasOne("Core.Domain.Entities.Activities.Activity", null)
                         .WithMany("UserRequests")
                         .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Activity");
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Activities.Activity", b =>
@@ -407,15 +392,11 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("Members");
 
+                    b.Navigation("Notifications");
+
                     b.Navigation("SubActivities");
 
                     b.Navigation("UserRequests");
-                });
-
-            modelBuilder.Entity("Core.Domain.Entities.ActivityMembers.ActivityMember", b =>
-                {
-                    b.Navigation("Notification")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.Domain.Entities.Projects.Project", b =>

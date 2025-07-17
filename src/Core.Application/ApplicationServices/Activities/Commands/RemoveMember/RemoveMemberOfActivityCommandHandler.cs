@@ -11,8 +11,8 @@ public sealed class RemoveMemberOfActivityCommandHandler(
 	ICurrentUserServices currentUser)
 		: IRequestHandler<RemoveMemberOfActivityCommandRequest>
 {
-	public readonly IUnitOfWork _unitOfWork = unitOfWork;
-	public readonly ICurrentUserServices _currentUser = currentUser;
+	private readonly IUnitOfWork _unitOfWork = unitOfWork;
+	private readonly ICurrentUserServices _currentUser = currentUser;
 
 	public async Task Handle(RemoveMemberOfActivityCommandRequest request, CancellationToken cancellationToken)
 	{
@@ -24,7 +24,7 @@ public sealed class RemoveMemberOfActivityCommandHandler(
 		if (activity == null)
 			throw new InvalidActivityIdException();
 
-		if (activity.UserId != userId)
+		if (activity.OwnerId != userId)
 			throw new OnlyActivityCreatorAllowedException();
 
 		//find activityMembe
@@ -36,9 +36,9 @@ public sealed class RemoveMemberOfActivityCommandHandler(
 			throw new NotFoundMemberException("No such member was found.");
 
 		var notification = await _unitOfWork.Notifications
-			.Find(activityMember.Id, cancellationToken);
-
-		_unitOfWork.Notifications.Remove(notification);
+			.FindByActivityIdAndUserId(userId, activityMember.Id, cancellationToken);
+		if (notification != null)
+			_unitOfWork.Notifications.Remove(notification);
 
 		_unitOfWork.ActivityMembers.Remove(activityMember);
 

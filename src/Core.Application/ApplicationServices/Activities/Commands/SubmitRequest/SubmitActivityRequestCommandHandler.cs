@@ -2,7 +2,9 @@
 using Core.Application.ApplicationServices.Auth.Exceptions;
 using Core.Application.Common;
 using Core.Application.InternalServices.Auth.Dto;
+using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.Requests;
+using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
@@ -28,7 +30,7 @@ public sealed class SubmitActivityRequestCommandHandler(
 		if (activity == null)
 			throw new InvalidActivityIdException();
 
-		if (activity.UserId != senderId)
+		if (activity.OwnerId != senderId)
 			throw new OnlyActivityCreatorAllowedException();
 
 		//get memberIds of base project of activity
@@ -37,38 +39,44 @@ public sealed class SubmitActivityRequestCommandHandler(
 			.ToList();
 
 		//send for each receiver
-		var userRequests = new List<Request>();
+		var activityRequests = new List<ActivityRequest>();
+		var activityMembers = new List<ActivityMember>();
+
 		foreach (var receiverId in request.MemberIds)
 		{
 			//check
 			var receiver = (await _unitOfWork
 					.Users.GetById(receiverId, cancellationToken))
-					.Adapt<GetUserByIdResponse>();
+				.Adapt<GetUserByIdDto>();
 
 			if (receiver == null)
 				throw new NotFoundUserIdException(receiverId);
+
 			// receiverId
 			var isMember = await _unitOfWork.ActivityMembers
 				.IsMemberOfActivity(receiverId, activity.Id, cancellationToken);
 
 			if (isMember)
 				throw new TheUserAlreadyIsMemberActivity(receiverId);
-			
-			
+
 			// check if the receiver is a member of base project
-			var	isGuest =
-				projectMemberIds.Any(x => x != receiverId);
+			var isGuest = projectMemberIds.Any(x => x != receiverId);
 
 			//create request
-			var sendRequest = RequestFactory.Create(activity.Id,
-				senderId, receiverId, request.Message,
-				isGuest);
+			var activityRequest = ActivityRequestFactory.Create(senderId,
+				activity.Id, "Please Join !!");
+			activityRequests.Add(activityRequest);
 
-			userRequests.Add(sendRequest);
+			var activityMember = ActivityMember
+				.Create(receiverId, activity.Id, isGuest, ParticipationStatus.Pending);
+			activityMembers.Add(activityMember);
 		}
 
-		_unitOfWork.Requests.AddRange(userRequests);
-
+		// Add to ActivityRequest Table
+		_unitOfWork.ActivityRequests.AddRange(activityRequests);
+		// add To ActivityRequest Table
+		_unitOfWork.ActivityMembers.AddRange(activityMembers);
+		//save change
 		await _unitOfWork.SaveChangeAsync(cancellationToken);
 	}
 }

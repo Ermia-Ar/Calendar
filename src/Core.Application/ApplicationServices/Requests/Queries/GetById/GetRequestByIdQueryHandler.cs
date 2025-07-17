@@ -11,7 +11,7 @@ namespace Core.Application.ApplicationServices.Requests.Queries.GetById
 
         public async Task<GetRequestByIdQueryResponse> Handle(GetRequestByIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var userRequest = await _unitOfWork.Requests.GetById(request.Id, cancellationToken);
+            var userRequest = await _unitOfWork.ActivityRequests.GetById(request.Id, cancellationToken);
 
             return userRequest.Adapt<GetRequestByIdQueryResponse>();
         }

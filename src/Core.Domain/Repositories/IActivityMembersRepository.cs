@@ -23,7 +23,7 @@ public interface IActivityMembersRepository
 	Task<bool> IsMemberOfActivity(Guid userId,long activityId,
 		CancellationToken token);
 
-	Task<IReadOnlyCollection<long>> FindActivityMemberIdsOfActivity
+	Task<IReadOnlyCollection<ActivityMember>> FindActivityMembersByActivityId
 		(long activityId, CancellationToken token);	
 	
 	Task<IReadOnlyCollection<ActivityMember>> FindByActivityId

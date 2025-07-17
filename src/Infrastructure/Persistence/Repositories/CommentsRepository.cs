@@ -9,7 +9,7 @@ public class CommentsRepository(ApplicationContext context
 							  , IConfiguration configuration) : ICommentsRepository
 {
 	private readonly ApplicationContext _context = context;
-	private readonly string _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
+	private readonly string? _connectionString = configuration["CONNECTIONSTRINGS:CONNECTION"];
 
 
 	//Commands

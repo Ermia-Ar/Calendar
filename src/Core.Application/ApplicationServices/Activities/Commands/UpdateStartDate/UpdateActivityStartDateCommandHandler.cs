@@ -1,6 +1,5 @@
 ﻿using Core.Application.ApplicationServices.Activities.Exceptions;
 using Core.Application.Common;
-using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
 using MediatR;
 
@@ -19,22 +18,20 @@ public sealed class UpdateActivityStartDateCommandHandler(ICurrentUserServices c
 		var activity = await _unitOfWork.Activities
 			.FindById(request.activityId, cancellationToken);
 
-		if (activity.UserId != userId)
-		{
+		if (activity == null)
+			throw new InvalidActivityIdException();
+		
+		if (activity.OwnerId != userId)
 			throw new OnlyActivityCreatorAllowedException();
-		}
 
 		//sync all notifications with new startDate
-		var activityMemberIds = await _unitOfWork.ActivityMembers
-			.FindActivityMemberIdsOfActivity(request.activityId, cancellationToken);
+		var notifications = await _unitOfWork.Notifications
+			.FindByActivityId(request.activityId, cancellationToken);
 
-        foreach (var activityMemberId in activityMemberIds)
+        foreach (var notification in notifications)
         {
-			var notification = await _unitOfWork.Notifications
-				.Find(activityMemberId, cancellationToken);
-
-			var notificationBefor = activity.StartDate - notification.NotificationDate;
-			var newNotificationDate = request.NewStartDate - notificationBefor;
+			var notificationBefore = activity.StartDate - notification.NotificationDate;
+			var newNotificationDate = request.NewStartDate - notificationBefore;
 
 			notification.UpdateNotification(newNotificationDate);
         }

@@ -9,8 +9,8 @@ namespace Core.Application.ApplicationServices.Activities.Commands.ExitingActivi
 public sealed class ExitingActivityCommandHandler(IUnitOfWork unitOfWork, ICurrentUserServices currentUser)
         : IRequestHandler<ExitingActivityCommandRequest>
 {
-    public readonly IUnitOfWork _unitOfWork = unitOfWork;
-    public readonly ICurrentUserServices _currentUser = currentUser;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly ICurrentUserServices _currentUser = currentUser;
 
     public async Task Handle(ExitingActivityCommandRequest request, CancellationToken cancellationToken)
     {
@@ -20,14 +20,13 @@ public sealed class ExitingActivityCommandHandler(IUnitOfWork unitOfWork, ICurre
             .FindByActivityIdAndMemberId(userId, request.ActivityId, cancellationToken);
 
         if (activityMember == null)
-        {
             throw new NotFoundMemberException("You are not a member of this activity.");
-        }
 
         var notification = await _unitOfWork.Notifications
-           .Find(activityMember.Id, cancellationToken);
-
-		_unitOfWork.Notifications.Remove(notification);
+           .FindByActivityIdAndUserId(userId, activityMember.ActivityId, cancellationToken);
+        
+        if (notification != null)
+	    	_unitOfWork.Notifications.Remove(notification);
 
 		_unitOfWork.ActivityMembers.Remove(activityMember);
 

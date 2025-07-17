@@ -6,7 +6,7 @@ using Core.Domain.Entities.Activities;
 using Core.Domain.Entities.ActivityMembers;
 using Core.Domain.Entities.Notifications;
 using Core.Domain.Entities.Requests;
-using Core.Domain.Helper;
+using Core.Domain.Enum;
 using Core.Domain.UnitOfWork;
 using Mapster;
 using MediatR;
@@ -26,32 +26,37 @@ public sealed class AddActivityForProjectCommandHandler(
 		await using var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken);
 		try
 		{
-			var ownerId =_currentUser.GetUserId();
+			var owner =(await _unitOfWork.Users
+					.GetById(_currentUser.GetUserId(), cancellationToken))
+				.Adapt<GetUserByIdDto>();
 
 			//for check if user is the member of project or not 
 			var memberIds = await _unitOfWork.ProjectMembers
 				.FindMemberIdsOfProject(request.ProjectId, cancellationToken);
 
-			if (!memberIds.Any(x => x == ownerId))
+			if (!memberIds.Any(x => x == owner.Id))
 				throw new OnlyProjectMembersAllowedException();
 
 			// create activity for project
-			var activity = ActivityFactory.Create(ownerId, request.ProjectId
+			var activity = ActivityFactory.Create(owner.Id, request.ProjectId
 				, request.Title, request.Description
-				, request.StartDate, request.Category
+				, request.StartDate, request.Type
 				, request.Duration);
 
 			// add to activity table
 			activity = _unitOfWork.Activities.Add(activity);
 			await _unitOfWork.SaveChangeAsync(cancellationToken);
-
-			var userRequests = new List<Request>();
+			
+			// for activity members 
+			var activityMembers = new List<ActivityMember>();
+			//for activity requests
+			var activityRequests = new List<ActivityRequest>();
 			foreach (var receiverId in request.MemberIds)
 			{
 				//check
 				var receiver = (await _unitOfWork
 						.Users.GetById(receiverId, cancellationToken))
-						.Adapt<GetUserByIdResponse>();
+						.Adapt<GetUserByIdDto>();
 
 				if (receiver == null)
 					throw new NotFoundUserIdException(receiverId);
@@ -61,37 +66,41 @@ public sealed class AddActivityForProjectCommandHandler(
 					.Any(x => x != receiverId);
 
 				// create request for memberId
-				var sendRequest = RequestFactory.Create(activity.Id, ownerId,
-					receiverId, request.Message, isGuest);
-
-				userRequests.Add(sendRequest);
+				var activityRequest = ActivityRequestFactory.Create(receiverId, 
+					activity.Id, "Please Join");
+				activityRequests.Add(activityRequest);
+				
+				// create activityMembers For memberId
+				var activityMember = ActivityMember.Create(receiverId,
+					activity.Id, isGuest, ParticipationStatus.Pending);
+				activityMembers.Add(activityMember);
 			}
 
-			//add requests table
-			_unitOfWork.Requests.AddRange(userRequests);
-
-			//
+			//add activityRequests table
+			_unitOfWork.ActivityRequests.AddRange(activityRequests);
+			
 			//add owner to activity members
 			var activityOwner = ActivityMember
-				.CreateOwner(ownerId, activity.Id);
-
-			activityOwner = _unitOfWork
-				.ActivityMembers.Add(activityOwner);
-
-			await _unitOfWork.SaveChangeAsync(cancellationToken);
+				.Create(owner.Id, activity.Id, 
+					false, ParticipationStatus.Participating);
+			
+			// add to activityMembers
+			 activityMembers.Add(activityOwner);
 
 			// create notification for owner
 			// if NotificationBefore is null set default notification
-			var notificationBefore = request.NotificationBefore ??
-									 TimeSpan.FromHours(NotificationSetting.DefaultNotificaiton);
+			var notificationBefore = request.NotificationBefore ?? 
+			                         owner.DefaultNotificationBefore;
 
 			var notification = NotificationFactory
-				.Create(activityOwner.Id, activity.StartDate - notificationBefore);
+				.Create(owner.Id, activity.Id,
+					activity.StartDate - notificationBefore);
 
+			//add To ActivityMembers Table
+			_unitOfWork.ActivityMembers.AddRange(activityMembers);
+			
 			//add notifications table
-			notification = _unitOfWork.Notifications.Add(notification);
-
-			activityOwner.SetNotification(notification.Id);
+			_unitOfWork.Notifications.Add(notification);
 
 			await _unitOfWork.SaveChangeAsync(cancellationToken);
 

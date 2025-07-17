@@ -6,20 +6,12 @@ namespace Core.Domain.Entities.Notifications;
 
 public class Notification : BaseEntity
 {
-	public long ActivityMemberId { get; internal set; }
+	public Guid UserId { get; set; }
 	
-	public ActivityMember ActivityMember { get; internal set; }
-
+	public long ActivityId { get; internal set; }
+	
 	public DateTime NotificationDate { get; internal set; }
-
-	public bool IsSent { get; internal set; }
-
-
-	public void Sent()
-	{
-		IsSent = true;
-		UpdateDate = DateTime.UtcNow;
-	}
+	
 
 	public void UpdateNotification(DateTime newNotification)
 	{

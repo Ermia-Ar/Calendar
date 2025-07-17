@@ -13,13 +13,12 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
             <param name="Interval">تعداد روز های فاصله بین فعالیت ها</param>
             <param name="ToDate">تا پایان این تاریخ</param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String,System.Int32,System.DateTime)">
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityType,System.Collections.Generic.List{System.Guid},System.Int32,System.DateTime)">
             <summary>
             
             </summary>
@@ -28,9 +27,8 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
             <param name="Interval">تعداد روز های فاصله بین فعالیت ها</param>
             <param name="ToDate">تا پایان این تاریخ</param>
         </member>
@@ -49,14 +47,11 @@
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.NotificationBefore">
             <summary> چه مدت مانده به فعالیت اعلان داده شود</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Category">
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Type">
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.MemberIds">
             <summary>درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Message">
-            <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddRecurring.AddRecurringActivityCommandRequest.Interval">
             <summary>تعداد روز های فاصله بین فعالیت ها</summary>
@@ -73,11 +68,10 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String)">
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityType,System.Collections.Generic.List{System.Guid})">
             <summary>
             
             </summary>
@@ -86,9 +80,8 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.Title">
             <summary>حداقل 3 کاراکتر </summary>
@@ -105,14 +98,11 @@
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.NotificationBefore">
             <summary> چه مدت مانده به فعالیت به کاربر اعلان داده شود</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.Category">
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.Type">
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.MemberIds">
             <summary>درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.AddSubActivity.AddSubActivityDto.Message">
-            <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest">
             <summary>
@@ -123,11 +113,10 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String)">
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityType,System.Collections.Generic.List{System.Guid})">
             <summary>
             
             </summary>
@@ -136,9 +125,8 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Title">
             <summary>حداقل 3 کاراکتر </summary>
@@ -155,34 +143,26 @@
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.NotificationBefore">
             <summary> چه مدت مانده به فعالیت اعلان داده شود</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Category">
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Type">
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.MemberIds">
             <summary>درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.Add.AddActivityCommandRequest.Message">
-            <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto">
             <summary>
             
             </summary>
             <param name="MemberIds">ایدی دریافت کننده های درخواست عضویت</param>
-            <param name="Message">پبامی که همراه با درخواست ارسال میشود</param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto.#ctor(System.Guid[],System.String)">
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto.#ctor(System.Guid[])">
             <summary>
             
             </summary>
             <param name="MemberIds">ایدی دریافت کننده های درخواست عضویت</param>
-            <param name="Message">پبامی که همراه با درخواست ارسال میشود</param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto.MemberIds">
             <summary>ایدی دریافت کننده های درخواست عضویت</summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.SubmitRequest.SubmitActivityRequestDto.Message">
-            <summary>پبامی که همراه با درخواست ارسال میشود</summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationCommandRequest">
             <summary>
@@ -191,7 +171,7 @@
             <param name="ActivityId">ایدی فعالیت</param>
             <param name="NotificationBefore"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationCommandRequest.#ctor(System.Int64,System.Nullable{System.TimeSpan})">
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationCommandRequest.#ctor(System.Int64,System.TimeSpan)">
             <summary>
             
             </summary>
@@ -210,7 +190,7 @@
             </summary>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت اعلان داده شود</param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationDto.#ctor(System.Nullable{System.TimeSpan})">
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateNotification.UpdateNotificationDto.#ctor(System.TimeSpan)">
             <summary>
             
             </summary>
@@ -242,9 +222,9 @@
             <param name="Title"></param>
             <param name="Description"></param>
             <param name="Duration">TimeSpan</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.#ctor(System.Int64,System.String,System.String,System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory)">
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.#ctor(System.Int64,System.String,System.String,System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityType)">
             <summary>
             
             </summary>
@@ -252,7 +232,7 @@
             <param name="Title"></param>
             <param name="Description"></param>
             <param name="Duration">TimeSpan</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.Id">
             <summary>ایدی فعالیت که میخواهید به روزرسانی کنید</summary>
@@ -266,7 +246,7 @@
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.Duration">
             <summary>TimeSpan</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.Category">
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityCommandRequest.Type">
             <summary></summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto">
@@ -276,16 +256,16 @@
             <param name="Title"></param>
             <param name="Description"></param>
             <param name="Duration">TimeSpan</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.#ctor(System.String,System.String,System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory)">
+        <member name="M:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.#ctor(System.String,System.String,System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityType)">
             <summary>
             
             </summary>
             <param name="Title"></param>
             <param name="Description"></param>
             <param name="Duration">TimeSpan</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.Title">
             <summary></summary>
@@ -296,7 +276,7 @@
         <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.Duration">
             <summary>TimeSpan</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.Category">
+        <member name="P:Core.Application.ApplicationServices.Activities.Commands.UpdateActivity.UpdateActivityDto.Type">
             <summary></summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto">
@@ -323,7 +303,7 @@
             <param name="IsHistoryFiltering">اون هایی رو برمیگردونه که از تاریخ شروع شون گذشته باشه</param>
             <param name="CategoryFiltering">فیلتر کردن بر اساس </param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetAll.GetAllActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType})">
             <summary>
             
             </summary>
@@ -488,23 +468,13 @@
             <summary>
             
             </summary>
-            <param name="MemberId"></param>
-            <param name="IsOwner"></param>
             <param name="IsGuest"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.#ctor(System.Int64,System.Guid,System.Boolean,System.Boolean)">
+        <member name="M:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.#ctor(System.Guid,System.Boolean)">
             <summary>
             
             </summary>
-            <param name="MemberId"></param>
-            <param name="IsOwner"></param>
             <param name="IsGuest"></param>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.MemberId">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.IsOwner">
-            <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Activities.Queries.GetMembers.GetMemberOfActivityQueryResponse.IsGuest">
             <summary></summary>
@@ -678,11 +648,11 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
             <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String)">
+        <member name="M:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityType,System.Guid[],System.String)">
             <summary>
             
             </summary>
@@ -691,7 +661,7 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
             <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
         </member>
@@ -710,7 +680,7 @@
         <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.NotificationBefore">
             <summary> چه مدت مانده به فعالیت به کاربر اعلان داده شود</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.Category">
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.Type">
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddActivity.AddActivityForProjectDto.MemberIds">
@@ -753,14 +723,12 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
             <param name="Interval"></param>
-            <param name="Recurrence"></param>
             <param name="EndDate"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityCategory,System.Guid[],System.String,System.Int32,Core.Domain.Enum.RecurrenceType,System.DateTime)">
+        <member name="M:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.#ctor(System.String,System.String,System.DateTime,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},Core.Domain.Enum.ActivityType,System.Collections.Generic.List{System.Guid},System.Int32,System.DateTime)">
             <summary>
             
             </summary>
@@ -769,11 +737,9 @@
             <param name="StartDate">از زمان حال بزرگتر باشد</param>
             <param name="Duration">مدت زمان در نظر گرفته شده برای فعالیت</param>
             <param name="NotificationBefore"> چه مدت مانده به فعالیت به کاربر اعلان داده شود</param>
-            <param name="Category"></param>
+            <param name="Type"></param>
             <param name="MemberIds">درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</param>
-            <param name="Message">پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</param>
             <param name="Interval"></param>
-            <param name="Recurrence"></param>
             <param name="EndDate"></param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Title">
@@ -791,19 +757,13 @@
         <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.NotificationBefore">
             <summary> چه مدت مانده به فعالیت به کاربر اعلان داده شود</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Category">
+        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Type">
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.MemberIds">
             <summary>درخواستی برای عضویت در فعالیت برای آنها ارسال می شود</summary>
         </member>
-        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Message">
-            <summary>پیامی که همراه با درخواست برای دریافت کننده ها فرستاده می شود</summary>
-        </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Interval">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.Recurrence">
             <summary></summary>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Commands.AddRecurringActivity.AddRecurringActivityForProjectDto.EndDate">
@@ -908,7 +868,7 @@
             <param name="IsCompletedOrdring"></param>
             <param name="StartDateFiltering"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityCategory},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{System.DateTime})">
+        <member name="M:Core.Application.ApplicationServices.Projects.Queries.Activities.GetProjectActivitiesDto.#ctor(System.Int32,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{Core.Domain.Enum.ActivityType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{SharedKernel.Ordering.OrderingType},System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
@@ -1144,54 +1104,14 @@
             
             </summary>
             <param name="MemberId"></param>
-            <param name="IsOwner"></param>
         </member>
-        <member name="M:Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectQueryResponse.#ctor(System.Guid,System.Boolean)">
+        <member name="M:Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectQueryResponse.#ctor(System.Guid)">
             <summary>
             
             </summary>
             <param name="MemberId"></param>
-            <param name="IsOwner"></param>
         </member>
         <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectQueryResponse.MemberId">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Projects.Queries.GetMembers.GetMemberOfProjectQueryResponse.IsOwner">
-            <summary></summary>
-        </member>
-        <member name="T:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestCommandRequest">
-            <summary>
-            
-            </summary>
-            <param name="RequestId"></param>
-            <param name="IsAccepted"></param>
-        </member>
-        <member name="M:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestCommandRequest.#ctor(System.Int64,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="RequestId"></param>
-            <param name="IsAccepted"></param>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestCommandRequest.RequestId">
-            <summary></summary>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestCommandRequest.IsAccepted">
-            <summary></summary>
-        </member>
-        <member name="T:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestDto">
-            <summary>
-            
-            </summary>
-            <param name="IsAccepted"></param>
-        </member>
-        <member name="M:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestDto.#ctor(System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="IsAccepted"></param>
-        </member>
-        <member name="P:Core.Application.ApplicationServices.Requests.Commands.Answer.AnswerRequestDto.IsAccepted">
             <summary></summary>
         </member>
         <member name="T:Core.Application.ApplicationServices.Requests.Queries.GetAll.GetAllRequestDto">
